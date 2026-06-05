@@ -13,8 +13,8 @@ import { useRole } from "@/lib/rbac/role-context";
 import { ROLES, ROLE_DEFINITIONS, type Role } from "@/lib/rbac/roles";
 
 /**
- * Dev-only role switcher. Auth is not yet wired (Clerk planned), so the active
- * role is selected here to drive role-aware navigation and actions.
+ * Role switcher for users without a Clerk-assigned platformRole in publicMetadata.
+ * Signed-in users with platformRole set in Clerk use that role instead.
  */
 export function RoleSwitcher() {
   const { role, setRole } = useRole();

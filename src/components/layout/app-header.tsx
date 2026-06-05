@@ -10,7 +10,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { Separator } from "@/components/ui/separator";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { CommandPalette } from "@/components/layout/command-palette";
-import { RoleSwitcher } from "@/components/layout/role-switcher";
+import { UserMenu } from "@/components/auth/user-menu";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { useSidebar } from "@/components/layout/sidebar-context";
@@ -73,7 +73,7 @@ export function AppHeader({ unreadCount = 0 }: { unreadCount?: number }) {
         )}
         <ThemeToggle />
         <Separator orientation="vertical" className="mx-1 hidden !h-6 sm:block" />
-        <RoleSwitcher />
+        <UserMenu />
       </div>
     </header>
   );

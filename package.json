@@ -44,6 +44,7 @@
     "typescript": "^5.7.0"
   },
   "dependencies": {
+    "@clerk/nextjs": "^7.4.3",
     "@hookform/resolvers": "^5.4.0",
     "@prisma/client": "^6.8.0",
     "@radix-ui/react-avatar": "^1.1.11",

@@ -1,9 +1,9 @@
+import { getCurrentActor } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 
 /**
- * Writes an audit event. Auth is not yet wired (Clerk planned), so the actor
- * is optional and defaults to "system". When Clerk is integrated, pass the
- * authenticated user's name/role here.
+ * Writes an audit event. When actorName/actorRole are omitted, the signed-in
+ * Clerk user is recorded automatically.
  */
 export async function writeAudit(params: {
   entityType: string;
@@ -14,13 +14,19 @@ export async function writeAudit(params: {
   payload?: unknown;
 }) {
   try {
+    const actor =
+      params.actorName === undefined && params.actorRole === undefined
+        ? await getCurrentActor()
+        : null;
+
     await prisma.auditEvent.create({
       data: {
         entityType: params.entityType,
         entityId: params.entityId,
         action: params.action,
-        actorName: params.actorName ?? "system",
-        actorRole: params.actorRole ?? null,
+        actorName:
+          params.actorName ?? (actor?.authenticated ? actor.name : "system"),
+        actorRole: params.actorRole ?? actor?.role ?? null,
         payload: params.payload === undefined ? undefined : (params.payload as object),
       },
     });
