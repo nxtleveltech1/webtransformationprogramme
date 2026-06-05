@@ -1,0 +1,45 @@
+# Programme Platform Requirement Coverage
+
+Source requirement: [`.dev/improvmenets.md`](../.dev/improvmenets.md)
+
+This matrix is the delivery control for the build. A requirement is not complete until the platform has data, UI/workflow coverage, evidence traceability, and validation where applicable.
+
+## Coverage Matrix
+
+| Requirement area | Required outcome | Current status | Delivery action | Completion evidence |
+| --- | --- | --- | --- | --- |
+| Source ingestion | Day 1, Day 2, Teams notes, transcripts, board/sticky extracts where available, workstream notes, governance, readiness, comms, training, support, hypercare, and existing app code inspected | Partial | Catalogue `Documents` and `WorkshopPack`; log missing board/sticky image artifacts as gaps | `docs/workshop-extraction-matrix.md`; `SourceDocument` seed coverage |
+| Mandatory interpretation rule | Every meaningful input maps to a phase, workstream, milestone, deliverable, task, dependency, decision, RAID item, owner, readiness gate, governance checkpoint, report item, acceptance criterion, or explicit gap | Partial | Create extraction-to-execution rows and enforce validation | Extraction matrix plus validation script failures for unmapped rows |
+| Governance and PMO | Governance model, forums, steering, cadence, go/no-go, RAID, actions, dependency control, reporting, phase gates, calendar, escalations | Partial | Add governance calendar events and strengthen governance dashboards/workflows | `GovernanceMeeting` data, governance calendar UI, reports |
+| Technical Migration | Current/target platform readiness, environments, secure web, SSO, portal dependencies, stress/regression/security, cutover, rollback, post-launch validation | Partial | Map technical controls into WBS, readiness gates, tasks, risks, and evidence | WBS tasks, readiness gates, linked risks/dependencies |
+| Design and Design Systems | Component/template audit, theming, accessibility, brand, design QA, sign-off and playback cycles | Partial | Add design workstream deliverables, gates, status updates, acceptance criteria | Workstream detail, deliverables, readiness and evidence links |
+| Content and IA | URL audit, page inventory, content audit, IA, redirects, SEO, freeze, QA, sign-off | Partial | Add content/IA WBS tasks, deliverables, gates, dependencies, evidence | WBS/Gantt, deliverables register, readiness gates |
+| Publishing | Workflow, CMS responsibilities, approvals, staging, release windows, rollback, QA, sign-off, production control | Partial | Add publishing deliverables/gates and governance checkpoints | Deliverables, governance calendar, readiness report |
+| Internal Communications | Executive/staff/team messaging, FAQs, launch awareness, operational readiness comms, schedule | Missing/Thin | Add formal internal comms workstream tasks, deliverables, readiness gate | Workstream parity matrix, WBS, readiness |
+| External Communications | Customer, partner, marketing, PR, URL-change and support messaging | Missing/Thin | Add formal external comms workstream tasks, deliverables, readiness gate | Workstream parity matrix, WBS, readiness |
+| Contact Centre and Support Readiness | Briefing, scripts, training, surge support, feedback, support queue, escalation, known issues, daily hypercare review | Missing/Thin | Add formal support-readiness workstream tasks, gates, hypercare workflows | Readiness dashboard, hypercare WBS, governance calendar |
+| Training and Adoption | CMS/staff/contact-centre/SME training, materials, attendance, completion, KB updates, support | Missing/Thin | Add training workstream deliverables and gate criteria | Readiness gate, deliverables, evidence |
+| Testing, Readiness and Go-Live | Test strategy, functional/regression/stress/redirect/content/accessibility/performance/security testing, sign-off, checklist, cutover, launch | Partial | Add readiness gates, go/no-go workflow, cutover tasks, test evidence | Readiness module, WBS/Gantt, governance meetings |
+| Hypercare and Stabilisation | Two-week operating mode, daily stand-ups, support queue, triage, defects, monitoring, feedback, reporting, exit criteria, lessons learned | Missing/Thin | Add hypercare phase, governance cadence, WBS, dashboards and exit gates | Phase data, readiness/hypercare UI, reports |
+| Gantt depth | Full hierarchy with phases, workstreams, sub-workstreams, deliverables, tasks, subtasks, dates, owners, SMEs, dependencies, RAG, percent, critical path, blockers, linked risks/decisions, evidence, confidence, assumptions, acceptance criteria | Partial | Add WBS task model and seed a full baseline from workshop data | WBS/Gantt UI, seed data, validation |
+| Programme phases | Seven required phases with deliverables and gates | Partial | Add phase records and map tasks/deliverables/readiness gates to each phase | `Phase` seed data and WBS views |
+| Executive Dashboard | Real RAG, readiness, critical path, milestones, overdue deliverables, RAID, decisions, dependencies, workstream health, governance checkpoints, launch summary | Partial | Extend dashboard data to include deliverables/readiness/evidence gaps | Dashboard service/UI and validation |
+| Gantt and Timeline Module | Gantt, swimlanes, critical path, milestones, dependencies, baseline vs forecast, slippage, owners, blockers, readiness gates, exportable executive view | Partial | Source timeline from WBS/dependency graph, not only roadmap rows | WBS/Gantt service/UI |
+| Workstream Management | Charter, scope, deliverables, owners, SMEs, milestones, tasks, dependencies, risks, issues, decisions, status updates, evidence, acceptance, completion evidence | Partial | Strengthen workstream detail and seed missing fields/gaps | Workstream detail UI and seed data |
+| RAID Management | Risks, assumptions, issues, dependencies with owners, impact/probability/severity/status/due/mitigation/escalation and links | Partial | Preserve existing registers and add links to WBS/milestones/decisions | RAID pages and validation |
+| Decision Log | Required decision, background, options, recommendation, owner, forum, due, impact if delayed, final decision, date, linked work | Partial | Add missing fields/links and reporting checks where needed | Decisions UI/report/export |
+| Action Tracker | Action, owner, workstream, due, priority, status, dependency, notes, evidence, escalation | Partial | Link actions to WBS/evidence and expose escalation/evidence | Actions UI/report/export |
+| Deliverables Register | Deliverable, workstream, description, owner, start/due, status, RAG, acceptance, approval, evidence, linked tasks/risks/decisions | Missing UI / partial model | Extend `Deliverable`, add route/service/actions/seed/export | Deliverables module |
+| Governance Calendar | Steering, planning, playbacks, SME workshops, sign-offs, go/no-go, hypercare stand-ups, decision forums, checkpoints | Partial | Add dated governance meeting model and calendar view | Governance calendar module |
+| Readiness and Go/No-Go | Technical, content, design, publishing, training, contact centre, comms, business, security, support, hypercare gates with criteria/evidence/owner/status/decision/blockers/approval | Missing | Add readiness models, seed, dashboard, workflows, exports | Readiness module and report |
+| Evidence Library | Source type/name, extracted text, related workstream/deliverable/task, confidence, notes, follow-up | Missing UI / partial model | Add evidence library route over sources, sessions, excerpts and evidence links | Evidence module |
+| Reporting and Export | Executive, workstream, RAID, decisions, readiness, Gantt, action tracker, steering pack; PDF/Excel where feasible | Partial | Extend report datasets and export artifacts | Reports UI/exports |
+| Data model capabilities | Parent-child tasks, many-to-many dependencies, rollups, RAG, readiness scoring, critical path, traceability, status history, accountability, RBAC | Partial | Extend schema and calculations | Prisma schema/migration and services |
+| UI/UX | Professional workflow-led UI with search, filters, status workflows and exports answering management questions | Partial | Add/strengthen modules around daily control, workstream review, steering prep, go/no-go, escalation, readiness, hypercare | Routes, components, validation checklist |
+| Professional rules | No unmarked placeholders, no invented facts, no generic project tool, no shallow Gantt, formal non-technical workstreams | Partial | Add quality gates and explicit inferred/gap flags | Validation report and seeded confidence |
+| Acceptance criteria | All 14 criteria pass | Pending | Validate after implementation | Validation report |
+| Required final outputs | All 16 outputs exist and are usable | Pending | Implement and document outputs | Technical notes and validation report |
+
+## Acceptance Gate
+
+Before completion, this matrix must be rechecked and every row must be marked complete, blocked with evidence, or explicitly deferred by programme decision. The default acceptable state is complete.

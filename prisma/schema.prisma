@@ -1,0 +1,1807 @@
+// Web Transformation Workshop Programme — Neon PostgreSQL
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── Enums ───────────────────────────────────────────────────────────────────
+
+enum ProgrammeStatus {
+  ACTIVE
+  COMPLETE
+  ARCHIVED
+}
+
+enum WorkshopStatus {
+  PLANNED
+  IN_PROGRESS
+  COMPLETE
+}
+
+enum Confidence {
+  CONFIRMED
+  INFERRED
+  UNCONFIRMED
+  REQUIRES_VALIDATION
+}
+
+enum DecisionStatus {
+  CONFIRMED
+  PROPOSED
+  DEFERRED
+  REJECTED
+  UNCLEAR
+}
+
+enum ActionStatus {
+  NEW
+  IN_PROGRESS
+  BLOCKED
+  DONE
+  UNCONFIRMED
+  SUGGESTED
+  OPEN
+}
+
+enum Priority {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum RiskCategory {
+  BUSINESS
+  TECHNICAL
+  PROCESS
+  PEOPLE
+  RESOURCE
+  GOVERNANCE
+  DATA
+  SECURITY
+  TIMELINE
+  FINANCIAL
+  VENDOR
+  CHANGE
+  DELIVERY
+}
+
+enum Probability {
+  HIGH
+  MEDIUM
+  LOW
+  UNKNOWN
+}
+
+enum Impact {
+  HIGH
+  MEDIUM
+  LOW
+  UNKNOWN
+}
+
+enum IssueStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+enum DependencyStatus {
+  OPEN
+  IN_PROGRESS
+  MET
+  BLOCKED
+  AT_RISK
+}
+
+enum QuestionStatus {
+  OPEN
+  ANSWERED
+  DEFERRED
+}
+
+enum IngestStatus {
+  INGESTED
+  PARTIAL
+  RECONCILED
+  EXCLUDED
+  PENDING
+}
+
+enum AnalysisLens {
+  A_PROCESS
+  B_RACI
+  C_RESOURCING
+  D_TECHNICAL
+  E_DELIVERY
+  F_STAKEHOLDER
+  G_CHANGE
+}
+
+enum AnalysisCompleteness {
+  COMPLETE
+  INCOMPLETE
+}
+
+enum RegisterType {
+  DECISION
+  ACTION
+  RISK
+  ISSUE
+  ASSUMPTION
+  DEPENDENCY
+  OPEN_QUESTION
+  PARKING_LOT
+  TRADEOFF
+}
+
+enum LinkKind {
+  RELATED
+  BLOCKS
+  MITIGATES
+  ANSWERS
+  IMPLEMENTS
+  TRACES
+  ESCALATES
+}
+
+enum SessionOutputType {
+  SUMMARY
+  KEY_POINTS
+  DECISIONS
+  ACTIONS
+  RISKS
+  ISSUES
+  DEPENDENCIES
+  OPEN_QUESTIONS
+  PARKING_LOT
+  CLARIFICATIONS
+}
+
+enum ExecutiveSummaryDay {
+  DAY1
+  DAY2
+  FINAL
+}
+
+enum ExportArtifactType {
+  XLSX
+  HTML
+}
+
+enum ExportVariant {
+  CANONICAL
+  CURSOR
+  GPT
+}
+
+enum MetricCategory {
+  PLATFORM
+  CUSTOMER
+}
+
+enum GlossaryCategory {
+  ACRONYM
+  SYSTEM
+  TERM
+  PROCESS
+}
+
+enum DsZone {
+  RED
+  GREEN
+  MIXED
+}
+
+enum PageTreatment {
+  AS_IS
+  NEW_TEMPLATE
+  RESTYLE
+  CONSOLIDATE
+  RETIRE
+}
+
+enum StakeholderRoleType {
+  SPONSOR
+  APPROVER
+  SME
+  DECISION_MAKER
+  INFORMED
+}
+
+// ─── Programme & workshop ────────────────────────────────────────────────────
+
+model Programme {
+  id                 String              @id @default(cuid())
+  name               String
+  purpose            String?             @db.Text
+  scopeTension       String?             @db.Text
+  hardDeadline       String?
+  pageBaseline       Int?
+  mvpSummary         String?             @db.Text
+  rag                Rag?
+  status             ProgrammeStatus     @default(ACTIVE)
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  workshops          WorkshopEvent[]
+  workstreams        Workstream[]
+  sites              Site[]
+  metrics            SuccessMetric[]
+  scopeOptions       ScopeOption[]
+  projects           Project[]
+  phases             Phase[]
+  tasks              Task[]
+  deliverables       Deliverable[]
+  readinessGates     ReadinessGate[]
+  governanceMeetings GovernanceMeeting[]
+  statusUpdates      StatusUpdate[]
+}
+
+model WorkshopEvent {
+  id          String             @id @default(cuid())
+  programmeId String
+  programme   Programme          @relation(fields: [programmeId], references: [id], onDelete: Cascade)
+  title       String
+  location    String?
+  startDate   DateTime?
+  endDate     DateTime?
+  status      WorkshopStatus     @default(IN_PROGRESS)
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  days        WorkshopDay[]
+  sources     SourceDocument[]
+  sessions    WorkshopSession[]
+  summaries   ExecutiveSummary[]
+}
+
+model WorkshopDay {
+  id         String            @id @default(cuid())
+  workshopId String
+  workshop   WorkshopEvent     @relation(fields: [workshopId], references: [id], onDelete: Cascade)
+  dayNumber  Int
+  date       DateTime?
+  theme      String?
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+  sessions   WorkshopSession[]
+
+  @@unique([workshopId, dayNumber])
+}
+
+model WorkshopSession {
+  id                 String              @id @default(cuid())
+  workshopId         String
+  workshop           WorkshopEvent       @relation(fields: [workshopId], references: [id], onDelete: Cascade)
+  dayId              String?
+  day                WorkshopDay?        @relation(fields: [dayId], references: [id], onDelete: SetNull)
+  sessionNumber      Int
+  name               String
+  startTime          String?
+  endTime            String?
+  facilitator        String?
+  scribe             String?
+  purpose            String?             @db.Text
+  location           String?
+  bodyMarkdown       String?             @db.Text
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  agendaItems        SessionAgendaItem[]
+  topics             SessionTopic[]
+  outputs            SessionOutput[]
+  transcriptExcerpts TranscriptExcerpt[]
+
+  @@unique([workshopId, dayId, sessionNumber])
+  @@index([dayId])
+}
+
+model SessionAgendaItem {
+  id        String          @id @default(cuid())
+  sessionId String
+  session   WorkshopSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  title     String
+  covered   Boolean         @default(true)
+  sortOrder Int             @default(0)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  @@index([sessionId])
+}
+
+model SessionTopic {
+  id                   String          @id @default(cuid())
+  sessionId            String
+  session              WorkshopSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  title                String
+  summary              String?         @db.Text
+  businessImplication  String?         @db.Text
+  technicalImplication String?         @db.Text
+  sortOrder            Int             @default(0)
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+
+  @@index([sessionId])
+}
+
+model SessionOutput {
+  id           String            @id @default(cuid())
+  sessionId    String
+  session      WorkshopSession   @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  outputType   SessionOutputType
+  bodyMarkdown String?           @db.Text
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  @@index([sessionId])
+}
+
+// ─── Sources & ingestion ─────────────────────────────────────────────────────
+
+model SourceDocument {
+  id                 String                 @id @default(cuid())
+  workshopId         String?
+  workshop           WorkshopEvent?         @relation(fields: [workshopId], references: [id], onDelete: SetNull)
+  externalId         String                 @unique
+  filePath           String
+  mimeType           String?
+  workshopDay        Int?
+  authoritativeFor   String?                @db.Text
+  ingestStatus       IngestStatus           @default(INGESTED)
+  excludedReason     String?                @db.Text
+  createdAt          DateTime               @default(now())
+  updatedAt          DateTime               @updatedAt
+  reconciliations    ReconciliationRecord[]
+  transcriptExcerpts TranscriptExcerpt[]
+  decisions          Decision[]
+  actions            Action[]
+  risks              Risk[]
+  issues             Issue[]
+  assumptions        Assumption[]
+  dependencies       Dependency[]
+  openQuestions      OpenQuestion[]
+  parkingLotItems    ParkingLotItem[]
+  deliverables       Deliverable[]
+  tasks              Task[]
+  readinessGates     ReadinessGate[]
+  governanceMeetings GovernanceMeeting[]
+  evidenceLinks      EvidenceLink[]
+  attachments        Attachment[]
+
+  @@index([workshopDay])
+  @@index([ingestStatus])
+}
+
+model IngestionLogEntry {
+  id         String   @id @default(cuid())
+  occurredAt DateTime @default(now())
+  action     String
+  sourceIds  String[]
+  notes      String?  @db.Text
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model ReconciliationRecord {
+  id                      String          @id @default(cuid())
+  sourceDocumentId        String?
+  sourceDocument          SourceDocument? @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  sourceExternalId        String?
+  conflict                String?         @db.Text
+  disposition             String?         @db.Text
+  humanValidationRequired Boolean         @default(false)
+  createdAt               DateTime        @default(now())
+  updatedAt               DateTime        @updatedAt
+
+  @@index([sourceExternalId])
+}
+
+model TranscriptExcerpt {
+  id               String           @id @default(cuid())
+  sourceDocumentId String?
+  sourceDocument   SourceDocument?  @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  sessionId        String?
+  session          WorkshopSession? @relation(fields: [sessionId], references: [id], onDelete: SetNull)
+  speakerName      String?
+  text             String           @db.Text
+  approximateTime  String?
+  confidence       Confidence       @default(UNCONFIRMED)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+}
+
+// ─── Organisation ────────────────────────────────────────────────────────────
+
+model Person {
+  id                      String               @id @default(cuid())
+  displayName             String
+  surname                 String?
+  email                   String?
+  roleDescription         String?              @db.Text
+  confidence              Confidence           @default(INFERRED)
+  createdAt               DateTime             @default(now())
+  updatedAt               DateTime             @updatedAt
+  teamAssignments         PersonTeam[]
+  stakeholderRoles        StakeholderRole[]
+  ledWorkstreams          Workstream[]         @relation("WorkstreamLead")
+  ownedDecisions          Decision[]           @relation("DecisionOwner")
+  ownedActions            Action[]             @relation("ActionOwner")
+  ownedRisks              Risk[]               @relation("RiskOwner")
+  ownedIssues             Issue[]              @relation("IssueOwner")
+  validatedAssumptions    Assumption[]         @relation("AssumptionValidator")
+  ownedProjects           Project[]            @relation("ProjectOwner")
+  ownedDeliverables       Deliverable[]        @relation("DeliverableOwner")
+  ownedTasks              Task[]               @relation("TaskOwner")
+  ownedReadinessGates     ReadinessGate[]      @relation("ReadinessGateOwner")
+  ownedGovernanceMeetings GovernanceMeeting[]  @relation("GovernanceMeetingOwner")
+  approvals               Approval[]           @relation("ApprovalApprover")
+  changeApprovals         ChangeRequest[]      @relation("ChangeApprover")
+  allocations             ResourceAllocation[]
+  notifications           Notification[]       @relation("NotificationRecipient")
+  ownedDocuments          Document[]           @relation("DocumentOwner")
+  userAccount             User?
+  resource                Resource?
+
+  @@unique([displayName, surname])
+  @@index([displayName])
+}
+
+model Team {
+  id                  String       @id @default(cuid())
+  name                String       @unique
+  functionDescription String?      @db.Text
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+  members             PersonTeam[]
+}
+
+model PersonTeam {
+  id        String   @id @default(cuid())
+  personId  String
+  person    Person   @relation(fields: [personId], references: [id], onDelete: Cascade)
+  teamId    String
+  team      Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  isPrimary Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([personId, teamId])
+}
+
+model Workstream {
+  id                 String              @id @default(cuid())
+  programmeId        String?
+  programme          Programme?          @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  code               String              @unique
+  name               String
+  leadPersonId       String?
+  leadPerson         Person?             @relation("WorkstreamLead", fields: [leadPersonId], references: [id], onDelete: SetNull)
+  leadText           String?
+  oneLineStatus      String?             @db.Text
+  rag                Rag?
+  sortOrder          Int                 @default(0)
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  decisions          Decision[]
+  actions            Action[]
+  risks              Risk[]
+  dependencies       Dependency[]
+  projects           Project[]
+  milestones         Milestone[]
+  tasks              Task[]
+  deliverables       Deliverable[]
+  readinessGates     ReadinessGate[]
+  governanceMeetings GovernanceMeeting[]
+  statusUpdates      StatusUpdate[]
+  evidenceLinks      EvidenceLink[]
+
+  @@index([programmeId])
+}
+
+model StakeholderRole {
+  id        String              @id @default(cuid())
+  personId  String
+  person    Person              @relation(fields: [personId], references: [id], onDelete: Cascade)
+  roleType  StakeholderRoleType
+  scope     String?             @db.Text
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+
+  @@index([personId])
+}
+
+// ─── Domain catalogue ────────────────────────────────────────────────────────
+
+model Site {
+  id               String              @id @default(cuid())
+  programmeId      String?
+  programme        Programme?          @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  name             String
+  brand            String?
+  country          String?
+  tenantNotes      String?             @db.Text
+  validationStatus Confidence          @default(UNCONFIRMED)
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+  pageItems        PageMigrationItem[]
+
+  @@index([programmeId])
+}
+
+model CustomerJourney {
+  id           String   @id @default(cuid())
+  name         String
+  businessArea String?
+  cluster      String?
+  notes        String?  @db.Text
+  traceRef     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model GlossaryTerm {
+  id         String           @id @default(cuid())
+  term       String
+  meaning    String           @db.Text
+  category   GlossaryCategory @default(TERM)
+  confidence Confidence       @default(INFERRED)
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+
+  @@unique([term])
+}
+
+model SystemPlatform {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  category  String?
+  ownerTeam String?
+  notes     String?  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Milestone {
+  id            String         @id @default(cuid())
+  title         String
+  targetDate    String?
+  piGate        String?
+  phaseId       String?
+  phase         Phase?         @relation(fields: [phaseId], references: [id], onDelete: SetNull)
+  workstreamId  String?
+  workstream    Workstream?    @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
+  projectId     String?
+  project       Project?       @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  deliverableId String?
+  deliverable   Deliverable?   @relation(fields: [deliverableId], references: [id], onDelete: SetNull)
+  status        String?
+  varianceDays  Int?
+  notes         String?        @db.Text
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  tasks         Task[]
+  evidenceLinks EvidenceLink[]
+
+  @@index([phaseId])
+  @@index([workstreamId])
+  @@index([projectId])
+  @@index([deliverableId])
+}
+
+model SuccessMetric {
+  id          String         @id @default(cuid())
+  programmeId String?
+  programme   Programme?     @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  name        String
+  category    MetricCategory
+  confirmed   Boolean        @default(true)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([programmeId])
+}
+
+model ScopeOption {
+  id          String     @id @default(cuid())
+  programmeId String?
+  programme   Programme? @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  name        String
+  description String?    @db.Text
+  appetite    String?
+  status      String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model PageMigrationItem {
+  id             String         @id @default(cuid())
+  siteId         String?
+  site           Site?          @relation(fields: [siteId], references: [id], onDelete: SetNull)
+  url            String?
+  treatment      PageTreatment?
+  effortEstimate String?
+  ownerName      String?
+  status         String?
+  notes          String?        @db.Text
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
+
+model ComponentTemplate {
+  id                 String   @id @default(cuid())
+  name               String
+  dsZone             DsZone?
+  contentstackMapped Boolean?
+  status             String?
+  notes              String?  @db.Text
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+// ─── Registers ───────────────────────────────────────────────────────────────
+
+model Decision {
+  id                String          @id @default(cuid())
+  externalId        String          @unique
+  category          String?
+  title             String?
+  description       String          @db.Text
+  status            DecisionStatus  @default(PROPOSED)
+  ownerPersonId     String?
+  ownerPerson       Person?         @relation("DecisionOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
+  ownerText         String?
+  approver          String?
+  requiredDecision  String?
+  dueDate           String?
+  rationale         String?         @db.Text
+  optionsConsidered String?         @db.Text
+  tradeoffs         String?         @db.Text
+  followUp          String?         @db.Text
+  workshopDay       Int?
+  sessionRef        String?
+  traceRef          String?
+  workstreamId      String?
+  workstream        Workstream?     @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
+  sourceDocumentId  String?
+  sourceDocument    SourceDocument? @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  taskId            String?
+  task              Task?           @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  deliverableId     String?
+  deliverable       Deliverable?    @relation(fields: [deliverableId], references: [id], onDelete: SetNull)
+  bodyMarkdown      String?         @db.Text
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  evidenceLinks     EvidenceLink[]
+
+  @@index([status])
+  @@index([workstreamId])
+  @@index([taskId])
+  @@index([deliverableId])
+}
+
+model Action {
+  id                     String          @id @default(cuid())
+  externalId             String          @unique
+  area                   String?
+  description            String          @db.Text
+  priority               Priority        @default(MEDIUM)
+  status                 ActionStatus    @default(OPEN)
+  ownerPersonId          String?
+  ownerPerson            Person?         @relation("ActionOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
+  ownerText              String?
+  teamText               String?
+  dueDate                String?
+  notes                  String?         @db.Text
+  acceptanceCriteria     String?         @db.Text
+  expectedOutput         String?         @db.Text
+  supportingContributors String?         @db.Text
+  relatedRefs            String?
+  workshopDay            Int?
+  sessionRef             String?
+  traceRef               String?
+  workstreamId           String?
+  workstream             Workstream?     @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
+  projectId              String?
+  project                Project?        @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  taskId                 String?
+  task                   Task?           @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  deliverableId          String?
+  deliverable            Deliverable?    @relation(fields: [deliverableId], references: [id], onDelete: SetNull)
+  sourceDocumentId       String?
+  sourceDocument         SourceDocument? @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  createdAt              DateTime        @default(now())
+  updatedAt              DateTime        @updatedAt
+  evidenceLinks          EvidenceLink[]
+
+  @@index([status])
+  @@index([priority])
+  @@index([workstreamId])
+  @@index([projectId])
+  @@index([taskId])
+  @@index([deliverableId])
+}
+
+model Risk {
+  id                  String          @id @default(cuid())
+  externalId          String          @unique
+  description         String          @db.Text
+  category            RiskCategory    @default(BUSINESS)
+  probability         Probability     @default(UNKNOWN)
+  impact              Impact          @default(UNKNOWN)
+  status              String          @default("Open")
+  ownerPersonId       String?
+  ownerPerson         Person?         @relation("RiskOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
+  ownerText           String?
+  mitigationDiscussed String?         @db.Text
+  mitigationRequired  String?         @db.Text
+  escalationRequired  String?
+  dueDate             String?
+  workshopDay         Int?
+  sessionRef          String?
+  traceRef            String?
+  workstreamId        String?
+  workstream          Workstream?     @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
+  projectId           String?
+  project             Project?        @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  taskId              String?
+  task                Task?           @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  deliverableId       String?
+  deliverable         Deliverable?    @relation(fields: [deliverableId], references: [id], onDelete: SetNull)
+  sourceDocumentId    String?
+  sourceDocument      SourceDocument? @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+  evidenceLinks       EvidenceLink[]
+
+  @@index([category])
+  @@index([status])
+  @@index([projectId])
+  @@index([taskId])
+  @@index([deliverableId])
+}
+
+model Issue {
+  id                   String          @id @default(cuid())
+  externalId           String          @unique
+  description          String          @db.Text
+  currentImpact        String?         @db.Text
+  affectedTeams        String?
+  status               IssueStatus     @default(OPEN)
+  ownerPersonId        String?
+  ownerPerson          Person?         @relation("IssueOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
+  ownerText            String?
+  resolutionRequired   String?         @db.Text
+  targetResolutionDate String?
+  blockedWorkstream    String?
+  workshopDay          Int?
+  sessionRef           String?
+  traceRef             String?
+  projectId            String?
+  project              Project?        @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  taskId               String?
+  task                 Task?           @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  sourceDocumentId     String?
+  sourceDocument       SourceDocument? @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+  evidenceLinks        EvidenceLink[]
+
+  @@index([status])
+  @@index([projectId])
+  @@index([taskId])
+}
+
+model Assumption {
+  id                 String          @id @default(cuid())
+  externalId         String          @unique
+  description        String          @db.Text
+  areaImpacted       String?
+  validationRequired String?         @db.Text
+  riskIfWrong        String?         @db.Text
+  validatorPersonId  String?
+  validatorPerson    Person?         @relation("AssumptionValidator", fields: [validatorPersonId], references: [id], onDelete: SetNull)
+  validatorText      String?
+  workshopDay        Int?
+  sessionRef         String?
+  traceRef           String?
+  sourceDocumentId   String?
+  sourceDocument     SourceDocument? @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+}
+
+model Dependency {
+  id                  String           @id @default(cuid())
+  externalId          String           @unique
+  description         String           @db.Text
+  streamText          String?
+  dependentWorkstream String?
+  providingTeam       String?
+  receivingTeam       String?
+  requiredDate        String?
+  delayRisk           String?          @db.Text
+  escalation          String?
+  status              DependencyStatus @default(OPEN)
+  ownerText           String?
+  workshopDay         Int?
+  sessionRef          String?
+  traceRef            String?
+  workstreamId        String?
+  workstream          Workstream?      @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
+  projectId           String?
+  project             Project?         @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  taskId              String?
+  task                Task?            @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  deliverableId       String?
+  deliverable         Deliverable?     @relation(fields: [deliverableId], references: [id], onDelete: SetNull)
+  sourceDocumentId    String?
+  sourceDocument      SourceDocument?  @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+  evidenceLinks       EvidenceLink[]
+
+  @@index([status])
+  @@index([projectId])
+  @@index([taskId])
+  @@index([deliverableId])
+}
+
+model OpenQuestion {
+  id                 String          @id @default(cuid())
+  externalId         String          @unique
+  question           String          @db.Text
+  raisedBy           String?
+  relevantTeam       String?
+  ownerToAnswer      String?
+  impactIfUnanswered String?         @db.Text
+  status             QuestionStatus  @default(OPEN)
+  workshopDay        Int?
+  sessionRef         String?
+  traceRef           String?
+  sourceDocumentId   String?
+  sourceDocument     SourceDocument? @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+
+  @@index([status])
+}
+
+model ParkingLotItem {
+  id               String          @id @default(cuid())
+  externalId       String          @unique
+  topic            String          @db.Text
+  whyParked        String?         @db.Text
+  followUp         String?         @db.Text
+  priority         Priority?
+  suggestedForum   String?
+  ownerText        String?
+  workshopDay      Int?
+  sessionRef       String?
+  traceRef         String?
+  sourceDocumentId String?
+  sourceDocument   SourceDocument? @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+}
+
+model Tradeoff {
+  id             String   @id @default(cuid())
+  externalId     String   @unique
+  category       String?
+  dimension      String?
+  optionsText    String?  @db.Text
+  ownerText      String?
+  decisionNeeded String?
+  status         String?
+  dueDate        String?
+  traceRef       String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// ─── Programme artefacts ─────────────────────────────────────────────────────
+
+model CriticalPathStep {
+  id          String   @id @default(cuid())
+  stepNumber  Int
+  activity    String   @db.Text
+  ownerText   String?
+  predecessor String?
+  dueDate     String?
+  status      String?
+  isCritical  Boolean  @default(false)
+  traceRef    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([stepNumber])
+}
+
+model RoadmapActivity {
+  id         String   @id @default(cuid())
+  workstream String?
+  activity   String   @db.Text
+  ownerText  String?
+  startDate  String?
+  endDate    String?
+  dependency String?
+  status     String?
+  notes      String?  @db.Text
+  traceRef   String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model GovernanceForum {
+  id         String   @id @default(cuid())
+  name       String
+  purpose    String?  @db.Text
+  chair      String?
+  members    String?  @db.Text
+  cadence    String?
+  inputs     String?  @db.Text
+  outputs    String?  @db.Text
+  escalation String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model StreamInput {
+  id         String   @id @default(cuid())
+  workstream String?
+  leadText   String?
+  artefact   String?
+  ask        String?  @db.Text
+  startDate  String?
+  endDate    String?
+  dependency String?
+  riskRef    String?
+  readiness  String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// ─── Analysis ────────────────────────────────────────────────────────────────
+
+model AnalysisArtifact {
+  id           String               @id @default(cuid())
+  lens         AnalysisLens
+  title        String
+  bodyMarkdown String               @db.Text
+  completeness AnalysisCompleteness @default(INCOMPLETE)
+  filePath     String?
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  raciRows     RaciRow[]
+
+  @@unique([lens])
+}
+
+model RaciRow {
+  id                 String           @id @default(cuid())
+  analysisArtifactId String
+  analysisArtifact   AnalysisArtifact @relation(fields: [analysisArtifactId], references: [id], onDelete: Cascade)
+  area               String
+  programme          String?
+  product            String?
+  design             String?
+  execution          String?
+  publishing         String?
+  crossChannels      String?
+  seo                String?
+  regional           String?
+  notes              String?          @db.Text
+  sortOrder          Int              @default(0)
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  @@index([analysisArtifactId])
+}
+
+model ProcessWorkflow {
+  id                String   @id @default(cuid())
+  name              String
+  currentStateSteps String?  @db.Text
+  futureStateSteps  String?  @db.Text
+  ownerText         String?
+  bottlenecks       String?  @db.Text
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model ResourceConstraint {
+  id                   String   @id @default(cuid())
+  role                 String?
+  namedResource        String?
+  capacityConcern      String?  @db.Text
+  confirmedVsSuggested String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+// ─── Executive & meta ────────────────────────────────────────────────────────
+
+model ExecutiveSummary {
+  id           String              @id @default(cuid())
+  workshopId   String?
+  workshop     WorkshopEvent?      @relation(fields: [workshopId], references: [id], onDelete: SetNull)
+  day          ExecutiveSummaryDay
+  version      String?
+  bodyMarkdown String              @db.Text
+  publishedAt  DateTime?
+  filePath     String?
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+
+  @@unique([day])
+}
+
+model QaReportItem {
+  id         String   @id @default(cuid())
+  severity   String?
+  artifact   String?
+  finding    String   @db.Text
+  resolution String?  @db.Text
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model ExportArtifact {
+  id          String             @id @default(cuid())
+  type        ExportArtifactType
+  path        String
+  generatedAt DateTime?
+  variant     ExportVariant      @default(CANONICAL)
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+}
+
+model RegisterSequence {
+  id           String       @id @default(cuid())
+  registerType RegisterType
+  prefix       String
+  highestUsed  String
+  nextFree     String
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@unique([registerType])
+}
+
+// ─── Cross-cutting ───────────────────────────────────────────────────────────
+
+model RegisterLink {
+  id             String       @id @default(cuid())
+  fromType       RegisterType
+  fromExternalId String
+  toType         RegisterType
+  toExternalId   String
+  linkKind       LinkKind     @default(RELATED)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@unique([fromType, fromExternalId, toType, toExternalId, linkKind])
+  @@index([fromExternalId])
+  @@index([toExternalId])
+}
+
+model TraceReference {
+  id               String       @id @default(cuid())
+  entityType       RegisterType
+  entityExternalId String
+  workshopDay      Int?
+  sessionRef       String?
+  sourceExternalId String?
+  segment          String?
+  rawTrace         String?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  @@index([entityExternalId])
+  @@index([sourceExternalId])
+}
+
+model AuditEvent {
+  id         String   @id @default(cuid())
+  entityType String
+  entityId   String
+  action     String
+  actorName  String?
+  actorRole  String?
+  payload    Json?
+  createdAt  DateTime @default(now())
+
+  @@index([entityType, entityId])
+}
+
+// ─── Enterprise PM extension ─────────────────────────────────────────────────
+
+enum Rag {
+  RED
+  AMBER
+  GREEN
+}
+
+enum ProjectStatus {
+  PROPOSED
+  ACTIVE
+  ON_HOLD
+  COMPLETE
+  CANCELLED
+}
+
+enum DeliverableStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  AT_RISK
+  COMPLETE
+  CANCELLED
+}
+
+enum ChangeRequestStatus {
+  DRAFT
+  SUBMITTED
+  IN_REVIEW
+  APPROVED
+  REJECTED
+  IMPLEMENTED
+  CANCELLED
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+enum NotificationType {
+  INFO
+  WARNING
+  ESCALATION
+  APPROVAL_REQUEST
+  MENTION
+  REMINDER
+}
+
+enum DocumentStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  ARCHIVED
+}
+
+enum PhaseStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  AT_RISK
+  COMPLETE
+}
+
+enum TaskStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  BLOCKED
+  COMPLETE
+  DEFERRED
+}
+
+enum ReadinessGateStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  BLOCKED
+  READY
+  APPROVED
+  REJECTED
+}
+
+enum GovernanceMeetingType {
+  STEERING_COMMITTEE
+  LEAD_PLANNING
+  PLAYBACK
+  SME_WORKSHOP
+  SIGN_OFF
+  GO_NO_GO
+  HYPERCARE_STANDUP
+  DECISION_FORUM
+  WORKSTREAM_CHECKPOINT
+}
+
+enum EvidenceLinkKind {
+  SUPPORTS
+  INFERRED_FROM
+  REQUIRES_VALIDATION
+  GAP
+}
+
+model Phase {
+  id             String          @id @default(cuid())
+  programmeId    String
+  programme      Programme       @relation(fields: [programmeId], references: [id], onDelete: Cascade)
+  code           String
+  name           String
+  purpose        String?         @db.Text
+  status         PhaseStatus     @default(NOT_STARTED)
+  startDate      String?
+  endDate        String?
+  sortOrder      Int             @default(0)
+  confidence     Confidence      @default(INFERRED)
+  traceRef       String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  tasks          Task[]
+  deliverables   Deliverable[]
+  milestones     Milestone[]
+  readinessGates ReadinessGate[]
+  statusUpdates  StatusUpdate[]
+
+  @@unique([programmeId, code])
+  @@index([programmeId])
+  @@index([status])
+}
+
+model Task {
+  id                 String           @id @default(cuid())
+  externalId         String           @unique
+  programmeId        String?
+  programme          Programme?       @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  phaseId            String?
+  phase              Phase?           @relation(fields: [phaseId], references: [id], onDelete: SetNull)
+  workstreamId       String?
+  workstream         Workstream?      @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
+  projectId          String?
+  project            Project?         @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  deliverableId      String?
+  deliverable        Deliverable?     @relation(fields: [deliverableId], references: [id], onDelete: SetNull)
+  milestoneId        String?
+  milestone          Milestone?       @relation(fields: [milestoneId], references: [id], onDelete: SetNull)
+  parentTaskId       String?
+  parentTask         Task?            @relation("TaskHierarchy", fields: [parentTaskId], references: [id], onDelete: SetNull)
+  childTasks         Task[]           @relation("TaskHierarchy")
+  title              String
+  description        String?          @db.Text
+  status             TaskStatus       @default(NOT_STARTED)
+  priority           Priority         @default(MEDIUM)
+  rag                Rag?
+  percentComplete    Int              @default(0)
+  baselineStartDate  String?
+  baselineEndDate    String?
+  forecastStartDate  String?
+  forecastEndDate    String?
+  durationDays       Int?
+  ownerPersonId      String?
+  ownerPerson        Person?          @relation("TaskOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
+  ownerText          String?
+  supportingSmes     String?          @db.Text
+  blockers           String?          @db.Text
+  acceptanceCriteria String?          @db.Text
+  completionEvidence String?          @db.Text
+  assumptions        String?          @db.Text
+  confidence         Confidence       @default(INFERRED)
+  criticalPath       Boolean          @default(false)
+  sourceDocumentId   String?
+  sourceDocument     SourceDocument?  @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  traceRef           String?
+  sortOrder          Int              @default(0)
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  predecessorLinks   TaskDependency[] @relation("TaskDependencyPredecessor")
+  successorLinks     TaskDependency[] @relation("TaskDependencySuccessor")
+  actions            Action[]
+  risks              Risk[]
+  issues             Issue[]
+  decisions          Decision[]
+  dependencies       Dependency[]
+  readinessGates     ReadinessGate[]
+  statusUpdates      StatusUpdate[]
+  evidenceLinks      EvidenceLink[]
+
+  @@index([programmeId])
+  @@index([phaseId])
+  @@index([workstreamId])
+  @@index([projectId])
+  @@index([deliverableId])
+  @@index([milestoneId])
+  @@index([parentTaskId])
+  @@index([status])
+  @@index([criticalPath])
+}
+
+model TaskDependency {
+  id                String   @id @default(cuid())
+  predecessorTaskId String
+  predecessorTask   Task     @relation("TaskDependencyPredecessor", fields: [predecessorTaskId], references: [id], onDelete: Cascade)
+  successorTaskId   String
+  successorTask     Task     @relation("TaskDependencySuccessor", fields: [successorTaskId], references: [id], onDelete: Cascade)
+  dependencyType    String?
+  lagDays           Int?
+  notes             String?  @db.Text
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@unique([predecessorTaskId, successorTaskId])
+  @@index([successorTaskId])
+}
+
+model ReadinessGate {
+  id               String               @id @default(cuid())
+  externalId       String               @unique
+  programmeId      String?
+  programme        Programme?           @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  phaseId          String?
+  phase            Phase?               @relation(fields: [phaseId], references: [id], onDelete: SetNull)
+  workstreamId     String?
+  workstream       Workstream?          @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
+  projectId        String?
+  project          Project?             @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  deliverableId    String?
+  deliverable      Deliverable?         @relation(fields: [deliverableId], references: [id], onDelete: SetNull)
+  taskId           String?
+  task             Task?                @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  name             String
+  category         String
+  criteria         String               @db.Text
+  evidenceRequired String               @db.Text
+  ownerPersonId    String?
+  ownerPerson      Person?              @relation("ReadinessGateOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
+  ownerText        String?
+  status           ReadinessGateStatus  @default(NOT_STARTED)
+  rag              Rag?
+  decisionRequired String?              @db.Text
+  blockingIssues   String?              @db.Text
+  dueDate          String?
+  approvalDate     String?
+  approvalId       String?
+  confidence       Confidence           @default(INFERRED)
+  sourceDocumentId String?
+  sourceDocument   SourceDocument?      @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  traceRef         String?
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+  criteriaItems    ReadinessCriterion[]
+  evidenceLinks    EvidenceLink[]
+  statusUpdates    StatusUpdate[]
+
+  @@index([programmeId])
+  @@index([phaseId])
+  @@index([workstreamId])
+  @@index([projectId])
+  @@index([deliverableId])
+  @@index([taskId])
+  @@index([status])
+  @@index([rag])
+}
+
+model ReadinessCriterion {
+  id               String              @id @default(cuid())
+  readinessGateId  String
+  readinessGate    ReadinessGate       @relation(fields: [readinessGateId], references: [id], onDelete: Cascade)
+  description      String              @db.Text
+  evidenceRequired String?             @db.Text
+  status           ReadinessGateStatus @default(NOT_STARTED)
+  ownerText        String?
+  confidence       Confidence          @default(INFERRED)
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+
+  @@index([readinessGateId])
+  @@index([status])
+}
+
+model GovernanceMeeting {
+  id               String                @id @default(cuid())
+  externalId       String                @unique
+  programmeId      String?
+  programme        Programme?            @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  workstreamId     String?
+  workstream       Workstream?           @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
+  type             GovernanceMeetingType
+  name             String
+  purpose          String?               @db.Text
+  cadence          String?
+  scheduledDate    String?
+  ownerPersonId    String?
+  ownerPerson      Person?               @relation("GovernanceMeetingOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
+  ownerText        String?
+  requiredInputs   String?               @db.Text
+  expectedOutputs  String?               @db.Text
+  escalationPath   String?               @db.Text
+  decisionRefs     String?
+  sourceDocumentId String?
+  sourceDocument   SourceDocument?       @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  traceRef         String?
+  confidence       Confidence            @default(INFERRED)
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+  statusUpdates    StatusUpdate[]
+  evidenceLinks    EvidenceLink[]
+
+  @@index([programmeId])
+  @@index([workstreamId])
+  @@index([type])
+  @@index([scheduledDate])
+}
+
+model StatusUpdate {
+  id                  String             @id @default(cuid())
+  programmeId         String?
+  programme           Programme?         @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  phaseId             String?
+  phase               Phase?             @relation(fields: [phaseId], references: [id], onDelete: SetNull)
+  workstreamId        String?
+  workstream          Workstream?        @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
+  projectId           String?
+  project             Project?           @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  taskId              String?
+  task                Task?              @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  readinessGateId     String?
+  readinessGate       ReadinessGate?     @relation(fields: [readinessGateId], references: [id], onDelete: SetNull)
+  governanceMeetingId String?
+  governanceMeeting   GovernanceMeeting? @relation(fields: [governanceMeetingId], references: [id], onDelete: SetNull)
+  title               String
+  body                String             @db.Text
+  rag                 Rag?
+  status              String?
+  reportedBy          String?
+  reportedAt          DateTime           @default(now())
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+
+  @@index([programmeId])
+  @@index([phaseId])
+  @@index([workstreamId])
+  @@index([projectId])
+  @@index([taskId])
+  @@index([readinessGateId])
+}
+
+model Comment {
+  id         String   @id @default(cuid())
+  entityType String
+  entityId   String
+  authorText String?
+  body       String   @db.Text
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([entityType, entityId])
+}
+
+model Attachment {
+  id               String          @id @default(cuid())
+  entityType       String
+  entityId         String
+  name             String
+  description      String?         @db.Text
+  mimeType         String?
+  storageRef       String?
+  sourceDocumentId String?
+  sourceDocument   SourceDocument? @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  @@index([entityType, entityId])
+  @@index([sourceDocumentId])
+}
+
+model EvidenceLink {
+  id                  String             @id @default(cuid())
+  kind                EvidenceLinkKind   @default(SUPPORTS)
+  entityType          String
+  entityId            String
+  sourceDocumentId    String?
+  sourceDocument      SourceDocument?    @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  workstreamId        String?
+  workstream          Workstream?        @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
+  deliverableId       String?
+  deliverable         Deliverable?       @relation(fields: [deliverableId], references: [id], onDelete: SetNull)
+  taskId              String?
+  task                Task?              @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  actionId            String?
+  action              Action?            @relation(fields: [actionId], references: [id], onDelete: SetNull)
+  riskId              String?
+  risk                Risk?              @relation(fields: [riskId], references: [id], onDelete: SetNull)
+  issueId             String?
+  issue               Issue?             @relation(fields: [issueId], references: [id], onDelete: SetNull)
+  decisionId          String?
+  decision            Decision?          @relation(fields: [decisionId], references: [id], onDelete: SetNull)
+  dependencyId        String?
+  dependency          Dependency?        @relation(fields: [dependencyId], references: [id], onDelete: SetNull)
+  milestoneId         String?
+  milestone           Milestone?         @relation(fields: [milestoneId], references: [id], onDelete: SetNull)
+  readinessGateId     String?
+  readinessGate       ReadinessGate?     @relation(fields: [readinessGateId], references: [id], onDelete: SetNull)
+  governanceMeetingId String?
+  governanceMeeting   GovernanceMeeting? @relation(fields: [governanceMeetingId], references: [id], onDelete: SetNull)
+  extractedText       String?            @db.Text
+  notes               String?            @db.Text
+  followUpRequired    Boolean            @default(false)
+  confidence          Confidence         @default(INFERRED)
+  traceRef            String?
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+
+  @@index([entityType, entityId])
+  @@index([sourceDocumentId])
+  @@index([workstreamId])
+  @@index([deliverableId])
+  @@index([taskId])
+  @@index([readinessGateId])
+  @@index([kind])
+}
+
+model Project {
+  id             String          @id @default(cuid())
+  programmeId    String?
+  programme      Programme?      @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  workstreamId   String?
+  workstream     Workstream?     @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
+  code           String?         @unique
+  name           String
+  description    String?         @db.Text
+  status         ProjectStatus   @default(ACTIVE)
+  priority       Priority        @default(MEDIUM)
+  rag            Rag?
+  ownerPersonId  String?
+  ownerPerson    Person?         @relation("ProjectOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
+  ownerText      String?
+  sponsor        String?
+  startDate      String?
+  endDate        String?
+  budgetNote     String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  milestones     Milestone[]
+  deliverables   Deliverable[]
+  tasks          Task[]
+  actions        Action[]
+  risks          Risk[]
+  issues         Issue[]
+  dependencies   Dependency[]
+  documents      Document[]
+  changeRequests ChangeRequest[]
+  readinessGates ReadinessGate[]
+  statusUpdates  StatusUpdate[]
+
+  @@index([programmeId])
+  @@index([workstreamId])
+  @@index([status])
+}
+
+model Deliverable {
+  id                  String            @id @default(cuid())
+  externalId          String?           @unique
+  programmeId         String?
+  programme           Programme?        @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  phaseId             String?
+  phase               Phase?            @relation(fields: [phaseId], references: [id], onDelete: SetNull)
+  workstreamId        String?
+  workstream          Workstream?       @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
+  projectId           String?
+  project             Project?          @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  name                String
+  description         String?           @db.Text
+  status              DeliverableStatus @default(NOT_STARTED)
+  rag                 Rag?
+  startDate           String?
+  dueDate             String?
+  ownerPersonId       String?
+  ownerPerson         Person?           @relation("DeliverableOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
+  ownerText           String?
+  acceptanceCriteria  String?           @db.Text
+  approvalRequirement String?           @db.Text
+  evidenceRequired    String?           @db.Text
+  completionEvidence  String?           @db.Text
+  confidence          Confidence        @default(INFERRED)
+  sourceDocumentId    String?
+  sourceDocument      SourceDocument?   @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  traceRef            String?
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+  milestones          Milestone[]
+  tasks               Task[]
+  actions             Action[]
+  risks               Risk[]
+  decisions           Decision[]
+  dependencies        Dependency[]
+  readinessGates      ReadinessGate[]
+  evidenceLinks       EvidenceLink[]
+
+  @@index([programmeId])
+  @@index([phaseId])
+  @@index([workstreamId])
+  @@index([projectId])
+  @@index([status])
+  @@index([rag])
+}
+
+model ChangeRequest {
+  id                   String              @id @default(cuid())
+  externalId           String              @unique
+  title                String
+  description          String              @db.Text
+  projectId            String?
+  project              Project?            @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  impactAssessment     String?             @db.Text
+  priority             Priority            @default(MEDIUM)
+  status               ChangeRequestStatus @default(SUBMITTED)
+  requestedBy          String?
+  approverPersonId     String?
+  approverPerson       Person?             @relation("ChangeApprover", fields: [approverPersonId], references: [id], onDelete: SetNull)
+  outcome              String?             @db.Text
+  implementationStatus String?
+  decidedAt            DateTime?
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
+
+  @@index([status])
+  @@index([projectId])
+}
+
+model Approval {
+  id               String         @id @default(cuid())
+  externalId       String         @unique
+  title            String
+  entityType       String
+  entityId         String?
+  summary          String?        @db.Text
+  status           ApprovalStatus @default(PENDING)
+  priority         Priority       @default(MEDIUM)
+  requestedBy      String?
+  approverPersonId String?
+  approverPerson   Person?        @relation("ApprovalApprover", fields: [approverPersonId], references: [id], onDelete: SetNull)
+  approverText     String?
+  decisionReason   String?        @db.Text
+  decidedAt        DateTime?
+  dueDate          String?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  @@index([status])
+  @@index([entityType, entityId])
+}
+
+model Resource {
+  id            String               @id @default(cuid())
+  personId      String?              @unique
+  person        Person?              @relation(fields: [personId], references: [id], onDelete: SetNull)
+  displayName   String
+  role          String?
+  team          String?
+  capacityHours Int?
+  notes         String?              @db.Text
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+  allocations   ResourceAllocation[]
+
+  @@index([team])
+}
+
+model ResourceAllocation {
+  id             String   @id @default(cuid())
+  resourceId     String
+  resource       Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  personId       String?
+  person         Person?  @relation(fields: [personId], references: [id], onDelete: SetNull)
+  projectId      String?
+  workstreamCode String?
+  roleOnWork     String?
+  allocationPct  Int      @default(0)
+  startDate      String?
+  endDate        String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([resourceId])
+  @@index([projectId])
+}
+
+model Document {
+  id            String         @id @default(cuid())
+  name          String
+  description   String?        @db.Text
+  projectId     String?
+  project       Project?       @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  relatedType   String?
+  relatedId     String?
+  mimeType      String?
+  version       String?
+  status        DocumentStatus @default(DRAFT)
+  storageRef    String?
+  ownerPersonId String?
+  ownerPerson   Person?        @relation("DocumentOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
+  ownerText     String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@index([projectId])
+  @@index([status])
+  @@index([relatedType, relatedId])
+}
+
+model Notification {
+  id                String           @id @default(cuid())
+  recipientPersonId String?
+  recipientPerson   Person?          @relation("NotificationRecipient", fields: [recipientPersonId], references: [id], onDelete: SetNull)
+  type              NotificationType @default(INFO)
+  priority          Priority         @default(MEDIUM)
+  title             String
+  body              String?          @db.Text
+  relatedType       String?
+  relatedId         String?
+  actionUrl         String?
+  read              Boolean          @default(false)
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  @@index([recipientPersonId])
+  @@index([read])
+}
+
+// ─── Access control (governance UI; not yet enforced as auth) ────────────────
+
+model User {
+  id          String     @id @default(cuid())
+  email       String     @unique
+  displayName String
+  personId    String?    @unique
+  person      Person?    @relation(fields: [personId], references: [id], onDelete: SetNull)
+  active      Boolean    @default(true)
+  externalRef String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  roles       UserRole[]
+
+  @@index([active])
+}
+
+model Role {
+  id          String           @id @default(cuid())
+  key         String           @unique
+  name        String
+  description String?          @db.Text
+  isSystem    Boolean          @default(false)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  users       UserRole[]
+  permissions RolePermission[]
+}
+
+model Permission {
+  id          String           @id @default(cuid())
+  key         String           @unique
+  entity      String
+  action      String
+  description String?          @db.Text
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  roles       RolePermission[]
+
+  @@index([entity])
+}
+
+model RolePermission {
+  id           String     @id @default(cuid())
+  roleId       String
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permissionId String
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+  createdAt    DateTime   @default(now())
+
+  @@unique([roleId, permissionId])
+}
+
+model UserRole {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  roleId    String
+  role      Role     @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, roleId])
+}

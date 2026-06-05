@@ -1,0 +1,1088 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Web Transformation Programme — Executive Status · 2026-06-03</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  :root {
+    --om-primary: #009677;
+    --om-secondary: #50B848;
+    --om-cyan: #00C0E8;
+    --om-orange: #F37021;
+    --om-magenta: #ED0080;
+    --om-forest: #003D32;
+    --om-forest-2: #005B49;
+    --bg: #F5FAF7;
+    --bg-2: #ECF6F1;
+    --panel: #FFFFFF;
+    --panel-2: #F7FBF8;
+    --line: rgba(0,150,119,.16);
+    --border: rgba(0,150,119,.16);
+    --text: #10251F;
+    --muted: #5D6E67;
+    --muted-2: #789088;
+    --blue: var(--om-cyan);
+    --green: var(--om-secondary);
+    --teal: var(--om-primary);
+    --amber: #F2A900;
+    --orange: var(--om-orange);
+    --red: #D94444;
+    --purple: var(--om-magenta);
+    --grey: var(--muted-2);
+    --accent: var(--om-primary);
+    --shadow: 0 24px 70px rgba(0,61,50,.12);
+    --radius: 16px;
+    --font: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
+    font-family: var(--font); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+
+  /* Brand bar */
+  .om-brand-bar { display: flex; align-items: center; gap: 18px; padding: 16px 56px;
+    background: #FFFFFF; border-bottom: 1px solid var(--border); }
+  .om-logo-mark { width: 42px; height: 42px; border-radius: 10px; flex: 0 0 auto;
+    background: conic-gradient(from 200deg, #009677, #50B848, #8DC63F, #00C0E8, #009677);
+    box-shadow: 0 6px 18px rgba(0,150,119,.28); }
+  .programme-title .brand-lockup { font-size: 11px; font-weight: 800; letter-spacing: 3px; color: var(--om-forest); }
+  .programme-title h2 { margin: 2px 0 0; font-size: 18px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+  .programme-title p { margin: 1px 0 0; font-size: 12px; color: var(--muted); }
+
+  /* Header */
+  header { padding: 34px 56px 30px; background: linear-gradient(135deg, #00D4A8 0%, #009677 55%, #005B49 100%); }
+  header .meta { color: rgba(255,255,255,.9); font-size: 13px; }
+  header h1 { margin: 6px 0 0; font-size: 32px; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+  header .audience { display: inline-block; margin-top: 14px; padding: 5px 12px;
+    background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.45); border-radius: 12px;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #fff; }
+  header .src-note { margin-top: 12px; color: rgba(255,255,255,.82); font-size: 12px; max-width: 920px; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 0; padding: 0 56px; background: var(--om-forest); position: sticky; top: 0; z-index: 20;
+    box-shadow: 0 6px 18px rgba(0,61,50,.18); overflow-x: auto; }
+  .tab-btn { background: transparent; border: 0; color: rgba(255,255,255,.7); padding: 15px 22px; font-size: 14px;
+    font-weight: 600; cursor: pointer; border-bottom: 3px solid transparent; transition: all .15s; font-family: inherit; white-space: nowrap; }
+  .tab-btn:hover { color: #fff; }
+  .tab-btn.active { color: #fff; border-bottom-color: var(--om-secondary); }
+  .tab-btn .tab-sub { display: block; font-size: 10px; color: rgba(255,255,255,.55); text-transform: uppercase;
+    letter-spacing: 0.6px; margin-top: 2px; font-weight: 500; }
+  .tab-btn.active .tab-sub { color: rgba(255,255,255,.8); }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  main { padding: 30px 56px 70px; max-width: 1680px; }
+  section { margin-bottom: 42px; }
+  h2 { font-size: 13px; font-weight: 700; margin: 0 0 6px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+  h2 .soft { color: var(--muted-2); font-weight: 400; text-transform: none; letter-spacing: 0; }
+  .lede { color: var(--muted); font-size: 13px; margin: 0 0 18px; max-width: 1000px; }
+
+  /* RAG strip */
+  .rag-strip { display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center;
+    padding: 26px 30px; border-radius: var(--radius); margin-bottom: 34px; }
+  .rag-strip.amber { background: linear-gradient(135deg, rgba(242,169,0,0.28), rgba(242,169,0,0.08)); border: 1px solid rgba(242,169,0,0.45); }
+  .rag-strip.red { background: linear-gradient(135deg, rgba(217,68,68,0.28), rgba(217,68,68,0.08)); border: 1px solid rgba(217,68,68,0.45); }
+  .rag-dot { width: 18px; height: 18px; border-radius: 50%; }
+  .rag-dot.amber { background: var(--amber); box-shadow: 0 0 16px var(--amber); }
+  .rag-dot.red { background: var(--red); box-shadow: 0 0 16px var(--red); }
+  .rag-label { font-size: 21px; font-weight: 700; letter-spacing: -0.3px; }
+  .rag-detail { color: var(--muted); font-size: 14px; margin-top: 5px; max-width: 940px; }
+  .rag-pct { font-size: 34px; font-weight: 800; letter-spacing: -1px; text-align: right; color: var(--amber); }
+  .rag-pct .lbl { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 500; margin-top: 4px; }
+
+  /* KPI grid */
+  .kpi-grid { display: grid; gap: 14px; }
+  .kpi-grid.c5 { grid-template-columns: repeat(5, 1fr); }
+  .kpi-grid.c4 { grid-template-columns: repeat(4, 1fr); }
+  .kpi-grid.c3 { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 1200px) { .kpi-grid.c5, .kpi-grid.c4 { grid-template-columns: repeat(2, 1fr); } }
+  .kpi { background: var(--panel); border: 1.5px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+  .kpi .lbl { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.7px; }
+  .kpi .val { font-size: 32px; font-weight: 800; margin: 8px 0 4px; letter-spacing: -0.8px; }
+  .kpi .sub { color: var(--muted); font-size: 12px; line-height: 1.4; }
+  .kpi.green .val { color: var(--green); } .kpi.amber .val { color: var(--amber); }
+  .kpi.red .val { color: var(--red); } .kpi.blue .val { color: var(--blue); }
+  .kpi.purple .val { color: var(--purple); } .kpi.teal .val { color: var(--teal); }
+
+  /* Scope tension banner */
+  .scope-banner { background: linear-gradient(135deg, rgba(217,68,68,0.16), rgba(242,169,0,0.16));
+    border: 1px solid rgba(217,68,68,0.35); border-radius: var(--radius); padding: 26px 30px; }
+  .scope-banner h3 { margin: 0 0 6px; font-size: 22px; font-weight: 700; letter-spacing: -0.4px; }
+  .scope-banner .q { font-size: 16px; font-weight: 600; color: var(--om-forest); font-style: italic; margin: 0 0 14px; }
+  .scope-banner .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 6px; }
+  @media (max-width: 1000px) { .scope-banner .cols { grid-template-columns: 1fr; } }
+  .scope-opt { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; border-top: 3px solid var(--grey); }
+  .scope-opt.tactical { border-top-color: var(--green); }
+  .scope-opt.hybrid { border-top-color: var(--amber); }
+  .scope-opt.strategic { border-top-color: var(--purple); }
+  .scope-opt .so-h { font-size: 14px; font-weight: 700; }
+  .scope-opt .so-time { font-size: 12px; color: var(--muted); margin: 4px 0 8px; font-weight: 600; }
+  .scope-opt .so-b { font-size: 12.5px; color: var(--text); line-height: 1.5; }
+
+  /* Workstream cards */
+  .ws-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 1200px) { .ws-grid { grid-template-columns: 1fr; } }
+  .ws { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; border-left: 4px solid var(--grey); position: relative; }
+  .ws.green { border-left-color: var(--green); }
+  .ws.amber { border-left-color: var(--amber); }
+  .ws.red { border-left-color: var(--red); }
+  .ws .ws-name { font-size: 16px; font-weight: 700; padding-right: 70px; }
+  .ws .ws-owner { font-size: 11px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: .5px; }
+  .ws .ws-body { font-size: 13px; color: var(--text); line-height: 1.5; margin-top: 10px; }
+  .ws .pill { position: absolute; top: 16px; right: 18px; padding: 3px 9px; border-radius: 10px; font-size: 10px;
+    text-transform: uppercase; letter-spacing: .5px; font-weight: 700; }
+  .pill.green { background: rgba(80,184,72,.16); color: var(--green); }
+  .pill.amber { background: rgba(242,169,0,.18); color: #b07c00; }
+  .pill.red { background: rgba(217,68,68,.16); color: var(--red); }
+
+  /* Composition bar */
+  .comp-bar { height: 38px; border-radius: 8px; overflow: hidden; display: flex; border: 1px solid var(--border); }
+  .comp-bar > div { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; text-shadow: 0 1px 1px rgba(0,0,0,.18); }
+  .comp-legend { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
+  @media (max-width: 1000px) { .comp-legend { grid-template-columns: repeat(2,1fr); } }
+  .comp-legend .item { padding: 12px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; }
+  .comp-legend .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+  .comp-legend .nm { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .5px; }
+  .comp-legend .num { font-weight: 700; font-size: 17px; margin-top: 4px; letter-spacing: -.3px; }
+  .comp-legend .pctn { color: var(--muted); font-size: 11px; margin-top: 2px; }
+
+  /* Generic tables */
+  .tbl { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; font-size: 12.5px; }
+  .tbl th { background: var(--panel-2); color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .6px;
+    padding: 11px 12px; text-align: left; border-bottom: 1px solid var(--border); font-weight: 700; }
+  .tbl td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .tbl tr:last-child td { border-bottom: none; }
+  .tbl tr:hover td { background: rgba(0,150,119,0.035); }
+  .tbl .id { font-family: ui-monospace, "SF Mono", monospace; font-size: 11px; color: var(--accent); white-space: nowrap; font-weight: 600; }
+  .tbl .nowrap { white-space: nowrap; }
+
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; text-transform: uppercase;
+    letter-spacing: .4px; font-weight: 700; white-space: nowrap; }
+  .tag.veryhigh { background: rgba(217,68,68,.2); color: #b32020; }
+  .tag.high { background: rgba(217,68,68,.14); color: var(--red); }
+  .tag.medhigh { background: rgba(242,169,0,.2); color: #a06f00; }
+  .tag.med { background: rgba(242,169,0,.16); color: #a06f00; }
+  .tag.medium { background: rgba(242,169,0,.16); color: #a06f00; }
+  .tag.low { background: rgba(80,184,72,.16); color: var(--green); }
+  .tag.confirmed { background: rgba(80,184,72,.16); color: var(--green); }
+  .tag.proposed { background: rgba(0,192,232,.16); color: #0593b1; }
+  .tag.intent { background: rgba(80,184,72,.12); color: #3d8a37; }
+  .tag.open { background: rgba(242,169,0,.16); color: #a06f00; }
+  .tag.critical { background: rgba(217,68,68,.2); color: #b32020; }
+  .tag.new { background: rgba(0,192,232,.14); color: #0593b1; }
+  .tag.inprogress { background: rgba(242,169,0,.16); color: #a06f00; }
+  .tag.grey { background: rgba(120,144,136,.16); color: var(--muted); }
+
+  /* Decision cards */
+  .dec-grid { display: grid; gap: 12px; }
+  .decision { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; border-left: 3px solid var(--amber); }
+  .decision.confirmed { border-left-color: var(--green); }
+  .decision.proposed { border-left-color: var(--blue); }
+  .decision .d-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .decision .num { font-family: ui-monospace, monospace; font-size: 11px; font-weight: 700; color: var(--accent); }
+  .decision .title { font-size: 15px; font-weight: 700; }
+  .decision .body { color: var(--text); font-size: 13px; margin-top: 8px; line-height: 1.5; }
+  .decision .meta { color: var(--muted); font-size: 11.5px; margin-top: 8px; }
+  .decision .meta strong { color: var(--text); font-weight: 600; }
+
+  /* Lifecycle pipeline */
+  .pipeline { display: flex; flex-wrap: wrap; gap: 8px; align-items: stretch; }
+  .pipe-step { flex: 1 1 0; min-width: 120px; background: var(--panel); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 12px; text-align: center; position: relative; border-top: 3px solid var(--teal); }
+  .pipe-step .ps-n { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; }
+  .pipe-step .ps-name { font-size: 14px; font-weight: 700; margin-top: 4px; }
+  .pipe-arrow { display: flex; align-items: center; color: var(--accent); font-size: 18px; font-weight: 700; }
+
+  /* PI gate cards */
+  .pi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 1100px) { .pi-grid { grid-template-columns: 1fr; } }
+  .pi-card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; border-top: 3px solid var(--teal); }
+  .pi-card .pi-h { font-size: 16px; font-weight: 700; }
+  .pi-card .pi-when { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; margin-top: 2px; }
+  .pi-card ul { margin: 12px 0 0; padding-left: 18px; font-size: 12.5px; color: var(--text); line-height: 1.6; }
+
+  /* Critical path chain */
+  .chain { display: grid; gap: 10px; }
+  .chain-item { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; border-left: 3px solid var(--red); }
+  .chain-item .step-no { width: 30px; height: 30px; border-radius: 50%; background: var(--om-forest); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex: 0 0 auto; }
+  .chain-item .ci-title { font-size: 14px; font-weight: 700; }
+  .chain-item .ci-body { font-size: 12.5px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+
+  /* callout */
+  .callout { background: linear-gradient(135deg, rgba(0,192,232,0.1), rgba(0,150,119,0.06));
+    border: 1px solid var(--border); border-left: 4px solid var(--blue); border-radius: 10px; padding: 16px 20px; font-size: 13px; line-height: 1.55; }
+  .callout strong { color: var(--text); }
+  .callout.warn { background: linear-gradient(135deg, rgba(242,169,0,.12), rgba(217,68,68,.06)); border-left-color: var(--amber); }
+
+  /* register counts strip */
+  .reg-counts { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
+  @media (max-width: 1300px) { .reg-counts { grid-template-columns: repeat(4,1fr); } }
+  @media (max-width: 700px) { .reg-counts { grid-template-columns: repeat(2,1fr); } }
+  .reg-count { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; }
+  .reg-count .rc-n { font-size: 26px; font-weight: 800; letter-spacing: -.5px; }
+  .reg-count .rc-l { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-top: 2px; }
+
+  /* people */
+  .people-cols { columns: 2; column-gap: 18px; }
+  @media (max-width: 1000px) { .people-cols { columns: 1; } }
+
+  .subhead { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--accent);
+    margin: 24px 0 10px; }
+
+  footer { padding: 30px 56px 50px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
+  footer strong { color: var(--text); }
+  a { color: var(--accent); }
+  /* ===== Roadmap / Gantt ===== */
+  .roadmap-flow { display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin:6px 0 24px; }
+  .flow-node { background:var(--panel); border:1.5px solid var(--border); border-top:3px solid var(--teal);
+    border-radius:12px; padding:11px 15px; min-width:130px; }
+  .flow-node.secure { border-top-color:var(--purple); }
+  .flow-node .fn-step { font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
+  .flow-node .fn-name { font-size:15px; font-weight:700; margin-top:2px; }
+  .flow-node .fn-when { font-size:11px; color:var(--muted); margin-top:3px; }
+  .flow-arrow { color:var(--muted-2); font-size:20px; font-weight:700; }
+  .gantt { border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--panel); box-shadow:var(--shadow); }
+  .g-row { display:grid; grid-template-columns:240px 1fr; align-items:center; border-bottom:1px solid var(--line); min-height:46px; }
+  .g-row:last-child { border-bottom:0; }
+  .g-row.head { background:var(--om-forest); }
+  .g-label { font-size:12.5px; font-weight:600; padding:9px 14px; color:var(--text); }
+  .g-label small { display:block; font-weight:400; color:var(--muted); font-size:10.5px; margin-top:1px; }
+  .g-row.head .g-label { color:#fff; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; }
+  .g-track { display:grid; grid-template-columns:repeat(6,1fr); align-items:center; height:100%;
+    background-image:linear-gradient(to right, rgba(0,150,119,.12) 1px, transparent 1px); background-size:calc(100%/6) 100%; }
+  .g-row.head .g-track { background-image:none; }
+  .g-track.months > div { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; color:rgba(255,255,255,.92); text-align:center; padding:11px 0; }
+  .bar { height:26px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:10.5px;
+    font-weight:700; color:#fff; padding:0 8px; white-space:nowrap; overflow:hidden; box-shadow:0 2px 8px rgba(0,61,50,.16); margin:3px 4px; }
+  .bar.teal{ background:linear-gradient(135deg,#00b48f,#009677); }
+  .bar.green{ background:linear-gradient(135deg,#6cc24a,#50B848); }
+  .bar.amber{ background:linear-gradient(135deg,#f7b733,#F2A900); color:#3a2a00; }
+  .bar.cyan{ background:linear-gradient(135deg,#34cce8,#00C0E8); color:#04303a; }
+  .bar.purple{ background:linear-gradient(135deg,#f24aa8,#ED0080); }
+  .bar.orange{ background:linear-gradient(135deg,#ff8a3d,#F37021); }
+  .bar.grey{ background:linear-gradient(135deg,#9aa7a1,#789088); }
+  .bar.atrisk{ background:linear-gradient(135deg,#e36a6a,#D94444); }
+  .gantt-mile { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+  .mile { display:flex; gap:10px; align-items:flex-start; background:var(--panel); border:1.5px solid var(--border);
+    border-left:4px solid var(--teal); border-radius:10px; padding:10px 14px; flex:1 1 210px; }
+  .mile.risk { border-left-color:var(--red); }
+  .mile .mw { font-size:11px; font-weight:800; color:var(--teal); white-space:nowrap; }
+  .mile.risk .mw { color:var(--red); }
+  .mile .mt { font-size:12px; color:var(--text); line-height:1.4; }
+  .gantt-legend { display:flex; flex-wrap:wrap; gap:14px; margin-top:14px; font-size:11px; color:var(--muted); }
+  .gantt-legend span { display:inline-flex; align-items:center; gap:6px; }
+  .gantt-legend i { width:14px; height:10px; border-radius:3px; display:inline-block; }
+  @media (max-width:900px){ .g-row{ grid-template-columns:150px 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="om-brand-bar">
+  <div class="om-logo-mark"></div>
+  <div class="programme-title">
+    <div class="brand-lockup">OLD MUTUAL</div>
+    <h2>Web Transformation Programme</h2>
+    <p>Migration · Experience uplift · Legacy decommission</p>
+  </div>
+</div>
+
+<header>
+  <div class="meta">Executive / Steering Committee status · 4 June 2026 · Facilitator: Gareth Bew</div>
+  <h1>Web Transformation — Programme Status</h1>
+  <span class="audience">Executive view · Two-day planning workshop complete · phased delivery plan agreed</span>
+  <div class="src-note">Consolidated outcome of the two-day planning workshop — Day 1: 2 June 2026 · Day 2: 3 June 2026. Executive status as at 4 June 2026.</div>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="status">Status<span class="tab-sub">where we are today</span></button>
+  <button class="tab-btn" data-tab="plan">Plan &amp; Timeline<span class="tab-sub">how we land in the window</span></button>
+  <button class="tab-btn" data-tab="raid">RAID &amp; Decisions<span class="tab-sub">the full register set</span></button>
+  <button class="tab-btn" data-tab="people">People &amp; Governance<span class="tab-sub">who owns what</span></button>
+</nav>
+
+<!-- ============================== STATUS ============================== -->
+<main class="tab-pane active" id="tab-status">
+
+<div class="rag-strip amber">
+  <div class="rag-dot amber"></div>
+  <div>
+    <div class="rag-label">Amber / At Risk — phased plan agreed; resourcing &amp; year-end gap to close</div>
+    <div class="rag-detail">Over two days the teams aligned on goals, mapped the full delivery landscape, and converted it into a <strong>phased, audience-based delivery plan</strong> (Personal first). The programme remains Amber: delivering every audience at current capacity will not fit the fixed <strong>end-November</strong> window, so the plan banks phased value and hinges on a <strong>four-squad resourcing decision</strong> and on key people who <strong>roll off in August–September</strong>.</div>
+  </div>
+  <div class="rag-pct">AMBER<span class="lbl">Overall programme position</span></div>
+</div>
+
+<section>
+  <h2>Programme KPIs <span class="soft">— as captured Day 1 (baseline 1 Jun 2026)</span></h2>
+  <div class="kpi-grid c5">
+    <div class="kpi teal"><div class="lbl">OMAR page inventory</div><div class="val">~1 530</div><div class="sub">baseline as of 1 Jun 2026</div></div>
+    <div class="kpi amber"><div class="lbl">In-scope trajectory</div><div class="val">~1 000</div><div class="sub">reduced from ~2 500 so far</div></div>
+    <div class="kpi green"><div class="lbl">Pages moved</div><div class="val">~60</div><div class="sub">migration paused (article restyle decision)</div></div>
+    <div class="kpi red"><div class="lbl">Botswana servicing</div><div class="val">1 / 9</div><div class="sub">transactions complete</div></div>
+    <div class="kpi purple"><div class="lbl">Deadline</div><div class="val">Nov</div><div class="sub">end-Nov 2026 · fixed, budget-bound</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Capacity &amp; throughput signals</h2>
+  <div class="kpi-grid c5">
+    <div class="kpi red"><div class="lbl">Publishers</div><div class="val">2</div><div class="sub">1 migration · 1 BAU (14 sites + secure + app); no dedicated OMAR publisher</div></div>
+    <div class="kpi amber"><div class="lbl">New-template build</div><div class="val">~2 h</div><div class="sub">per page</div></div>
+    <div class="kpi green"><div class="lbl">As-is build</div><div class="val">~30 m</div><div class="sub">per page (definition still open)</div></div>
+    <div class="kpi blue"><div class="lbl">BAU reference throughput</div><div class="val">85 / 5d</div><div class="sub">tickets cleared in 5 days</div></div>
+    <div class="kpi teal"><div class="lbl">SEO lead time</div><div class="val">≥ 2 mo</div><div class="sub">required before QA</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>The defining question <span class="soft">— the programme's master risk (RSK-001, Very High)</span></h2>
+  <div class="scope-banner">
+    <h3>Is this a content migration, a web transformation, or a bounded hybrid?</h3>
+    <p class="q">"Several delivery streams imply transformation — OMDS adoption, V2 templates, IA change, analytics, observability, automated testing, revised publishing workflow, decommissioning — while the programme is described as a 'migration.'"</p>
+    <p class="lede" style="margin:0 0 12px;"><strong style="color:var(--om-forest)">Day 2 outcome:</strong> the programme chose a <strong>phased, audience-based delivery</strong> (DEC-015) — in effect a bounded hybrid taken one audience at a time, Personal first. The scope boundary is now managed <em>per phase</em> rather than as a single all-or-nothing line, explicitly accepting that not all audiences land inside the budget window. The original options considered were:</p>
+    <div class="cols">
+      <div class="scope-opt tactical">
+        <div class="so-h">A · Tactical</div>
+        <div class="so-time">Achievable in the window</div>
+        <div class="so-b">Navigation-only across all sites + secure web IA (the agreed MVP, DEC-003). Lands meaningful value by end-Nov; defers uplift. Validated by ASM-010.</div>
+      </div>
+      <div class="scope-opt hybrid">
+        <div class="so-h">B · Bounded hybrid</div>
+        <div class="so-time">Window with hard trade-offs</div>
+        <div class="so-b">Product pages → V2 templates; everything else moves as-is/restyled (DEC-008). Requires the "as-is" definition (ACT-004) and ruthless prioritisation by success metric (ACT-018).</div>
+      </div>
+      <div class="scope-opt strategic">
+        <div class="so-h">C · Full transformation</div>
+        <div class="so-time">~end-2027</div>
+        <div class="so-b">Full OMDS, V2, IA, analytics, testing, decommission. Highest value, but <strong>incompatible with the fixed end-Nov budget window</strong> (RSK-019).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Workstream status <span class="soft">— 6 Day 1 workstreams</span></h2>
+  <div class="ws-grid">
+    <div class="ws red">
+      <div class="pill red">High risk</div>
+      <div class="ws-name">1 · Publishing</div>
+      <div class="ws-owner">Publishing team · Natalie</div>
+      <div class="ws-body">Capacity bottleneck vs a large OMAR inventory. One person effectively covers publishing across everything — any small change (e.g. an ad) touches every page. No dedicated OMAR publisher. <em>ISS-007, RSK-002.</em></div>
+    </div>
+    <div class="ws amber">
+      <div class="pill amber">At risk</div>
+      <div class="ws-name">2 · Migration &amp; Go-Live Readiness</div>
+      <div class="ws-owner">Programme / Regional</div>
+      <div class="ws-body">Critical dependencies and open production-readiness: secure web, servicing transactions, environment sequencing, decommission planning, go-live checklist. <em>RSK-013/014/015.</em></div>
+    </div>
+    <div class="ws amber">
+      <div class="pill amber">At risk</div>
+      <div class="ws-name">3 · Design &amp; Design System (OMDS)</div>
+      <div class="ws-owner">Design · Brent</div>
+      <div class="ws-body">A strategic governance layer, not just a UI library — needs an operating model and design authority. Most components don't yet exist in Contentstack and must be built. <em>RSK-007/008.</em></div>
+    </div>
+    <div class="ws amber">
+      <div class="pill amber">At risk</div>
+      <div class="ws-name">4 · Execution</div>
+      <div class="ws-owner">Execution · Nithin</div>
+      <div class="ws-body">Scope spans transformation + technical uplift, not only migration: Contentstack, environments, URL audit, automated testing, observability, analytics tagging in CMS. <em>RSK-006/010/011.</em></div>
+    </div>
+    <div class="ws amber">
+      <div class="pill amber">At risk</div>
+      <div class="ws-name">5 · Cross Channels Solutions</div>
+      <div class="ws-owner">Wayne Moodley &amp; Tebogo Segoje</div>
+      <div class="ws-body">Progressing (calculators, EasiPlus, advisor flow) but exposed to the post-PI2 front-end exit and constrained BA capacity. Transitioning to a capability enabler. <em>RSK-017/018.</em></div>
+    </div>
+    <div class="ws amber">
+      <div class="pill amber">At risk</div>
+      <div class="ws-name">6 · Content Governance &amp; Readiness</div>
+      <div class="ws-owner">Content / Publishing / DS / SEO</div>
+      <div class="ws-body">Content readiness is a programme control point: content packs, asset standards, URL audit, SEO tagging. SEO not yet ready and needs ≥2 months lead. <em>RSK-009/016/021.</em></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Programme blockers &amp; live issues <span class="soft">— 8 open issues (ISS)</span></h2>
+  <table class="tbl">
+    <thead><tr><th>ID</th><th>Issue</th><th>Current impact</th><th>Owner</th><th>Escalate</th></tr></thead>
+    <tbody>
+      <tr><td class="id">ISS-007</td><td>One person covers publishing across everything</td><td>Throughput bottleneck now; morale/volume concern raised</td><td>Publishing / Programme</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">ISS-003</td><td>Secure web migration incomplete; "learn more" pages on old platform; no robust service-tree solution</td><td>Secure journeys can't fully go live; public↔secure transition unresolved</td><td>Programme</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">ISS-004</td><td>Botswana servicing: only 1 of 9 transactions complete</td><td>Regional go-live at risk</td><td>Regional</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">ISS-005</td><td>Go-live readiness activities open (ServiceNow, comms, decommission, security)</td><td>Cannot declare go-live readiness</td><td>Programme</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">ISS-001</td><td>Full Brand/CI not approved — only interim brand (fonts/logo)</td><td>Templates can't be scaled with confidence</td><td>Brand / Group Marketing</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">ISS-006</td><td>BA on extended medical leave; recruitment in progress</td><td>Requirements &amp; stakeholder engagement slowed (Cross Channels)</td><td>Cross Channels</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">ISS-002</td><td>No reliable total page count; manual Google-Sheet tracking</td><td>Capacity modelling unreliable</td><td>Publishing</td><td><span class="tag grey">No</span></td></tr>
+      <tr><td class="id">ISS-008</td><td>No centralised/shared knowledge system exists today</td><td>Delays, repeated work, hard onboarding, lost history</td><td>Programme (GB)</td><td><span class="tag medium">Unclear</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Migration progress snapshot <span class="soft">— Day 1 confirmed figures</span></h2>
+  <div class="comp-bar">
+    <div style="width:4%;background:var(--green)" title="Moved ~60">moved</div>
+    <div style="width:60%;background:var(--amber)" title="In-scope remaining">in-scope, not yet moved</div>
+    <div style="width:36%;background:var(--grey)" title="Out of scope / consolidate / delete">out-of-scope · consolidate · delete</div>
+  </div>
+  <div class="comp-legend">
+    <div class="item"><span class="swatch" style="background:var(--green)"></span><span class="nm">Moved</span><div class="num">~60 pages</div><div class="pctn">migration paused pending decision</div></div>
+    <div class="item"><span class="swatch" style="background:var(--amber)"></span><span class="nm">In scope, remaining</span><div class="num">~1 000</div><div class="pctn">trajectory after scoping down</div></div>
+    <div class="item"><span class="swatch" style="background:var(--grey)"></span><span class="nm">Reduced out / TBC</span><div class="num">~530 → ~970</div><div class="pctn">from ~2 500 original to ~1 000</div></div>
+    <div class="item"><span class="swatch" style="background:var(--teal)"></span><span class="nm">Baseline</span><div class="num">~1 530</div><div class="pctn">OMAR inventory, 1 Jun</div></div>
+  </div>
+  <p class="lede" style="margin-top:14px;font-size:12px;"><strong style="color:var(--text)">Caveat (ISS-002):</strong> there is no reliable single source for page counts today; numbers are from manual tracking and ongoing content changes. ACT-005 (complete inventory + tracker) is in progress with Natalie.</p>
+</section>
+
+</main>
+
+<!-- ============================== PLAN ============================== -->
+<main class="tab-pane" id="tab-plan">
+
+<div class="rag-strip red">
+  <div class="rag-dot red"></div>
+  <div>
+    <div class="rag-label">Land a deliverable scope inside a fixed end-November budget window</div>
+    <div class="rag-detail">Day 2 set the plan around phased, audience-based delivery (DEC-015): Personal first, then Corporate, Business and Wealth, with Secure web alongside. The critical path runs through design foundations → component build → Contentstack → publishing → SEO (≥2 mo) → testing → go-live readiness. Not all audiences land inside the window — the deadline is met with delivered phases, and the remainder continues beyond it.</div>
+  </div>
+  <div class="rag-pct" style="color:var(--red)">~5–6<span class="lbl">months to deadline</span></div>
+</div>
+
+<section>
+  <h2>Delivery roadmap <span class="soft">— phased, audience-based rollout</span></h2>
+  <p class="lede">Day 2 converted the Day 1 landscape into a phased plan: deliver the <strong>Personal</strong> audience first on a modular template system, then repeat for <strong>Corporate</strong>, <strong>Business</strong> and <strong>Wealth</strong>, with <strong>Secure web</strong> sequenced alongside. Up to four squads run in parallel (subject to resourcing) to compress the timeline.</p>
+
+  <div class="roadmap-flow">
+    <div class="flow-node"><div class="fn-step">Phase 1</div><div class="fn-name">Personal</div><div class="fn-when">Foundations end-Jun · live ~end-Jul</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node"><div class="fn-step">Phase 2</div><div class="fn-name">Corporate</div><div class="fn-when">Jul → Aug</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node"><div class="fn-step">Phase 3</div><div class="fn-name">Business</div><div class="fn-when">Aug → Sep</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node"><div class="fn-step">Phase 4</div><div class="fn-name">Wealth</div><div class="fn-when">Aug → Oct</div></div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-node secure"><div class="fn-step">Alongside</div><div class="fn-name">Secure web</div><div class="fn-when">Sequenced · roll-off risk</div></div>
+  </div>
+
+  <div class="gantt">
+    <div class="g-row head">
+      <div class="g-label">Workstream / phase</div>
+      <div class="g-track months"><div>Jun</div><div>Jul</div><div>Aug</div><div>Sep</div><div>Oct</div><div>Nov</div></div>
+    </div>
+    <div class="g-row">
+      <div class="g-label">Design foundations<small>Personal IA · core templates · content guidelines</small></div>
+      <div class="g-track"><div class="bar teal" style="grid-column:1/2">Sign-off</div></div>
+    </div>
+    <div class="g-row">
+      <div class="g-label">Templates &amp; components<small>5-day structures · ~2-wk components · micro-drops</small></div>
+      <div class="g-track"><div class="bar cyan" style="grid-column:1/5">Parallel build · staggered handovers to Sep</div></div>
+    </div>
+    <div class="g-row">
+      <div class="g-label">Personal — build &amp; publish<small>~150 articles restyled · 850 to follow</small></div>
+      <div class="g-track"><div class="bar green" style="grid-column:1/3">Live ~end-Jul</div></div>
+    </div>
+    <div class="g-row">
+      <div class="g-label">Corporate<small>landing → macro sections</small></div>
+      <div class="g-track"><div class="bar green" style="grid-column:2/4">Build</div></div>
+    </div>
+    <div class="g-row">
+      <div class="g-label">Business<small>landing → macro sections</small></div>
+      <div class="g-track"><div class="bar green" style="grid-column:3/5">Build</div></div>
+    </div>
+    <div class="g-row">
+      <div class="g-label">Wealth<small>landing → macro sections</small></div>
+      <div class="g-track"><div class="bar green" style="grid-column:3/6">Build</div></div>
+    </div>
+    <div class="g-row">
+      <div class="g-label">Secure web<small>portfolio view · service tree</small></div>
+      <div class="g-track"><div class="bar atrisk" style="grid-column:1/5">Sequenced · roll-off risk (end-Sep)</div></div>
+    </div>
+    <div class="g-row">
+      <div class="g-label">Feature migration<small>Cross Channels journeys</small></div>
+      <div class="g-track"><div class="bar amber" style="grid-column:1/5">52% → ~90% by end-Jul</div></div>
+    </div>
+    <div class="g-row">
+      <div class="g-label">Content audit &amp; URL mapping<small>per-section discovery deliverable</small></div>
+      <div class="g-track"><div class="bar cyan" style="grid-column:1/4">Map current → new IA</div></div>
+    </div>
+    <div class="g-row">
+      <div class="g-label">DevOps quality gates &amp; automation<small>Playwright · linting · CI/CD · co-located analytics</small></div>
+      <div class="g-track"><div class="bar grey" style="grid-column:1/7">Rollout end-Jun, then ongoing</div></div>
+    </div>
+    <div class="g-row">
+      <div class="g-label">Country rollout<small>SA-first → OMAR &amp; others · S.Sudan decommission-only</small></div>
+      <div class="g-track"><div class="bar orange" style="grid-column:3/7">Adapt &amp; roll out per country</div></div>
+    </div>
+    <div class="g-row">
+      <div class="g-label">Phased decommissioning<small>by deployment stage</small></div>
+      <div class="g-track"><div class="bar grey" style="grid-column:4/7">Switch off legacy as migrated</div></div>
+    </div>
+    <div class="g-row">
+      <div class="g-label">Go-live readiness<small>ServiceNow · security/pen-test · comms</small></div>
+      <div class="g-track"><div class="bar purple" style="grid-column:5/7">Toward deadline</div></div>
+    </div>
+  </div>
+
+  <div class="gantt-mile">
+    <div class="mile"><div class="mw">End&nbsp;Jun</div><div class="mt">Personal design foundations signed off · first four template sections handed to development · DevOps quality gates live</div></div>
+    <div class="mile"><div class="mw">End&nbsp;Jul</div><div class="mt">Personal section live · feature migration ~90% · Corporate &amp; Wealth landing pages dropped</div></div>
+    <div class="mile risk"><div class="mw">~10&nbsp;Sep</div><div class="mt">Key delivery / feature team rolls off (most knowledgeable QE off in August) — accelerate and transfer knowledge</div></div>
+    <div class="mile"><div class="mw">End&nbsp;Nov</div><div class="mt">Fixed, budget-bound deadline — phased value delivered; remaining audiences continue beyond the window</div></div>
+  </div>
+
+  <div class="gantt-legend">
+    <span><i style="background:#009677"></i>Design / foundations</span>
+    <span><i style="background:#50B848"></i>Audience build &amp; publish</span>
+    <span><i style="background:#00C0E8"></i>Content / discovery</span>
+    <span><i style="background:#F2A900"></i>Feature migration</span>
+    <span><i style="background:#F37021"></i>Country rollout</span>
+    <span><i style="background:#ED0080"></i>Go-live readiness</span>
+    <span><i style="background:#789088"></i>Engineering / decommission</span>
+    <span><i style="background:#D94444"></i>At risk</span>
+  </div>
+  <p class="lede" style="margin-top:12px;font-size:11.5px;">Bars show the indicative sequencing captured on the Day 2 whiteboard; dates are workshop targets, not committed delivery dates. Feature migration stands at <strong>52% today → 71–72% by end-June → ~90% by end-July</strong>.</p>
+</section>
+
+<section>
+  <h2>End-to-end lifecycle <span class="soft">— target sequencing, with gates</span></h2>
+  <p class="lede">A single interconnected lifecycle with a visible progress tracker is required — showing workplan, milestones, assumptions, dependencies and impact, not just % complete. Beta/Staging readiness links to design, content, DS, platform build and publishing readiness.</p>
+  <div class="pipeline">
+    <div class="pipe-step"><div class="ps-n">1</div><div class="ps-name">Define</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="ps-n">2</div><div class="ps-name">Discovery</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="ps-n">3</div><div class="ps-name">Design</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="ps-n">4</div><div class="ps-name">Approval</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="ps-n">5</div><div class="ps-name">Handover</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="ps-n">6</div><div class="ps-name">Support</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step" style="border-top-color:var(--green)"><div class="ps-n">7</div><div class="ps-name">Go Live</div></div>
+  </div>
+  <div class="subhead">Environment sequencing</div>
+  <div class="pipeline">
+    <div class="pipe-step" style="border-top-color:var(--blue)"><div class="ps-name">Contentstack</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step" style="border-top-color:var(--blue)"><div class="ps-name">Beta / Staging</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step" style="border-top-color:var(--blue)"><div class="ps-name">Production</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step" style="border-top-color:var(--blue)"><div class="ps-name">Live Testing</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step" style="border-top-color:var(--blue)"><div class="ps-name">Tooling</div></div>
+  </div>
+  <p class="lede" style="margin-top:14px;font-size:12px;">Architecture decision for Beta/Staging/Production + tooling ownership still required (ACT-009, RSK-010, Medium-High). Beta must support parallel validation of navigation, taxonomy, APIs, tooling and DS components.</p>
+</section>
+
+<section>
+  <h2>Delivery increments <span class="soft">— PI gates as stated Day 1</span></h2>
+  <div class="pi-grid">
+    <div class="pi-card">
+      <div class="pi-h">End of current PI</div>
+      <div class="pi-when">Confirmed event</div>
+      <ul>
+        <li>Most Cross Channels <strong>front-end dev resources move out</strong> to the Web Platform team.</li>
+        <li>Triggers the post-PI2 resource transition risk (RSK-017) — transition plan needed (ACT-021).</li>
+      </ul>
+    </div>
+    <div class="pi-card">
+      <div class="pi-h">PI2</div>
+      <div class="pi-when">Confirmed</div>
+      <ul>
+        <li>Calculators nearly ready for <strong>Beta deployment</strong>.</li>
+        <li>From end of PI2, Cross Channels depends on <strong>Web Platform for all front-end</strong> work (DEP-007).</li>
+        <li>EasiPlus sales journey depends on Funeral product page template + MFC sign-off (DEP-008).</li>
+      </ul>
+    </div>
+    <div class="pi-card">
+      <div class="pi-h">PI3</div>
+      <div class="pi-when">Confirmed</div>
+      <ul>
+        <li>Focus on the <strong>Contact Us</strong> page + additional calculators without owners.</li>
+        <li>Ownership pending discussion with Keshvi &amp; Luvuyo (QST-012, ACT-024).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Critical-path chain <span class="soft">— if any link slips, the deadline slips</span></h2>
+  <div class="chain">
+    <div class="chain-item"><div class="step-no">1</div><div><div class="ci-title">Scope decision (DEC-001 / ACT-001)</div><div class="ci-body">Nothing else can be baselined until tactical vs hybrid vs full is resolved. Carries Day 2.</div></div></div>
+    <div class="chain-item"><div class="step-no">2</div><div><div class="ci-title">Design foundations + "as-is" definition (DEC-006 / ACT-004)</div><div class="ci-body">IA, navigation, templates, content standards; and a formal "as-is" definition — blocks estimates, testing scope and decommission.</div></div></div>
+    <div class="chain-item"><div class="step-no">3</div><div><div class="ci-title">Component / DS V2 build (RSK-008 / DEP-003 / DEP-004)</div><div class="ci-body">Most components don't exist in Contentstack and must be built; DS V2 must reach Beta to unlock templates and Find an Advisor.</div></div></div>
+    <div class="chain-item"><div class="step-no">4</div><div><div class="ci-title">URL audit &amp; redirects (ACT-017 / DEP-005)</div><div class="ci-body">~95% of URLs changing — must map current→new IA before switch-off; notify e-commerce (Nthabi) to protect GA tracking (RSK-021).</div></div></div>
+    <div class="chain-item"><div class="step-no">5</div><div><div class="ci-title">Contentstack dev → publishing (DEP-001)</div><div class="ci-body">Publishing can only start once Contentstack dev is complete and content / assets / URLs are signed off.</div></div></div>
+    <div class="chain-item"><div class="step-no">6</div><div><div class="ci-title">SEO engagement ≥ 2 months (DEC-011 / DEP-009)</div><div class="ci-body">SEO team needs ≥2 months lead before QA for tagging and validation — a long pole against the window.</div></div></div>
+    <div class="chain-item"><div class="step-no">7</div><div><div class="ci-title">Testing → Go-live readiness (DEP-002 / ACT-013)</div><div class="ci-body">Testing only begins once all pages are built in Beta; then ServiceNow API updates, security pen-test, comms and decommission must clear (RSK-013/022).</div></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Key dated &amp; sequenced dependencies</h2>
+  <table class="tbl">
+    <thead><tr><th>ID</th><th>Dependency</th><th>Provider → Receiver</th><th>Timing</th><th>Escalate</th></tr></thead>
+    <tbody>
+      <tr><td class="id">DEP-009</td><td>SEO tagging &amp; validation lead time</td><td>SEO → Execution/Publishing</td><td class="nowrap">≥ 2 months pre-QA</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">DEP-001</td><td>Publishing starts only after Contentstack dev + content/assets/URLs signed off</td><td>Execution/Content → Publishing</td><td>Not confirmed</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">DEP-002</td><td>Testing cannot begin until all pages built in Beta</td><td>Publishing → QA</td><td>Not confirmed</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">DEP-003</td><td>Design System V2 deployed to Beta (Find an Advisor + templates)</td><td>OMDS → Cross Channels</td><td>Not confirmed</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">DEP-007</td><td>Cross Channels depends on Web Platform for all front-end</td><td>Web Platform → Cross Channels</td><td class="nowrap">End PI2</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">DEP-005</td><td>URL audit before switch-off / redirect decisions</td><td>Execution → Publishing/SEO</td><td>Not confirmed</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">DEP-006</td><td>Content packs + cluster/SME content before sign-off &amp; publishing</td><td>Clusters/SMEs → Design/Publishing</td><td>Not confirmed</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">DEP-008</td><td>EasiPlus depends on Funeral product page template + MFC sign-off</td><td>Design/MFC → Cross Channels</td><td>Not confirmed</td><td><span class="tag medium">Unclear</span></td></tr>
+      <tr><td class="id">DEP-013</td><td>Notify e-commerce (Nthabi) of URL changes for GA tracking</td><td>Execution/CC → E-commerce</td><td class="nowrap">Pre go-live</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">DEP-015</td><td>Security pen-test / crowdsource confirmation before go-live</td><td>Security → Programme</td><td class="nowrap">Pre go-live</td><td><span class="tag high">Yes</span></td></tr>
+      <tr><td class="id">DEP-016</td><td>ServiceNow API updates + QA/security/marketing approvals before prod</td><td>Execution/Ops → Programme</td><td class="nowrap">Pre go-live</td><td><span class="tag high">Yes</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Day 2 recommended next steps <span class="soft">— 1–2 week horizon</span></h2>
+  <div class="callout warn">
+    <strong>1.</strong> Resolve the scope decision (DEC-001 / ACT-001 / ACT-028) and re-baseline the plan. &nbsp;
+    <strong>2.</strong> Define &amp; approve "as-is" (ACT-004). &nbsp;
+    <strong>3.</strong> Confirm dedicated OMAR publishing + build-capacity model (ACT-003 / ACT-005). &nbsp;
+    <strong>4.</strong> Launch the URL audit (ACT-017) and SEO/analytics workshop (ACT-012). &nbsp;
+    <strong>5.</strong> Stand up the go-live readiness checklist (ACT-013) and secure-web / servicing recovery plans (ACT-015 / ACT-016). &nbsp;
+    <strong>6.</strong> Formalise the OMDS operating model + component audit (ACT-006 / ACT-008), and produce the ~10 priority components list (PRK-009).
+  </div>
+</section>
+
+</main>
+
+<!-- ============================== RAID ============================== -->
+<main class="tab-pane" id="tab-raid">
+
+<section>
+  <h2>Register summary <span class="soft">— Day 1 totals (Workshop Pack)</span></h2>
+  <div class="reg-counts">
+    <div class="reg-count"><div class="rc-n" style="color:var(--teal)">14</div><div class="rc-l">Decisions</div></div>
+    <div class="reg-count"><div class="rc-n" style="color:var(--blue)">54</div><div class="rc-l">Actions</div></div>
+    <div class="reg-count"><div class="rc-n" style="color:var(--red)">22</div><div class="rc-l">Risks</div></div>
+    <div class="reg-count"><div class="rc-n" style="color:var(--amber)">8</div><div class="rc-l">Issues</div></div>
+    <div class="reg-count"><div class="rc-n" style="color:var(--purple)">11</div><div class="rc-l">Assumptions</div></div>
+    <div class="reg-count"><div class="rc-n" style="color:var(--teal)">16</div><div class="rc-l">Dependencies</div></div>
+    <div class="reg-count"><div class="rc-n" style="color:var(--blue)">19</div><div class="rc-l">Open questions</div></div>
+    <div class="reg-count"><div class="rc-n" style="color:var(--grey)">9</div><div class="rc-l">Parking lot</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Decisions <span class="soft">— 14 (5 confirmed/directional, 9 proposed)</span></h2>
+  <div class="dec-grid">
+<div class="decision proposed"><div class="d-top"><span class="num">DEC-001</span><span class="title">Migration vs transformation</span><span class="tag proposed">Proposed / Open</span></div><div class="body">Define & bound programme scope: migration, transformation, or hybrid</div><div class="meta"><strong>Owner:</strong> Gareth Bew / Keshvi · Day 1, Session 1</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-002</span><span class="title">Success metrics</span><span class="tag confirmed">Confirmed</span></div><div class="body">Platform + customer success metrics (analytics, DS, <3s, NPS, traffic, etc.)</div><div class="meta"><strong>Owner:</strong> Gareth Bew · Day 1, Session 1</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-003</span><span class="title">MVP</span><span class="tag confirmed">Confirmed</span></div><div class="body">MVP = new navigation (4 audiences) + secure web IA</div><div class="meta"><strong>Owner:</strong> Gareth Bew / Keshvi · Day 1, Session 1</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-004</span><span class="title">Migration dependencies</span><span class="tag confirmed">Confirmed (intent)</span></div><div class="body">Identify & communicate dependencies + tasks per business area</div><div class="meta"><strong>Owner:</strong> Programme · Day 1, Session 1</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-005</span><span class="title">Whiteboard -> plan</span><span class="tag confirmed">Confirmed</span></div><div class="body">Per-workstream whiteboard → programme plan + RAID</div><div class="meta"><strong>Owner:</strong> Gareth Bew · Day 1, Session 1</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-006</span><span class="title">Design foundations</span><span class="tag confirmed">Confirmed</span></div><div class="body">IA, navigation, templates, content/SEO/brand standards</div><div class="meta"><strong>Owner:</strong> Design / OMDS · Day 1, Session 1</div></div>
+<div class="decision proposed"><div class="d-top"><span class="num">DEC-007</span><span class="title">Handover governance</span><span class="tag proposed">Proposed</span></div><div class="body">Approval routing & entry/exit gates between teams</div><div class="meta"><strong>Owner:</strong> Design / Programme · Day 1, Session 1</div></div>
+<div class="decision proposed"><div class="d-top"><span class="num">DEC-008</span><span class="title">Page treatment</span><span class="tag proposed">Proposed</span></div><div class="body">Product pages → new templates; others as-is/restyled</div><div class="meta"><strong>Owner:</strong> Design / Execution · Day 1, Session 1</div></div>
+<div class="decision proposed"><div class="d-top"><span class="num">DEC-009</span><span class="title">Automated testing</span><span class="tag proposed">Proposed</span></div><div class="body">Automated testing + DevOps pipeline enforcement</div><div class="meta"><strong>Owner:</strong> Execution · Day 1, Session 1</div></div>
+<div class="decision proposed"><div class="d-top"><span class="num">DEC-010</span><span class="title">Dedicated publisher</span><span class="tag proposed">Proposed</span></div><div class="body">Ring-fence dedicated migration publisher from BAU</div><div class="meta"><strong>Owner:</strong> Publishing / Programme · Day 1, Session 1</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-011</span><span class="title">SEO lead time</span><span class="tag confirmed">Confirmed (intent)</span></div><div class="body">SEO team ≥2 months before QA for tagging & validation</div><div class="meta"><strong>Owner:</strong> SEO / Programme · Day 1, Session 1</div></div>
+<div class="decision proposed"><div class="d-top"><span class="num">DEC-012</span><span class="title">Phased decommissioning</span><span class="tag proposed">Proposed</span></div><div class="body">Turn off legacy components progressively as migrated</div><div class="meta"><strong>Owner:</strong> Programme / Execution · Day 1</div></div>
+<div class="decision proposed"><div class="d-top"><span class="num">DEC-013</span><span class="title">Faoli Bank separate brand</span><span class="tag proposed">Proposed</span></div><div class="body">Bank as separate entity with own IA & governance</div><div class="meta"><strong>Owner:</strong> Programme · Day 1</div></div>
+<div class="decision proposed"><div class="d-top"><span class="num">DEC-014</span><span class="title">Design-phase skip</span><span class="tag proposed">Proposed</span></div><div class="body">Allow some teams to skip design phase (dependency-based)</div><div class="meta"><strong>Owner:</strong> Gareth / Brent · Day 1</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-015</span><span class="title">Phased audience-based delivery</span><span class="tag confirmed">Confirmed</span></div><div class="body">Personal first (foundations end-June, section ~end-July), then Corporate → Business → Wealth (+Secure)</div><div class="meta"><strong>Owner:</strong> GB / Programme · Day 2, Session 1</div></div>
+<div class="decision proposed"><div class="d-top"><span class="num">DEC-016</span><span class="title">Four-squad parallel model</span><span class="tag proposed">Proposed (resource-gated)</span></div><div class="body">Four concurrent squads (one per audience): lead designer + designer + content + tech support</div><div class="meta"><strong>Owner:</strong> Programme Leadership · Day 2</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-017</span><span class="title">Red/green-zone templates</span><span class="tag confirmed">Confirmed</span></div><div class="body">Modular templates: red zones (fixed/governed) + green zones (variable); 2-3 standardised product templates</div><div class="meta"><strong>Owner:</strong> Design / Dev (Seba / Rey) · Day 2</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-018</span><span class="title">Template change-control</span><span class="tag confirmed">Confirmed</span></div><div class="body">Post-sign-off red-zone changes trigger change management across content + code on all affected pages</div><div class="meta"><strong>Owner:</strong> Design / Programme · Day 2, Session 1</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-019</span><span class="title">Publishing gatekeeper gate</span><span class="tag confirmed">Confirmed</span></div><div class="body">Design & publishing teams gatekeep; every page signed off before go-live; only trained builders publish; tenants onboarded to standards</div><div class="meta"><strong>Owner:</strong> Design / Publishing (GB / Natalie / Bernice) · Day 2, Session 1</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-020</span><span class="title">Content + analytics co-location</span><span class="tag confirmed">Confirmed</span></div><div class="body">Co-locate content + analytics tagging in Contentstack to enable automation & SEO</div><div class="meta"><strong>Owner:</strong> Execution (Rey / Nithin) · Day 2, Session 1</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-021</span><span class="title">DevOps quality gates + Playwright</span><span class="tag confirmed">Confirmed</span></div><div class="body">DevOps quality gates + automated testing (Playwright) + linting before production; rollout end-June with reporting</div><div class="meta"><strong>Owner:</strong> Execution · Day 2, Session 1</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-022</span><span class="title">Personal foundations end-June</span><span class="tag confirmed">Confirmed</span></div><div class="body">Sign off Personal IA + core templates + generic content guidelines by end-June</div><div class="meta"><strong>Owner:</strong> Design (Seba / Justin) · Day 2, Session 1</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-023</span><span class="title">Article & news handling</span><span class="tag confirmed">Confirmed</span></div><div class="body">Single consolidated article page; interim background-colour variant; news distinct (~1-yr retention, stays in footer)</div><div class="meta"><strong>Owner:</strong> Design / Content (GB / Justin) · Day 2, Session 1</div></div>
+<div class="decision proposed"><div class="d-top"><span class="num">DEC-024</span><span class="title">Defer article/news URL structure</span><span class="tag proposed">Deferred</span></div><div class="body">Defer article/news URL structure pending IA (target end-June); content audit + URL mapping per section as discovery deliverable</div><div class="meta"><strong>Owner:</strong> IA / Content (Justin / Bernice) · Day 2</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-025</span><span class="title">Country/site delivery model</span><span class="tag confirmed">Confirmed (intent)</span></div><div class="body">Country teams own migration, depend on central for design/IA/nav/content; South Sudan = decommission-only; SA-first then roll out; small sites quick nav+footer retrofit</div><div class="meta"><strong>Owner:</strong> Programme / Regional (GB / Reza) · Day 2, Session 1</div></div>
+<div class="decision proposed"><div class="d-top"><span class="num">DEC-026</span><span class="title">Tenant operating model</span><span class="tag proposed">Proposed</span></div><div class="body">Post-migration tenants fund & manage own sites under formal partnership agreements</div><div class="meta"><strong>Owner:</strong> Programme (GB / Reza) · Day 2, Session 1</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-027</span><span class="title">Unified Jira + cadence</span><span class="tag confirmed">Confirmed</span></div><div class="body">Single Jira construct; leads enter milestones/priorities/deps/confidence; twice-weekly 30-min leadership check-ins + weekly playback</div><div class="meta"><strong>Owner:</strong> Programme (GB / Tsoaeli) · Day 2, Session 1</div></div>
+<div class="decision confirmed"><div class="d-top"><span class="num">DEC-028</span><span class="title">Bank owns its pages</span><span class="tag confirmed">Confirmed (intent)</span></div><div class="body">Bank builds its own web pages; team involved only on bank-initiated redesign; confirm if OM finance pages move to bank</div><div class="meta"><strong>Owner:</strong> Programme · Day 2, Session 1</div></div>
+</div>
+</section>
+
+<section>
+  <h2>Top risks <span class="soft">— consolidated rating view for Steering</span></h2>
+  <table class="tbl">
+    <thead><tr><th>ID</th><th>Risk</th><th>Category</th><th>Rating</th><th>Owner</th><th>Required response</th></tr></thead>
+    <tbody>
+      <tr><td class="id">RSK-001</td><td>Migration vs transformation scope ambiguity</td><td>Business / Programme</td><td><span class="tag veryhigh">Very High</span></td><td>Programme (GB)</td><td>Formal scope decision + revised plan (ACT-001)</td></tr>
+      <tr><td class="id">RSK-019</td><td>Full scope ~2027 vs fixed end-Nov / 5-month window</td><td>Programme / Timeline</td><td><span class="tag high">High</span></td><td>Programme (GB)</td><td>Tactical-vs-strategic options + gap analysis (ACT-028)</td></tr>
+      <tr><td class="id">RSK-002</td><td>Publishing capacity insufficient (~1,530 pages, 2 publishers)</td><td>Resource</td><td><span class="tag high">High</span></td><td>Publishing / Programme</td><td>Dedicated OMAR capacity + tracker (ACT-003/005)</td></tr>
+      <tr><td class="id">RSK-021</td><td>~95% of URLs changing → e-commerce campaigns + GA / exec reporting</td><td>Technical / Business</td><td><span class="tag high">High</span></td><td>Execution / E-commerce</td><td>URL audit + notify Nthabi (ACT-017/046)</td></tr>
+      <tr><td class="id">RSK-008</td><td>Most components don't exist in Contentstack → must be built</td><td>Technical</td><td><span class="tag high">High</span></td><td>Execution / OMDS</td><td>Figma/DS component audit (ACT-008)</td></tr>
+      <tr><td class="id">RSK-014</td><td>Secure web migration at risk (shared services, service tree)</td><td>Technical / Delivery</td><td><span class="tag high">High</span></td><td>Programme / Regional</td><td>Mitigation plan + owner (ACT-015)</td></tr>
+      <tr><td class="id">RSK-015</td><td>Servicing transactions at risk — Botswana 1/9, Namibia</td><td>Delivery</td><td><span class="tag high">High</span></td><td>Regional</td><td>Recovery plan (ACT-016)</td></tr>
+      <tr><td class="id">RSK-017</td><td>Front-end resource exit after PI2 reduces velocity</td><td>Resource</td><td><span class="tag high">High</span></td><td>Cross Channels / Web Platform</td><td>Post-PI2 transition plan (ACT-021)</td></tr>
+      <tr><td class="id">RSK-009</td><td>SEO &amp; analytics ownership not finalised; SEO not ready</td><td>Process / Governance</td><td><span class="tag high">High</span></td><td>SEO / Programme</td><td>SEO/analytics workshop; appoint owner (ACT-012)</td></tr>
+      <tr><td class="id">RSK-013</td><td>Go-live readiness open (ServiceNow, comms, decommission, security)</td><td>Process / Governance</td><td><span class="tag high">High</span></td><td>Programme</td><td>Go-live readiness checklist (ACT-013)</td></tr>
+      <tr><td class="id">RSK-007</td><td>OMDS treated as UI library, not governance framework</td><td>Governance</td><td><span class="tag high">High</span></td><td>Design / OMDS</td><td>OMDS operating model + design authority (ACT-006)</td></tr>
+      <tr><td class="id">RSK-018</td><td>BA capacity constrained (medical leave + recruitment)</td><td>Resource</td><td><span class="tag high">High</span></td><td>Cross Channels</td><td>Interim BA capacity (ACT-022)</td></tr>
+      <tr><td class="id">RSK-022</td><td>Security pre-go-live testing + ServiceNow API updates unconfirmed</td><td>Security / Technical</td><td><span class="tag medhigh">Med-High</span></td><td>Programme / Security</td><td>Confirm testing + complete ServiceNow (ACT-013)</td></tr>
+      <tr><td class="id">RSK-010</td><td>Environment sequencing (Beta/Staging/Prod/tooling) undefined</td><td>Technical</td><td><span class="tag medhigh">Med-High</span></td><td>Execution</td><td>Environment strategy &amp; ownership (ACT-009)</td></tr>
+      <tr><td class="id">RSK-020</td><td>No centralised knowledge system → delays, lost history</td><td>Process / People</td><td><span class="tag medium">Medium</span></td><td>Programme (GB)</td><td>Centralised documentation system (ACT-054)</td></tr>
+      <tr><td class="id">RSK-012</td><td>Component sprawl / design debt without lifecycle control</td><td>Technical / Process</td><td><span class="tag medium">Medium</span></td><td>OMDS</td><td>Component lifecycle + impact register (ACT-007)</td></tr>
+      <tr><td class="id">RSK-005</td><td>Regional resources cut → delivery &amp; quality risk</td><td>Resource</td><td><span class="tag high">High</span></td><td>Programme / Regional</td><td>Resource review; confirm regional capacity (ACT-014)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Critical &amp; high-priority actions <span class="soft">— selected from 54</span></h2>
+  <table class="tbl">
+    <thead><tr><th>ID</th><th>Action</th><th>Owner</th><th>Priority</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="id">ACT-001</td><td>Resolve &amp; document the scope decision; revise the plan</td><td>Programme (GB)</td><td><span class="tag critical">Critical</span></td><td><span class="tag new">New · Day 2</span></td></tr>
+      <tr><td class="id">ACT-003</td><td>Confirm &amp; secure dedicated OMAR publishing; ring-fence from BAU</td><td>Programme / Publishing</td><td><span class="tag critical">Critical</span></td><td><span class="tag new">New</span></td></tr>
+      <tr><td class="id">ACT-004</td><td>Define &amp; approve the "as-is" migration scope/definition</td><td>Programme / Design</td><td><span class="tag critical">Critical</span></td><td><span class="tag new">New</span></td></tr>
+      <tr><td class="id">ACT-017</td><td>Complete URL audit; map current→new IA; align redirects (~95% changing)</td><td>Natalie / Execution</td><td><span class="tag critical">Critical</span></td><td><span class="tag new">New</span></td></tr>
+      <tr><td class="id">ACT-028</td><td>Gap analysis: committed scope vs realistic 5-month deliverables</td><td>Gareth, Keshvi</td><td><span class="tag critical">Critical</span></td><td><span class="tag new">New</span></td></tr>
+      <tr><td class="id">ACT-005</td><td>Complete OMAR page inventory + publishing progress tracker</td><td>Natalie</td><td><span class="tag high">High</span></td><td><span class="tag inprogress">In progress</span></td></tr>
+      <tr><td class="id">ACT-006</td><td>Formalise OMDS operating model, design authority &amp; approval SLAs</td><td>Brent / OMDS</td><td><span class="tag high">High</span></td><td><span class="tag new">New</span></td></tr>
+      <tr><td class="id">ACT-008</td><td>Complete Figma &amp; Design System component audit</td><td>Execution / Design</td><td><span class="tag high">High</span></td><td><span class="tag new">New</span></td></tr>
+      <tr><td class="id">ACT-009</td><td>Define Beta/Staging/Production environment strategy &amp; ownership</td><td>Execution</td><td><span class="tag high">High</span></td><td><span class="tag new">New</span></td></tr>
+      <tr><td class="id">ACT-012</td><td>Run SEO &amp; analytics workshop — ownership, tooling, tagging/URL standards</td><td>Programme / SEO</td><td><span class="tag high">High</span></td><td><span class="tag new">New</span></td></tr>
+      <tr><td class="id">ACT-013</td><td>Build formal go-live readiness checklist (PGW, QAG, ServiceNow, security, comms)</td><td>Programme</td><td><span class="tag high">High</span></td><td><span class="tag new">New</span></td></tr>
+      <tr><td class="id">ACT-015</td><td>Mitigation plans for secure web migration &amp; servicing (Namibia)</td><td>Programme / Regional</td><td><span class="tag high">High</span></td><td><span class="tag new">New</span></td></tr>
+      <tr><td class="id">ACT-016</td><td>Botswana recovery plan for remaining 8 of 9 servicing transactions</td><td>Regional</td><td><span class="tag high">High</span></td><td><span class="tag new">New</span></td></tr>
+      <tr><td class="id">ACT-021</td><td>Post-PI2 front-end transition plan; Web Platform capacity model</td><td>Programme / Cross Channels</td><td><span class="tag high">High</span></td><td><span class="tag new">New</span></td></tr>
+      <tr><td class="id">ACT-022</td><td>Secure interim BA capacity while recruitment continues</td><td>Cross Channels</td><td><span class="tag high">High</span></td><td><span class="tag new">New</span></td></tr>
+      <tr><td class="id">ACT-026</td><td>Translate whiteboard outputs into a detailed Excel (tasks, milestones)</td><td>Gareth</td><td><span class="tag high">High</span></td><td><span class="tag new">New</span></td></tr>
+      <tr><td class="id">ACT-054</td><td>Create a centralised documentation / knowledge system</td><td>Gareth</td><td><span class="tag high">High</span></td><td><span class="tag new">New</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Open questions <span class="soft">— 19; the ones that gate scope &amp; delivery</span></h2>
+  <table class="tbl">
+    <thead><tr><th>ID</th><th>Question</th><th>Owner to answer</th><th>Impact if unanswered</th></tr></thead>
+    <tbody>
+      <tr><td class="id">QST-001</td><td>Migration only, transformation, or bounded hybrid?</td><td>Programme / Sponsor</td><td>Scope/effort/budget/timeline undefined</td></tr>
+      <tr><td class="id">QST-016</td><td>Appetite for tactical "navigation-only across all sites" to hit the timeline?</td><td>Programme / Sponsor</td><td>Determines deliverable scope vs timeline</td></tr>
+      <tr><td class="id">QST-002</td><td>What exactly qualifies as an "as-is" page (incl. V2 nav/footer)?</td><td>Programme / Design</td><td>Estimates / testing / decommission scope undefined</td></tr>
+      <tr><td class="id">QST-003</td><td>Are non-product pages (About Us, Careers) new design or current UI?</td><td>All participants</td><td>Inconsistent scope / treatment</td></tr>
+      <tr><td class="id">QST-004</td><td>What is the MVP deliverable for the five-month timeline?</td><td>Product / Programme</td><td>MVP unclear; planning risk</td></tr>
+      <tr><td class="id">QST-007</td><td>Is Kenya migrating all content or specific journeys?</td><td>Programme / Regional</td><td>Regional scope unclear</td></tr>
+      <tr><td class="id">QST-009</td><td>Best approach for analytics (Glassbox replacement, LLM-search tracking)?</td><td>SEO / Analytics</td><td>Monitoring gaps</td></tr>
+      <tr><td class="id">QST-010</td><td>Who owns campaign/article/landing pages with absent owners?</td><td>Programme / Marketing</td><td>Content readiness blocked</td></tr>
+      <tr><td class="id">QST-011</td><td>Theming: do Wealth, OMAI/OMIG, UT need distinct themes? Dark theme?</td><td>Brand / Design / Business</td><td>Theming / build rework</td></tr>
+      <tr><td class="id">QST-012</td><td>Personal Loans Calculator scope + ownerless PI3 calculators?</td><td>Cross Channels / Product</td><td>Calculator delivery gaps</td></tr>
+      <tr><td class="id">QST-014</td><td>Template standardisation vs modular flexibility ("snowflakes")?</td><td>OMDS</td><td>Component sprawl / rigidity</td></tr>
+      <tr><td class="id">QST-017</td><td>Faoli Bank brand name/spelling + bank-section page ownership?</td><td>Programme</td><td>Bank migration &amp; ownership undefined</td></tr>
+      <tr><td class="id">QST-019</td><td>Which teams/sites may skip design, under what criteria?</td><td>Gareth / Brent</td><td>Governance vs speed trade-off</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Assumptions to validate <span class="soft">— 11 (key ones)</span></h2>
+  <table class="tbl">
+    <thead><tr><th>ID</th><th>Assumption</th><th>Validate</th><th>Risk if wrong</th></tr></thead>
+    <tbody>
+      <tr><td class="id">ASM-001</td><td>End-November deadline is fixed and achievable within capacity</td><td>Programme / Sponsor</td><td>Deadline missed or scope/quality cut</td></tr>
+      <tr><td class="id">ASM-010</td><td>A tactical (nav-only) scope can deliver meaningful value in 5–6 months</td><td>Programme / Sponsor</td><td>If false, deadline unachievable at any useful scope</td></tr>
+      <tr><td class="id">ASM-002</td><td>All content must move because legacy must be decommissioned</td><td>Programme / Execution</td><td>Over-migration of low-value pages; wasted effort</td></tr>
+      <tr><td class="id">ASM-003</td><td>~2h (new template) / ~30min (as-is) per page hold at scale</td><td>Publishing</td><td>Capacity model &amp; timeline invalid</td></tr>
+      <tr><td class="id">ASM-004</td><td>"As-is" means minimal change (not V2 with new nav/footer)</td><td>Design / Programme</td><td>Estimates, testing &amp; decommission scope wrong</td></tr>
+      <tr><td class="id">ASM-006</td><td>AI-assisted page creation in Contentstack reduces per-page effort</td><td>Execution (Daniel)</td><td>Capacity assumptions optimistic</td></tr>
+      <tr><td class="id">ASM-008</td><td>Web Platform absorbs Cross Channels front-end after PI2</td><td>Programme / Web Platform</td><td>Velocity drop post-PI2</td></tr>
+      <tr><td class="id">ASM-011</td><td>Phased decommissioning can run safely alongside migration</td><td>Programme / Execution</td><td>Broken journeys / premature switch-off</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Parking lot <span class="soft">— 9 deferred / future-state items</span></h2>
+  <table class="tbl">
+    <thead><tr><th>ID</th><th>Topic</th><th>Why parked</th><th>Priority</th></tr></thead>
+    <tbody>
+      <tr><td class="id">PRK-001</td><td>Page review &amp; consolidation exercise</td><td>Time-boxed; "if time allows"</td><td><span class="tag high">High</span></td></tr>
+      <tr><td class="id">PRK-009</td><td>Final list of ~10 priority components to start on</td><td>Requested, not yet produced</td><td><span class="tag high">High</span></td></tr>
+      <tr><td class="id">PRK-004</td><td>Convergence of other secure portals onto new platform</td><td>Major decision, not ready</td><td><span class="tag high">High</span></td></tr>
+      <tr><td class="id">PRK-005</td><td>Centralised image repository</td><td>Affects multiple sites/systems</td><td><span class="tag medium">Medium</span></td></tr>
+      <tr><td class="id">PRK-002</td><td>Future commercial tenant onboarding &amp; brand architecture</td><td>Out of current migration scope</td><td><span class="tag medium">Medium</span></td></tr>
+      <tr><td class="id">PRK-008</td><td>Onboarding new clients/tenants — module scope impact</td><td>Future-state</td><td><span class="tag medium">Medium</span></td></tr>
+      <tr><td class="id">PRK-003</td><td>Servicing capabilities not in immediate scope</td><td>Future planning</td><td><span class="tag medium">Medium</span></td></tr>
+      <tr><td class="id">PRK-006</td><td>Full automated deployment &amp; platform enhancements</td><td>Not current migration scope</td><td><span class="tag low">Low-Med</span></td></tr>
+      <tr><td class="id">PRK-007</td><td>Future brand realignment / redesign of as-is pages</td><td>Later initiative</td><td><span class="tag low">Low</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+
+<section>
+  <h2>Full action register <span class="soft">— 84 actions (ACT-001–084)</span></h2>
+  <table class="tbl">
+    <thead><tr><th>ID</th><th>Area</th><th>Workstream</th><th>Priority</th><th>Action</th><th>Owner</th><th>Due</th><th>Status</th><th>Related</th></tr></thead>
+    <tbody>
+<tr><td class="id">ACT-001</td><td>All</td><td>Programme</td><td><span class="tag critical">Critical</span></td><td>Resolve & document scope decision (migration vs transformation vs hybrid)</td><td class="nowrap">Gareth Bew / Keshvi</td><td class="nowrap">Day 2</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-001, RSK-001</td></tr>
+<tr><td class="id">ACT-002</td><td>All</td><td>Programme</td><td><span class="tag critical">Critical</span></td><td>Define & communicate migration tasks per business area & country</td><td class="nowrap">Programme</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-004, QST-007</td></tr>
+<tr><td class="id">ACT-003</td><td>OMAR / SA</td><td>Publishing</td><td><span class="tag critical">Critical</span></td><td>Confirm dedicated OMAR publishing resource; ring-fence BAU</td><td class="nowrap">Bernice Bryce / Programme</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-010, RSK-002</td></tr>
+<tr><td class="id">ACT-004</td><td>All</td><td>Design / Programme</td><td><span class="tag critical">Critical</span></td><td>Define & approve 'as-is' migration definition</td><td class="nowrap">Programme / Design</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">QST-002, RSK-003</td></tr>
+<tr><td class="id">ACT-005</td><td>OMAR</td><td>Publishing</td><td><span class="tag high">High</span></td><td>Complete page inventory + publishing tracker (vs 1,530 baseline)</td><td class="nowrap">Natalie Patel</td><td class="nowrap">Not confirmed</td><td><span class="tag inprogress">In Progress</span></td><td style="font-size:11px;color:var(--muted)">RSK-002</td></tr>
+<tr><td class="id">ACT-006</td><td>Design Systems</td><td>OMDS</td><td><span class="tag high">High</span></td><td>Formalise OMDS operating model, design authority, SLAs</td><td class="nowrap">Brent von Zitters</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-006, DEC-007</td></tr>
+<tr><td class="id">ACT-007</td><td>Design Systems</td><td>OMDS</td><td><span class="tag high">High</span></td><td>Define component lifecycle + impact register</td><td class="nowrap">Brent von Zitters</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-012</td></tr>
+<tr><td class="id">ACT-008</td><td>All</td><td>Execution</td><td><span class="tag high">High</span></td><td>Figma & DS component audit (existing / reusable / to-build)</td><td class="nowrap">Execution / Design</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEP-004, RSK-008</td></tr>
+<tr><td class="id">ACT-009</td><td>All</td><td>Execution</td><td><span class="tag high">High</span></td><td>Beta/Staging/Production environment strategy & ownership</td><td class="nowrap">Execution</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">QST-006, RSK-010</td></tr>
+<tr><td class="id">ACT-010</td><td>All</td><td>Execution</td><td><span class="tag medium">Medium</span></td><td>Add automated testing + DevOps quality gates</td><td class="nowrap">Execution</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-009, RSK-006</td></tr>
+<tr><td class="id">ACT-011</td><td>All</td><td>Execution</td><td><span class="tag medium">Medium</span></td><td>Define observability (Dynatrace, Grafana, analytics tagging)</td><td class="nowrap">Execution</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-011</td></tr>
+<tr><td class="id">ACT-012</td><td>All</td><td>SEO</td><td><span class="tag high">High</span></td><td>SEO & analytics workshop — ownership, tooling, tagging standards</td><td class="nowrap">Programme / SEO</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-011, RSK-009</td></tr>
+<tr><td class="id">ACT-013</td><td>All</td><td>Programme</td><td><span class="tag high">High</span></td><td>Go-live readiness checklist (PGW, QAG, ServiceNow, security, comms)</td><td class="nowrap">Programme</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-013</td></tr>
+<tr><td class="id">ACT-014</td><td>Regional</td><td>Programme</td><td><span class="tag high">High</span></td><td>Resource review; confirm regional delivery capacity</td><td class="nowrap">Programme</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-005</td></tr>
+<tr><td class="id">ACT-015</td><td>Namibia</td><td>Regional</td><td><span class="tag high">High</span></td><td>Mitigation plans secure web + servicing (Namibia)</td><td class="nowrap">Programme / Regional</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-014</td></tr>
+<tr><td class="id">ACT-016</td><td>Botswana</td><td>Regional</td><td><span class="tag high">High</span></td><td>Recovery plan for remaining 8 of 9 servicing transactions</td><td class="nowrap">Regional</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-015</td></tr>
+<tr><td class="id">ACT-017</td><td>All</td><td>Execution</td><td><span class="tag critical">Critical</span></td><td>URL audit — map URLs to new IA; redirects & switch-off</td><td class="nowrap">Natalie Patel / Execution</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEP-005, RSK-021</td></tr>
+<tr><td class="id">ACT-018</td><td>All</td><td>Product</td><td><span class="tag medium">Medium</span></td><td>Use success metrics to prioritise sections (essential vs as-is)</td><td class="nowrap">Programme / Product</td><td class="nowrap">Not confirmed</td><td><span class="tag grey">Suggested</span></td><td style="font-size:11px;color:var(--muted)">DEC-002</td></tr>
+<tr><td class="id">ACT-019</td><td>All</td><td>Content</td><td><span class="tag high">High</span></td><td>Content readiness checklist + asset standards pack</td><td class="nowrap">Content / OMDS</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEP-006, RSK-016</td></tr>
+<tr><td class="id">ACT-020</td><td>All</td><td>Design</td><td><span class="tag high">High</span></td><td>Assign owners: landing, article, carousel, theming</td><td class="nowrap">Programme / Design</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">QST-010, QST-011</td></tr>
+<tr><td class="id">ACT-021</td><td>Cross Channels</td><td>Programme</td><td><span class="tag high">High</span></td><td>Front-end transition plan post-PI2; Web Platform capacity model</td><td class="nowrap">Programme / CC</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-017, DEP-007</td></tr>
+<tr><td class="id">ACT-022</td><td>Cross Channels</td><td>Cross Channels</td><td><span class="tag high">High</span></td><td>Secure interim BA capacity during recruitment</td><td class="nowrap">Cross Channels</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-018</td></tr>
+<tr><td class="id">ACT-023</td><td>Funeral / EasiPlus</td><td>Cross Channels</td><td><span class="tag high">High</span></td><td>Escalate MFC sign-off for EasiPlus (Funeral template)</td><td class="nowrap">Wayne Moodley</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEP-008</td></tr>
+<tr><td class="id">ACT-024</td><td>Calculators</td><td>Cross Channels</td><td><span class="tag medium">Medium</span></td><td>Personal Loans Calculator scope; PI3 calculator ownership</td><td class="nowrap">Wayne Moodley</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">QST-012</td></tr>
+<tr><td class="id">ACT-025</td><td>All</td><td>Programme</td><td><span class="tag low">Low</span></td><td>Assign second scribe for documentation</td><td class="nowrap">Participants</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">-</td></tr>
+<tr><td class="id">ACT-026</td><td>All</td><td>Programme</td><td><span class="tag high">High</span></td><td>Translate whiteboard outputs into detailed Excel plan</td><td class="nowrap">Gareth Bew</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-005</td></tr>
+<tr><td class="id">ACT-027</td><td>All</td><td>Programme</td><td><span class="tag high">High</span></td><td>Break migration plan into tasks + parallel streams</td><td class="nowrap">Gareth, Luvuyo</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">ACT-002</td></tr>
+<tr><td class="id">ACT-028</td><td>All</td><td>Programme</td><td><span class="tag critical">Critical</span></td><td>Gap analysis: committed scope vs 5-month deliverables</td><td class="nowrap">Gareth, Keshvi</td><td class="nowrap">Day 2</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-001, RSK-019</td></tr>
+<tr><td class="id">ACT-029</td><td>Cross Channels</td><td>Cross Channels</td><td><span class="tag medium">Medium</span></td><td>Wayne & Tebogo prepare & present delivery-plan changes</td><td class="nowrap">Wayne, Tebogo</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">-</td></tr>
+<tr><td class="id">ACT-030</td><td>All</td><td>Design</td><td><span class="tag high">High</span></td><td>Sequence ideas; draft logical platform roadmap</td><td class="nowrap">Design team</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-005</td></tr>
+<tr><td class="id">ACT-031</td><td>All</td><td>Programme</td><td><span class="tag medium">Medium</span></td><td>Define standard compliance requirements across BUs</td><td class="nowrap">Gareth Bew</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">-</td></tr>
+<tr><td class="id">ACT-032</td><td>All</td><td>Programme</td><td><span class="tag high">High</span></td><td>Senior team track features; help define migration scope</td><td class="nowrap">Senior team</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-001</td></tr>
+<tr><td class="id">ACT-033</td><td>All</td><td>Design</td><td><span class="tag high">High</span></td><td>Roll out new design templates across foundational pages</td><td class="nowrap">Gareth / Design</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-006</td></tr>
+<tr><td class="id">ACT-034</td><td>All</td><td>OMDS</td><td><span class="tag medium">Medium</span></td><td>Define standard patterns for platform features</td><td class="nowrap">Gareth / OMDS</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">QST-014</td></tr>
+<tr><td class="id">ACT-035</td><td>All</td><td>Design</td><td><span class="tag high">High</span></td><td>Clarify governance for design handover (tenant implementations)</td><td class="nowrap">Design & Content</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-007</td></tr>
+<tr><td class="id">ACT-036</td><td>All</td><td>Programme</td><td><span class="tag high">High</span></td><td>Migration approach for teams not yet on new platform</td><td class="nowrap">Gareth, Brent</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-012</td></tr>
+<tr><td class="id">ACT-037</td><td>All</td><td>Programme</td><td><span class="tag medium">Medium</span></td><td>Document decision to allow design-phase skip (criteria)</td><td class="nowrap">Gareth, Brent</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-014</td></tr>
+<tr><td class="id">ACT-038</td><td>All</td><td>Design</td><td><span class="tag high">High</span></td><td>Definition of Done for design artifacts (incl. SEO input)</td><td class="nowrap">Gareth, Brent</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-007</td></tr>
+<tr><td class="id">ACT-039</td><td>All</td><td>Design</td><td><span class="tag high">High</span></td><td>Outline approval process for design artifacts</td><td class="nowrap">Gareth, Brent</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-007</td></tr>
+<tr><td class="id">ACT-040</td><td>All</td><td>Design / SEO</td><td><span class="tag high">High</span></td><td>Clarify copy finalisation + SEO at design→dev handover</td><td class="nowrap">Gareth, SEO</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEP-009</td></tr>
+<tr><td class="id">ACT-041</td><td>All</td><td>Design</td><td><span class="tag high">High</span></td><td>Finalise template structure; hand to build for parallel dev</td><td class="nowrap">Gareth Bew</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-008</td></tr>
+<tr><td class="id">ACT-042</td><td>All</td><td>Design</td><td><span class="tag high">High</span></td><td>Non-negotiable rules for category landing-page templates</td><td class="nowrap">Gareth, team</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-006</td></tr>
+<tr><td class="id">ACT-043</td><td>Corporate</td><td>Design</td><td><span class="tag medium">Medium</span></td><td>Apply template structure to corporate cluster; identify tweaks</td><td class="nowrap">Gareth, team</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">-</td></tr>
+<tr><td class="id">ACT-044</td><td>All</td><td>Content</td><td><span class="tag high">High</span></td><td>Content audit per section (migrate/consolidate/delete)</td><td class="nowrap">Gareth, Natalie</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">ACT-004</td></tr>
+<tr><td class="id">ACT-045</td><td>About / Careers</td><td>Design</td><td><span class="tag medium">Medium</span></td><td>Review low-traffic pages for consolidation; define stakeholders</td><td class="nowrap">Gareth, participants</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">QST-003</td></tr>
+<tr><td class="id">ACT-046</td><td>E-commerce</td><td>Cross Channels</td><td><span class="tag high">High</span></td><td>Notify Nthabi of URL changes for GA tracking</td><td class="nowrap">Wayne Moodley</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-021, DEP-013</td></tr>
+<tr><td class="id">ACT-047</td><td>All</td><td>Design / Execution</td><td><span class="tag high">High</span></td><td>Tag Figma with DS components; map names to Contentstack</td><td class="nowrap">Gareth, team</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">ACT-008</td></tr>
+<tr><td class="id">ACT-048</td><td>All</td><td>OMDS</td><td><span class="tag medium">Medium</span></td><td>Align definitions: compositions/components/patterns/templates</td><td class="nowrap">Gareth, team</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">QST-014</td></tr>
+<tr><td class="id">ACT-049</td><td>OMAR</td><td>Programme</td><td><span class="tag high">High</span></td><td>Re-engage OMAR team; confirm scope & partnership mgmt</td><td class="nowrap">Megan</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">QST-013</td></tr>
+<tr><td class="id">ACT-050</td><td>All</td><td>Execution</td><td><span class="tag high">High</span></td><td>Automated testing framework; enforce DS in DevOps pipelines</td><td class="nowrap">Gareth, Daniel</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-009</td></tr>
+<tr><td class="id">ACT-051</td><td>All</td><td>Execution</td><td><span class="tag medium">Medium</span></td><td>Integrate analytics tracking fields in CMS; owner Nithin</td><td class="nowrap">Nithin</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-011</td></tr>
+<tr><td class="id">ACT-052</td><td>Calculators</td><td>Cross Channels</td><td><span class="tag medium">Medium</span></td><td>Review calculator pages; V2 complete vs additional scope</td><td class="nowrap">Gareth, Wayne</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">QST-012</td></tr>
+<tr><td class="id">ACT-053</td><td>TFSA</td><td>Cross Channels</td><td><span class="tag medium">Medium</span></td><td>Clarify TFSA product page: new template vs existing version</td><td class="nowrap">Gareth, Wayne</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">QST-018</td></tr>
+<tr><td class="id">ACT-054</td><td>All</td><td>Programme</td><td><span class="tag high">High</span></td><td>Centralised documentation / knowledge system</td><td class="nowrap">Gareth Bew</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-020, ISS-008</td></tr>
+<tr><td class="id">ACT-055</td><td>All</td><td>Programme</td><td><span class="tag high">High</span></td><td>Populate shared Roadmap with stream-level work items, owners, milestones, deps & confidence; consolidate & circulate (raw dataset Fri midday)</td><td class="nowrap">Gareth + stream leads</td><td class="nowrap">This week</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-027, ACT-026</td></tr>
+<tr><td class="id">ACT-056</td><td>Personal</td><td>Content</td><td><span class="tag high">High</span></td><td>Deliver Personal content package (content + QA) so pages/templates are build-ready</td><td class="nowrap">Bernice / Content</td><td class="nowrap">End July</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-015, DEP-021</td></tr>
+<tr><td class="id">ACT-057</td><td>All</td><td>Content / IA</td><td><span class="tag high">High</span></td><td>Map current article/site URL structure & propose consolidated structure (/articles; news-vs-articles rules)</td><td class="nowrap">Justin, Bernice</td><td class="nowrap">End June</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-024, ACT-017</td></tr>
+<tr><td class="id">ACT-058</td><td>Personal</td><td>Publishing</td><td><span class="tag high">High</span></td><td>Migrate ~140-150 Personal article pages to new structure once URL structure & packages ready</td><td class="nowrap">Bernice</td><td class="nowrap">June</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-023</td></tr>
+<tr><td class="id">ACT-059</td><td>All</td><td>Content / Design</td><td><span class="tag medium">Medium</span></td><td>Retrofit 'news' onto the article template & migrate news content</td><td class="nowrap">Bernice / Design</td><td class="nowrap">June</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-023</td></tr>
+<tr><td class="id">ACT-060</td><td>All</td><td>Execution</td><td><span class="tag high">High</span></td><td>Implement content + analytics co-location automation in Contentstack</td><td class="nowrap">Rey, Nithin</td><td class="nowrap">June</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-020, RSK-011</td></tr>
+<tr><td class="id">ACT-061</td><td>All</td><td>Execution</td><td><span class="tag high">High</span></td><td>Implement DevOps quality gates + CI/CD checks (test/automation reports, linting); begin reporting</td><td class="nowrap">Gareth, Daniel</td><td class="nowrap">End June</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-021, RSK-006</td></tr>
+<tr><td class="id">ACT-062</td><td>All</td><td>Programme</td><td><span class="tag medium">Medium</span></td><td>Set up workstream-lead cadence (twice-weekly 30-min) + weekly playback; circulate invite</td><td class="nowrap">Gareth</td><td class="nowrap">This week</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-027</td></tr>
+<tr><td class="id">ACT-063</td><td>Regional</td><td>Programme / Regional</td><td><span class="tag high">High</span></td><td>Prepare options & rollout approach for country/site migrations (like-for-like vs full template rework) with effort/cost</td><td class="nowrap">Gareth / Regional</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-025</td></tr>
+<tr><td class="id">ACT-064</td><td>All</td><td>Programme</td><td><span class="tag critical">Critical</span></td><td>Produce resourced four-squad view (full-squad resourcing plan + immediate hires/onboarding)</td><td class="nowrap">Seba / Programme</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-016, RSK-024</td></tr>
+<tr><td class="id">ACT-065</td><td>Personal</td><td>Design</td><td><span class="tag critical">Critical</span></td><td>Finalise Personal design foundations (IA, core templates, content guidelines, sign-off); prepare buildable templates</td><td class="nowrap">Gareth, Bertus, Design</td><td class="nowrap">End June</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-022, DEP-017</td></tr>
+<tr><td class="id">ACT-066</td><td>All</td><td>Content</td><td><span class="tag high">High</span></td><td>Conduct comprehensive content audit + URL mapping per section (added/consolidated/rewritten/removed)</td><td class="nowrap">Gareth, Natalie</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-024, ACT-044</td></tr>
+<tr><td class="id">ACT-067</td><td>All</td><td>Programme</td><td><span class="tag high">High</span></td><td>Define onboarding process & deliverables for new team members/tenants joining in June</td><td class="nowrap">Gareth</td><td class="nowrap">June</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-019, RSK-027</td></tr>
+<tr><td class="id">ACT-068</td><td>All</td><td>Design</td><td><span class="tag high">High</span></td><td>Finalise & hand over four production-ready template sections to dev within 1-2 sprints (incl. content setup)</td><td class="nowrap">Gareth / Design</td><td class="nowrap">≤2 weeks</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-017, DEP-017</td></tr>
+<tr><td class="id">ACT-069</td><td>All</td><td>Programme</td><td><span class="tag high">High</span></td><td>Integrate all team boards into a single Jira construct for unified tracking</td><td class="nowrap">Tsoaeli</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-027</td></tr>
+<tr><td class="id">ACT-070</td><td>All</td><td>Programme</td><td><span class="tag high">High</span></td><td>Each stream lead enters milestones, priorities, deadlines, confidence & owners into the spreadsheet</td><td class="nowrap">Brent, Zee, Justin (all leads)</td><td class="nowrap">By Fri</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-027, ACT-055</td></tr>
+<tr><td class="id">ACT-071</td><td>All</td><td>Execution</td><td><span class="tag medium">Medium</span></td><td>Include decommissioning tasks in the project plan; coordinate timing by deployment stage</td><td class="nowrap">Nithin</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-012</td></tr>
+<tr><td class="id">ACT-072</td><td>All</td><td>Security</td><td><span class="tag high">High</span></td><td>Clarify pen-test scope for public web (content + journeys) with Nzama</td><td class="nowrap">Gareth</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">RSK-022, DEP-019</td></tr>
+<tr><td class="id">ACT-073</td><td>All</td><td>Business / Programme</td><td><span class="tag high">High</span></td><td>Identify business owners for additional journeys (compliments, complaints, unclaimed benefits, IR, corporate unclaimed benefits); assess in/out of scope</td><td class="nowrap">Gareth, Tebogo</td><td class="nowrap">This week</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">ISS-010, QST-022</td></tr>
+<tr><td class="id">ACT-074</td><td>Regional</td><td>Programme / Regional</td><td><span class="tag high">High</span></td><td>Assess feature/journey completion per country (Kenya confirm; Malawi/South Sudan tasks); sequence migration/publishing by readiness</td><td class="nowrap">Gareth</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-025, ACT-002</td></tr>
+<tr><td class="id">ACT-075</td><td>All</td><td>Design</td><td><span class="tag high">High</span></td><td>Provide desktop Figma output as source of truth for automation; tag Figma → Contentstack</td><td class="nowrap">Gareth / Design</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">ACT-047, DEP-022</td></tr>
+<tr><td class="id">ACT-076</td><td>Bank</td><td>Programme</td><td><span class="tag medium">Medium</span></td><td>Clarify whether OM finance pages move to the bank; define next steps</td><td class="nowrap">Gareth</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-028, QST-021</td></tr>
+<tr><td class="id">ACT-077</td><td>All</td><td>Design / Content</td><td><span class="tag low">Low</span></td><td>Clarify naming/structure for financial toolkit & news sections (rename financial toolkit)</td><td class="nowrap">Gareth</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">QST-023</td></tr>
+<tr><td class="id">ACT-078</td><td>All</td><td>Programme</td><td><span class="tag high">High</span></td><td>Book consolidation time with Bernice (Jun 5) + Friday (Jun 7) leads review to hand over refined outputs</td><td class="nowrap">Gareth, Bertus, Bernice</td><td class="nowrap">Jun 5-7</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-027, ACT-055</td></tr>
+<tr><td class="id">ACT-079</td><td>Hong Kong</td><td>Regional</td><td><span class="tag medium">Medium</span></td><td>Begin Hong Kong YouTube integration testing (June) → go-live (July); OMI testing June; Vallabh review July</td><td class="nowrap">Gareth / OMI / Vallabh</td><td class="nowrap">Jun-Jul</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">PRK-012</td></tr>
+<tr><td class="id">ACT-080</td><td>All</td><td>Programme</td><td><span class="tag medium">Medium</span></td><td>Clarify ownership models & formal agreements for migrated tenant sites (business owner + funding)</td><td class="nowrap">Gareth, Reza</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-026</td></tr>
+<tr><td class="id">ACT-081</td><td>All</td><td>Programme</td><td><span class="tag medium">Medium</span></td><td>Identify & confirm owners for unclear assets (fund tables, Bulletin); define working model</td><td class="nowrap">Gareth, Reza</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">PRK-011</td></tr>
+<tr><td class="id">ACT-082</td><td>All</td><td>Design</td><td><span class="tag medium">Medium</span></td><td>Schedule weekly template playback sessions for early technical-team visibility</td><td class="nowrap">Gareth</td><td class="nowrap">Weekly</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-017</td></tr>
+<tr><td class="id">ACT-083</td><td>Regional</td><td>Programme / Regional</td><td><span class="tag medium">Medium</span></td><td>Document the migration process & run a workshop with country teams to align requirements/next steps</td><td class="nowrap">Gareth</td><td class="nowrap">Not confirmed</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">DEC-025</td></tr>
+<tr><td class="id">ACT-084</td><td>All</td><td>Programme</td><td><span class="tag low">Low</span></td><td>Collect written + virtual participant feedback on the two days; capture improvement suggestions</td><td class="nowrap">All participants</td><td class="nowrap">This week</td><td><span class="tag new">Open</span></td><td style="font-size:11px;color:var(--muted)">-</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Full risk register <span class="soft">— 32 risks (RSK-001–032)</span></h2>
+  <table class="tbl">
+    <thead><tr><th>ID</th><th>Risk</th><th>Category</th><th>Prob</th><th>Impact</th><th>Owner</th><th>Mitigation</th></tr></thead>
+    <tbody>
+<tr><td class="id">RSK-001</td><td>Migration vs transformation scope ambiguity</td><td>Business</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Programme (GB)</td><td style="font-size:11.5px">Formal scope decision (ACT-001)</td></tr>
+<tr><td class="id">RSK-002</td><td>Publishing capacity insufficient (~1,530 pages, 2 publishers)</td><td>Resource</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Publishing/Programme</td><td style="font-size:11.5px">Dedicated OMAR capacity (ACT-003)</td></tr>
+<tr><td class="id">RSK-003</td><td>'As-is' definition unclear</td><td>Process</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Programme/Design</td><td style="font-size:11.5px">Define as-is (ACT-004)</td></tr>
+<tr><td class="id">RSK-004</td><td>URL audit/redirect handling incomplete</td><td>Technical</td><td><span class="tag medium">Medium</span></td><td><span class="tag high">High</span></td><td class="nowrap">Execution</td><td style="font-size:11.5px">URL audit (ACT-017)</td></tr>
+<tr><td class="id">RSK-005</td><td>Regional resources cut</td><td>Resource</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Programme/Regional</td><td style="font-size:11.5px">Resource review (ACT-014)</td></tr>
+<tr><td class="id">RSK-006</td><td>Daniel limited capacity for automation/testing</td><td>Resource</td><td><span class="tag medium">Medium</span></td><td><span class="tag medium">Medium</span></td><td class="nowrap">Execution</td><td style="font-size:11.5px">Automation plan (ACT-010)</td></tr>
+<tr><td class="id">RSK-007</td><td>OMDS treated as UI library not governance</td><td>Governance</td><td><span class="tag medium">Medium</span></td><td><span class="tag high">High</span></td><td class="nowrap">OMDS</td><td style="font-size:11.5px">Operating model (ACT-006)</td></tr>
+<tr><td class="id">RSK-008</td><td>Most components don't exist in Contentstack</td><td>Technical</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Execution/OMDS</td><td style="font-size:11.5px">Component audit (ACT-008)</td></tr>
+<tr><td class="id">RSK-009</td><td>SEO & analytics ownership not finalised</td><td>Governance</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">SEO/Programme</td><td style="font-size:11.5px">SEO workshop (ACT-012)</td></tr>
+<tr><td class="id">RSK-010</td><td>Environment sequencing not defined</td><td>Technical</td><td><span class="tag medium">Medium</span></td><td><span class="tag high">High</span></td><td class="nowrap">Execution</td><td style="font-size:11.5px">Environment strategy (ACT-009)</td></tr>
+<tr><td class="id">RSK-011</td><td>Observability/analytics tagging added too late</td><td>Technical</td><td><span class="tag medium">Medium</span></td><td><span class="tag medium">Medium</span></td><td class="nowrap">Execution</td><td style="font-size:11.5px">Embed in delivery (ACT-011)</td></tr>
+<tr><td class="id">RSK-012</td><td>Component sprawl / design debt</td><td>Technical</td><td><span class="tag medium">Medium</span></td><td><span class="tag medium">Medium</span></td><td class="nowrap">OMDS</td><td style="font-size:11.5px">Lifecycle register (ACT-007)</td></tr>
+<tr><td class="id">RSK-013</td><td>Go-live readiness activities open</td><td>Governance</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Programme</td><td style="font-size:11.5px">Readiness checklist (ACT-013)</td></tr>
+<tr><td class="id">RSK-014</td><td>Secure web migration at risk</td><td>Delivery</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Programme/Regional</td><td style="font-size:11.5px">Mitigation plan (ACT-015)</td></tr>
+<tr><td class="id">RSK-015</td><td>Servicing transactions at risk (BW 1/9)</td><td>Delivery</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Regional</td><td style="font-size:11.5px">Botswana recovery (ACT-016)</td></tr>
+<tr><td class="id">RSK-016</td><td>Unstandardised images/assets</td><td>Process</td><td><span class="tag medium">Medium</span></td><td><span class="tag medium">Medium</span></td><td class="nowrap">Content/OMDS</td><td style="font-size:11.5px">Asset standards (ACT-019)</td></tr>
+<tr><td class="id">RSK-017</td><td>Front-end resource exit after PI2</td><td>Resource</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">CC/Web Platform</td><td style="font-size:11.5px">Transition plan (ACT-021)</td></tr>
+<tr><td class="id">RSK-018</td><td>BA capacity constrained</td><td>Resource</td><td><span class="tag high">High</span></td><td><span class="tag medium">Medium</span></td><td class="nowrap">Cross Channels</td><td style="font-size:11.5px">Interim BA (ACT-022)</td></tr>
+<tr><td class="id">RSK-019</td><td>Full scope ~2027 vs end-Nov window</td><td>Timeline</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Programme (GB)</td><td style="font-size:11.5px">Scope options (ACT-028)</td></tr>
+<tr><td class="id">RSK-020</td><td>No centralised knowledge system</td><td>People</td><td><span class="tag high">High</span></td><td><span class="tag medium">Medium</span></td><td class="nowrap">Programme (GB)</td><td style="font-size:11.5px">Documentation system (ACT-054)</td></tr>
+<tr><td class="id">RSK-021</td><td>~95% URLs changing impacts e-commerce/GA</td><td>Business</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Execution/E-commerce</td><td style="font-size:11.5px">URL audit + notify Nthabi (ACT-046)</td></tr>
+<tr><td class="id">RSK-022</td><td>Security pen-test + ServiceNow not confirmed</td><td>Security</td><td><span class="tag medium">Medium</span></td><td><span class="tag high">High</span></td><td class="nowrap">Programme/Security</td><td style="font-size:11.5px">Confirm testing (ACT-013)</td></tr>
+<tr><td class="id">RSK-023</td><td>Key-resource roll-offs — migration/feature team ~Sept 10; most knowledgeable QE August</td><td>Resource</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Programme/CC (Tebogo)</td><td style="font-size:11.5px">Accelerate delivery; knowledge transfer; backfill (ACT-064)</td></tr>
+<tr><td class="id">RSK-024</td><td>Linear (current-capacity) delivery will not meet year-end; full scope extends well beyond</td><td>Timeline</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Programme (GB)</td><td style="font-size:11.5px">Four-squad parallel model + resource decision (DEC-016, ACT-064)</td></tr>
+<tr><td class="id">RSK-025</td><td>Post-sign-off red-zone template changes cascade across content + code on all affected pages</td><td>Technical</td><td><span class="tag medium">Medium</span></td><td><span class="tag high">High</span></td><td class="nowrap">Design/Execution</td><td style="font-size:11.5px">Red/green zones + change control (DEC-017/018)</td></tr>
+<tr><td class="id">RSK-026</td><td>Single points of failure — only Gareth & Natalie build templates; Bernice overloaded</td><td>Resource</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Programme/Publishing</td><td style="font-size:11.5px">Additional capacity + training + onboarding (ACT-064/067)</td></tr>
+<tr><td class="id">RSK-027</td><td>Governance/template drift without controls (Contentstack ↔ Figma; new tenants)</td><td>Governance</td><td><span class="tag medium">Medium</span></td><td><span class="tag medium">Medium</span></td><td class="nowrap">Design/OMDS</td><td style="font-size:11.5px">Gatekeeper gate + Figma source-of-truth + onboarding (DEC-019, ACT-075)</td></tr>
+<tr><td class="id">RSK-028</td><td>Stakeholder sign-off delays extend template sign-off (esp. sequential Personal outreach)</td><td>Business</td><td><span class="tag medium">Medium</span></td><td><span class="tag high">High</span></td><td class="nowrap">Programme/Business</td><td style="font-size:11.5px">Structured engagement; group sign-off by page type (ACT-065, QST-025)</td></tr>
+<tr><td class="id">RSK-029</td><td>EasiPlus & dependent journeys blocked until Funeral/product pages complete</td><td>Delivery</td><td><span class="tag medium">Medium</span></td><td><span class="tag high">High</span></td><td class="nowrap">Cross Channels (Tebogo/Wayne)</td><td style="font-size:11.5px">Sequence product pages; escalate (DEP-018, ACT-074)</td></tr>
+<tr><td class="id">RSK-030</td><td>Secure-web portfolio-view requirements unclear before Sept roll-off → planning blocked</td><td>Delivery</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Secure Web/Migration (Tebogo)</td><td style="font-size:11.5px">Clarify portfolio-view scope (QST-024, DEP-020)</td></tr>
+<tr><td class="id">RSK-031</td><td>Not all year-end goals will be delivered → sponsor expectation-management required</td><td>Programme</td><td><span class="tag medium">Medium</span></td><td><span class="tag medium">Medium</span></td><td class="nowrap">Programme (GB)</td><td style="font-size:11.5px">Evidence-based scope communication; phased value (DEC-015)</td></tr>
+<tr><td class="id">RSK-032</td><td>Country teams without dedicated content/design resources (OMAR) cannot self-migrate</td><td>Resource</td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td class="nowrap">Programme/Regional</td><td style="font-size:11.5px">SA-first rollout + central support + squad extension (DEC-025)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Live issues <span class="soft">— 11 issues (ISS-001–011)</span></h2>
+  <table class="tbl">
+    <thead><tr><th>ID</th><th>Issue</th><th>Impact</th><th>Severity</th><th>Owner</th><th>Resolution</th></tr></thead>
+    <tbody>
+<tr><td class="id">ISS-001</td><td>Full Brand/CI not approved (interim only)</td><td>Design, OMDS, Brand</td><td><span class="tag low">Templates cannot scale confidently</span></td><td class="nowrap">Brand/Group Marketing</td><td style="font-size:11.5px">CI approval route</td></tr>
+<tr><td class="id">ISS-002</td><td>No reliable total page count; manual sheet tracking</td><td>Publishing, Programme</td><td><span class="tag low">Capacity modelling unreliable</span></td><td class="nowrap">Publishing</td><td style="font-size:11.5px">Inventory + tracker (ACT-005)</td></tr>
+<tr><td class="id">ISS-003</td><td>Secure web incomplete; no service-tree solution</td><td>CC, Execution, Service</td><td><span class="tag low">Secure journeys cannot fully go live</span></td><td class="nowrap">Programme</td><td style="font-size:11.5px">Mitigation (ACT-015)</td></tr>
+<tr><td class="id">ISS-004</td><td>Botswana servicing: 1 of 9 complete</td><td>Regional (BW)</td><td><span class="tag low">Regional go-live at risk</span></td><td class="nowrap">Regional</td><td style="font-size:11.5px">Recovery plan (ACT-016)</td></tr>
+<tr><td class="id">ISS-005</td><td>Go-live readiness activities open</td><td>Programme, Ops</td><td><span class="tag low">Cannot declare go-live readiness</span></td><td class="nowrap">Programme</td><td style="font-size:11.5px">Checklist (ACT-013)</td></tr>
+<tr><td class="id">ISS-006</td><td>BA on medical leave; recruitment ongoing</td><td>Cross Channels</td><td><span class="tag low">CC requirements slowed</span></td><td class="nowrap">Cross Channels</td><td style="font-size:11.5px">Interim BA (ACT-022)</td></tr>
+<tr><td class="id">ISS-007</td><td>Single person covers all publishing</td><td>Publishing</td><td><span class="tag low">Throughput bottleneck now</span></td><td class="nowrap">Publishing/Programme</td><td style="font-size:11.5px">Dedicated capacity (ACT-003)</td></tr>
+<tr><td class="id">ISS-008</td><td>No centralised knowledge system today</td><td>All</td><td><span class="tag low">Delays, repeated work</span></td><td class="nowrap">Programme (GB)</td><td style="font-size:11.5px">Knowledge system (ACT-054)</td></tr>
+<tr><td class="id">ISS-009</td><td>Current under-resourcing across all workstreams; teams beyond capacity</td><td>All</td><td><span class="tag low">Year-end delivery at risk; quality/morale pressure</span></td><td class="nowrap">Programme Leadership</td><td style="font-size:11.5px">Resource allocation decision (ACT-064)</td></tr>
+<tr><td class="id">ISS-010</td><td>Unclear business ownership for several journeys (compliments, complaints, unclaimed benefits, IR, corporate unclaimed benefits)</td><td>Business teams</td><td><span class="tag low">Migration planning blocked for those journeys</span></td><td class="nowrap">Programme (GB/Tebogo)</td><td style="font-size:11.5px">Identify owners + scope (ACT-073)</td></tr>
+<tr><td class="id">ISS-011</td><td>Portfolio-view dependencies/requirements unclear for Secure Web; aggravated by Sept roll-off</td><td>Secure Web/Migration</td><td><span class="tag low">Secure-web migration planning stalled</span></td><td class="nowrap">Technical teams (Tebogo)</td><td style="font-size:11.5px">Requirements clarification (QST-024, DEP-020)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</main>
+
+<!-- ============================== PEOPLE ============================== -->
+<main class="tab-pane" id="tab-people">
+
+<section>
+  <h2>Named individuals <span class="soft">— Day 1 attribution</span></h2>
+  <table class="tbl">
+    <thead><tr><th>Name</th><th>Role / function</th><th>Workstream</th></tr></thead>
+    <tbody>
+      <tr><td class="nowrap"><strong>Gareth Bew</strong></td><td>Workshop facilitator; programme / delivery lead voice</td><td>Programme</td></tr>
+      <tr><td class="nowrap"><strong>Keshvi Singh</strong></td><td>Product Owner</td><td>Programme / Product</td></tr>
+      <tr><td class="nowrap"><strong>Bertus Goosen</strong></td><td>Scribe (Day 1 &amp; 2); action log + summary spreadsheet</td><td>Programme support</td></tr>
+      <tr><td class="nowrap"><strong>Nithin</strong></td><td>Execution / Engineering lead; CMS analytics-tracking integration</td><td>Execution</td></tr>
+      <tr><td class="nowrap"><strong>Wayne Moodley</strong></td><td>Cross Channels — EasiPlus / calculators / secure-web dependencies</td><td>Cross Channels</td></tr>
+      <tr><td class="nowrap"><strong>Tebogo Segoje</strong></td><td>Cross Channels (co-owner with Wayne)</td><td>Cross Channels</td></tr>
+      <tr><td class="nowrap"><strong>Brent</strong></td><td>Design System owner; component ownership &amp; feasibility</td><td>OMDS</td></tr>
+      <tr><td class="nowrap"><strong>Bernice</strong></td><td>SEO — tools/LLM search, tagging, business-partner comms</td><td>SEO</td></tr>
+      <tr><td class="nowrap"><strong>Natalie</strong></td><td>Publishing / BAU; content + URL audit owner; raised single-publisher concern</td><td>Publishing</td></tr>
+      <tr><td class="nowrap"><strong>Daniel</strong></td><td>Flagged as a risk (limited capacity); automated testing &amp; DevOps enforcement</td><td>Execution / Automation</td></tr>
+      <tr><td class="nowrap"><strong>Luvuyo</strong></td><td>PI3 Contact Us / calculators; advisor flow beta; task breakdown</td><td>Product / Cross Channels</td></tr>
+      <tr><td class="nowrap"><strong>Megan</strong></td><td>Re-engage OMAR team; scope &amp; partnership-management responsibilities</td><td>Programme / Partnership</td></tr>
+      <tr><td class="nowrap"><strong>Marlana</strong></td><td>Co-owner of scope clarification / documentation</td><td>Programme</td></tr>
+      <tr><td class="nowrap"><strong>Joanne</strong></td><td>Additional-calculators ownership discussion</td><td>Cross Channels / Product</td></tr>
+      <tr><td class="nowrap"><strong>Nthabi</strong></td><td>E-commerce — sales/traffic reporting; must be notified of URL changes (GA)</td><td>E-commerce</td></tr>
+      <tr><td class="nowrap"><strong>Orisha</strong></td><td>Secure web "learn more" pages design (with Keshvi)</td><td>Design / Secure Web</td></tr>
+      <tr><td class="nowrap"><strong>Debs</strong></td><td>New resource joining the team structure from the upcoming PI</td><td>Cross Channels / Platform</td></tr>
+      <tr><td class="nowrap"><strong>André</strong></td><td>Secure / quote-engine / EasiPlus side-drawer calc behaviour (role unconfirmed)</td><td>Cross Channels / Engineering</td></tr>
+    </tbody>
+  </table>
+  <p class="lede" style="margin-top:12px;font-size:12px;">Surnames for Megan / Marlana / Joanne / Orisha are <em>Unconfirmed</em>. A full attendee list &amp; confirmed role titles are a Day 2 clarification.</p>
+</section>
+
+<section>
+  <h2>Teams &amp; functions represented</h2>
+  <div class="people-cols">
+    <p><strong>Programme / Delivery</strong> — scope, roadmap, RAID, governance, sequencing.</p>
+    <p><strong>Product</strong> — product owner perspective, prioritisation, success metrics.</p>
+    <p><strong>Design &amp; Content</strong> — IA, navigation, templates, standards, discovery, content review.</p>
+    <p><strong>Design System (OMDS)</strong> — component governance, design authority, approvals, build.</p>
+    <p><strong>Execution / Engineering</strong> — Contentstack, environments, automated testing, observability.</p>
+    <p><strong>Publishing</strong> — page build in Beta, content packs, URL/redirect handling, BAU.</p>
+    <p><strong>Cross Channels Solutions</strong> — leads, call-me-back, calculators, EasiPlus, secure-web features.</p>
+    <p><strong>SEO</strong> — tagging, LLM-search visibility, validation, lead-time requirements.</p>
+    <p><strong>Web Platform</strong> — owns Cross Channels front-end work from end of PI2.</p>
+    <p><strong>Regional / Country</strong> — Namibia, Botswana, East Africa (Kenya/Uganda/Malawi/Eswatini), Ghana, SA.</p>
+    <p><strong>Group Marketing</strong> — approval authority; Paid Ads URL requirements.</p>
+    <p><strong>E-commerce</strong> — sales &amp; traffic reporting to exec; impacted by URL changes.</p>
+    <p><strong>Security</strong> — confirm pen-test / crowdsource testing before go-live.</p>
+    <p><strong>Faoli Bank</strong> — to be treated as a separate brand with its own IA &amp; governance.</p>
+    <p><strong>Brand / CI</strong> — interim brand approved; full CI governance pending.</p>
+    <p><strong>Compliance</strong> — discovery input; compliance-driven page retention.</p>
+    <p><strong>Clusters / Product SMEs</strong> — content &amp; product source; flagged as a dependency.</p>
+    <p><strong>Service team</strong> — secure-web service tree / dashboards organisation.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Ownership gaps <span class="soft">— flag for RACI (Day 2)</span></h2>
+  <div class="callout warn">
+    <ul style="margin:0;padding-left:18px;line-height:1.7;">
+      <li>No dedicated OMAR publishers identified (Wealth has a publisher).</li>
+      <li>SEO and analytics ownership not finalised.</li>
+      <li>Landing-page ownership not confirmed per business area / country.</li>
+      <li>Bank-section page ownership undecided — now framed as <strong>Faoli Bank</strong> separate brand.</li>
+      <li>Publishing-vs-migration work split for OMAR ("Kash [surname unclear]") to validate.</li>
+      <li>Ownerless PI3 calculators — confirm with Keshvi, Luvuyo &amp; Joanne.</li>
+      <li>OMAR team scope &amp; partnership-management responsibilities — Megan to re-engage.</li>
+      <li>Service-tree / dashboard solution for secure web — no robust owner from the service team.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Governance &amp; executive escalations</h2>
+  <div class="kpi-grid c3">
+    <div class="kpi"><div class="lbl">Decision needed</div><div class="val" style="font-size:18px;color:var(--text)">Scope &amp; budget/timeline trade-off</div><div class="sub">DEC-001 — the gate for the whole plan</div></div>
+    <div class="kpi"><div class="lbl">Decision needed</div><div class="val" style="font-size:18px;color:var(--text)">Resourcing plan approval</div><div class="sub">Dedicated publisher; interim BA; regional capacity</div></div>
+    <div class="kpi"><div class="lbl">Decision needed</div><div class="val" style="font-size:18px;color:var(--text)">Brand / CI route</div><div class="sub">Interim approved; full CI governance pending (ISS-001)</div></div>
+    <div class="kpi"><div class="lbl">Decision needed</div><div class="val" style="font-size:18px;color:var(--text)">Environment architecture</div><div class="sub">Beta/Staging/Prod + tooling ownership (RSK-010)</div></div>
+    <div class="kpi"><div class="lbl">Decision needed</div><div class="val" style="font-size:18px;color:var(--text)">Secure web &amp; regional servicing risk</div><div class="sub">Namibia, Botswana 1/9 (RSK-014/015)</div></div>
+    <div class="kpi"><div class="lbl">Decision needed</div><div class="val" style="font-size:18px;color:var(--text)">SEO ownership &amp; readiness</div><div class="sub">≥2-month lead time vs the window (RSK-009)</div></div>
+  </div>
+  <div class="callout" style="margin-top:16px;">
+    <strong>Clear ownership today:</strong> facilitation (GB) · product (Keshvi) · OMDS (Brent) · execution (Nithin) · Cross Channels (Wayne / Tebogo) · SEO (Bernice) · publishing &amp; audits (Natalie). RACI is otherwise incomplete and is a Day 2 deliverable.
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <strong>Old Mutual Web Transformation Programme</strong> — Executive status as at 4 June 2026.
+  Two-day planning workshop · Cape Town · Facilitator: Gareth Bew. Confidential — for internal executive and steering distribution.
+</footer>
+
+<script>
+(function(){
+  const tabs = document.querySelectorAll(".tab-btn");
+  const panes = document.querySelectorAll(".tab-pane");
+  tabs.forEach(t => t.addEventListener("click", () => {
+    const target = t.dataset.tab;
+    tabs.forEach(b => b.classList.toggle("active", b.dataset.tab === target));
+    panes.forEach(p => p.classList.toggle("active", p.id === "tab-" + target));
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }));
+})();
+</script>
+
+</body>
+</html>

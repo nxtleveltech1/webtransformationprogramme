@@ -1,0 +1,451 @@
+﻿
+Web Migration Programme
+Workshop Notes, Actions, Risks and Source Pictures
+Compiled from the whiteboard sessions and workshop inputs covering Publishing, Go-Live Readiness, Design Systems, Execution, and Cross Channels Solutions.
+
+Executive Summary
+Across all workshop areas, the main programme issue is that the work is being described as a migration, while several delivery streams imply a broader transformation: new Design System adoption, V2 templates, information architecture changes, analytics, observability, automated testing, revised publishing workflow and legacy decommissioning. This distinction must be formally resolved because it changes scope, effort, budget, timeline and risk profile.
+Programme theme
+Current assessment
+Publishing
+High-risk capacity bottleneck against a large Omar page inventory.
+Design System / OMDS
+Strategic dependency and governance layer, not merely a UI component library.
+Execution
+Scope appears to include technical uplift and transformation, not only migration.
+Go-live readiness
+Requires stronger sequencing across Beta, Staging, Production, ServiceNow, security, communications and decommissioning.
+Cross Channels
+Delivery progressing but exposed to front-end and BA resource constraints.
+Priority Decisions Required
+Confirm whether the programme is a content migration, a web transformation, or a hybrid with clearly bounded scope.
+Approve a resourcing plan for publishing, front-end development, business analysis and regional support.
+Confirm Design System V2 readiness, component gaps, approval governance and exception handling.
+Approve environment sequencing across Contentstack, Beta/Staging, Production, Live Testing and Tooling.
+Confirm SEO, analytics, observability and ServiceNow ownership before build completion.
+
+Approve a single interconnected lifecycle and progress tracker across Define, Discovery, Design, Approval, Handover, Support and Go Live.
+Confirm content governance gates, including content pack readiness, URL audit completion, image standards and switch-off criteria.
+Confirm interim Brand / CI approval route and the rollout approach for non-migrated sites and existing live journeys.
+Confirm capacity for publishing, copywriting, design volume and cluster support before committing to migration milestones.
+1. Publishing Workstream
+Area / owner: Publishing
+Summary
+Publishing is the second-last step in the delivery process and is currently constrained by resource availability, development completion, content readiness, asset sign-off, and approved URL structures. Current publishing capacity presents a material delivery risk given the Omar migration page volume.
+Key Notes
+Only two publishers are available: one full-time on migration and one supporting BAU across 14 sites, secure sites and application support.
+No dedicated publishers are currently identified within Omar, while Wealth has a publisher.
+Publishing can only start once Contentstack development is complete and content, assets and URL structures are signed off.
+New template pages are estimated at roughly two hours per page; as-is pages are estimated at roughly 30 minutes per page.
+Omar page volume was noted as approximately 1,530 pages as of 1 June.
+Every page, whether new or as-is, needs to be rebuilt in Beta and tracked through a publishing progress spreadsheet.
+Key Risks
+Publishing capacity is insufficient for the migration volume.
+Publishing is blocked by upstream design, development and content readiness.
+Definition of “as-is” remains unclear, including whether it means V2 with new navigation and footer.
+Testing cannot begin until all pages are built in Beta.
+Recommended Actions
+Confirm dedicated publishing resources for Omar.
+Define and approve the “as-is” migration scope.
+Create a complete page inventory and publishing tracker.
+Confirm content, asset and URL readiness dates.
+Build a capacity model against the 1,530-page baseline.
+Final Update - Content Pack, Asset Standards and Publishing Inputs
+Publishing handover must include a complete content pack: final copy, images, link mapping, PDFs / downloadable assets, metadata and any required multimedia inputs.
+Image dimension standardisation must be agreed before publishing at scale, including OMDS aspect ratios, standard form points and repository ownership.
+The OMDS image repository / custom asset library must be confirmed as the source for approved images, including whether assets already used by Brent can be reused.
+Criteria for switching off legacy pages must be defined and tied to the URL audit, redirect plan, testing evidence and business sign-off.
+Publishing effort must include remediation for hardcoded content, content carousel decisions and template/component changes that affect page build complexity.
+Cluster access and product SME content are explicit publishing dependencies and should not be left to late-stage content chasing.
+Source Pictures
+
+Publishing Workstream - source picture 1
+
+2. Website Migration Programme and Go-Live Readiness
+Area / owner: Programme / Regional Teams
+Summary
+The programme view identifies active work across navigation, page development, secure web migration, regional transaction services, SEO, analytics, operational readiness, ServiceNow updates, security approvals and decommissioning. The overall position is Amber/At Risk due to critical dependencies and unresolved production readiness activities.
+Key Notes
+Omar navigation and page development are underway, with everyone contributing to navigation and page development.
+Namibia secure web migration and servicing transactions are marked at risk, with resource and confirmation dependencies noted.
+Botswana has only one of nine servicing transaction capabilities completed.
+East Africa scope includes Kenya, Uganda, Malawi and Eswatini, including navigation and page work.
+Ghana has two customer journeys identified; Malawi and Eswatini have two components outstanding.
+SEO requirements need clarification across South Africa and Omar, including tools and site tagging ownership.
+Analytics requirements include Google Analytics, customer experience tooling such as Glassbox, country reporting and potential Tableau integration.
+Key Risks
+Secure web migration is at risk.
+Servicing transaction delivery is at risk across Namibia and Botswana.
+Regional resources have been cut, creating delivery and quality risk.
+SEO and analytics ownership are not finalised.
+Go-live readiness activities, including ServiceNow updates, call centre communications, internal communications and decommission planning, remain open.
+Recommended Actions
+Run a resource review and confirm regional delivery capacity.
+Create mitigation plans for secure web migration and servicing transactions.
+Produce a Botswana recovery plan for the remaining servicing transactions.
+Run a dedicated SEO and analytics workshop to confirm ownership, tooling and tagging standards.
+Build a formal go-live readiness checklist covering PGW testing, QAG, ServiceNow, security, communications and decommissioning.
+Source Pictures
+
+Website Migration Programme and Go-Live Readiness - source picture 1
+
+Website Migration Programme and Go-Live Readiness - source picture 2
+
+Website Migration Programme and Go-Live Readiness - source picture 3
+
+Website Migration Programme and Go-Live Readiness - source picture 4
+
+Website Migration Programme and Go-Live Readiness - source picture 5
+
+Additional Integrated Updates - Environment, URL Audit and Migration Decisions
+The latest workshop inputs have been integrated into the migration and readiness view as programme-level delivery requirements rather than as separate note captures.
+Environment and Access Setup
+Secure and all other portal journeys must be assessed as part of the migration scope.
+SSO requirements must be confirmed for the new-world architecture, including the distinction between "web secure" and "secure web" journeys.
+IA alignment is required for Bank, Wealth and OMF journeys before final navigation and taxonomy decisions are locked.
+Beta environment setup should support parallel / staging validation of navigation, taxonomy, APIs, tooling and design system components.
+URL Audit and Page Mapping
+All current URLs must be mapped to the new-world URL structure. This is a formal URL audit dependency and should be treated as a migration control, not a publishing admin task.
+The definition of "as-is" pages remains unresolved and must be formally agreed before publishing effort, testing criteria and decommission scope can be confirmed.
+Landing page ownership must be confirmed for each business area and country journey.
+The current Bank / Boerewors page treatment requires a decision, including whether content moves under OMF to Bank or follows another ownership model. The term "Boerewors" is unclear from source notes and should be validated.
+Content and Page Decisions
+Content carousel usage requires an audit before migration decisions are finalised.
+Article page treatment requires a decision: confirm whether article pages can be skinned across different site experiences.
+Theming decisions are required for different sites, including whether Wealth, OMAI / OMIG and OMIG / UT require distinct visual treatments. Acronyms are partly unclear and should be validated.
+Dark theme applicability remains an open decision and should be resolved with Brand, Design System and business stakeholders.
+Business Sign-Off and Playback
+Business sign-off and playback must be added as formal checkpoints before migration build and publication decisions are treated as final.
+Additional Source Pictures - Environment, Page Mapping, Migration and Design Decisions
+The following workshop source images support the integrated updates above. They are included as evidence under the relevant migration and design decision areas rather than as a standalone sticky-note section.
+Additional workshop source picture 1: Environment, page mapping, migration and design decisions
+
+Additional workshop source picture 2: Environment, page mapping, migration and design decisions
+
+Additional workshop source picture 3: Environment, page mapping, migration and design decisions
+
+Additional workshop source picture 4: Environment, page mapping, migration and design decisions
+
+Additional workshop source picture 5: Environment, page mapping, migration and design decisions
+
+Additional workshop source picture 6: Environment, page mapping, migration and design decisions
+
+Additional workshop source picture 7: Environment, page mapping, migration and design decisions
+
+Additional workshop source picture 8: Environment, page mapping, migration and design decisions
+
+Additional workshop source picture 9: Environment, page mapping, migration and design decisions
+
+Additional workshop source picture 10: Environment, page mapping, migration and design decisions
+
+Final Integrated Updates - Programme Considerations from Design, Content and Design Systems
+Lifecycle and Progress Control
+The programme needs a single interconnected lifecycle with a visible progress tracker covering Define, Discovery, Design, Approval, Handover, Support and Go Live.
+The tracker should show workplan, milestones, assumptions, dependencies and impact, not just percentage completion.
+Beta / staging readiness must be linked to design readiness, content readiness, DS readiness, platform build readiness and publishing readiness.
+Non-Migrated Sites and Rollout Approach
+Non-migrated sites require explicit change expectations so stakeholders understand what will change now, what will remain as-is, and what will move later.
+A rollout / demo approach is required to show the target experience, validate enhanced components and manage expectation across existing live journeys.
+Enhanced components may impact the list of sites in scope; this must be impact-assessed before delivery baselines are locked.
+SEO, Brand and Existing Live Estate
+SEO is not ready and must be treated as a blocking readiness item for page build, handover and go-live validation.
+Brand interim approval is required where full CI decisions are still pending but build work needs to progress.
+Ongoing new build on existing live journeys must be governed to avoid design drift, duplicated effort and inconsistent user experience.
+3. Design and Design System Workstream
+Area / owner: Design / Design System / OMDS
+Summary
+The Design System is positioned as an enterprise digital experience framework rather than only a UI component library. It governs standards, patterns, information architecture, navigation, audience journeys, templates, content standards, approvals and alignment to OMDS.
+Key Notes
+The delivery lifecycle runs through Requirements, Discovery, Design, Approval, Handover and Support/Publishing.
+Discovery includes analytics, research, stakeholder engagement, consolidation, SEO, copy, ecosystem review, product, compliance, brand, functional analysis and OMDS input.
+Design deliverables include desktop, mobile, copy readiness, SEO readiness, stakeholder review, DS review, technical review, testing and functional analysis.
+Approval requires Group Marketing, internal stakeholders, external stakeholders and clusters.
+Handover requires design ready, DS approval, final copy, sign-offs and rules.
+Design foundations include IA and navigation containers, generic audience journeys, templates, landing pages, categories, product pages, utility pages and content standards.
+Journey principles include findability, intent, access to product information, flow and page principles.
+Key Risks
+OMDS may be treated as a UI library rather than an enterprise governance framework.
+Country-specific deviations could increase without formal exception governance.
+Approval bottlenecks could slow delivery.
+Content and SEO readiness may be handled too late.
+Component sprawl and design debt may increase without lifecycle control.
+Recommended Actions
+Formalise an OMDS operating model and design authority charter.
+Define component lifecycle management: proposed, approved, deprecated and retired.
+Create a template catalogue covering landing, category, product and utility pages.
+Document accessibility, analytics and performance standards within the design system.
+Establish approval SLAs and an exception process for country-level deviations.
+Source Pictures
+
+Design and Design System Workstream - source picture 1
+
+Design and Design System Workstream - source picture 2
+
+Design and Design System Workstream - source picture 3
+
+Design and Design System Workstream - source picture 4
+
+Design and Design System Workstream - source picture 5
+
+Design and Design System Workstream - source picture 6
+
+Additional Integrated Updates - Design, Templates, Brand and OMDS
+Component and Template Strategy
+Enhanced and new components must be identified, prioritised and mapped against OMDS readiness.
+New and enhanced templates must be stress-tested against iWyze and OMAR before broader adoption.
+Components may need to move to the new environment. Ownership, feasibility and migration sequencing must be confirmed with Brent / relevant component owners.
+Hardcoded content must be identified and remediated as part of component and template readiness.
+Design and Template Governance
+A documented design / template approach must be agreed and approved.
+Brand CI approval must happen early, before templates and themed experiences are scaled.
+The existing design estate must be maintained during transition to prevent inconsistencies between migrated and non-migrated experiences.
+OMDS rollout to non-migrated sites requires a controlled adoption model, not ad hoc implementation.
+OMDS sign-offs and ratified requirements must be treated as formal design governance gates.
+Journey and Feature Design Considerations
+Journey changes must be documented so that journeys are not lost during migration.
+Journey maps should be used to validate migration impact, especially where features, login, OMI / OMF and secure journeys intersect.
+Feature decisions must be clarified for calendar / appointment booking engine, sports league, calculators, login / OMI and demo pages. Some handwritten wording remains unclear and should be validated before final planning.
+Final Integrated Updates - Design, Content and Design Systems
+End-to-End Design Lifecycle
+Define: capture the brief, scope, problem statement and required stakeholder understanding before discovery starts.
+Discovery: include analytics, research, stakeholder engagement, consolidation, SEO, copy, ecosystem review, product input, compliance, brand, functional analysis, product marketing and OMDS input.
+Design: produce desktop and mobile designs with copy readiness, SEO readiness, stakeholder review, DS review, technical review, testing, functional analysis and content validation.
+Approval: route through Group Marketing, internal stakeholders, external stakeholders and clusters where applicable.
+Handover: design ready, DS approval, final copy, SEO input, sign-offs and publishing/build rules must be packaged for DS, Web Dev and Publish / Gather teams.
+Support: continuous QA, updates, final sign-offs, SEO sign-off, copy validation and DS validation must be managed before Go Live.
+Go Live: should only proceed once design, content, DS, SEO, build, publishing and support acceptance criteria are satisfied.
+Design System Foundations and Governance
+Standards must define rules, patterns, URL rules and reusable experience principles; where notes reference "not templates", the distinction between patterns and templates must be clarified.
+Governance must include approvals, alignment to OMDS, feedback / review cycles and Head of Design approval authority.
+DS standards must align with Group Marketing, DS, internal stakeholders and user testing inputs.
+DS design involvement must cover discovery, ideation and design, but the boundary between pure DS design and functional product build must be explicitly agreed.
+Template, IA and Journey Model
+Information Architecture and navigation containers remain foundational and should be validated before template scaling.
+Generic journeys and audience models must drive landing pages, sections, categories, product pages and utility pages.
+Templates must be structural, close IA gaps, improve findability and support common page types: landing, category, product and utility pages.
+Utility templates must cover Contact Us, About Us and calculators, with product-specific variants where required.
+Journey principles must explicitly test findability, intent, access to product information, flow and page-level usability principles.
+Audience segmentation should support personal, insurance and investment journeys where relevant.
+Content and Publishing Alignment Within Design
+Content standards must sit inside the design system and govern copy structure, images, links, downloadable assets, metadata and SEO fields.
+Content and product messaging must be validated before handover; late content changes will create publishing rework.
+Access to content from clusters and product SMEs is a dependency for design sign-off, not only publishing execution.
+Hardcoded content must be identified during design and component review so that migration does not replicate non-governed content structures.
+Design System Build and Platform Build Split
+DS Build should be tracked separately from Platform Build to avoid masking component readiness under general build progress.
+Platform Build / Dev Build must include Contentstack setup, content, gathering, publishing and URL readiness.
+Product messaging and stakeholder journeys should be validated against both DS Build and Platform Build before approval.
+Updated Design / DS Risks
+Capacity risk remains high across publishing, copywriting and design volume.
+There is currently no clear capacity to support the full scope if design, DS, content and publishing workstreams scale in parallel.
+Brand / CI pressure may force interim decisions; Wealth CI may need to be treated as a separate platform / experience until governance is clarified.
+Dedicated capacity from clusters is required; otherwise content and approval bottlenecks will shift downstream into publishing and testing.
+Enhanced components may expand the impacted site list and should be assessed before the workplan is baselined.
+Final Source Pictures - Design, Content and Design Systems
+
+Final Design, Content and Design Systems source picture 1
+
+Final Design, Content and Design Systems source picture 2
+
+Final Design, Content and Design Systems source picture 3
+
+Final Design, Content and Design Systems source picture 4
+
+Final Design, Content and Design Systems source picture 5
+
+Final Design, Content and Design Systems source picture 6
+4. Execution Workstream - Nithin
+Area / owner: Execution / Engineering
+Summary
+The execution discussion confirms that the migration is not simply a content move. It includes content migration, Design System adoption, technical uplift, IA improvements, new components, analytics, observability and environment sequencing. This materially changes effort, timeline, risk and resourcing assumptions.
+Key Notes
+Definition of Done assumes all content must be moved because the old platform must be decommissioned.
+All designs must include labels for Design System components, including specific components and missing components.
+A Figma audit is required to identify what already exists, what has been designed but not used, and what can be reused.
+Template and similar page reviews are required between sites.
+Migration components impacted by web transformation must be assessed, including new components and outstanding DS items.
+V2 “as-is” migration review is required for Omar sites, Wealth/WT and similar areas.
+Environment sequencing includes Contentstack, Beta/Staging, Production, Live Testing and Tooling.
+Key Risks
+The programme is using “migration” language while the execution scope includes transformation activities.
+Design System gaps may block delivery if not identified early.
+Technical uplift effort may be underestimated.
+Beta environment setup and sequencing are not fully defined.
+Observability and analytics tagging may be added too late if not embedded into delivery.
+Recommended Actions
+Confirm whether the scope is migration only or migration plus transformation and technical uplift.
+Complete Figma and Design System component audits.
+Define Beta/Staging/Production environment strategy and ownership.
+Add automated testing and DevOps quality gates to the delivery model.
+Define observability requirements, including Dynatrace, Grafana dashboards and analytics tagging alignment with content.
+Source Pictures
+
+Execution Workstream - Nithin - source picture 1
+
+Execution Workstream - Nithin - source picture 2
+
+Execution Workstream - Nithin - source picture 3
+
+Execution Workstream - Nithin - source picture 4
+
+Additional Integrated Updates - Execution Controls and Migration Clarifications
+Clarify the split between publishing work and migration work for OMAR. Current notes indicate an action assigned to Kash / Kash [surname unclear], but ownership must be validated.
+Define the manual-work component of the migration: what must be manually worked, what can be automated, and what is already clear enough to proceed.
+Create decision ownership for calculators and calculation-related components, including owners, required decisions and impacted demo pages.
+Confirm whether LV demo pages are required as part of template showcase, validation or stakeholder playback.
+Include current URL mapping, page-definition rules, component relocation, content carousel audit and theming decisions in the migration roadmap.
+Roadmap / delivery planning must explicitly account for Bank, Wealth / OMF, OMAI / OMIG, secure portals and non-migrated-site OMDS rollout.
+Final Update - Execution Controls from Design / Content / DS Review
+Add workplan, milestones, assumptions, dependencies and impact as explicit control dimensions for design, content and DS delivery.
+Sequence DS Build and Platform Build separately, then reconcile them at Beta / Staging readiness.
+Confirm Contentstack, content, gathering, publishing and URL readiness before declaring Platform Build complete.
+Confirm whether DS design applies only to non-functional design items or also to journeys with functional behaviour. This source note was partially unclear and needs owner validation.
+Track enhanced component impact across migrated and non-migrated sites before confirming scope and delivery dates.
+5. Cross Channels Solutions - Tebogo and Wayne
+Area / owner: Cross Channels Solutions
+Summary
+The Cross Channels Solutions input highlights front-end resource risk, BA capacity constraints, dependencies on the Web Platform team, product/template sign-offs and calculator readiness. Deliverables are progressing, but future delivery is exposed to resource continuity and Design System V2 readiness.
+Key Notes
+At the end of the current PI, most front-end development resources will move out of the Cross Channels Solutions team.
+BA capacity is constrained due to extended medical leave and recruitment in progress.
+From the end of PI2, Cross Channels Solutions will depend on Web Platform for all front-end work.
+EasiPlus Sales Journey depends on the Funeral product page template and MFC sign-off before implementation.
+Contact Us analysis and design still need to be planned.
+Find an Advisor is Beta Ready, subject to Design System V2 deployment to Beta and new template impact assessment.
+Debt Calculator, Personal Loans Calculator and Budget Calculator are in progress or require confirmation; Income Tax, Retirement and Two-Pot Savings calculators are ready for Beta.
+Key Risks
+Front-end resource exit after PI2 could reduce delivery velocity.
+BA constraints could slow requirements and stakeholder engagement.
+Dependency on Web Platform may introduce prioritisation conflicts.
+Design System V2 delays could block Beta readiness.
+Contact Us scope is not sufficiently mature for build.
+Recommended Actions
+Create a resource transition plan for front-end support after PI2.
+Secure interim BA capacity while recruitment continues.
+Formalise the Web Platform capacity and prioritisation model.
+Confirm Personal Loans Calculator scope.
+Escalate MFC sign-off and template approvals for EasiPlus.
+Source Pictures
+
+Cross Channels Solutions - Tebogo and Wayne - source picture 1
+
+Final Update - Cross Channels Content and Design Dependencies
+Product messaging must be included in the design and content readiness review for Cross Channels journeys.
+Access to cluster content and product SME content should be treated as delivery dependencies for affected journeys.
+Where MFC or equivalent product stakeholder review is required, sign-off must be visible in the same tracker as DS, content and publishing readiness.
+Paid Ads URL requirements from Group Marketing must be captured early so URL mapping and analytics tagging are not reworked after handover.
+
+6. Content Governance and Migration Readiness
+Area / owner: Content / Publishing / Design System / SEO
+Summary
+The final design, content and design system update confirms that content readiness is a programme control point. Content is not simply moved at the end: it must be prepared, governed, mapped, approved and packaged before design handover, publishing and go-live decisions can be accepted.
+Key Notes
+All current URLs must be mapped to the new world through a formal URL audit before page switch-off or redirect decisions are made.
+As-is pages must be defined before migration estimates, publishing effort and testing scope are baselined.
+Content packs to publishers must include copy, images, link mapping, PDFs / downloadable assets, image dimensions, aspect ratios and any multimedia inputs.
+Image standards should be governed through OMDS, including aspect ratios, form points and repository ownership.
+Article page treatment, content carousel usage, landing page ownership and theming decisions remain design/content decisions that affect build and publishing effort.
+SEO readiness must be embedded in Discovery, Design, Handover and Support; it is currently not ready and should be tracked as a blocker.
+Hardcoded content must be audited and remediated rather than simply migrated.
+Criteria for legacy page switch-off must be tied to URL mapping, content sign-off, QA evidence, SEO validation and business approval.
+Required Content Gates
+Discovery gate: content owner, product SME, cluster input, SEO input and analytics input identified.
+Design gate: copy ready, SEO ready, image standards known, content model confirmed and hardcoded content flagged.
+Approval gate: business, brand, compliance, cluster and DS approvals complete where applicable.
+Handover gate: final content pack, URL mapping, rules and sign-offs provided to DS, Web Dev and Publish / Gather.
+Support / Go-live gate: QA, updates, sign-off, SEO sign-off, copy validation, redirects and switch-off criteria completed.
+Content Risks
+Late content ownership decisions will delay design approval and publishing.
+Unresolved SEO readiness will cause rework after build and may block go-live.
+Unstandardised images and assets will create inconsistent pages and publishing delays.
+Undefined switch-off criteria will create risk around legacy decommissioning and broken customer journeys.
+Cluster capacity constraints may block content validation, sign-off and localisation.
+Recommended Actions
+Create a content readiness checklist and enforce it as a formal entry criterion for design handover and publishing.
+Assign owners for landing pages, article pages, content carousel decisions and theming decisions.
+Create an asset standards pack covering image dimensions, aspect ratios, repositories and reuse rules.
+Complete the URL audit and align it to redirects, switch-off criteria and SEO validation.
+Add content readiness, SEO readiness and asset readiness to the programme progress tracker.
+Consolidated Risk and Action View
+The following consolidated view should be used for Steering Committee discussion and delivery follow-up.
+Risk area
+Rating
+Required response
+Publishing capacity
+High
+Dedicated Omar publishing capacity and tracker.
+Migration vs transformation ambiguity
+Very High
+Formal scope decision and revised plan.
+Design System V2 dependency
+High
+Component audit, roadmap and governance cadence.
+Front-end resource continuity
+High
+Post-PI2 resource transition plan.
+BA capacity
+High
+Interim BA support and recruitment acceleration.
+Secure web migration
+High
+Risk mitigation plan and owner confirmation.
+Servicing transactions
+High
+Recovery plan for Namibia and Botswana.
+SEO and analytics ownership
+Medium-High
+Dedicated ownership workshop and standards.
+Environment sequencing
+Medium-High
+Architecture decision for Beta, Staging, Production and tooling.
+Decommission planning
+Medium
+Legacy decommission checklist and readiness criteria.
+
+Additional Programme Controls Added from Latest Workshop Update
+The following controls should be added to the programme RAID, decision and action registers.
+Final RAID Additions - Design, Content and Design Systems
+Risk: single lifecycle is not managed end-to-end. Mitigation: implement progress tracker across Define to Go Live with stage gates and owner accountability.
+Risk: SEO not ready. Mitigation: appoint SEO owner, define tooling approach, confirm tagging / URL rules and require SEO sign-off at design, handover and support gates.
+Risk: capacity is insufficient for publishing, copywriting and design volume. Mitigation: baseline demand by stage and secure dedicated capacity from clusters and central teams.
+Risk: Brand / CI decisions delay template rollout. Mitigation: approve interim brand route and formalise exception handling for Wealth or other distinct experiences.
+Risk: enhanced components impact site scope. Mitigation: maintain component impact register and update site list before milestone approval.
+Risk: non-migrated sites drift from OMDS. Mitigation: define non-migrated site rollout and change-expectation model.
+Final Decision Register Additions
+Decision required: confirm DS Build versus Platform Build ownership and acceptance criteria.
+Decision required: confirm content pack minimum standard for handover to publishers.
+Decision required: confirm image repository, asset dimensions and aspect-ratio standards.
+Decision required: confirm theming model across sites, including dark theme and Brand / CI variants.
+Decision required: confirm article page skinning approach and content carousel usage.
+Decision required: confirm legacy page switch-off criteria and non-migrated site rollout approach.
+Area
+Required Control / Decision
+Priority
+URL audit
+Map all current URLs to the new-world IA and URL structure.
+Critical
+As-is page definition
+Define exactly what qualifies as as-is migration versus transformed page build.
+Critical
+Secure journeys / SSO
+Confirm secure portal, SSO and web secure / secure web treatment.
+Critical
+Theming
+Decide whether different sites require separate themes, including dark theme applicability.
+High
+OMDS adoption
+Confirm OMDS rollout approach for migrated and non-migrated sites.
+High
+Brand CI
+Secure early CI approval before scaling templates.
+High
+Component migration
+Confirm which components move to the new environment and who owns each decision.
+High
+Publishing vs migration work
+Clarify ownership and boundaries between publishing and migration workstreams.
+Critical
+Journey retention
+Use journey maps to ensure journey changes are not lost during migration.
+High
+

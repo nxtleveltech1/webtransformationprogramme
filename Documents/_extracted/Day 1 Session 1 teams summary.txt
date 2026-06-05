@@ -1,0 +1,282 @@
+﻿
+Decisions
+Set platform success metrics: analytics, design system, performance, growth, satisfaction.
+Identify and communicate migration dependencies: OMA, rewards, site owners.
+Define web transformation scope: migration, experience uplift, decommissioning.
+Focus MVP on navigation and secure web IA alignment.
+Break into teams to identify deliverables and consolidate into program plan.
+Establish design foundations: IA, navigation, templates, content standards.
+Define governance and approval for design handover.
+Migrate product pages with new templates, move others as-is with restyling.
+Implement automated testing and DevOps pipeline enforcement.
+Assign BAU publishing to dedicated resource for migration focus.
+Engage SEO team two months before QA for tagging and validation.
+Open questions
+Determine approach for navigation and external site integration.
+Clarify business partner responsibilities for migration support.
+Define MVP deliverable for five-month timeline.
+Assess impact of additional capacity on delivery speed.
+Balance template standardization and modular flexibility.
+Evaluate best approach for URL management and redirects.
+Explore technical solutions to accelerate publishing.
+Determine best approach for analytics and experience monitoring.
+Address OMA country resource gaps for migration.
+Agenda
+Goal: Conduct Web Transformation planning workshop
+
+
+Meeting notes
+Team collaboration 
+Gareth welcomed the team to Cape Town and emphasized the importance of team collaboration and engagement for the program's success.
+Gareth emphasized that collaboration between teams is required to create and implement new page templates, ensuring that structure and components meet the needs of different areas.
+Program objectives 
+Gareth outlined that the main outcomes for the meeting are to achieve a clear understanding of the program's goals, work team integration, dependencies, and constraints.
+Gareth announced that Keshvi will present the product owner's perspective on the program shortly.
+Gareth explained that the web transformation project aims to migrate to a new platform, improve customer experience, and decommission the old platform.
+Meeting logistics 
+Bertus was assigned as the scribe for today and tomorrow, responsible for documenting discussions in the provided templates.
+Gareth announced a 30-minute exercise in different streams to time-box planning activities for the next hour or two.
+Success measures 
+Gareth outlined key success measures for the platform, including analytics coverage, commercialization through onboarding tenants, design system compliance, platform performance targets, and automated deployment pipelines.
+Platform performance and quality 
+Gareth described the platform's key performance targets, including design system compliance, platform availability, load times under 3 seconds, automated deployment pipelines, and code scanning for quality improvement.
+Gareth highlighted the need to address security concerns related to public pages and application layers during platform planning.
+Design system team was identified as responsible for guiding feature development and ensuring design standards
+Gareth discussed the importance of secure links and avoiding reliance on redirects for page navigation.
+Gareth emphasized the need to manually review and update hyperlinks across pages to ensure best practices.
+Daniel was identified as a risk item due to limited capacity for supporting AI-assisted development and automated testing implementation.
+Customer engagement and metrics 
+Gareth explained the focus on increasing organic traffic, session duration, customer satisfaction (using NPS), friction reduction, and active digital users as main customer metrics.
+Migration planning and dependencies 
+Gareth outlined the migration plan, highlighting the need for collaboration with OMA colleagues and other teams to move country sites, journeys, leads, servicing capabilities, and rewards to the new platform, while considering integration with sites managed by other owners.
+Gareth emphasized the importance of having honest discussions about project scope and dependencies, including calling out unanswered questions and seeking external answers if needed.
+Gareth discussed the process of combining content, design standards, and publishing, followed by execution and decommissioning, potentially using parallel streams
+Gareth confirmed that the team gained clarity on technical expectations and migration outcomes, enabling them to prioritize independent work streams and better track dependencies.
+Customer experience 
+Gareth highlighted the need to address customer navigation issues, noting that customers face excessive layers and clicks to access products, with current site content far exceeding competitors.
+Service capabilities 
+Gareth emphasized that some servicing capabilities are not in the immediate scope but should be considered for future planning.
+Migration planning and communication 
+Gareth discussed the need to clearly define and communicate specific tasks and requirements to each business area involved in the migration, ensuring all stakeholders understand their roles and deliverables.
+Gareth raised the need to clarify whether Kenya is responsible for migrating all content or only specific journeys during the migration process.
+Platform enhancements and future planning 
+Gareth highlighted that while automated deployment and future platform enhancements are important, they are not part of the current migration scope but should be considered for long-term planning.
+Platform design and commercial strategy 
+Gareth emphasized the importance of designing the platform to be adaptable for future commercial opportunities, including onboarding tenants and establishing clear brand architecture guidelines.
+Gareth noted that business units and product houses may require specific attention in the platform's structure and data investment.
+Invest in data foundation for product houses to support platform adaptability
+Migration timeline 
+Gareth explained that the migration must be completed by the end of November due to budget constraints, not December as previously considered.
+Migration scope 
+Gareth outlined that the MVP for migration should focus on delivering a new navigation structure for four simplified audiences and a secure web information architecture.
+Planning and documentation 
+Gareth outlined the process for each team to identify and discuss their deliverables, constraints, dependencies, and risks using whiteboards and sticky notes before consolidating into a program plan.
+Gareth emphasized the importance of considering the final outcome and working backwards to ensure all teams align their current activities with the end goal.
+Teams were instructed by Gareth to break into groups for a 30-minute whiteboarding session to identify key thoughts, risks, dependencies, deliverables, and milestones for their respective verticals.
+Gareth explained that the session's outputs will be refined into a working document, including a RAID log, action log, and decision log to track progress and decisions.
+Gareth asked the design team to guide the sequencing and logical order of platform features for upcoming discussions.
+Teams were instructed by Gareth to start with design system and publishing, define completion criteria, and prepare to present their progress
+Gareth instructed teams to physically document key risks, issues, and constraints using sticky notes during the session to enhance visibility and engagement
+Gareth announced that Bertus has been capturing an action log and will share a spreadsheet summarizing today's tasks and discussions with the team in the morning.
+Platform design and templates 
+Gareth discussed the need to address gaps in page requirements, including identifying pages that require redesign or new creation.
+Gareth explained that the new category templates will maintain a consistent structure across pages, with predefined sections such as value proposition, overview, and product details, while allowing flexibility for different components within those sections.
+Gareth and participants discussed that the full requirements for templates will only be clear after reviewing all sections, and there may be additional components needed as each section is analyzed.
+Gareth clarified that while the overall template structure remains the same for different categories like insurance and retirement, the components within sections can vary to accommodate specific needs.
+Gareth explained that the template structure for category and product detail pages should remain consistent, with predefined blocks such as value proposition, overview, and product details, while allowing flexibility in the components within each block.
+Gareth discussed the need to stress test the foundational template structure further by rolling it out across more complex areas to ensure its robustness.
+Gareth described the category landing page template as having non-negotiable "red zones" governed by strict rules, while allowing modular "green zones" for configurable components within defined limits.
+Gareth explained that modular sections in the template can accommodate different needs, such as tables for funeral products or blocks for retirement, but changes in these areas require heavy governance and approval.
+Gareth explained that modular page templates allow flexibility at the component level, such as adding columns or blocks, while maintaining overall standardization across the platform.
+Gareth described that offering multiple template variants to business units enables them to choose options that fit their needs, increasing buy-in and consistency.
+Gareth discussed that requests for new features often arise during redesign conversations, and clarified that new features should be accommodated within the modular sections of templates, with limited variants available.
+Gareth noted the importance of stress testing the template structure with tenant sites, including those from different countries, to ensure robustness and adaptability.
+Gareth discussed the need to clarify whether all components in the modular "green zone" should be built as design system components or if some unique elements ("snowflakes") will be required and maintained separately.
+Gareth and participants considered updating the article and news page template to visually align with the new design while retaining existing content.
+Gareth explained that the team needs to ensure all necessary changes in Content Stack, including building category and product detail templates, before promoting updates to the production environment.
+Gareth emphasized that template quality should not be compromised due to capacity constraints, and teams must design templates based on best practices rather than available resources.
+Team responsibilities and collaboration 
+Gareth highlighted that teams outside the web team cannot be defaulted for certain tasks and responsibilities.
+Migration planning 
+Gareth discussed the need to split the migration process into parallel streams, including design, content, standards, execution, publishing, and decommissioning.
+Gareth and participants discussed the need to avoid migrating unnecessary pages by rigorously evaluating which pages can be consolidated or moved as-is.
+Gareth and participants agreed to include a page review and consolidation exercise in the upcoming two-day planning session if time allows.
+Platform tracking and customer experience 
+Gareth highlighted the importance of tagging and tracking features across different site sections for better customer experience and notification management.
+Migration planning and process 
+Gareth outlined the end-to-end process flow for the program, covering content design, design systems, execution, publishing, and simultaneous go-live and decommissioning of the old platform.
+Gareth raised the challenge of maintaining parallel site versions during migration, emphasizing the need to update both the current and QA branches when urgent changes arise.
+Gareth discussed the need to accept potential rework if pages are migrated quickly without full alignment on principles and templates.
+Team communication and alignment 
+Gareth emphasized the need for team leads to clearly present process steps, key constraints, dependencies, and risks when reporting back to their teams.
+Gareth noted that connecting as a group today was valuable for aligning expectations and understanding progress, and highlighted the need to develop a clear roadmap and summary headlines for the project.
+Team collaboration and process alignment 
+Gareth discussed the need to define clear handover and exit gate criteria between teams, specifying what constitutes completion and how deliverables are transferred and received
+Gareth emphasized the need for clear handover criteria and exit gates between functions to ensure work is only transferred when ready for the next team.
+Gareth noted that OMF is the only group currently providing structured design briefs using platform components, while other business units submit less structured requests, highlighting a need for improved change management and alignment.
+Gareth explained that only OMF currently provides structured design briefs using platform components, while other business units submit less structured requests, highlighting a need for improved change management and alignment.
+Gareth recapped that the team mapped out tasks, dependencies, and constraints, and discussed handoff strategies including entry and exit gates to clarify responsibilities and process flow.
+Gareth highlighted the lack of a centralized and shared knowledge system, noting that insufficient documentation has delayed progress and made it difficult to understand relationships and history across areas.
+Platform design and migration 
+The design and content team outlined the establishment of design foundations, including information architecture, navigation containers, templates, and standards for SEO, brand, and tone, as essential for migration rollout
+Gareth and the team discussed the importance of mapping and standardizing URL structures as part of the design and publishing process to ensure consistency and proper navigation.
+Gareth explained that most components and compositions used by designers do not currently exist in the new technology stack and will need to be audited and built for migration.
+Wayne explained that the Easy Plus sales journey depends on migrating the product page before enabling the new journey, and highlighted missing elements such as banners, header, and footer in the current V2 pages.
+Platform design and customer experience 
+Gareth explained that the team enhanced customer access to products by creating a single entry point, consolidating multiple pages into unified sections based on improvements in information architecture.
+Gareth explained that achieving a unified digital customer experience requires not only visual consistency but also logical navigation and structural alignment across all applications in the suite.
+Planning and stakeholder engagement 
+Gareth emphasized the need for a dedicated discovery period with cross-functional stakeholders, including product, compliance, and brand representatives, to understand the landscape and dependencies before starting design work.
+Content review and analytics 
+Gareth noted that the discovery process includes reviewing existing content, analyzing analytics, and proposing which content to delete, retain, or update based on stakeholder discussions.
+Gareth explained that the discovery process includes reviewing existing content, analyzing analytics, and proposing which content to delete, retain, or update based on stakeholder discussions.
+Design system collaboration 
+Gareth discussed the need to provide Brent and the design system team with visibility into ongoing work so they can prepare their part of the process.
+Platform design and standards 
+Gareth explained that content standards, SEO alignment, design system integration, web development, and user testing must be incorporated at the page level during the design stream.
+Gareth discussed the need to create new components or revise existing ones without impacting current implementations, emphasizing the importance of involving the design system and tech teams in the discovery phase.
+Gareth noted that approval is still required for new templates and section structures before they can be bundled and published.
+Team dependencies and risks 
+Gareth and Brent discussed the risk that some teams lack active design or engineering capabilities, which may impact asset maintenance and updates.
+Team collaboration and dependencies 
+Gareth discussed the importance of cross-functional team engagement, highlighting dependencies on product, SEO, marketing, studio, and brand teams for successful design and publishing.
+Brand alignment and approvals 
+Gareth explained that the interim brand has been approved, with only minor changes such as fonts and logo display, but noted uncertainty about the approval level and potential future redesign needs.
+Resource and capacity planning 
+Gareth highlighted capacity constraints in publishing, copywriting, and design, emphasizing the heavy workload required to consolidate pages and the need to define the scope of this work across all sections.
+Gareth explained that additional capacity enables parallel rollout of foundational elements across multiple site sections, accelerating progress but requiring more coordination.
+Gareth outlined that building a new template page takes approximately two hours due to unknown requirements and additional fields, while moving an "as is" page takes about half an hour.
+Gareth described that during a period when Natalie was on leave, they completed 85 BAU work tickets in five days, highlighting the workload and the need for dedicated resources for BAU tasks.
+Gareth explained that ongoing BAU tasks, including daily, monthly, and campaign-related updates, significantly impact capacity for migration work, and highlighted the need for additional publishing resources, especially for OMA and secure web areas.
+Gareth highlighted that the team is significantly under-resourced and suggested restarting the process from design discovery and approvals to ensure proper coverage.
+Gareth highlighted that capacity discussions should focus on what is required to achieve program goals, not just what can be done with current resources, and stressed the importance of having the right skills in place.
+Content creation and dependencies 
+Gareth discussed the challenge of obtaining timely product information and content from segments, identifying this as a blocker and suggesting the need for dedicated subject matter experts to support content creation.
+Team onboarding and deliverables 
+Gareth emphasized the need for clear deliverables and expectations when onboarding new team members, focusing on actionable tasks rather than strategic input.
+Platform design and development 
+Gareth explained that development work on templates and components can begin before finalizing copy, as structural foundations are independent of content completion.
+Template definition and workflow 
+Gareth discussed the process of moving from Figma wireframes to design system templates, clarifying that templates start as prototypes, are built from components, and then assembled in the CMS for publishing.
+Gareth and participants clarified that foundational templates, such as landing and category pages, will be established to minimize rework and streamline rollout across different site sections.
+Gareth raised the need to define whether new templates will allow the same flexibility as before or if they will be more rigid, and discussed scenarios where modular components may need to be used for unique page requirements.
+Platform design and governance 
+Gareth explained that external stakeholders must agree to the proposed template approach, and if they do not, an alternative must be defined immediately.
+Migration scope and page treatment 
+Gareth clarified that the migration focus is primarily on product-related pages, while pages like "About Us" and "Careers" may receive different UI treatment or be excluded from the main transformation design.
+Gareth raised a question to confirm with all participants whether non-product pages, such as "About Us" and "Careers," are included in the new transformation design or will retain their current UI.
+Gareth clarified that product-related pages will receive the new design treatment, while pages like "About Us" and "Careers" will retain their current UI unless a future redesign is planned.
+Gareth explained that during migration, some pages will move "as is" to the new platform, resulting in a mix of old and new designs within the same site.
+Gareth discussed the need to assess whether low-traffic sections, such as "About Us" and "Careers," should be consolidated or updated, considering their limited impact on users.
+Team responsibilities and handoff 
+Gareth emphasized the importance of clear ownership for each area and defined handoff points between teams to ensure responsibilities are well understood during execution.
+Migration planning and template development 
+Gareth explained that the migration to V2 may result in some pages being moved as-is, while others receive new template treatment, and highlighted the need to audit components required for each page.
+Migration scope and prioritization 
+Gareth suggested using success metrics, such as organic traffic growth and customer satisfaction, to help define which site sections are essential for migration and which can be deprioritized or migrated "as is."
+Content audit and migration 
+Participants discussed that some pages may be migrated as-is, while others will require new templates or copy rewrites, and future brand realignment may be addressed in later initiatives.
+Participants reviewed the current page counts across different site sections, including personal, corporate, business, careers, wealth, lead pages, standalone pages, and others.
+Gareth reported that 60 pages have already been moved, but further migration is paused pending a decision on whether to restyle or retain the current article format.
+Migration planning and URL management 
+Gareth explained that every page except the home page will receive a new URL, requiring a redirect for each to maintain site integrity.
+Gareth noted that even deleted pages must have redirects set up, as users may access them from saved links or external sources.
+Gareth explained that all deleted or changed pages require redirects to prevent users from encountering errors, but excessive redirects can negatively impact SEO.
+Gareth and participants discussed the need to regularly review and remove outdated redirects, as old redirects can dilute site traffic and harm search rankings.
+Design system integration 
+Gareth explained that most components in the new templates do not currently exist in Content Stack and will need to be built or mapped for future use.
+Migration scope and site treatment 
+Gareth clarified that sites such as Malawi, which are already live on the new platform, will be migrated "as is" and may only require minimal updates like color or font changes, unless structural changes are needed.
+Gareth confirmed that most country sites have simple navigation structures, except Kenya, which has more products and complexity.
+Migration planning and site treatment 
+Gareth discussed that Old Mutual Alternative Investments is a separate website and not part of the Onkosa domain, requiring distinct migration considerations.
+Gareth discussed the need to define a clear strategy and decision for handling bank-related content, including URL structure and navigation between bank and insurance sections
+Platform automation and AI 
+Gareth explained that the team has set up an automation harness and plans to use AI-assisted development to create repeatable automated tests and enforce pipeline standards.
+Participants discussed the potential to integrate AI into Content Stack to automate page creation, which could reduce manual effort and decrease the time required per page if feasible.
+Platform governance and release management 
+Gareth described the need to define a governance process for handling issues found during platform releases, including criteria for allowing or blocking releases when problems are detected.
+Platform observability and monitoring 
+Gareth stated that Dynatrace is currently used for site observability and will need to be reconfigured to track both browser and server-side behavior after migration to the new platform.
+Gareth explained that Dynatrace monitoring must be reconfigured to track both browser and server-side behavior after migration to the new platform.
+Gareth described that the platform provides a default analytics dashboard for migrated sites, enabling teams to monitor site status, errors, and key metrics without requiring a Dynatrace license.
+Analytics integration 
+Gareth recommended integrating analytics tracking directly within the CMS content to simplify updates and reduce reliance on developers for tracking changes.
+Participants discussed that analytics requirements, including event tracking and baseline metrics, must be established upfront when building new components
+Participants clarified that existing analytics from Google Analytics should be distinguished from additional tracking needs to avoid duplication
+Platform performance and analytics 
+Gareth discussed the importance of maintaining proper analytics tracking and pipeline integration during migration to support automated testing and ensure quality deployment.
+Release management and approvals 
+Gareth described the current approval process for moving work between development, QA, and production, highlighting the need for stakeholder engagement and design validation before deployment.
+Gareth and participants discussed the importance of conducting a desk check with business analysts and designers before QA to ensure alignment with approved designs.
+Navigation and site structure 
+Participants discussed the need to avoid duplicate links in navigation and ensure that only relevant links are included for each business area.
+Platform design and technical standards 
+Gareth explained that the team reviewed design principles, content standards, templates, componentry, and technical aspects of URL management, highlighting challenges and the need for common understanding across teams.
+Gareth explained that currently only one image field exists in Content Stack for desktop, and images are responsively scaled for mobile, but future updates should allow for separate desktop and mobile image uploads to improve performance and control.
+Gareth clarified that building new components should include adding a mobile image field at the same time, as this modification can be implemented during new component development.
+Gareth explained that the current process uses an asset library in Content Stack, with images called by ID, but future changes may require a centralized repository and could affect multiple sites and systems.
+Migration planning and execution 
+Gareth outlined the next steps as publishing content into Content Stack components, followed by cutover and go-live, and emphasized the importance of consolidating these activities into a clear roadmap.
+Publishing process 
+Gareth explained that publishing new pages requires all content, assets, and approved URL structures to be ready and signed off before building can begin.
+Migration operations 
+Gareth described that maintaining both the current and new platforms during migration will require manual dual updates for any content changes, including product updates and fee changes.
+Migration process and timing 
+Gareth explained that creating a new page with a new template currently takes about two hours per page, while migrating an "as is" page takes about thirty minutes, due to the need to manually build and assign components, navigation, and footers.
+Content audit and page ownership 
+Gareth explained that some campaign pages have not been updated due to the original owner leaving, and attempts to confirm their usage with marketing have not received responses.
+Gareth described that monthly analytics are available for certain pages, allowing the team to track their usage and relevance.
+Content audit and ownership 
+Gareth explained that certain terms and conditions pages, although having unusual URLs and unclear ownership, are still actively used based on monthly analytics and must be migrated due to compliance and tracking requirements.
+Gareth discussed that low-usage pages, such as bursary application pages, may have seasonal spikes in traffic and should not be deleted solely based on annual usage metrics.
+Migration planning and tracking 
+Gareth noted that the total number of pages requiring migration is difficult to estimate due to ongoing content changes, and highlighted the need for updated counts and better tracking to inform migration planning.
+Gareth confirmed that the migration end date will not move, and the team has reduced the page count from 2500 to 1000 so far.
+Migration tracking and documentation 
+Gareth described the current process for tracking page migration, which involves manually updating a Google Sheet with each URL's status, including template needs, content readiness, image availability, and redirect requirements.
+SEO and analytics integration 
+Bernice explored new SEO tools to improve visibility for LLM-based searches, including ChatGPT and Copilot, as traditional Google Analytics does not track these sources.
+The SEO team committed to providing guidance and scripts for tagging pages during QA, requiring at least two months' lead time for proper SEO implementation.
+Analytics and search trends 
+Bernice explored analytics tools to track traffic from LLM-based searches, such as ChatGPT and Copilot, since traditional Google Analytics does not capture these sources.
+Customer experience monitoring 
+Gareth discussed the need to replace the previous customer experience monitoring tool (Glassbox) and highlighted the importance of implementing a new solution to identify user issues on web pages.
+Migration status and risks 
+Gareth identified Namibia and Botswana as high-risk areas for migration due to limited resources and slow progress, while East Africa, Ghana, and Malawi were reported as on track or awaiting migration.
+Secure web migration 
+Gareth announced that secure web migration was discussed in detail and emphasized its importance in the overall migration plan
+Gareth described the current secure web migration status, highlighting that some features are already live on the new platform, but product views and certain dashboard elements remain incomplete.
+Gareth outlined three major challenges for secure web migration: managing the transition of shared services and profile management, reorganizing the service tree and dashboards, and deciding on the convergence of other secure portals onto the new platform.
+Gareth noted that the service team has not yet provided a robust solution for organizing the service tree, and the team will need to collaborate with them to address this issue.
+Gareth discussed that secure web sites operate in their own environments, separate from the main infrastructure, and highlighted the need to consider how users transition between public and secure areas during migration.
+Wayne explained that the "learn more" pages for secure web are still on the old platform and require content and design updates to match the new standards.
+User experience and navigation 
+Gareth explained that while single sign-on (SSO) is available across secure web applications, there are nuanced differences between apps, and emphasized the importance of providing a consistent navigation and user experience across all applications.
+Platform design and brand alignment 
+Gareth noted that applying a unified digital brand identity is not just about visual consistency but also requires structural alignment in navigation and app integration to ensure logical and seamless experiences for users.
+Customer expectations and roadmap planning 
+Gareth emphasized that modern customers expect seamless omnichannel access to all their services, with single sign-on and quick navigation, and teams should plan for both immediate and long-term roadmap needs.
+Planning and alignment 
+Gareth asked participants to reflect overnight on the meaning of scope, how it translates into actionable work, and its impact on resourcing and constraints, to prepare for a focused discussion in the next session
+Gareth reiterated that recent discussions surfaced urgent topics requiring attention and decision, particularly around defining scope and understanding delivery areas
+Gareth emphasized the importance of tomorrow's session for discussing what is achievable, identifying team health needs, and preparing for stakeholder conversations.
+Team responsibilities and feature ownership 
+Wayne explained that the cross-channel solutions team manages features like leads and call-me-back requests across multiple digital platforms, while the life and savings team owns product-specific capabilities.
+Migration planning and scope definition 
+Gareth raised the need for urgent decisions on defining scope, translating scope into actionable work, and understanding the impact on resourcing and constraints for the migration roadmap.
+Wayne reported that the Easy Plus sales journey depends on enabling the funeral product page on the new web platform with the new template, and highlighted the need for segment sign-off and communication with the e-commerce team before making changes due to marketing spend impact.
+Gareth and Wayne discussed that the sales journeys for tax-free and flexi invest pages have been migrated to version two, but the product pages linking to these journeys still require updates.
+Gareth explained that the team needs to consider alternative options for migration scope, such as focusing only on navigation across all sites, to achieve deliverables within a shorter timeline.
+Content standards and design integration 
+Gareth noted that further discussion is needed on content standards and their integration with the design and delivery process in upcoming sessions.
+Team structure and resource changes 
+Wayne explained that the cross-channel solutions team is transitioning from front-end delivery to a capability enabler, with front-end resources moving to the platform space and more back-end enablement resources joining.
+Wayne highlighted a risk due to reduced front-end capacity and ongoing recruitment for a business analyst, which may impact delivery of features like secure web solutions, leads capability, and calculators on the new platform.
+Wayne explained that front-end resources are moving out of the cross-channel solutions team, with more back-end enablement resources joining, which may impact delivery of features like secure web solutions, leads capability, and calculators on the new platform.
+Migration status and site treatment 
+Wayne confirmed that the migration of zero-rated pages for call-me-back and Easy Plus sales journeys to the new platform was completed, and these are now consuming V2.
+Platform development and roadmap 
+Wayne reported that PI2 calculators are nearly ready for beta deployment, and PI3 will focus on the contact us page and additional calculators without owners, pending further discussion with Keshvi and Luvuyo.
+Follow-up tasks
+

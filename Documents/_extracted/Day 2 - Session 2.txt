@@ -1,0 +1,748 @@
+﻿
+0603(3)
+Transcript
+https://otter.ai/u/IDk5FEx0PzDOiFpV-1yZpre2XZs?view=summary
+Overview
+The meeting focused on the progress and challenges of redesigning Old Mutual's digital landscape. Gareth Bew emphasized the need for a clear roadmap, highlighting the importance of finalizing design foundations, including information architecture and templates, by the end of June. Seba and Rey discussed the critical path, suggesting the formation of four squads to tackle different areas concurrently. Kameshnee reported that 52% of planned features are live, with 11 features completed by June. The team also addressed dependencies, particularly on the portfolio view and journey optimizations, and the need for clear communication and stakeholder engagement. The team discussed the workflow and resource allocation for the project, emphasizing the need for a clear approach and alignment. Seba highlighted that one person or lead with a support product designer could take a sprint to complete tasks. Rey suggested having a minimum of a designer and a content person per stream, with two lead designers and four to five normal designers. The team agreed on the importance of having a modular page design with red and green zones. They also discussed the need for a detailed content audit and mapping of existing URLs to new structures, aiming to complete sections by the end of the year.
+Action Items
+[ ] @Gareth Bew - Book significant follow-up time with Speaker 59 (Bernice) to review the Decant/Excel notes and mapping, and schedule a Friday session with workstream leads to hand over the refined outputs
+[ ] @Gareth Bew - Share the project spreadsheet and spreadsheet access with Speaker 59 (Bernice) so meeting outputs can be captured and the roadmap populated
+[ ] Send list of additional journeys (compliments, complaints, unclaimed benefits, investor relations, corporate unclaimed benefits) into the chat so owners can be identified and assessed
+[ ] Assess the list of additional journeys after it is sent and determine which ones the team will take in
+[ ] Finalize design foundations (information architecture for personal audience, core templates, content guidelines and stakeholder signoffs) and prepare buildable templates, targeting completion by end of June
+[ ] Include the content audit and URL mapping (existing URLs → new IA structure) per section as part of the discovery deliverables so publishing/ migration planning can proceed
+[ ] Take pictures of the physical board/roadmap and post the photos into the team chat so virtual attendees can follow along
+[ ] Help Gareth produce a resourced 'four-squad' view (full-squad resourcing plan) that shows how additional squads would accelerate the roadmap and what immediate hires/onboarding would be required
+[ ] Decide by end of today whether journey optimizations/enhancements (e.g., servicing journey enhancements) remain in scope and should be kept on the backlog for handover to the replatforming team
+Outline
+Magnitude of the Program and Initial Thoughts
+Gareth Bew discusses the overwhelming amount of information from the previous day and the magnitude of the program.
+The program involves re-entering the entire digital and web landscape of old mutual, driven by financial migration from an old platform to a new one.
+Gareth emphasizes the importance of customer engagement and secure web elements in modern business.
+The meeting aims to wrap up by 3 PM, with a focus on next steps and actions.
+Puzzle Analogy and Initial Progress
+Speaker 2 compares the current situation to a 1000-piece puzzle, highlighting the need to put all pieces together for a clear picture.
+Gareth Bew agrees with the analogy, noting that they are still at the beginning of piecing together the puzzle.
+Gareth mentions the importance of having a clear scope and understanding the critical path for the day.
+The team discusses the need for a version one roadmap and other important deliverables for the day.
+Clarity of Scope and MVPs
+Justin suggests breaking down the scope into MVPs to manage the work more effectively.
+Rey emphasizes the need for clear research requirements and the under-resourcing of the team.
+Gareth Bew discusses the importance of going slow to go fast, using the analogy of Black Ops special forces.
+The team talks about the political aspects and the need for clear processes and escalation procedures.
+Dependencies and Handover Processes
+Gareth Bew explains the importance of having a clear handover process between different teams.
+The team discusses the need for a clear issue management and escalation process.
+Rey highlights the importance of having a clear scope and requirements to avoid delays.
+The team discusses the dependencies between different streams and the need for clear communication and processes.
+Feedback Session and Roadmap Updates
+Kameshnee joins the meeting to provide feedback on the roadmap and progress.
+Kameshnee reports that 52% of the planned features are live, with 11 features live by the end of June.
+The team discusses the dependencies on design work and the timelines for different features.
+The team plans to address the portfolio view, content updates, and journey optimizations.
+Stream View and Stakeholder Engagement
+The team discusses the need for a clear stream view and stakeholder engagement process.
+Gareth Bew emphasizes the importance of having a clear process of engagement and time-boxed activities.
+The team plans to break up into teams to work on actionable tasks and map out the roadmap.
+The team discusses the need for a clear roadmap and the importance of stakeholder engagement.
+Iterative Mapping and Playback
+The team starts mapping out the roadmap and actionable tasks, with a focus on iterative improvements.
+Gareth Bew emphasizes the importance of capturing conversations and details for a working plan.
+The team plans to playback the roadmap and address any gaps or risks identified.
+The team discusses the need for a clear support model and ownership communication.
+Finalizing Design Foundations
+Seba discusses the need to finalize the design foundations, including information architecture and templates.
+The team plans to sign off the IA and templates by the end of June.
+The team discusses the need for stakeholder engagement and the importance of prioritizing templates.
+The team plans to start building and socializing templates to get early feedback and traction.
+Critical Path and Squad Structure
+Rey discusses the critical path and the need to spin up multiple squads to tackle different areas concurrently.
+The team plans to focus on personal, business, corporate, and wealth sections simultaneously.
+Rey emphasizes the importance of having a clear process and stakeholder engagement for each squad.
+The team discusses the need for additional capacity and the importance of prioritizing work based on complexity and dependencies.
+Approach and Team Alignment
+Seba discusses the estimated time for different tasks, mentioning that one person or lead with a support product designer could take a sprint to complete certain tasks.
+Kevin emphasizes the need for alignment on the approach before diving into details, suggesting that the team should agree on the approach first.
+Kameshnee asks for opinions on the current view, and Seba agrees, mentioning the current capacity with Justin and Kim on board.
+Rey suggests having a minimum of a designer and a content person from a design perspective, with additional roles like lead designers and content persons per stream.
+Design and Content Strategy
+Rey outlines the need for templates and content elements to be completed by the end of June, with a strong belief that the four sections are production design ready.
+Kameshnee confirms that two pages have been done, and Rey suggests getting the templates into development quickly to free up part of the team's work.
+Justin questions the way the work is broken down, and Rey explains the need to tackle different stakeholders and sections concurrently.
+The team discusses the importance of having a clear approach based on constraints to create the most efficient approach.
+Template and Component Management
+Seba suggests tackling personal sections first, with a dedicated team looking at the whole of invest or insure within a specific time frame.
+The team discusses the concept of swarming around sections to understand the details required for different audiences.
+Rey explains the staggered build process, with drops happening every two weeks, and the importance of having multiple handovers of new components over time.
+Bernice and others discuss the importance of keeping the entire page modular and the concept of red and green zones for design components.
+Content Audit and Migration
+Kameshnee emphasizes the need for a clear plan for content audit and migration, including mapping existing pages to the new structure and tracking current URLs versus new URLs.
+Justin suggests having a URL map as part of the content audit to ensure all pages are accounted for during migration.
+The team discusses the importance of having a clear plan for onboarding new teams and managing capacity to avoid affecting key people.
+Seba and others agree on the need for a detailed plan for content audit and migration, with specific deliverables and timelines.
+Team Structure and Resource Allocation
+Gareth Bew questions how to enable the full squad approach and effectively manage the four teams.
+Seba explains that the current view with current capacity takes the project to the end of the year, and the team needs to discuss resource constraints.
+Rey emphasizes the importance of working on concurrent sections to reduce risk and increase confidence.
+The team discusses the need for a clear plan for onboarding new teams and managing capacity to avoid affecting key people.
+Design System and Template Variability
+Rey explains the concept of red and green zones in the design system, with red zones being more fixed and green zones being more variable.
+Bernice and others discuss the importance of having a clear governance process for managing templates and components.
+The team discusses the need for a balance between design flexibility and reducing the need for custom development.
+Rey emphasizes the importance of having a clear plan for onboarding new teams and managing capacity to avoid affecting key people.
+Content Stack and Component Management
+Bernice explains the concept of content stack and how it uses design system components to build pages.
+The team discusses the importance of having a clear plan for managing content stack templates and components.
+Rey explains the need for a balance between design flexibility and reducing the need for custom development.
+The team discusses the importance of having a clear governance process for managing content stack templates and components.
+Project Timeline and Deliverables
+The team discusses the need for a clear project timeline with specific deliverables for each month.
+Seba suggests making the content audit and migration part of the discovery language and deliverables.
+Kameshnee emphasizes the importance of having a clear plan for onboarding new teams and managing capacity to avoid affecting key people.
+The team discusses the need for a detailed plan for content audit and migration, with specific deliverables and timelines.
+Risk Management and Confidence Building
+Rey explains the importance of working on concurrent sections to reduce risk and increase confidence.
+The team discusses the need for a clear plan for onboarding new teams and managing capacity to avoid affecting key people.
+Seba emphasizes the importance of having a clear governance process for managing templates and components.
+The team discusses the need for a balance between design flexibility and reducing the need for custom development.
+Finalizing the Plan
+The team discusses the need for a detailed plan for onboarding new teams and managing capacity to avoid affecting key people.
+Seba suggests making the content audit and migration part of the discovery language and deliverables.
+Kameshnee emphasizes the importance of having a clear plan for onboarding new teams and managing capacity to avoid affecting key people.
+The team agrees on the need for a detailed plan for content audit and migration, with specific deliverables and timelines.
+Workshop
+Workshop Session Notes - Day 2, Session 1
+Meeting Date: June 4, 2026Session Time: 06:15 - approximately 10:50Facilitator: Gareth BewWorkshop Type: Digital Platform Re-enterprising Workshop (Day 2)
+Session Metadata
+Primary Focus: Roadmap development and stream planning for Old Mutual's digital and web landscape re-enterprising program
+Key Attendees Mentioned:
+Gareth Bew (Facilitator)
+Bernice (Content/Publishing lead)
+Bernice (Remote participant)
+Seba/Sebastian (Design lead)
+Justin (Design team)
+Rey (Technical architect/strategist)
+Kameshnee (Business stakeholder)
+Toboco (Migration lead - presenting remotely)
+Multiple speakers representing different workstreams
+Key Discussion Points
+1. Program Scope and Magnitude
+Context: Gareth emphasized the scale of the digital transformation program
+Scope: Complete re-enterprising of Old Mutual's digital and web landscape
+Driver: Platform migration (old to new) with broader business repositioning implications
+Components: Secure Web (customer portal), marketing/digital branding, mobile/web convergence
+Timeline Pressure: Migration deadlines creating urgency
+2. Migration Status Update (Toboco Presentation)
+Current State:
+21 planned features + 1 sales journey
+52% completion (11 features live)
+Target: 71-72% by end of June, 90%+ by end of July
+Critical Risks Identified:
+Portfolio view, content updates, journey optimizations at risk
+Dedicated team rolling off September 10th
+Most knowledgeable QE rolling off in August
+Dependencies on design work still pending
+Key Dependencies:
+Easy Plus journey waiting for product pages completion
+Limited capacity post-September rolloff
+Design deliverables blocking progress
+3. Design Foundations and Template Strategy
+Current Approach:
+Design foundations targeting end of June completion (personal audience only)
+Templates: Category, product landing, section pages prioritized
+Red zone vs. green zone component strategy discussed extensively
+Critical Technical Discussion:
+Template vs. component architecture in design system
+Content stack implementation constraints
+Governance and drift prevention mechanisms
+Modular page construction requirements
+Resource Requirements:
+Minimum: Designer + content person per stream
+Recommended: Lead designer structure with 4-5 normal designers
+Four parallel squads proposed for different audiences (personal, corporate, business, wealth)
+Decisions
+ID
+Decision
+Status
+Owner
+Impact
+DEC-001
+Design foundations completion targeted for end of June (personal audience only)
+Confirmed
+Design Team (Seba/Justin)
+Unlocks template development
+DEC-002
+Prioritize category and product landing templates for immediate handover
+Confirmed
+Design Team
+Enables parallel development
+DEC-003
+Adopt red zone/green zone component strategy with governance controls
+Confirmed
+Design/Dev Teams
+Reduces template proliferation
+DEC-004
+Implement four-squad parallel approach for different audiences
+Proposed
+Program Leadership
+Requires additional resources
+DEC-005
+Bernice/Natalie remain gatekeepers for content stack publishing
+Confirmed
+Content Team
+Maintains quality control
+Actions
+ID
+Action
+Owner
+Due Date
+Priority
+ACT-001
+Complete retirement/funeral template package for immediate handover
+Design Team
+1-2 weeks from June 4
+Critical
+ACT-002
+Finalize IA sign-off for personal audience
+Design Team
+End of June
+High
+ACT-003
+Book significant time with Bernice for Excel consolidation
+Gareth
+Tomorrow (June 5)
+High
+ACT-004
+Session with workstream leads on consolidated outputs
+Gareth/Bernice
+Friday (June 7)
+High
+ACT-005
+Clarify business stakeholders for unclaimed benefits, complaints, compliments journeys
+Business Teams
+Not confirmed
+Medium
+ACT-006
+Define onboarding process for additional squad capacity
+Design/Program Teams
+Not confirmed
+High
+ACT-007
+Create URL mapping for existing vs. new structure per section
+Content/IA Teams
+Per section completion
+High
+Risks
+ID
+Risk
+Category
+Probability
+Impact
+Mitigation
+RSK-001
+Resource rolloff in September (dedicated team + key QE in August)
+Resource
+High
+High
+Accelerate delivery timeline
+RSK-002
+Template changes affecting completed development work
+Technical
+Medium
+High
+Implement change control process
+RSK-003
+Single points of failure (Bernice overload)
+Resource
+High
+Medium
+Additional capacity/training
+RSK-004
+Linear delivery approach will not meet year-end deadline
+Timeline
+High
+High
+Implement parallel squad approach
+RSK-005
+Governance drift without proper controls
+Process
+Medium
+Medium
+Strengthen approval processes
+RSK-006
+Stakeholder engagement delays affecting template sign-off
+Business
+Medium
+High
+Structured engagement process
+Issues
+ID
+Issue
+Impact
+Owner
+Resolution Required
+ISS-001
+Current under-resourcing across all workstreams
+All teams operating beyond capacity
+Program Leadership
+Resource allocation decision
+ISS-002
+Unclear business ownership for some journey types
+Blocks migration planning
+Business Teams
+Stakeholder identification
+ISS-003
+Portfolio view dependencies unclear for Secure Web
+Blocks planning for dependent team
+Technical Teams
+Requirements clarification
+Dependencies
+ID
+Dependency
+Dependent Team
+Providing Team
+Required Date
+Risk if Delayed
+DEP-001
+Design foundations completion
+Development Teams
+Design Team
+End June
+Development work cannot proceed
+DEP-002
+Product pages completion
+Sales Journey Team
+Web Team
+Not confirmed
+Easy Plus journey blocked
+DEP-003
+IA sign-off for each audience
+All development streams
+Design + Business Teams
+Sequential
+Downstream work blocked
+DEP-004
+Template handover cadence
+Content Teams
+Design Teams
+Ongoing
+Content creation blocked
+DEP-005
+Portfolio view technical requirements
+Migration Team
+Secure Web Team
+End September
+Team rolloff impact
+Open Questions
+ID
+Question
+Owner to Answer
+Required By
+Impact
+QST-001
+What specific approvals are required for template sign-off?
+Program/Business Leadership
+Before June end
+Affects delivery timeline
+QST-002
+How many additional resources can be secured for parallel squads?
+Program Leadership
+ASAP
+Determines delivery approach
+QST-003
+What is the exact scope of portfolio view changes required?
+Business/Technical Teams
+Before September
+Team planning
+QST-004
+Who owns complaints, compliments, unclaimed benefits journeys?
+Business Teams
+This week
+Migration planning
+Technical and Systems Summary
+Design System Architecture:
+Component-based approach with mandatory/optional elements
+Template modularity to reduce drift
+Red zone (fixed) vs green zone (variable) strategy
+Content stack integration constraints requiring careful template design
+Platform Considerations:
+Old Mutual digital landscape spanning multiple audiences
+Secure Web customer portal integration
+Mobile/web convergence requirements
+Content management system (Content Stack) limitations
+Process and Workflow Implications
+Template Development Workflow:
+Design foundations → 2. Template creation → 3. Stakeholder engagement → 4. Sign-off → 5. Development handover → 6. Content creation → 7. Publishing
+Governance Process:
+Mandatory design review before content stack implementation
+Publishing team as final gatekeepers
+Change control for template modifications
+Quality assurance at multiple stages
+Resource and Capacity Summary
+Current Constraints:
+Design team under-resourced for scope
+Single points of failure (Bernice, key QE)
+September resource rolloff creating deadline pressure
+Recommended Structure:
+Four parallel squads (personal, corporate, business, wealth)
+Lead designer + designer + content person per squad
+Dedicated technical support per stream
+Strengthened governance team
+Critical Success Factors
+Immediate Actions: Complete retirement/funeral package handover within 1-2 weeks
+Resource Decision: Approve additional squad capacity or accept linear delivery risk
+Stakeholder Engagement: Accelerate business sign-off processes
+Change Control: Implement template change management before scaling
+Dependencies: Clear technical requirements for portfolio view and Secure Web integration
+Next Steps Recommended
+Tomorrow (June 5): Bernice consolidation session
+Friday (June 7): Workstream leads review session
+Next Week: Business stakeholder identification for unclear journeys
+Within 2 Weeks: First template package handover and parallel squad decision
+Executive Escalation Items
+Resource Approval: Four-squad parallel approach requiring significant additional capacity
+Timeline Risk: Current approach may not meet year-end migration deadline
+Single Points of Failure: Risk mitigation for key personnel dependencies
+Change Control: Governance framework approval for template management
+
+Transcript Reference: Full session 06:15-10:50, multiple speakers Session Status: Continued into second session with roadmap development
+TEAMS NOTESAI-generated content in notes may be incorrect. Learn more
+Decisions
+Implement DevOps quality gates and automated testing before production.
+Co-locate content and analytics tagging for automation.
+Finalize and sign off design foundations for personal by end of June.
+Adopt modular template/component approach with red and green zones.
+Implement governance for template/page creation; design/publishing teams as gatekeepers.
+Conduct content audit and URL mapping for each section.
+Identify and document business owners, clarify post-migration responsibilities.
+Adopt four-squad parallel approach for site sections.
+Break down roadmap by stream and audience in shared spreadsheet.
+Use shared Jira board for all teams, leads ensure alignment.
+Schedule regular workstream lead check-ins for delivery constraints.
+Schedule follow-up with leads to finalize roadmap and actions.
+Open questions
+Pen testing/security review integration into releases remains unresolved.
+Increasing red zone template stability needs more engagement; process not finalized.
+Handling articles/news/resource pages across audiences remains undecided.
+Ownership of cross-functional/legacy journeys needs further discussion.
+Resource constraints may limit four-squad parallel approach; capacity allocation unresolved.
+Onboarding/support for external teams with limited resources remains undecided.
+Optimal cadence/format for ongoing planning sessions remains undecided.
+Agenda
+Goal: Plan Web Transformation over two days
+
+
+Meeting notes
+Web Transformation Planning 
+Gareth emphasized the magnitude of the program, highlighting that the team is re-enterprising the entire digital and web landscape for Old Mutual, including migration from an old platform to a new one
+Bertus compared the previous day's whiteboard exercise to assembling a 1000-piece puzzle, noting that all the necessary elements are present but need to be consolidated into a clear plan
+Gareth outlined the need to consolidate the project's components into a clear plan, using the analogy of assembling a 1000-piece puzzle to describe the current stage of the web transformation effort.
+The team identified key deliverables for the day, including creating a version one of the roadmap and clarifying critical paths, responsibilities, and scope.
+Project processes 
+Gareth discussed the importance of establishing clear handover processes between streams, including specifying how deliverables are transferred and received.
+Gareth discussed the need for a clear issue management and escalation process to ensure efficient problem resolution and minimize negative perceptions during project delivery.
+Project planning 
+Gareth highlighted the need to define an agreed MVP for the end of the year, suggesting breaking the roadmap into multiple streams with distinct MVPs.
+Gareth emphasized the importance of converting requirements into clear outputs and artifacts, and identifying stakeholders by business area or cluster within project streams.
+Resourcing 
+Gareth emphasized that the team is currently under-resourced, referencing feedback from previous sessions and noting the unsustainability of current workloads.
+Feature migration progress 
+Tebogo reported that 11 out of 21 planned features have been migrated, reaching 52% completion, with targets of 71-72% by end of June and about 90% by end of July.
+Tebogo confirmed that the Easy Plus journey is built but cannot be deployed until the product pages are completed by the web team.
+Gareth discussed the need to track outstanding sub-journeys under withdrawals, including TFSA, EC class, and flex.
+Gareth explained that the V2 navigation component is ready and can be applied to pages once completed, streamlining the migration process.
+Resource and timeline risks 
+Tebogo highlighted risks related to the portfolio view, content updates, and journey optimizations due to key team members rolling off by September and August.
+Issue resolution 
+Tebogo confirmed that the issue regarding the change of personnel details component has been resolved after a necessary conversation.
+Project dependencies 
+Tebogo identified a dependency on the web team to complete product pages before the Easy Plus journey can be deployed, noting this as a current risk.
+Project scope and backlog 
+Gareth discussed the need to clarify whether journey enhancements identified during research should be added to Tyhalibongo's backlog or considered out of scope, with a decision to be made by the end of the day.
+Elise agreed to send the list of unclaimed benefits journeys to Tebogo for assessment.
+Project dependencies and risks 
+Gareth highlighted a major dependency for Tebogo on the secure web portfolio view, noting that lack of visibility on required changes and the team's planned roll-off at the end of September could impact planning.
+Project timeline and planning 
+Gareth reviewed the roadmap color coding and confirmed that feature work is scheduled to run until the end of July, with planned enhancements and dependencies to be considered for other workstreams.
+Gareth discussed sequencing migration tasks based on readiness and dependencies, including waiting for specific components to be completed before proceeding.
+Team alignment 
+Align new teams on expectations and management approach for the project, referencing diagrams from the previous day (Gareth)
+Project approvals 
+Gareth discussed the need for a final review and sign-off by leadership for the cross-version outputs.
+Project scope 
+Clarify that South Sudan requires only decommissioning, not migration, while Malawi and South Sudan share similar work requirements
+Design foundations 
+Gareth confirmed that the information architecture sign-off for personal audience is targeted for end of June, with templates to be rolled out across the site
+Gareth clarified that generic content guidelines will be signed off as part of the design foundations by end of June
+Gareth confirmed that the information architecture and generic content guidelines for the personal audience are targeted for sign-off by end of June, with templates to be rolled out across the site.
+The team discussed the need to stress test templates in additional sections and engage stakeholders to ensure confidence in rolling out foundational elements.
+Template delivery 
+Gareth discussed the need to finalize and hand over core template structures, including section, category, and landing pages, by the end of June to enable technical development.
+Gareth explained that the personal landing page and its information architecture must be locked down as a priority, as it is a key deliverable for multiple stakeholders.
+Gareth confirmed that new pages can be built once templates and components are completed, and analytics planning is aligned.
+The team confirmed that template structures can be completed within five days, but component development will take longer and depends on design system processes.
+Stakeholder engagement 
+Gareth described the need to organize stakeholders into groups for personal, corporate, wealth, and business sections, and to collaborate with each group to complete their level one and landing pages before moving to detailed modules.
+Gareth discussed the need to identify and engage distinct stakeholder clusters for each section, starting with landing pages and moving to detailed modules.
+Project delivery approach 
+Gareth explained that the project will not be delivered as one large block at the end of June, but rather by starting with the 60% of known modules and progressively building section by section as more becomes clear.
+Team structure and resourcing 
+Gareth proposed forming four squads to work concurrently on different sections (personal, business, corporate, wealth, and secure), with each squad following the same cycle of work to accelerate progress and avoid linear delivery delays.
+Gareth confirmed that parallel squads will work concurrently on landing pages for personal, business, corporate, and wealth sections to accelerate progress.
+Project planning and estimation 
+Gareth and a participant discussed estimating the time required for each section, suggesting that a squad of two could complete a macro section in a sprint, and that the entire personal section would take five sprints, highlighting the need to align on the overall approach.
+Team structure and workstreams 
+Gareth described the approach of organizing teams to work in parallel on different sections, such as personal, corporate, and business, with each team focusing on a complete area like "invest" or "insure" within a set timeframe.
+Gareth confirmed that the four-squad approach can be enabled immediately if resource constraints are removed, but core project principles and deliverables remain unchanged.
+Project deployment and handover 
+Gareth explained that the project will have staggered releases ("drops") of new components and pages for each section, with variability decreasing over time, and multiple handovers expected until at least September.
+Design and template strategy 
+Gareth emphasized the need to keep page templates modular to accommodate ongoing changes and multiple handovers during the deployment process.
+Gareth explained that multiple handovers of new components will occur over time, with variability decreasing as more sections are completed, and emphasized the importance of keeping page templates modular to accommodate ongoing changes.
+Gareth described the process of grouping templates by page type and stakeholder group to streamline sign-off, aiming to reduce repetitive approvals and limit changes to intrinsic design components in the first batch.
+Change management process 
+Gareth confirmed that any changes required by stakeholders after initial sign-off will trigger a change management process, affecting templates, code, and content across all relevant pages.
+Gareth described the change management process for templates, explaining that any stakeholder-driven changes in critical areas ("red zones") require updates to both content and code across affected pages.
+Template design and structure 
+Gareth confirmed that the team has stress tested templates and is comfortable with their current structure, noting that certain sections ("red zones") are locked in for consistency while allowing flexibility in other areas.
+Gareth outlined the standardized elements of product page templates, including banners, breadcrumbs, navigational links, footers, leads, cross-sell sections, and FAQs, which are consistently applied across pages.
+Gareth confirmed that product page templates include standardized elements such as banners, breadcrumbs, navigational links, footers, leads, cross-sell sections, and FAQs, which are consistently applied across pages.
+Gareth clarified that the main challenges with templates are related to content, not the template structure, and that templates have been sufficiently stress tested across audiences.
+Gareth explained that page templates in the design system should remain flexible, allowing component-level customization while maintaining a single template structure for similar page types.
+Gareth discussed the differences between the current and new page templates, including changes in layout and styling.
+The team discussed that category and product page templates will use the same structure and components, with only the middle content varying, but will be treated as separate pages for content purposes.
+Gareth clarified that page templates should remain flexible, allowing component-level customization while maintaining a single template structure for similar page types.
+Template delivery and change management 
+Gareth explained that the team will cautiously designate "red zones" (fixed template components) in the first batch, increasing confidence and scope for red zones in subsequent batches after further stakeholder engagement.
+Gareth confirmed that increasing the number of sections will improve confidence in identifying fixed template components ("red zones"), but current confidence is limited due to the small number of sections completed.
+Design foundations and alignment 
+Gareth discussed the need to align the interpretation of templates between the content stack and the design system, emphasizing the importance of preventing template drift and ensuring consistency in Figma implementation.
+Template governance and team onboarding 
+Gareth explained that only Gareth and Natalie currently build templates, and any new teams or tenants must be trained to follow the established standards before publishing.
+Gareth emphasized that 
+Gareth discussed the need to formalize a way of working for onboarding new tenants or teams, ensuring consistent processes and standards are followed.
+Gareth explained that only Gareth and Natalie currently build templates, and any new teams or tenants must be trained to follow the established standards before publishing.
+Template governance and flexibility 
+Gareth discussed the importance of balancing accelerated content stack production with the need for contextual design, emphasizing that mandatory and optional template elements should be clearly defined.
+Template governance 
+Gareth discussed the approach of limiting product templates to two or three standardized options, with clearly defined mandatory and optional elements to ensure consistency while allowing some flexibility.
+Gareth emphasized the need for a governance gate to review and approve all pages before publishing, ensuring alignment with established standards and preventing unauthorized changes.
+Gareth explained that the team acts as gatekeepers for the platform, requiring all tenants and users of the template framework to follow the sign-off process before content goes live.
+Gareth emphasized the need for a gate to review and approve all content before publishing, ensuring alignment with established standards.
+Content migration and audit 
+Bernice was identified as able to begin work on content migration once the information architecture and URL mapping for a section are provided
+Project planning and milestones 
+The team discussed the need to clarify monthly deliverables and milestones for each section of the site to improve planning and tracking
+Project planning and resourcing 
+Justin and Saba assisted Gareth in collecting the core team view for project planning
+Gareth confirmed that the team will use current resources, including two additional developers, to proceed with remaining tasks and iterative releases, with planning to align with upcoming PI planning in two weeks.
+Content structure and tracking 
+Gareth confirmed that 457 pages use the modular page component, with metadata and URL breakdowns required for records
+Gareth clarified that news items are distinct from articles, with news covering press releases and company information, and articles focusing on informational content.
+Gareth confirmed that the news section will remain in the footer, with options to link from other sections using cards, buttons, or banners.
+Page structure and navigation 
+Gareth described the process for assigning headers, images, and navigation elements to pages, including selecting header types, adding images from the Apple Library, and configuring navigation grids.
+Gareth explained how to set up buttons on pages, specifying their actions, destinations, and descriptions, and assigning relevant modules such as "call me back" to appropriate pages.
+Component development and page setup 
+Gareth confirmed the need to build and update heading and button fields as new components, and to write them onto the relevant pages for proper structure and categorization.
+Gareth confirmed that updated pages will visibly reflect changes in color and layout once new components are applied.
+Content and design updates 
+Gareth discussed the plan to move and publish articles after updating the variant color and resolving contrast issues on new pages.
+Gareth and Justin, along with others, agreed over lunch on the approach to handle articles and viewer-related updates for the new pages.
+Gareth and Justin discussed that most article views are on mobile, so desktop template changes will have minimal impact
+Content governance 
+Gareth confirmed that news items are kept for one calendar year, and older or less trafficked corporate and personal articles have already been removed based on established rules.
+Content and analytics 
+Co-locating content and analytics tagging was discussed as essential for enabling automation and future SEO activities.
+Engineering and dashboard development 
+Loza has already started building observability dashboards, and the rest of the work involves creating templates to apply across migrated sites.
+Template structure and governance 
+Gareth confirmed that the modular template will serve as the foundation for both product detail and category pages, ensuring consistency in structure and governance.
+Analytics integration 
+Gareth discussed that analytics integration, including Google Analytics and Tableau, is being addressed to ensure data pipelines remain functional during the migration.
+Content migration planning 
+Gareth estimated that 150 pages will be restyled and moved, while 850 pages will remain unchanged, with August considered too late for the 850 pages.
+Project deployment 
+The team discussed that micro drops of completed templates and components will be released as soon as they are ready, starting in the first two weeks of June.
+Template and component development 
+Gareth confirmed that template and component development will occur in parallel, allowing the design system team to build the component library without waiting for full templates.
+Template delivery timeline 
+Gareth estimated that each template, including design and sign-off, will take about two weeks, with sign-off and testing potentially causing delays.
+Page build process 
+Gareth clarified that new pages can be built once all technical, design, and content pieces are ready, with an average build time of two hours per page for approximately 850 pages.
+Template sign-off process 
+Gareth discussed that sequential outreach to segments for template sign-off could significantly extend timelines, especially for the personal section.
+Template delivery and planning 
+Gareth confirmed that the team will finalize templates for the personal section in June, with a clear view of deliverables for each segment.
+Gareth confirmed that finalized templates for each section, including personal, corporate, and business, are targeted for completion in June, with component drops scheduled to enable parallel builds across teams.
+Gareth stated that the team currently has limited confidence in identifying fixed template components ("red zones") due to the small number of sections completed, but this confidence will increase as more sections are built.
+Project dependencies and ownership 
+Gareth clarified that the bank is responsible for building its own web pages, and the team will only be involved when the bank initiates a redesign, with no current timeline set.
+Component development and progress 
+The team discussed that component completion percentages will determine progress for each section, with 100% component delivery enabling full build and stress testing for personal, corporate, and business areas.
+Analytics and quality gates 
+Gareth stated that analytics and quality gates, including Tableau, are significant ongoing tasks, and responsibilities have been assigned within the team.
+Automation and quality assurance 
+Gareth discussed the need for automation in template updates and content injection, highlighting the importance of quality through automated testing using the Play Live framework.
+Engineering and quality gates 
+Gareth discussed validating frameworks for secure software and ensuring migration processes are robust and applicable
+Gareth confirmed that review and approval processes are in place for recent changes, with access reset as needed
+Project tracking and ownership 
+Gareth explained that the working leads are responsible for capturing all discussed items in the project spreadsheet.
+Project documentation 
+Gareth explained that multiple sources, including Teams transcripts, photos of boards and stickies, and compiled notes, are being used to create a comprehensive project record
+Gareth confirmed that the working document is a draft that will be cleaned up over the next few days, with day two's information still to be added
+Gareth shared an improved template and HTML file in the chat to help participants capture their input and review actions, risks, dependencies, and decisions from day one.
+Gareth confirmed that a consolidated master log will be created by combining team tabs and capturing all relevant information for both days.
+Gareth confirmed that a consolidated document with all pictures from both days' boards will be distributed to help participants capture actions, risks, dependencies, constraints, and decisions.
+Gareth and Bertus planned to spend tomorrow morning recalling and compiling meeting outcomes, and asked participants to have their inputs ready by midday for integration.
+Content migration and analytics 
+Gareth discussed the need to map the current URL structure to the new structure, consolidate pages, and use analytics to prioritize which of the remaining 850 pages to migrate or remove.
+Content analysis and reuse 
+Gareth discussed the need to analyze differences between the personal and personal Coetzee sections to determine where new content is required versus where content can be reused.
+Country-specific requirements 
+Gareth confirmed that Kenya and other countries may have unique requirements or caveats in their content structure, which need to be identified and addressed when applying new templates.
+Content rollout strategy 
+Gareth clarified that for countries without dedicated content teams, the approach will be to complete the South African sections first, then adapt and roll out the content and templates to other countries, with each section learning from the previous rollout.
+Gareth explained that after completing the personal section for South Africa, the team will apply their learnings to adapt and roll out content for other sections and countries, starting with Omar.
+Project dependencies and resourcing 
+Gareth discussed that the team is responsible for providing the navigation structure, but additional support will be needed from others to rewrite information and build major pages for new sections.
+Team structure and planning 
+Gareth highlighted the need to assess whether to build another squad or continue with the current team to handle the increased workload for rolling out content to additional sections and countries.
+Project planning and prioritization 
+Gareth and Bertus discussed sequencing project tasks by assigning priorities and identifying dependencies before setting timelines.
+Gareth stated that the team will conduct a second revision of the end-to-end project flow to identify critical and dependent tasks.
+Team communication and collaboration 
+Gareth confirmed that the team will share pictures and video in the chat to help remote participants follow the roadmap playback session.
+Site ownership and funding 
+Gareth discussed that sites migrated to the new platform will require formal agreements to clarify business ownership and future funding, which will influence ongoing optimization efforts.
+Gareth explained that after migration, further optimization of tenant sites will be a partnership, with tenants responsible for funding and managing their platforms going forward.
+Site migration and deployment 
+Gareth confirmed that smaller sites, such as Bull and Taylor, can be quickly retrofitted with the new navigation and footer, and taken live without changes to information architecture.
+Country migration planning 
+Gareth explained that country teams are responsible for executing their own migrations, but depend on the central team for design, information architecture, navigation structure, and content guidelines.
+Gareth clarified that country teams must audit their existing content, map it to new audience groupings, and potentially rewrite or create new content for updated page structures.
+Gareth explained that country teams must audit their existing content, map it to new audience groupings, and potentially rewrite or create new content for updated page structures.
+Stakeholder engagement and alignment 
+Gareth confirmed that business area segments need to align on audience groupings, sign off on information architecture, and collaborate on content audit, deletion, amendment, and creation, including legal compliance.
+Stakeholder alignment 
+Gareth shared a high-level view outlining the need for business area alignment on audience groupings, information architecture sign-off, and content audit, including legal compliance involvement.
+Ownership and accountability 
+Gareth planned to 
+.
+Team feedback 
+Gareth facilitated a feedback round at the end of the meeting, inviting participants to share their reflections on the two-day session.
+Project alignment and documentation 
+Gareth highlighted the importance of documenting definitions, scope, and requirements to ensure clarity and alignment across the team.
+Team collaboration and communication 
+Participants reflected that having all key people in the room enabled better understanding of each other's roles, responsibilities, and the project sequence.
+Gareth emphasized that being heard and understood are both essential for effective team operations and building confidence in project delivery.
+Gareth reflected that having all key people in the room enabled everyone to be heard and understood, fostering better understanding of roles and contributions.
+Gareth highlighted that the team's success depends on collective effort and thanked everyone for their dedication and participation during the two-day session.
+Team collaboration and planning 
+Gareth described the value of using physical whiteboards and in-person collaboration before digitizing and finalizing the project roadmap over several days.
+Team reflection and planning 
+Siva cautioned the team to avoid repeating past mistakes and emphasized the importance of realistic planning and acknowledging all efforts as they move forward.
+Team communication and alignment 
+Justin highlighted that having all key people in the room enabled everyone to be heard and understood, fostering better understanding of roles and contributions.
+Project planning and alignment 
+Gareth emphasized the importance of ongoing planning and stated that the team will continue to revisit and refine plans until project completion.
+Team alignment and collaboration 
+Gareth stated that the team established a common understanding of the project's complexity and now shares an end-to-end view after two days of collaboration.
+Gareth emphasized that the team built strong relationships and trust, which will support future project delivery and problem-solving.
+Project planning and adaptability 
+Gareth explained that the project plan is flexible and will likely change multiple times before year-end, but the team is now aligned on the overall goal and approach.
+Gareth acknowledged that not all project goals will be delivered by year-end, but the team will have the evidence and support needed to communicate what can be achieved and the value it brings.
+Template governance and quality control 
+Gareth emphasized that all new pages must be reviewed by the publishing team before going live, and pages that do not meet standards will not be published.
+Follow-up tasks
+Task
+Assigned to
+Due date
+Bucket
+To do
+To do
+Tebogo still needs to present a summary of their area to the group (Gareth)
+Schedule playback session for Tebogo to present a summary of their area to the group (Gareth)
+Schedule feedback session for Tebogo to present their area summary to the group (Gareth)
+Identify business stakeholders for the compliments, complaints, and unclaimed benefits journeys on public web (Gareth)
+Assess CISA and corporate unclaimed benefits journeys and integrate them into the team's scope (Tebogo)
+Clarify business stakeholders for secure web streams to ensure clear engagement processes (Gareth)
+Break up roadmap streams into audience views and subcategories to facilitate task assignment for teams (Gareth)
+Break down information architecture by audience type and map out personal and corporate views (Gareth)
+Digitize initial end-to-end view and capture conversations into the project spreadsheet (Gareth, Bernice)
+Send email to Boyer to check the business effect on LTD for the last two years and copy Gareth and Keshvi (a participant)
+Forward a different mail from the owner to Boyer for reference (Gareth)
+Break down information architecture and migration tasks by country, including specific requirements for Malawi and South Sudan (Gareth)
+Review feature and journey completion status for each country, noting progress and outstanding tasks (Gareth)
+Sequence migration and publishing tasks based on country-specific dependencies and readiness (Gareth)
+Confirm the number of completed journeys for Kenya and update the project plan accordingly (Gareth)
+Finalize design foundations, including information architecture and templates, and complete stakeholder sign-off by end of June (Gareth, Bertus)
+Clarify approval process and accelerate sign-off for category and product landing templates before end of June (Gareth, Bernice)
+Schedule weekly playback sessions to review template progress and provide early visibility to the technical team (Gareth)
+Finalize and hand over four production-ready template sections to development within one sprint, ensuring content setup for each (Gareth)
+Define onboarding process and deliverables for new team members joining in June (Gareth)
+Define onboarding process and deliverables for new teams, specifying required outputs and timelines (Gareth)
+Conduct a comprehensive content audit, including mapping existing URLs to the new structure and tracking which pages are added, consolidated, rewritten, or removed (Gareth)
+Map delivery approach for each section using current resources and create a view of full sprint teams across all sections (Gareth, Justin, Saba)
+Add the new navigation and footer to updated pages once they are ready (Gareth)
+Change the article variant color on new screens and pages to match the updated design before publishing (Gareth)
+Change article variant color on new screens and pages to match the updated design before publishing (Gareth)
+To do
+Define and confirm the new URL structure for corporate articles and news before starting migration (Gareth)
+To do
+Add analytics layer to corporate articles and news sections to track user interaction and prioritize future decisions (Gareth)
+Confirm the new URL structure for corporate articles and news before starting migration (Gareth)
+Add analytics tracking to news segments to monitor performance (Gareth)
+Begin testing Hong Kong live YouTube integration in June and plan to go live in July, with OMI testing in June and Vallabh reviewing in July (Gareth, OMI, Vallabh)
+Implement DevOps quality gates for all build pipelines and send initial reports to other teams (Gareth)
+Verify the effect of background color changes on migrated modular and article pages and manage styling in the design system (Gareth)
+Capture confidence levels and dependencies for engineering tasks in the project spreadsheet (Gareth)
+Add any additional items required to make the engineering pipeline more robust as part of ongoing work (Gareth)
+Provide the desktop Figma output for new pages to the team as the source of truth for automation (Gareth)
+Finalize and hand over personal section template package to enable new page creation by end of June (Gareth)
+Finalize and deliver personal section template package to enable new page creation by end of July (Gareth)
+Confirm whether OM finance pages currently managed by the team will move to the bank, and clarify next steps based on the outcome (Gareth)
+Ensure each work stream lead enters their team's milestones, priorities, deadlines, confidence levels, and owners into the project spreadsheet (Brent, Zee, Justin)
+Clarify the scope of penetration testing for public web, including both content and journeys, during the discussion with Nzama (Gareth)
+Clarify the scope of penetration testing for public web, including both content and journeys, during the discussion with Nzama (Gareth)
+Research available information from the API to determine its suitability as a data source for catalog and validation purposes (a participant)
+Enable linting checks in the build pipeline to ensure code quality for development (Gareth)
+Finalize four template sections and prepare for handover to development within two weeks (Gareth)
+Drop landing pages and macro sections for corporate and wealth teams within the first two weeks of July (Gareth)
+Lock down navigation structure and scope for each section's landing page to set standards for personal, corporate, and wealth teams (Gareth)
+Lock down navigation structure and scope for each section's landing page to set standards for personal, corporate, and wealth teams (Gareth)
+Drop landing pages and macro sections for corporate and wealth teams within the first two weeks of July (Gareth)
+Hand over signed-off pages to development as content work is completed (Gareth)
+Clarify naming and structure for financial toolkit and news sections to ensure correct placement and navigation (Gareth)
+Change the name of the financial toolkit section to reflect its current purpose (Gareth)
+Clarify naming and structure for financial toolkit and news sections to ensure correct placement and navigation (Gareth)
+Populate the roadmap tab in the working document with all discussed items and supporting evidence from the last two days (all streams)
+Compile all notes, extractions, and recordings from the last two days into a single spreadsheet by end of tomorrow (Gareth, Bertus)
+Circulate supporting documents to the team for review after compiling notes (Gareth)
+Meet with work stream leads to review and align on the completeness and accuracy of the compiled project spreadsheet on Friday (Gareth, Bertus, work stream leads)
+Update the project spreadsheet with each work stream's committed deliverables, confidence levels, dependencies, and constraints (all stream leads)
+Schedule twice-weekly 30-minute leadership check-ins focused on delivery constraints and dependencies (Gareth)
+Create tickets on the boards to represent the committed deliverables and dependencies discussed in the planning session (all stream leads)
+Create tickets on the boards to represent deliverables and dependencies discussed in the planning session (all stream leads)
+To do
+Integrate all team boards into a single Jira construct for unified tracking and reporting (Tsoaeli)
+To do
+Compile a raw integrated roadmap and data set by Friday afternoon, using extracted notes and stream needs (Gareth, Bertus)
+To do
+Schedule a collaborative session next week to review and refine the integrated roadmap and ensure usability (Gareth)
+To do
+Schedule a collaborative session next week to review and refine the integrated roadmap and ensure usability (Gareth)
+Include decommissioning tasks in the project plan and coordinate timing based on deployment stages (Nithin)
+Assess the scope and required prep work for remaining website sections, including identifying tasks for teams and providing advance notice for preparation (Gareth)
+Review dependencies for sales and servicing teams, ensuring navigation information architecture and templates are provided to enable their work (Gareth)
+Evaluate the content and template differences between personal and personal Coetzee sections to identify required adjustments (Gareth)
+Clarify ownership models and establish formal agreements for migrated sites to define business owners and funding responsibilities (Gareth, Reza)
+Document the migration process and conduct a workshop with the country teams to align on requirements and next steps (Gareth)
+Document the content audit and alignment process for country teams and conduct a workshop to clarify requirements and next steps (Gareth)
+Identify and confirm owners for unclear assets such as fund tables and Bulletin, and define their ongoing working model with the team (Gareth, Reza)
+Collect written feedback from all participants on the past two days and suggestions for improving future sessions (all participants)
+Gather virtual feedback from online participants via chat, including thoughts on the last two days and ideas for making sessions more repeatable (online participants)
+Distribute the document containing pictures of today's boards to all participants (Gareth)
+
+
