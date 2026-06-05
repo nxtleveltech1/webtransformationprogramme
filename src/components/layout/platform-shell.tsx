@@ -18,7 +18,7 @@ function PlatformShellInner({
     <div className="bg-om-mesh flex min-h-screen">
       <aside
         className={cn(
-          "sticky top-0 hidden h-screen shrink-0 border-r border-sidebar-border/80 bg-sidebar shadow-2xl shadow-brand-heritage/20 transition-[width] duration-200 lg:block",
+          "sticky top-0 hidden h-svh max-h-svh shrink-0 flex-col overflow-hidden border-r border-sidebar-border/80 bg-sidebar shadow-2xl shadow-brand-heritage/20 transition-[width] duration-200 lg:flex",
           collapsed ? "w-16" : "w-72",
         )}
       >

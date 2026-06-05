@@ -29,7 +29,10 @@ export function AppHeader({ unreadCount = 0 }: { unreadCount?: number }) {
             <Menu className="size-5" />
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="w-80 border-sidebar-border bg-sidebar p-0 text-sidebar-foreground">
+        <SheetContent
+          side="left"
+          className="flex h-full w-80 flex-col gap-0 overflow-hidden border-sidebar-border bg-sidebar p-0 text-sidebar-foreground"
+        >
           <SheetTitle className="sr-only">Navigation</SheetTitle>
           <AppSidebar forceExpanded onNavigate={() => setMobileOpen(false)} />
         </SheetContent>

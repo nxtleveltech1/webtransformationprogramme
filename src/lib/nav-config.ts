@@ -23,6 +23,8 @@ import {
   FileText,
   Bell,
   Contact,
+  BookOpen,
+  BookUser,
   Plug,
   Settings,
   Landmark,
@@ -98,6 +100,8 @@ export const NAV_GROUPS: NavGroup[] = [
       { label: "Resources", href: "/resources", icon: Users2, entity: "resource" },
       { label: "Documents", href: "/documents", icon: FileText, entity: "document" },
       { label: "Evidence Library", href: "/evidence", icon: FileText, entity: "evidence" },
+      { label: "Stakeholder Directory", href: "/stakeholder-directory", icon: BookUser, entity: "people" },
+      { label: "Governance Reference", href: "/governance-reference", icon: BookOpen, entity: "governance" },
     ],
   },
   {

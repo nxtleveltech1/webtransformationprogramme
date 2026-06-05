@@ -133,7 +133,7 @@ export function AppSidebar({
   })).filter((group) => group.items.length > 0);
 
   return (
-    <div className="relative flex h-full flex-col overflow-hidden bg-sidebar text-sidebar-foreground">
+    <div className="relative flex h-full min-h-0 flex-col overflow-hidden bg-sidebar text-sidebar-foreground">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[radial-gradient(circle_at_20%_0%,color-mix(in_srgb,var(--brand-fresh)_32%,transparent),transparent_18rem)]"
         aria-hidden
@@ -182,7 +182,7 @@ export function AppSidebar({
         )}
       </div>
 
-      <ScrollArea className="relative min-h-0 flex-1">
+      <ScrollArea className="relative h-0 min-h-0 flex-1 overflow-hidden">
         <nav className={cn("flex flex-col", collapsed ? "gap-1 p-2" : "gap-4 p-4")} aria-label="Primary">
           {visibleGroups.map((group, groupIndex) => {
             const isGroupCollapsed = Boolean(groupCollapsed[group.label]);

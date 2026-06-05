@@ -19,6 +19,13 @@ import {
   mapPriority,
 } from "./utils";
 import type { SeedContext } from "./fromWorkshopData";
+import {
+  seedDirectoryTaxonomy,
+  seedGlossaryAllSections,
+  seedGovernanceReference,
+  seedPeopleDirectoryExtensions,
+  seedReferenceMappings,
+} from "./governance-reference";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -431,8 +438,12 @@ export async function seedExports(prisma: PrismaClient) {
 
 export async function seedMarkdownAll(ctx: SeedContext) {
   await seedRegisterTables(ctx.prisma);
+  await seedDirectoryTaxonomy(ctx.prisma);
   await seedPeopleAndTeams(ctx.prisma);
-  await seedGlossary(ctx.prisma);
+  await seedPeopleDirectoryExtensions(ctx.prisma);
+  await seedGlossaryAllSections(ctx.prisma);
+  await seedGovernanceReference(ctx.prisma);
+  await seedReferenceMappings(ctx.prisma);
   await seedSystems(ctx.prisma);
   await seedSessions(ctx);
   await seedAnalysis(ctx.prisma);
