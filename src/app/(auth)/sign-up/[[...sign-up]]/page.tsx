@@ -1,15 +1,5 @@
-import { SignUp } from "@clerk/nextjs";
-
-import { clerkAppearance } from "@/lib/clerk-appearance";
+import { SignUpForm } from "@/components/auth/sign-up-form";
 
 export default function SignUpPage() {
-  return (
-    <SignUp
-      appearance={clerkAppearance}
-      routing="path"
-      path="/sign-up"
-      signInUrl="/sign-in"
-      forceRedirectUrl="/dashboard"
-    />
-  );
+  return <SignUpForm />;
 }

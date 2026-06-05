@@ -63,3 +63,33 @@ export function initials(name: string | null | undefined): string {
     .map((p) => p.charAt(0).toUpperCase())
     .join("");
 }
+
+/** Join a person's display name and surname into a full name. */
+export function fullName(
+  person: { displayName: string; surname?: string | null } | null | undefined,
+): string {
+  if (!person) return "\u2014";
+  const full = [person.displayName, person.surname].filter(Boolean).join(" ").trim();
+  return full || person.displayName || "\u2014";
+}
+
+/** Strip basic markdown emphasis/code markers and collapse whitespace. */
+export function stripMarkdown(value: string | null | undefined): string {
+  if (!value) return "";
+  return value
+    .replace(/\*\*|__|`/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
+ * Produce a short, table-friendly role title: strip markdown, then take the
+ * text before the first sentence/clause break (`;`, ` — `, `.`, `(`).
+ * The full narrative remains available in the detail drawer / tooltip.
+ */
+export function conciseRole(value: string | null | undefined): string {
+  const clean = stripMarkdown(value);
+  if (!clean) return "\u2014";
+  const cut = clean.split(/\s+—\s+|[;.(]/)[0]?.trim();
+  return cut || clean;
+}

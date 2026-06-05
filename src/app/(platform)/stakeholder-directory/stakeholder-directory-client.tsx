@@ -29,7 +29,7 @@ import type {
   StakeholderRecord,
   StakeholderDirectoryFilters,
 } from "@/lib/services/stakeholder-directory";
-import { initials, titleCase } from "@/lib/utils";
+import { conciseRole, fullName, initials, stripMarkdown, titleCase } from "@/lib/utils";
 import { updateStakeholder } from "@/server/actions/stakeholders";
 
 type DirectoryData = Awaited<
@@ -127,44 +127,88 @@ export function StakeholderDirectoryClient({
         <div className="flex items-center gap-2">
           <Avatar className="size-7">
             <AvatarFallback className="text-xs">
-              {initials(row.original.displayName)}
+              {initials(fullName(row.original))}
             </AvatarFallback>
           </Avatar>
-          <span className="font-medium">{row.original.displayName}</span>
+          <span className="max-w-[160px] truncate font-medium" title={fullName(row.original)}>
+            {fullName(row.original)}
+          </span>
         </div>
       ),
     },
     {
-      id: "role",
-      header: "Role",
-      accessorFn: (p) => p.roleDescription ?? "",
+      id: "surname",
+      header: "Surname",
+      accessorFn: (p) => p.surname ?? "",
       cell: ({ row }) => (
-        <span className="line-clamp-1">{row.original.roleDescription ?? "\u2014"}</span>
+        <span className="text-sm">{row.original.surname ?? "\u2014"}</span>
+      ),
+    },
+    {
+      id: "role",
+      header: "Role / title",
+      accessorFn: (p) => p.roleDescription ?? "",
+      cell: ({ row }) => {
+        const full = stripMarkdown(row.original.roleDescription) || "\u2014";
+        return (
+          <span className="block max-w-[240px] truncate text-sm" title={full}>
+            {conciseRole(row.original.roleDescription)}
+          </span>
+        );
+      },
+    },
+    {
+      id: "business",
+      header: "Business",
+      cell: ({ row }) => (
+        <span className="block max-w-[140px] truncate text-sm" title={row.original.business?.name ?? ""}>
+          {row.original.business?.name ?? "\u2014"}
+        </span>
+      ),
+    },
+    {
+      id: "cluster",
+      header: "Cluster",
+      cell: ({ row }) => (
+        <span className="block max-w-[120px] truncate text-sm" title={row.original.cluster?.name ?? ""}>
+          {row.original.cluster?.name ?? "\u2014"}
+        </span>
       ),
     },
     {
       id: "area",
       header: "Area",
-      cell: ({ row }) => row.original.area?.name ?? "\u2014",
-    },
-    {
-      id: "business",
-      header: "Business",
-      cell: ({ row }) => row.original.business?.name ?? "\u2014",
-    },
-    {
-      id: "cluster",
-      header: "Cluster",
-      cell: ({ row }) => row.original.cluster?.name ?? "\u2014",
+      cell: ({ row }) => (
+        <span className="block max-w-[150px] truncate text-sm" title={row.original.area?.name ?? ""}>
+          {row.original.area?.name ?? "\u2014"}
+        </span>
+      ),
     },
     {
       id: "programmeRoles",
       header: "Programme roles",
       cell: ({ row }) => (
-        <div className="flex flex-wrap gap-1">
+        <div className="flex max-w-[220px] flex-wrap gap-1">
           {row.original.programmeRoles.length ? (
             row.original.programmeRoles.map((r) => (
               <Badge key={r.id} variant="secondary" className="text-xs">
+                {titleCase(r.roleType)}
+              </Badge>
+            ))
+          ) : (
+            <span className="text-muted-foreground text-xs">{"\u2014"}</span>
+          )}
+        </div>
+      ),
+    },
+    {
+      id: "stakeholderRoles",
+      header: "Stakeholder roles",
+      cell: ({ row }) => (
+        <div className="flex max-w-[200px] flex-wrap gap-1">
+          {row.original.stakeholderRoles.length ? (
+            row.original.stakeholderRoles.map((r) => (
+              <Badge key={r.id} variant="outline" className="text-xs">
                 {titleCase(r.roleType)}
               </Badge>
             ))
@@ -182,7 +226,7 @@ export function StakeholderDirectoryClient({
           return <span className="text-muted-foreground text-xs">Restricted</span>;
         }
         return (
-          <span className="text-xs">
+          <span className="block max-w-[180px] truncate text-xs" title={row.original.email ?? row.original.phone ?? ""}>
             {row.original.email ?? row.original.phone ?? "\u2014"}
           </span>
         );
@@ -191,7 +235,8 @@ export function StakeholderDirectoryClient({
   ];
 
   const exportRows = filtered.map((p) => ({
-    name: p.displayName,
+    name: fullName(p),
+    surname: p.surname ?? "",
     role: p.roleDescription ?? "",
     area: p.area?.name ?? "",
     business: p.business?.name ?? "",
@@ -362,8 +407,8 @@ export function StakeholderDirectoryClient({
             setEditing(false);
           }
         }}
-        title={selected?.displayName ?? "Stakeholder"}
-        description={selected?.roleDescription ?? undefined}
+        title={selected ? fullName(selected) : "Stakeholder"}
+        description={selected ? conciseRole(selected.roleDescription) : undefined}
         footer={
           selected ? (
             <Can action="edit" entity="people">
@@ -381,6 +426,7 @@ export function StakeholderDirectoryClient({
         {selected && !editing && (
           <div className="space-y-6">
             <DetailGrid>
+              <DetailField label="Surname">{selected.surname ?? "\u2014"}</DetailField>
               <DetailField label="Area">{selected.area?.name ?? "\u2014"}</DetailField>
               <DetailField label="Business">{selected.business?.name ?? "\u2014"}</DetailField>
               <DetailField label="Cluster">{selected.cluster?.name ?? "\u2014"}</DetailField>
@@ -401,6 +447,14 @@ export function StakeholderDirectoryClient({
                 {selected.primaryWorkstream?.name ?? "\u2014"}
               </DetailField>
             </DetailGrid>
+            {selected.roleDescription && (
+              <div className="space-y-1">
+                <p className="text-muted-foreground text-xs font-medium uppercase tracking-wide">
+                  Role / title
+                </p>
+                <p className="text-sm">{stripMarkdown(selected.roleDescription)}</p>
+              </div>
+            )}
             <RoleSection title="Teams" items={selected.teamAssignments.map((t) => t.team.name)} />
             <RoleSection
               title="Programme roles"
