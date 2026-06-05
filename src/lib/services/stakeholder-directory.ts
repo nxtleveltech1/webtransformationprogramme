@@ -66,6 +66,7 @@ export async function getStakeholderDirectory(
   const canViewPii = canViewContactDetails(actor.role);
 
   const where = {
+    kind: "PERSON" as const,
     ...(filters.activeOnly !== false ? { active: true } : {}),
     ...(filters.areaId ? { areaId: filters.areaId } : {}),
     ...(filters.businessId ? { businessId: filters.businessId } : {}),
@@ -149,6 +150,7 @@ export async function getStakeholderDirectory(
 export async function getStakeholderDirectorySummary() {
   const data = await getStakeholderDirectory({ activeOnly: true });
   const memberships = await prisma.personTeam.findMany({
+    where: { person: { kind: "PERSON" } },
     include: {
       person: {
         select: { id: true, displayName: true, roleDescription: true, active: true },
@@ -192,7 +194,7 @@ export async function getStakeholderFormOptions() {
         select: { id: true, code: true, name: true },
       }),
       prisma.person.findMany({
-        where: { active: true },
+        where: { active: true, kind: "PERSON" },
         orderBy: { displayName: "asc" },
         select: { id: true, displayName: true },
       }),

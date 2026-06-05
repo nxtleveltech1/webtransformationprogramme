@@ -25,6 +25,7 @@ import {
   Contact,
   BookOpen,
   BookUser,
+  BookA,
   Plug,
   Settings,
   Landmark,
@@ -102,6 +103,7 @@ export const NAV_GROUPS: NavGroup[] = [
       { label: "Evidence Library", href: "/evidence", icon: FileText, entity: "evidence" },
       { label: "Stakeholder Directory", href: "/stakeholder-directory", icon: BookUser, entity: "people" },
       { label: "Governance Reference", href: "/governance-reference", icon: BookOpen, entity: "governance" },
+      { label: "Glossary & Definitions", href: "/glossary", icon: BookA, entity: "glossary" },
     ],
   },
   {

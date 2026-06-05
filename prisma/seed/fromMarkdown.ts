@@ -5,7 +5,6 @@ import {
   ExecutiveSummaryDay,
   ExportArtifactType,
   ExportVariant,
-  GlossaryCategory,
   PrismaClient,
   SessionOutputType,
 } from "@prisma/client";
@@ -170,24 +169,6 @@ export async function seedPeopleAndTeams(prisma: PrismaClient) {
       where: { name: row[0] },
       create: { name: row[0], functionDescription: row[1] },
       update: { functionDescription: row[1] },
-    });
-  }
-}
-
-export async function seedGlossary(prisma: PrismaClient) {
-  const rows = skipHeaderRow(parseMarkdownTable(readPack("01_Context", "glossary.md")));
-  for (const row of rows) {
-    if (!row[0] || row[0] === "Term") continue;
-    const cat = row[0].length <= 6 ? GlossaryCategory.ACRONYM : GlossaryCategory.TERM;
-    await prisma.glossaryTerm.upsert({
-      where: { term: row[0] },
-      create: {
-        term: row[0],
-        meaning: row[1] ?? "",
-        category: cat,
-        confidence: row[2]?.includes("Confirmed") ? Confidence.CONFIRMED : Confidence.INFERRED,
-      },
-      update: { meaning: row[1] ?? "" },
     });
   }
 }

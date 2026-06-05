@@ -14,6 +14,7 @@ export type PersonOption = {
  */
 export async function getPeopleOptions(): Promise<PersonOption[]> {
   const people = await prisma.person.findMany({
+    where: { kind: "PERSON" },
     select: { id: true, displayName: true },
     orderBy: { displayName: "asc" },
   });

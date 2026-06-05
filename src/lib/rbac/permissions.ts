@@ -48,6 +48,7 @@ export type EntityKey =
   | "notification"
   | "report"
   | "governance"
+  | "glossary"
   | "people"
   | "integration"
   | "admin";

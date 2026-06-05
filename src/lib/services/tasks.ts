@@ -24,6 +24,7 @@ export function getTasks(): Promise<TaskWithRelations[]> {
 
 export function getPeopleOptions(): Promise<PersonOption[]> {
   return prisma.person.findMany({
+    where: { kind: "PERSON" },
     select: { id: true, displayName: true },
     orderBy: { displayName: "asc" },
   });

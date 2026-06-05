@@ -1,16 +1,13 @@
 import { prisma } from "@/lib/db";
 
 export async function getGovernanceReferenceData() {
-  const [docs, glossary, mappings] = await Promise.all([
+  const [docs, mappings] = await Promise.all([
     prisma.governanceReferenceDoc.findMany({
       orderBy: { updatedAt: "desc" },
       include: {
         ownerPerson: { select: { id: true, displayName: true } },
         sections: { orderBy: { sortOrder: "asc" } },
       },
-    }),
-    prisma.glossaryTerm.findMany({
-      orderBy: [{ category: "asc" }, { term: "asc" }],
     }),
     prisma.referenceMapping.findMany({
       orderBy: { conceptKey: "asc" },
@@ -29,13 +26,12 @@ export async function getGovernanceReferenceData() {
   return {
     docs,
     torDoc,
-    glossary,
     mappings,
     summary: {
-      glossaryCount: glossary.length,
       mappingCount: mappings.length,
       publishedDocs: docs.filter((d) => d.status === "PUBLISHED").length,
-      categories: [...new Set(glossary.map((g) => g.category))],
+      torSections: torDoc?.sections.length ?? 0,
+      mappedTerms: mappings.filter((m) => m.glossaryTerm).length,
     },
   };
 }

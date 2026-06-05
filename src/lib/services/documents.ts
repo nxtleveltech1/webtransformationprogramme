@@ -19,6 +19,7 @@ export async function getDocumentFormOptions() {
       select: { id: true, name: true, code: true },
     }),
     prisma.person.findMany({
+      where: { kind: "PERSON" },
       orderBy: { displayName: "asc" },
       select: { id: true, displayName: true },
     }),

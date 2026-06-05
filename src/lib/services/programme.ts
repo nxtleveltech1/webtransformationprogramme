@@ -110,6 +110,7 @@ export async function getProgrammeWorkspace() {
 /** People list for owner / lead selects. */
 export function getPeopleOptions() {
   return prisma.person.findMany({
+    where: { kind: "PERSON" },
     orderBy: { displayName: "asc" },
     select: { id: true, displayName: true, roleDescription: true },
   });

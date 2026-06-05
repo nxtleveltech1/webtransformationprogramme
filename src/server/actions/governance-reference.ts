@@ -9,7 +9,6 @@ import {
   requireEntityAction,
 } from "@/lib/rbac/server-guard";
 import {
-  glossaryTermSchema,
   publishGovernanceDocSchema,
   referenceMappingSchema,
 } from "@/lib/validation/governance-reference";
@@ -24,45 +23,6 @@ function permissionFail(error: unknown) {
     return fail(error.message);
   }
   throw error;
-}
-
-export async function upsertGlossaryTerm(input: unknown) {
-  try {
-    await requireEntityAction("governance", "edit");
-    const parsed = parseInput(glossaryTermSchema, input);
-    if (!parsed.success) return parsed.result;
-    const d = parsed.data;
-
-    const term = d.id
-      ? await prisma.glossaryTerm.update({
-          where: { id: d.id },
-          data: {
-            term: d.term,
-            meaning: d.meaning,
-            category: d.category ?? "TERM",
-            confidence: d.confidence ?? "INFERRED",
-          },
-        })
-      : await prisma.glossaryTerm.create({
-          data: {
-            term: d.term,
-            meaning: d.meaning,
-            category: d.category ?? "TERM",
-            confidence: d.confidence ?? "INFERRED",
-          },
-        });
-
-    await writeAudit({
-      entityType: "GlossaryTerm",
-      entityId: term.id,
-      action: d.id ? "update" : "create",
-      payload: { term: term.term },
-    });
-    revalidateGovernanceReference();
-    return ok({ id: term.id }, "Glossary term saved.");
-  } catch (error) {
-    return permissionFail(error);
-  }
 }
 
 export async function publishGovernanceDoc(input: unknown) {

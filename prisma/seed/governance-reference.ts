@@ -3,6 +3,7 @@ import {
   GovernanceDocStatus,
   GovernanceDocType,
   GlossaryCategory,
+  PersonKind,
   PrismaClient,
   ProgrammeRoleType,
   StakeholderRoleType,
@@ -201,6 +202,7 @@ export async function seedPeopleDirectoryExtensions(prisma: PrismaClient) {
       where: { id: personId },
       data: {
         roleDescription: row[1],
+        kind: PersonKind.PERSON,
         confidence: mapConfidence(row[4]),
         areaId: areaId ?? null,
         businessId: businessId ?? null,
@@ -268,6 +270,16 @@ export async function seedPeopleDirectoryExtensions(prisma: PrismaClient) {
   }
 }
 
+/** Column headers that must never be ingested as glossary terms. */
+const GLOSSARY_HEADER_TOKENS = new Set([
+  "term",
+  "acronym",
+  "system",
+  "area",
+  "geography",
+  "geographies",
+]);
+
 export async function seedGlossaryAllSections(prisma: PrismaClient) {
   const content = readPack("01_Context", "glossary.md");
   let currentSection = "Programme & business terms";
@@ -279,12 +291,13 @@ export async function seedGlossaryAllSections(prisma: PrismaClient) {
     }
     if (!line.trim().startsWith("|") || line.includes("---")) continue;
     const cells = line.split("|").slice(1, -1).map((c) => c.trim());
-    if (!cells[0] || cells[0] === "Term" || cells[0] === "Acronym" || cells[0] === "System" || cells[0] === "Area") {
-      continue;
-    }
 
     const term = cells[0];
     const meaning = cells[1] ?? "";
+    // Skip header rows (any variant), separator rows, and rows with no meaning.
+    if (!term || GLOSSARY_HEADER_TOKENS.has(term.toLowerCase())) continue;
+    if (!meaning) continue;
+
     const category = inferGlossaryCategory(currentSection, term);
 
     await prisma.glossaryTerm.upsert({

@@ -1,7 +1,9 @@
 # Reference Map — Concepts to Data Fields & Processes
 
 **System of record:** `ReferenceMapping` table  
-**UI:** Insight → Governance Reference → Reference Map tab
+**UI:** Insight → Governance Reference → **Reference Map** tab (one of two inner tabs alongside
+Terms of Reference). Glossary cross-links in this tab navigate to the dedicated
+**Glossary & Definitions** tab at `/glossary`.
 
 ## Purpose
 

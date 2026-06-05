@@ -8,6 +8,7 @@ import {
   Impact,
   IngestStatus,
   IssueStatus,
+  PersonKind,
   Priority,
   Probability,
   PrismaClient,
@@ -15,6 +16,7 @@ import {
   RiskCategory,
   RegisterType,
 } from "@prisma/client";
+import { resolveCanonical } from "./people-canonical";
 
 export const ROOT = path.resolve(__dirname, "../..");
 export const PACK = path.join(ROOT, "WorkshopPack");
@@ -40,59 +42,12 @@ export function parseMarkdownTable(content: string): string[][] {
 
 const personCache = new Map<string, string>();
 
-const TEAM_OWNER_TOKENS = new Set([
-  "programme",
-  "product",
-  "design",
-  "execution",
-  "publishing",
-  "content",
-  "seo",
-  "omds",
-  "regional",
-  "cross channels",
-  "cross channel",
-  "cc",
-  "participants",
-  "senior team",
-  "design team",
-  "service team",
-  "security team",
-  "group marketing",
-  "programme leadership",
-  "business teams",
-  "technical teams",
-  "brand",
-  "gb",
-  "tbc",
-  "unassigned",
-]);
-
 /** Split compound owner strings on / , ; and " and ". */
 export function splitOwnerTokens(raw: string): string[] {
   return raw
     .split(/\s*(?:\/|,|;|\band\b)\s*/i)
     .map((t) => t.trim())
     .filter(Boolean);
-}
-
-function looksLikePersonName(token: string): boolean {
-  const lower = token.toLowerCase().replace(/\s*\([^)]*\)\s*/g, "").trim();
-  if (!lower || lower === "-" || lower === "unassigned") return false;
-  if (TEAM_OWNER_TOKENS.has(lower)) return false;
-  if (/^(programme|design|execution|publishing|content|seo|omds|regional|cross)/i.test(lower) && !/\s/.test(lower)) {
-    return false;
-  }
-  // Require at least one letter; allow "Gareth Bew", "Nithin", "GB"
-  return /[a-zA-Z]/.test(token) && token.length >= 2;
-}
-
-function parsePersonName(token: string): { displayName: string; surname: string | null } {
-  const cleaned = token.replace(/\s*\([^)]*\)\s*/g, "").trim();
-  const parts = cleaned.split(/\s+/).filter(Boolean);
-  if (parts.length === 0) return { displayName: cleaned, surname: null };
-  if (parts.length === 1) return { displayName: parts[0], surname: null };
-  return { displayName: parts[0], surname: parts.slice(1).join(" ") };
 }
 
 export type PersonNameInput = {
@@ -121,30 +76,42 @@ export function formatOwnerDisplay(
   return formatPersonName(person, text);
 }
 
+/**
+ * Resolve a raw name/owner token to a canonical Person id, creating the Person
+ * (kind = PERSON) on first sight. Groups, functions, titles, and parser
+ * fragments resolve to `null` via {@link resolveCanonical} so no junk Person is
+ * ever minted — callers fall back to their `ownerText` columns instead.
+ */
 export async function getOrCreatePerson(
   prisma: PrismaClient,
   name: string | null | undefined
 ): Promise<string | null> {
   if (!name || name === "-" || name === "Unassigned") return null;
-  const key = name.trim();
-  if (personCache.has(key)) return personCache.get(key)!;
 
-  if (!looksLikePersonName(key)) return null;
+  const canonical = resolveCanonical(name);
+  if (!canonical) return null;
 
-  const { displayName, surname } = parsePersonName(key);
+  if (personCache.has(canonical.key)) return personCache.get(canonical.key)!;
+
+  const { displayName, surname } = canonical;
 
   const existing = await prisma.person.findFirst({
     where: { displayName, surname: surname ?? null },
   });
   if (existing) {
-    personCache.set(key, existing.id);
+    personCache.set(canonical.key, existing.id);
     return existing.id;
   }
 
   const created = await prisma.person.create({
-    data: { displayName, surname, roleDescription: key, confidence: Confidence.INFERRED },
+    data: {
+      displayName,
+      surname,
+      kind: PersonKind.PERSON,
+      confidence: Confidence.INFERRED,
+    },
   });
-  personCache.set(key, created.id);
+  personCache.set(canonical.key, created.id);
   return created.id;
 }
 

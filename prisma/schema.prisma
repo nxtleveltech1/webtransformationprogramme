@@ -200,6 +200,11 @@ enum ContactVisibility {
   NAME_ONLY
 }
 
+enum PersonKind {
+  PERSON
+  GROUP
+}
+
 enum ProgrammeRoleType {
   STREAM_LEAD
   PRODUCT_OWNER
@@ -496,6 +501,7 @@ model Person {
   roleDescription         String?                   @db.Text
   department              String?
   location                String?
+  kind                    PersonKind                @default(PERSON)
   confidence              Confidence                @default(INFERRED)
   active                  Boolean                   @default(true)
   contactVisibility       ContactVisibility         @default(PUBLIC_INTERNAL)
@@ -537,6 +543,7 @@ model Person {
 
   @@unique([displayName, surname])
   @@index([displayName])
+  @@index([kind])
   @@index([areaId])
   @@index([businessId])
   @@index([clusterId])

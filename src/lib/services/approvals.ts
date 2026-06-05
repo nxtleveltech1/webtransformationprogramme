@@ -47,6 +47,7 @@ export async function getApprovalAudit(): Promise<AuditEntry[]> {
 
 export function getApproverOptions(): Promise<PersonOption[]> {
   return prisma.person.findMany({
+    where: { kind: "PERSON" },
     select: { id: true, displayName: true },
     orderBy: { displayName: "asc" },
   });
