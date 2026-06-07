@@ -3,6 +3,7 @@
  * glossary, ToR, and reference mappings. Safe to run on an existing database.
  */
 import { PrismaClient } from "@prisma/client";
+import { seedExternalSteerco } from "./seed/external-steerco";
 import {
   seedDirectoryTaxonomy,
   seedGlossaryAllSections,
@@ -18,6 +19,8 @@ async function main() {
   await seedDirectoryTaxonomy(prisma);
   console.log("Extending people directory...");
   await seedPeopleDirectoryExtensions(prisma);
+  console.log("Seeding external steerco members...");
+  await seedExternalSteerco(prisma);
   console.log("Seeding glossary (all sections)...");
   await seedGlossaryAllSections(prisma);
   console.log("Seeding governance reference (ToR)...");

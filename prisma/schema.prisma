@@ -247,12 +247,23 @@ enum PageTreatment {
   RETIRE
 }
 
+enum ParticipantStatus {
+  CONFIRMED
+  PENDING
+  TO_BE_CONFIRMED
+  INACTIVE
+}
+
 enum StakeholderRoleType {
   SPONSOR
   APPROVER
   SME
   DECISION_MAKER
   INFORMED
+  STEERCING_MEMBER
+  CONSULTATION
+  COMMUNICATION
+  WORKING_TEAM
 }
 
 // ─── Programme & workshop ────────────────────────────────────────────────────
@@ -495,12 +506,15 @@ model Person {
   id                      String                    @id @default(cuid())
   displayName             String
   surname                 String?
+  nickname                String?
   email                   String?
   phone                   String?
   mobile                  String?
+  primaryContact          String?
   roleDescription         String?                   @db.Text
   department              String?
   location                String?
+  participantStatus       ParticipantStatus         @default(CONFIRMED)
   kind                    PersonKind                @default(PERSON)
   confidence              Confidence                @default(INFERRED)
   active                  Boolean                   @default(true)
@@ -627,6 +641,7 @@ model StakeholderRole {
   personId  String
   person    Person              @relation(fields: [personId], references: [id], onDelete: Cascade)
   roleType  StakeholderRoleType
+  roleLabel String?             @db.Text
   scope     String?             @db.Text
   createdAt DateTime            @default(now())
   updatedAt DateTime            @updatedAt

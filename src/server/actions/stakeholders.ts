@@ -12,6 +12,7 @@ import {
   programmeRoleAssignSchema,
   stakeholderArchiveSchema,
   stakeholderCreateSchema,
+  stakeholderRoleAssignSchema,
   stakeholderUpdateSchema,
   teamAssignSchema,
 } from "@/lib/validation/stakeholders";
@@ -41,9 +42,11 @@ export async function createStakeholder(input: unknown) {
       data: {
         displayName: d.displayName,
         surname: d.surname ?? null,
+        nickname: d.nickname ?? null,
         email: d.email ?? null,
         phone: d.phone ?? null,
         mobile: d.mobile ?? null,
+        primaryContact: d.primaryContact ?? null,
         roleDescription: d.roleDescription ?? null,
         department: d.department ?? null,
         location: d.location ?? null,
@@ -54,6 +57,7 @@ export async function createStakeholder(input: unknown) {
         dataOwnerPersonId: d.dataOwnerPersonId ?? null,
         contactVisibility: d.contactVisibility ?? "PUBLIC_INTERNAL",
         confidence: d.confidence ?? "INFERRED",
+        participantStatus: d.participantStatus ?? "CONFIRMED",
       },
     });
 
@@ -82,12 +86,17 @@ export async function updateStakeholder(input: unknown) {
       data: {
         ...(d.displayName !== undefined ? { displayName: d.displayName } : {}),
         ...(d.surname !== undefined ? { surname: d.surname } : {}),
+        ...(d.nickname !== undefined ? { nickname: d.nickname } : {}),
         ...(d.email !== undefined ? { email: d.email } : {}),
         ...(d.phone !== undefined ? { phone: d.phone } : {}),
         ...(d.mobile !== undefined ? { mobile: d.mobile } : {}),
+        ...(d.primaryContact !== undefined ? { primaryContact: d.primaryContact } : {}),
         ...(d.roleDescription !== undefined ? { roleDescription: d.roleDescription } : {}),
         ...(d.department !== undefined ? { department: d.department } : {}),
         ...(d.location !== undefined ? { location: d.location } : {}),
+        ...(d.participantStatus !== undefined
+          ? { participantStatus: d.participantStatus }
+          : {}),
         ...(d.areaId !== undefined ? { areaId: d.areaId } : {}),
         ...(d.businessId !== undefined ? { businessId: d.businessId } : {}),
         ...(d.clusterId !== undefined ? { clusterId: d.clusterId } : {}),
@@ -112,6 +121,48 @@ export async function updateStakeholder(input: unknown) {
     });
     revalidateStakeholderViews();
     return ok({ id: person.id }, "Stakeholder updated.");
+  } catch (error) {
+    return permissionFail(error);
+  }
+}
+
+export async function assignStakeholderRole(input: unknown) {
+  try {
+    await requireEntityAction("people", "assign");
+    const parsed = parseInput(stakeholderRoleAssignSchema, input);
+    if (!parsed.success) return parsed.result;
+    const d = parsed.data;
+
+    const existing = await prisma.stakeholderRole.findFirst({
+      where: {
+        personId: d.personId,
+        roleType: d.roleType,
+        scope: d.scope ?? null,
+      },
+    });
+
+    const assignment = existing
+      ? await prisma.stakeholderRole.update({
+          where: { id: existing.id },
+          data: { roleLabel: d.roleLabel ?? null },
+        })
+      : await prisma.stakeholderRole.create({
+          data: {
+            personId: d.personId,
+            roleType: d.roleType,
+            roleLabel: d.roleLabel ?? null,
+            scope: d.scope ?? null,
+          },
+        });
+
+    await writeAudit({
+      entityType: "StakeholderRole",
+      entityId: assignment.id,
+      action: "assign",
+      payload: { personId: d.personId, roleType: d.roleType },
+    });
+    revalidateStakeholderViews();
+    return ok({ id: assignment.id }, "Stakeholder role assigned.");
   } catch (error) {
     return permissionFail(error);
   }

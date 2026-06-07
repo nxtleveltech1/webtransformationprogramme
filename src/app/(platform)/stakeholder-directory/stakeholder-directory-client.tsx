@@ -61,7 +61,37 @@ const STAKEHOLDER_ROLES = [
   "SME",
   "DECISION_MAKER",
   "INFORMED",
+  "STEERCING_MEMBER",
+  "CONSULTATION",
+  "COMMUNICATION",
+  "WORKING_TEAM",
 ] as const;
+
+const PARTICIPANT_STATUSES = [
+  "CONFIRMED",
+  "PENDING",
+  "TO_BE_CONFIRMED",
+  "INACTIVE",
+] as const;
+
+const CONFIDENCE_LEVELS = [
+  "CONFIRMED",
+  "INFERRED",
+  "REQUIRES_VALIDATION",
+  "UNCONFIRMED",
+] as const;
+
+function formatStakeholderRole(role: {
+  roleType: string;
+  roleLabel?: string | null;
+  scope?: string | null;
+}) {
+  const parts = [
+    role.roleLabel ?? titleCase(role.roleType),
+    role.scope ? `(${role.scope})` : null,
+  ].filter(Boolean);
+  return parts.join(" ");
+}
 
 export function StakeholderDirectoryClient({
   data,
@@ -106,6 +136,8 @@ export function StakeholderDirectoryClient({
           p.surname,
           p.roleDescription,
           p.department,
+          p.primaryContact,
+          p.nickname,
           p.area?.name,
           p.business?.name,
           p.cluster?.name,
@@ -122,7 +154,7 @@ export function StakeholderDirectoryClient({
   const columns: ColumnDef<StakeholderRecord>[] = [
     {
       accessorKey: "displayName",
-      header: "Name",
+      header: "First name",
       cell: ({ row }) => (
         <div className="flex items-center gap-2">
           <Avatar className="size-7">
@@ -130,8 +162,8 @@ export function StakeholderDirectoryClient({
               {initials(fullName(row.original))}
             </AvatarFallback>
           </Avatar>
-          <span className="max-w-[160px] truncate font-medium" title={fullName(row.original)}>
-            {fullName(row.original)}
+          <span className="max-w-[160px] truncate font-medium" title={row.original.displayName}>
+            {row.original.displayName}
           </span>
         </div>
       ),
@@ -176,6 +208,36 @@ export function StakeholderDirectoryClient({
       ),
     },
     {
+      id: "department",
+      header: "Department",
+      accessorFn: (p) => p.department ?? "",
+      cell: ({ row }) => (
+        <span className="block max-w-[120px] truncate text-sm" title={row.original.department ?? ""}>
+          {row.original.department ?? "\u2014"}
+        </span>
+      ),
+    },
+    {
+      id: "primaryContact",
+      header: "Primary contact",
+      accessorFn: (p) => p.primaryContact ?? "",
+      cell: ({ row }) => (
+        <span className="block max-w-[120px] truncate text-sm" title={row.original.primaryContact ?? ""}>
+          {row.original.primaryContact ?? "\u2014"}
+        </span>
+      ),
+    },
+    {
+      id: "participantStatus",
+      header: "Status",
+      accessorFn: (p) => p.participantStatus,
+      cell: ({ row }) => (
+        <Badge variant="outline" className="text-xs">
+          {titleCase(row.original.participantStatus)}
+        </Badge>
+      ),
+    },
+    {
       id: "area",
       header: "Area",
       cell: ({ row }) => (
@@ -209,7 +271,7 @@ export function StakeholderDirectoryClient({
           {row.original.stakeholderRoles.length ? (
             row.original.stakeholderRoles.map((r) => (
               <Badge key={r.id} variant="outline" className="text-xs">
-                {titleCase(r.roleType)}
+                {formatStakeholderRole(r)}
               </Badge>
             ))
           ) : (
@@ -235,17 +297,24 @@ export function StakeholderDirectoryClient({
   ];
 
   const exportRows = filtered.map((p) => ({
-    name: fullName(p),
+    firstName: p.displayName,
     surname: p.surname ?? "",
+    nickname: p.nickname ?? "",
     role: p.roleDescription ?? "",
+    department: p.department ?? "",
+    primaryContact: p.primaryContact ?? "",
+    status: titleCase(p.participantStatus),
+    confidence: titleCase(p.confidence),
     area: p.area?.name ?? "",
     business: p.business?.name ?? "",
     cluster: p.cluster?.name ?? "",
+    location: p.location ?? "",
     teams: p.teamAssignments.map((t) => t.team.name).join("; "),
     programmeRoles: p.programmeRoles.map((r) => titleCase(r.roleType)).join("; "),
-    stakeholderRoles: p.stakeholderRoles.map((s) => titleCase(s.roleType)).join("; "),
+    stakeholderRoles: p.stakeholderRoles.map((s) => formatStakeholderRole(s)).join("; "),
     email: data.canViewPii ? (p.email ?? "") : "",
     phone: data.canViewPii ? (p.phone ?? "") : "",
+    mobile: data.canViewPii ? (p.mobile ?? "") : "",
   }));
 
   async function handleSave(e: React.FormEvent<HTMLFormElement>) {
@@ -256,9 +325,12 @@ export function StakeholderDirectoryClient({
     const result = await updateStakeholder({
       id: selected.id,
       displayName: String(form.get("displayName") ?? ""),
+      surname: String(form.get("surname") ?? ""),
+      nickname: String(form.get("nickname") ?? ""),
       email: String(form.get("email") ?? ""),
       phone: String(form.get("phone") ?? ""),
       mobile: String(form.get("mobile") ?? ""),
+      primaryContact: String(form.get("primaryContact") ?? ""),
       roleDescription: String(form.get("roleDescription") ?? ""),
       department: String(form.get("department") ?? ""),
       location: String(form.get("location") ?? ""),
@@ -266,7 +338,10 @@ export function StakeholderDirectoryClient({
       businessId: String(form.get("businessId") ?? ""),
       clusterId: String(form.get("clusterId") ?? ""),
       primaryWorkstreamId: String(form.get("primaryWorkstreamId") ?? ""),
+      dataOwnerPersonId: String(form.get("dataOwnerPersonId") ?? ""),
       contactVisibility: String(form.get("contactVisibility") ?? "PUBLIC_INTERNAL"),
+      confidence: String(form.get("confidence") ?? "INFERRED"),
+      participantStatus: String(form.get("participantStatus") ?? "CONFIRMED"),
     });
     setSaving(false);
     if (result.ok) {
@@ -426,7 +501,11 @@ export function StakeholderDirectoryClient({
         {selected && !editing && (
           <div className="space-y-6">
             <DetailGrid>
+              <DetailField label="First name">{selected.displayName}</DetailField>
               <DetailField label="Surname">{selected.surname ?? "\u2014"}</DetailField>
+              <DetailField label="Nickname">{selected.nickname ?? "\u2014"}</DetailField>
+              <DetailField label="Primary contact">{selected.primaryContact ?? "\u2014"}</DetailField>
+              <DetailField label="Status">{titleCase(selected.participantStatus)}</DetailField>
               <DetailField label="Area">{selected.area?.name ?? "\u2014"}</DetailField>
               <DetailField label="Business">{selected.business?.name ?? "\u2014"}</DetailField>
               <DetailField label="Cluster">{selected.cluster?.name ?? "\u2014"}</DetailField>
@@ -446,6 +525,11 @@ export function StakeholderDirectoryClient({
               <DetailField label="Workstream">
                 {selected.primaryWorkstream?.name ?? "\u2014"}
               </DetailField>
+              <DetailField label="Data steward">
+                {selected.dataOwner
+                  ? fullName(selected.dataOwner)
+                  : "\u2014"}
+              </DetailField>
             </DetailGrid>
             {selected.roleDescription && (
               <div className="space-y-1">
@@ -461,8 +545,8 @@ export function StakeholderDirectoryClient({
               items={selected.programmeRoles.map((r) => titleCase(r.roleType))}
             />
             <RoleSection
-              title="Stakeholder roles (RACI)"
-              items={selected.stakeholderRoles.map((r) => titleCase(r.roleType))}
+              title="Stakeholder roles"
+              items={selected.stakeholderRoles.map((r) => formatStakeholderRole(r))}
             />
             <p className="text-muted-foreground text-xs">
               Person ID: {selected.id} — used for task and action owner assignment.
@@ -472,14 +556,41 @@ export function StakeholderDirectoryClient({
 
         {selected && editing && (
           <form className="space-y-4" onSubmit={handleSave}>
-            <div className="space-y-1">
-              <Label htmlFor="displayName">Display name</Label>
-              <Input
-                id="displayName"
-                name="displayName"
-                defaultValue={selected.displayName}
-                required
-              />
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="space-y-1">
+                <Label htmlFor="displayName">First name</Label>
+                <Input
+                  id="displayName"
+                  name="displayName"
+                  defaultValue={selected.displayName}
+                  required
+                />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="surname">Surname</Label>
+                <Input
+                  id="surname"
+                  name="surname"
+                  defaultValue={selected.surname ?? ""}
+                />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="nickname">Nickname</Label>
+                <Input
+                  id="nickname"
+                  name="nickname"
+                  defaultValue={selected.nickname ?? ""}
+                  placeholder="e.g. Lennie"
+                />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="primaryContact">Primary contact</Label>
+                <Input
+                  id="primaryContact"
+                  name="primaryContact"
+                  defaultValue={selected.primaryContact ?? ""}
+                />
+              </div>
             </div>
             <div className="space-y-1">
               <Label htmlFor="roleDescription">Role description</Label>
@@ -504,11 +615,19 @@ export function StakeholderDirectoryClient({
                 <Input id="mobile" name="mobile" defaultValue={selected.mobile ?? ""} />
               </div>
               <div className="space-y-1">
-                <Label htmlFor="department">Department</Label>
+                <Label htmlFor="department">Department / group</Label>
                 <Input
                   id="department"
                   name="department"
                   defaultValue={selected.department ?? ""}
+                />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="location">Location</Label>
+                <Input
+                  id="location"
+                  name="location"
+                  defaultValue={selected.location ?? ""}
                 />
               </div>
             </div>
@@ -555,6 +674,33 @@ export function StakeholderDirectoryClient({
                   { value: "RESTRICTED", label: "Restricted" },
                   { value: "NAME_ONLY", label: "Name only" },
                 ]}
+              />
+              <SelectField
+                name="confidence"
+                label="Data confidence"
+                defaultValue={selected.confidence}
+                options={CONFIDENCE_LEVELS.map((c) => ({
+                  value: c,
+                  label: titleCase(c),
+                }))}
+              />
+              <SelectField
+                name="participantStatus"
+                label="Participation status"
+                defaultValue={selected.participantStatus}
+                options={PARTICIPANT_STATUSES.map((s) => ({
+                  value: s,
+                  label: titleCase(s),
+                }))}
+              />
+              <SelectField
+                name="dataOwnerPersonId"
+                label="Data steward"
+                defaultValue={selected.dataOwnerPersonId ?? ""}
+                options={formOptions.people.map((p) => ({
+                  value: p.id,
+                  label: fullName(p),
+                }))}
               />
             </div>
             <Button type="submit" disabled={saving}>

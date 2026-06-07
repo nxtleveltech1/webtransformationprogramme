@@ -13,7 +13,7 @@ const personInclude = {
   business: { select: { id: true, key: true, name: true } },
   cluster: { select: { id: true, key: true, name: true, audienceLabel: true } },
   primaryWorkstream: { select: { id: true, code: true, name: true } },
-  dataOwner: { select: { id: true, displayName: true } },
+  dataOwner: { select: { id: true, displayName: true, surname: true } },
   teamAssignments: {
     include: { team: { select: { id: true, name: true } } },
   },
@@ -88,6 +88,8 @@ export async function getStakeholderDirectory(
             { surname: { contains: filters.query, mode: "insensitive" as const } },
             { roleDescription: { contains: filters.query, mode: "insensitive" as const } },
             { department: { contains: filters.query, mode: "insensitive" as const } },
+            { primaryContact: { contains: filters.query, mode: "insensitive" as const } },
+            { nickname: { contains: filters.query, mode: "insensitive" as const } },
           ],
         }
       : {}),
@@ -196,7 +198,7 @@ export async function getStakeholderFormOptions() {
       prisma.person.findMany({
         where: { active: true, kind: "PERSON" },
         orderBy: { displayName: "asc" },
-        select: { id: true, displayName: true },
+        select: { id: true, displayName: true, surname: true },
       }),
     ]);
 

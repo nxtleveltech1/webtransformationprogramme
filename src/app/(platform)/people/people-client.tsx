@@ -13,7 +13,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { initials, titleCase } from "@/lib/utils";
+import { fullName, initials, titleCase } from "@/lib/utils";
 import type { PersonWithRelations, TeamWithMembers } from "@/lib/services/people";
 
 export function PeopleClient({
@@ -31,16 +31,24 @@ export function PeopleClient({
   const columns: ColumnDef<PersonWithRelations>[] = [
     {
       accessorKey: "displayName",
-      header: "Name",
+      header: "First name",
       cell: ({ row }) => (
         <div className="flex items-center gap-2">
           <Avatar className="size-7">
             <AvatarFallback className="text-xs">
-              {initials(row.original.displayName)}
+              {initials(fullName(row.original))}
             </AvatarFallback>
           </Avatar>
           <span className="font-medium">{row.original.displayName}</span>
         </div>
+      ),
+    },
+    {
+      id: "surname",
+      header: "Surname",
+      accessorFn: (p) => p.surname ?? "",
+      cell: ({ row }) => (
+        <span className="text-sm">{row.original.surname ?? "\u2014"}</span>
       ),
     },
     {
@@ -88,7 +96,8 @@ export function PeopleClient({
   ];
 
   const exportRows = people.map((p) => ({
-    name: p.displayName,
+    firstName: p.displayName,
+    surname: p.surname ?? "",
     role: p.roleDescription ?? "",
     teams: p.teamAssignments.map((t) => t.team.name).join("; "),
     stakeholderRoles: p.stakeholderRoles.map((s) => titleCase(s.roleType)).join("; "),
