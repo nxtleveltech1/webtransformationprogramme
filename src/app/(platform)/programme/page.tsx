@@ -90,16 +90,16 @@ export default async function ProgrammePage() {
         />
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <MetricCard label="Workstreams" value={counts.workstreams} icon={Network} href="/workstreams" />
-          <MetricCard label="Projects" value={counts.projects} icon={FolderKanban} href="/projects" />
-          <MetricCard label="Open actions" value={counts.openActions} icon={ListChecks} tone="info" href="/tasks" />
-          <MetricCard label="Success metrics" value={counts.metrics} icon={Target} tone="success" />
+          <MetricCard label="Workstreams" value={counts.workstreams} icon={Network} accent="naartjie" href="/workstreams" />
+          <MetricCard label="Projects" value={counts.projects} icon={FolderKanban} accent="naartjie" href="/projects" />
+          <MetricCard label="Open actions" value={counts.openActions} icon={ListChecks} tone="info" accent="naartjie" href="/tasks" />
+          <MetricCard label="Success metrics" value={counts.metrics} icon={Target} tone="success" accent="sky" />
         </div>
 
         <div className="grid gap-4 sm:grid-cols-3">
-          <MetricCard label="Open risks" value={counts.risks} icon={AlertTriangle} tone="danger" href="/risks" />
-          <MetricCard label="Open issues" value={counts.issues} icon={Bug} tone="warning" href="/issues" />
-          <MetricCard label="Open dependencies" value={counts.dependencies} icon={GitBranch} tone="info" href="/dependencies" />
+          <MetricCard label="Open risks" value={counts.risks} icon={AlertTriangle} tone="danger" accent="cerise" href="/risks" />
+          <MetricCard label="Open issues" value={counts.issues} icon={Bug} tone="warning" accent="cerise" href="/issues" />
+          <MetricCard label="Open dependencies" value={counts.dependencies} icon={GitBranch} tone="info" accent="naartjie" href="/dependencies" />
         </div>
 
         <div className="grid gap-6 lg:grid-cols-3 xl:grid-cols-4">
@@ -144,7 +144,7 @@ export default async function ProgrammePage() {
         </div>
 
         {programme.scopeOptions.length > 0 && (
-          <Card className="from-rag-amber/10 border-rag-amber/30 bg-gradient-to-br to-transparent">
+          <Card className="ci-accent-card ci-accent-naartjie border-rag-amber/30">
             <CardHeader>
               <SectionHeader
                 title="The defining question — scope tension"
@@ -351,7 +351,7 @@ const SCOPE_ACCENTS = [
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="space-y-1">
-      <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">{label}</p>
+      <p className="text-muted-foreground text-xs font-medium tracking-normal uppercase">{label}</p>
       <div className="text-sm whitespace-pre-wrap">{children}</div>
     </div>
   );
@@ -367,7 +367,7 @@ function MetricGroup({
   if (metrics.length === 0) return null;
   return (
     <div className="space-y-1.5">
-      <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">{title}</p>
+      <p className="text-muted-foreground text-xs font-medium tracking-normal uppercase">{title}</p>
       <ul className="space-y-1">
         {metrics.map((m) => (
           <li key={m.id} className="flex items-center gap-2 text-sm">

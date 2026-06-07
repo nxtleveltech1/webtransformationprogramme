@@ -45,10 +45,10 @@ function NavLink({
       aria-current={active ? "page" : undefined}
       aria-label={collapsed ? item.label : undefined}
       className={cn(
-        "group relative flex items-center overflow-hidden rounded-xl transition-all",
+        "group relative flex items-center overflow-hidden rounded-md transition-colors",
         collapsed ? "justify-center p-2" : "gap-3 px-3 py-2.5 text-sm",
         active
-          ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold shadow-lg shadow-black/15 ring-1 ring-white/10"
+          ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold ring-1 ring-white/10"
           : "text-sidebar-foreground/72 hover:bg-sidebar-accent/45 hover:text-sidebar-accent-foreground",
       )}
     >
@@ -64,7 +64,7 @@ function NavLink({
       )}
       <span
         className={cn(
-          "flex shrink-0 items-center justify-center rounded-lg transition-colors",
+          "flex shrink-0 items-center justify-center rounded-md transition-colors",
           collapsed ? "size-9" : "size-8",
           active
             ? accent === "heritage"
@@ -135,10 +135,6 @@ export function AppSidebar({
   return (
     <div className="relative flex h-full min-h-0 flex-col overflow-hidden bg-sidebar text-sidebar-foreground">
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[radial-gradient(circle_at_20%_0%,color-mix(in_srgb,var(--brand-fresh)_32%,transparent),transparent_18rem)]"
-        aria-hidden
-      />
-      <div
         className={cn(
           "relative border-sidebar-border flex shrink-0 flex-col border-b",
           collapsed ? "items-center px-2 py-4" : "min-h-24 justify-end gap-4 px-5 pb-5 pt-4",
@@ -149,7 +145,7 @@ export function AppSidebar({
           onClick={onNavigate}
           className={cn("group flex items-center", collapsed ? "justify-center" : "gap-3")}
         >
-          <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-brand-white shadow-lg shadow-black/20 ring-1 ring-white/60 transition-transform group-hover:scale-105">
+          <span className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-brand-white shadow-sm ring-1 ring-white/60 transition-transform group-hover:scale-[1.03]">
             <Image
               src="/brand/om-anchor-tick.svg"
               alt=""
@@ -161,18 +157,18 @@ export function AppSidebar({
           </span>
           {!collapsed && (
             <span className="min-w-0">
-              <span className="block text-[11px] font-extrabold tracking-[0.22em] text-sidebar-foreground/70 uppercase">
+              <span className="block text-xs font-semibold tracking-normal text-sidebar-foreground/70 uppercase">
                 Old Mutual
               </span>
-              <span className="block truncate text-base font-semibold tracking-tight">
+              <span className="block truncate text-base font-semibold tracking-normal">
                 Web Transformation
               </span>
             </span>
           )}
         </Link>
         {!collapsed && (
-          <div className="rounded-2xl border border-sidebar-border/80 bg-sidebar-accent/50 px-3 py-2">
-            <p className="text-[10px] font-semibold tracking-[0.18em] text-sidebar-foreground/60 uppercase">
+          <div className="rounded-lg border border-sidebar-border/80 bg-sidebar-accent/45 px-3 py-2">
+            <p className="text-xs font-semibold tracking-normal text-sidebar-foreground/60 uppercase">
               Programme Control
             </p>
             <p className="mt-0.5 text-xs text-sidebar-foreground/82">
@@ -220,7 +216,7 @@ export function AppSidebar({
                   onClick={() => toggleGroup(group.label)}
                   aria-expanded={!isGroupCollapsed}
                   aria-controls={contentId}
-                  className="flex items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-[10px] font-bold tracking-[0.16em] text-sidebar-foreground/56 uppercase transition-colors hover:bg-sidebar-accent/40 hover:text-sidebar-foreground/90"
+                  className="flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-xs font-semibold tracking-normal text-sidebar-foreground/56 uppercase transition-colors hover:bg-sidebar-accent/40 hover:text-sidebar-foreground/90"
                 >
                   <span className="flex items-center gap-2">
                     <span
@@ -279,15 +275,13 @@ export function AppSidebar({
           </Button>
         ) : (
           <>
-            <div className="rounded-2xl bg-gradient-om-heritage-fresh p-[1px]">
-              <div className="rounded-[calc(var(--radius)+0.25rem)] bg-sidebar px-3 py-3">
-                <p className="text-[10px] font-bold tracking-[0.18em] text-sidebar-foreground/58 uppercase">
-                  CI compliant
-                </p>
-                <p className="mt-1 text-xs leading-relaxed text-sidebar-foreground/78">
-                  Primary green system with functional RAG exceptions.
-                </p>
-              </div>
+            <div className="rounded-lg border border-sidebar-border/80 bg-sidebar-accent/35 px-3 py-3">
+              <p className="text-xs font-semibold tracking-normal text-sidebar-foreground/58 uppercase">
+                CI compliant
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-sidebar-foreground/78">
+                Domain accents stay below the primary green system.
+              </p>
             </div>
             {!forceExpanded && (
               <Button

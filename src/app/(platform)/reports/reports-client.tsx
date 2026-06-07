@@ -81,7 +81,7 @@ function ReportShell({
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
+        <h2 className="text-lg font-semibold tracking-normal">{title}</h2>
         {description && (
           <p className="text-muted-foreground text-sm">{description}</p>
         )}
@@ -249,11 +249,11 @@ function ExecutiveReport({ data }: { data: ReportsData }) {
             ["Evidence links", data.controlSummary.evidenceLinks],
             ["Evidence follow-up", data.controlSummary.evidenceFollowUps],
           ].map(([label, value]) => (
-            <div key={label} className="rounded-2xl border bg-card/80 p-4">
-              <p className="text-[11px] font-bold tracking-[0.16em] text-muted-foreground uppercase">
+            <div key={label} className="rounded-lg border bg-card p-4">
+              <p className="text-xs font-semibold tracking-normal text-muted-foreground uppercase">
                 {label}
               </p>
-              <p className="mt-2 text-2xl font-black tabular-nums">{value}</p>
+              <p className="mt-2 text-2xl font-bold tabular-nums">{value}</p>
             </div>
           ))}
         </CardContent>

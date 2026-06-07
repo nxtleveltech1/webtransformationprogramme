@@ -84,7 +84,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="surface-om-card flex flex-col gap-3 rounded-2xl border p-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="surface-om-card flex flex-col gap-3 rounded-lg border p-3 sm:flex-row sm:items-center sm:justify-between">
         <InputGroup className="bg-card sm:max-w-sm">
           <InputGroupAddon>
             <Search className="size-4" />
@@ -124,13 +124,13 @@ export function DataTable<TData, TValue>({
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border bg-card/95 shadow-sm">
+      <div className="overflow-hidden rounded-lg border bg-card shadow-sm">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((hg) => (
-              <TableRow key={hg.id} className="bg-primary/5 hover:bg-primary/5">
+              <TableRow key={hg.id} className="bg-muted/55 hover:bg-muted/55">
                 {hg.headers.map((header) => (
-                  <TableHead key={header.id} className="h-11 text-[11px] font-bold tracking-[0.12em] uppercase">
+                  <TableHead key={header.id} className="h-11 text-xs font-semibold tracking-normal uppercase">
                     {header.isPlaceholder ? null : header.column.getCanSort() ? (
                       <button
                         type="button"
@@ -155,7 +155,7 @@ export function DataTable<TData, TValue>({
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                   onClick={onRowClick ? () => onRowClick(row.original) : undefined}
-                  className={onRowClick ? "cursor-pointer hover:bg-primary/5" : undefined}
+                  className={onRowClick ? "cursor-pointer hover:bg-muted/40" : undefined}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id} className="h-12">
@@ -175,8 +175,8 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
 
-      <div className="flex flex-col gap-3 rounded-2xl border bg-card/70 px-3 py-2 sm:flex-row sm:items-center sm:justify-between">
-        <Badge variant="outline" className="border-primary/20 bg-primary/5 text-primary">
+      <div className="flex flex-col gap-3 rounded-lg border bg-card px-3 py-2 sm:flex-row sm:items-center sm:justify-between">
+        <Badge variant="outline" className="bg-muted text-muted-foreground">
           {table.getFilteredRowModel().rows.length} record(s)
         </Badge>
         <div className="flex items-center gap-2">

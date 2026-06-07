@@ -5,38 +5,42 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 type Tone = "default" | "success" | "warning" | "danger" | "info";
+type Accent = "heritage" | "naartjie" | "cerise" | "sky" | "sun";
 
-const TONE: Record<Tone, { card: string; icon: string; value: string; accent: string }> = {
+const TONE: Record<Tone, { icon: string; value: string; defaultAccent: Accent }> = {
   default: {
-    card: "",
-    icon: "text-brand-heritage bg-primary/10",
+    icon: "bg-muted text-brand-heritage",
     value: "text-foreground",
-    accent: "bg-gradient-om-heritage-fresh",
+    defaultAccent: "heritage",
   },
   success: {
-    card: "",
-    icon: "text-rag-green bg-rag-green/10",
-    value: "text-rag-green",
-    accent: "bg-gradient-om-heritage-fresh",
+    icon: "bg-rag-green/10 text-rag-green",
+    value: "text-foreground",
+    defaultAccent: "heritage",
   },
   warning: {
-    card: "ci-accent-card ci-accent-sun",
-    icon: "bg-[var(--ci-accent-soft)] text-foreground",
+    icon: "bg-rag-amber/10 text-foreground",
     value: "text-foreground",
-    accent: "ci-accent-marker",
+    defaultAccent: "sun",
   },
   danger: {
-    card: "ci-accent-card ci-accent-cerise",
-    icon: "bg-[var(--ci-accent-soft)] text-foreground",
+    icon: "bg-rag-red/10 text-rag-red",
     value: "text-foreground",
-    accent: "ci-accent-marker",
+    defaultAccent: "cerise",
   },
   info: {
-    card: "ci-accent-card ci-accent-sky",
     icon: "bg-[var(--ci-accent-soft)] text-foreground",
     value: "text-foreground",
-    accent: "ci-accent-marker",
+    defaultAccent: "sky",
   },
+};
+
+const ACCENT_CLASS: Record<Accent, string> = {
+  heritage: "ci-accent-heritage",
+  naartjie: "ci-accent-naartjie",
+  cerise: "ci-accent-cerise",
+  sky: "ci-accent-sky",
+  sun: "ci-accent-sun",
 };
 
 export function MetricCard({
@@ -44,6 +48,7 @@ export function MetricCard({
   value,
   icon: Icon,
   tone = "default",
+  accent,
   hint,
   href,
   className,
@@ -52,34 +57,32 @@ export function MetricCard({
   value: React.ReactNode;
   icon?: LucideIcon;
   tone?: Tone;
+  accent?: Accent;
   hint?: string;
   href?: string;
   className?: string;
 }) {
   const t = TONE[tone];
+  const accentClass = ACCENT_CLASS[accent ?? t.defaultAccent];
   const inner = (
     <Card
       className={cn(
-        "surface-om-card relative h-full overflow-hidden py-0 transition-all duration-300",
-        t.card,
-        href && "group-hover:-translate-y-0.5 group-hover:border-primary/40 group-hover:shadow-xl group-hover:shadow-brand-heritage/10",
+        "surface-om-card relative h-full overflow-hidden py-0 transition-colors duration-200",
+        accentClass,
+        href && "group-hover:border-primary/30 group-hover:shadow-md",
         className,
       )}
     >
       <span
-        className={cn("absolute inset-x-0 top-0 h-1", t.accent)}
+        className="ci-accent-marker absolute inset-x-0 top-0 h-0.5"
         aria-hidden
       />
-      <span
-        className="pointer-events-none absolute -right-10 -top-10 size-28 rounded-full bg-brand-future/10 blur-2xl"
-        aria-hidden
-      />
-      <CardContent className="relative flex items-start gap-4 p-5 pt-6">
+      <CardContent className="flex items-start gap-3 p-4 pt-5">
         <div className="min-w-0 flex-1">
-          <p className="truncate text-[11px] font-bold tracking-[0.16em] text-muted-foreground uppercase">
+          <p className="truncate text-xs font-semibold tracking-normal text-muted-foreground uppercase">
             {label}
           </p>
-          <p className={cn("mt-2 text-3xl font-extrabold tracking-tight tabular-nums", t.value)}>
+          <p className={cn("mt-2 text-2xl font-bold tracking-normal tabular-nums", t.value)}>
             {value}
           </p>
           {hint && <p className="mt-1 truncate text-xs font-medium text-muted-foreground">{hint}</p>}
@@ -87,7 +90,7 @@ export function MetricCard({
         {Icon && (
           <span
             className={cn(
-              "flex size-11 shrink-0 items-center justify-center rounded-2xl ring-1 ring-current/10",
+              "flex size-10 shrink-0 items-center justify-center rounded-md ring-1 ring-current/10",
               t.icon,
             )}
           >
@@ -102,7 +105,7 @@ export function MetricCard({
     return (
       <Link
         href={href}
-        className="group rounded-2xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+        className="group rounded-lg focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
       >
         {inner}
       </Link>

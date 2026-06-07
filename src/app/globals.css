@@ -4,11 +4,11 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --radius: 0.875rem;
+  --radius: 0.5625rem;
 
   /* ── Old Mutual CI primitives (Interim CI, May 2026) ───────────────────
      Primary greens ~80% of UI. Secondary ≤10%, never solid fills or copy text.
-     Approved gradients: Heritage→Future; Heritage→Future→Sun; Heritage→Fresh (45°). */
+     Approved live gradient: Heritage→Fresh (45°) for hero/login moments only. */
   --brand-heritage: #009677;
   --brand-fresh: #50b848;
   --brand-future: #8dc63f;
@@ -20,8 +20,8 @@
 
   --brand-ink: #062f27;
   --brand-forest: #00483d;
-  --brand-mist: #f4fbf7;
-  --brand-line: #d5e9e1;
+  --brand-mist: #f7f8f5;
+  --brand-line: #dfe7e2;
 
   /* Semantic UI (shadcn) - wired to CI primitives without washing every surface green */
   --background: var(--brand-mist);
@@ -32,15 +32,15 @@
   --popover-foreground: var(--foreground);
   --primary: var(--brand-heritage);
   --primary-foreground: var(--brand-white);
-  --secondary: color-mix(in srgb, var(--brand-heritage) 7%, white);
+  --secondary: #f1f4f1;
   --secondary-foreground: var(--brand-forest);
-  --muted: color-mix(in srgb, var(--brand-heritage) 5%, white);
+  --muted: #f4f6f3;
   --muted-foreground: color-mix(in srgb, var(--brand-ink) 62%, white);
-  --accent: color-mix(in srgb, var(--brand-future) 16%, white);
+  --accent: #edf3ee;
   --accent-foreground: var(--brand-forest);
   --destructive: oklch(0.6 0.186 24.7);
   --border: var(--brand-line);
-  --input: color-mix(in srgb, var(--brand-heritage) 18%, white);
+  --input: #d7e1dc;
   --ring: var(--brand-heritage);
 
   /* Functional RAG (green aligned to OM Fresh) */
@@ -69,22 +69,22 @@
 .dark {
   --brand-ink: color-mix(in srgb, white 96%, var(--brand-future));
   --brand-forest: #021d19;
-  --brand-mist: color-mix(in srgb, var(--brand-heritage) 22%, black);
-  --brand-line: color-mix(in srgb, white 10%, transparent);
+  --brand-mist: #0c1714;
+  --brand-line: color-mix(in srgb, white 12%, transparent);
 
   --background: var(--brand-mist);
   --foreground: color-mix(in srgb, white 96%, var(--brand-future));
-  --card: color-mix(in srgb, var(--brand-heritage) 18%, black);
+  --card: #111f1b;
   --card-foreground: var(--foreground);
   --popover: color-mix(in srgb, var(--brand-heritage) 18%, black);
   --popover-foreground: var(--foreground);
   --primary: color-mix(in srgb, var(--brand-heritage) 55%, var(--brand-fresh));
   --primary-foreground: color-mix(in srgb, var(--brand-heritage) 90%, black);
-  --secondary: color-mix(in srgb, var(--brand-heritage) 16%, black);
+  --secondary: #172721;
   --secondary-foreground: var(--foreground);
-  --muted: color-mix(in srgb, var(--brand-heritage) 16%, black);
+  --muted: #172721;
   --muted-foreground: color-mix(in srgb, white 65%, var(--brand-future));
-  --accent: color-mix(in srgb, var(--brand-fresh) 16%, black);
+  --accent: #1b2d25;
   --accent-foreground: var(--foreground);
   --destructive: oklch(0.7 0.18 25);
   --border: color-mix(in srgb, white 10%, transparent);
@@ -171,51 +171,51 @@
 
 @layer utilities {
   .bg-om-mesh {
-    background:
-      radial-gradient(circle at top left, color-mix(in srgb, var(--brand-fresh) 28%, transparent), transparent 34rem),
-      radial-gradient(circle at 86% 8%, color-mix(in srgb, var(--brand-future) 22%, transparent), transparent 28rem),
-      linear-gradient(180deg, var(--background), color-mix(in srgb, var(--brand-heritage) 3%, white));
+    background: var(--background);
   }
 
   .bg-om-hero {
-    background:
-      radial-gradient(circle at 12% 20%, color-mix(in srgb, var(--brand-future) 40%, transparent), transparent 18rem),
-      linear-gradient(135deg, var(--brand-heritage), color-mix(in srgb, var(--brand-heritage) 42%, black) 52%, var(--brand-fresh));
+    background: linear-gradient(
+      45deg,
+      var(--brand-heritage),
+      color-mix(in srgb, var(--brand-heritage) 76%, black) 54%,
+      var(--brand-fresh)
+    );
   }
 
   .surface-om-card {
-    background:
-      linear-gradient(180deg, color-mix(in srgb, white 94%, var(--brand-future)), var(--card));
-    box-shadow:
-      0 1px 0 color-mix(in srgb, white 82%, transparent) inset,
-      0 22px 60px color-mix(in srgb, var(--brand-heritage) 9%, transparent);
+    background: var(--card);
+    box-shadow: 0 1px 2px color-mix(in srgb, black 7%, transparent);
+  }
+
+  .ci-accent-heritage {
+    --ci-accent: var(--brand-heritage);
+    --ci-accent-soft: color-mix(in srgb, var(--brand-heritage) 9%, transparent);
   }
 
   .ci-accent-sky {
     --ci-accent: var(--brand-sky);
-    --ci-accent-soft: color-mix(in srgb, var(--brand-sky) 15%, transparent);
+    --ci-accent-soft: color-mix(in srgb, var(--brand-sky) 10%, transparent);
   }
 
   .ci-accent-sun {
     --ci-accent: var(--brand-sun);
-    --ci-accent-soft: color-mix(in srgb, var(--brand-sun) 18%, transparent);
+    --ci-accent-soft: color-mix(in srgb, var(--brand-sun) 12%, transparent);
   }
 
   .ci-accent-naartjie {
     --ci-accent: var(--brand-naartjie);
-    --ci-accent-soft: color-mix(in srgb, var(--brand-naartjie) 15%, transparent);
+    --ci-accent-soft: color-mix(in srgb, var(--brand-naartjie) 10%, transparent);
   }
 
   .ci-accent-cerise {
     --ci-accent: var(--brand-cerise);
-    --ci-accent-soft: color-mix(in srgb, var(--brand-cerise) 14%, transparent);
+    --ci-accent-soft: color-mix(in srgb, var(--brand-cerise) 10%, transparent);
   }
 
   .ci-accent-card {
-    border-color: color-mix(in srgb, var(--ci-accent) 28%, var(--border));
-    background:
-      radial-gradient(circle at 100% 0%, var(--ci-accent-soft), transparent 12rem),
-      var(--card);
+    border-color: color-mix(in srgb, var(--ci-accent) 24%, var(--border));
+    background: var(--card);
   }
 
   .ci-accent-marker {
@@ -223,33 +223,11 @@
   }
 
   .ci-accent-badge {
-    border-color: color-mix(in srgb, var(--ci-accent) 42%, transparent);
-    background: color-mix(in srgb, var(--ci-accent) 13%, var(--card));
+    border-color: color-mix(in srgb, var(--ci-accent) 36%, transparent);
+    background: color-mix(in srgb, var(--ci-accent) 9%, var(--card));
     color: var(--foreground);
   }
 
-  .bg-gradient-om-heritage-future {
-    background-image: linear-gradient(
-      135deg,
-      var(--brand-heritage),
-      var(--brand-future)
-    );
-  }
-  .bg-gradient-om-heritage-fresh {
-    background-image: linear-gradient(
-      45deg,
-      var(--brand-heritage),
-      var(--brand-fresh)
-    );
-  }
-  .bg-gradient-om-heritage-future-sun {
-    background-image: linear-gradient(
-      135deg,
-      var(--brand-heritage),
-      var(--brand-future),
-      var(--brand-sun)
-    );
-  }
 }
 
 @layer base {
@@ -258,15 +236,12 @@
     outline-color: color-mix(in srgb, var(--ring) 50%, transparent);
   }
   body {
-    background:
-      radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--brand-fresh) 18%, transparent), transparent 30rem),
-      radial-gradient(circle at 86% 4%, color-mix(in srgb, var(--brand-future) 18%, transparent), transparent 28rem),
-      var(--background);
+    background: var(--background);
     color: var(--foreground);
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   ::selection {
-    background: color-mix(in srgb, var(--brand-fresh) 35%, transparent);
+    background: color-mix(in srgb, var(--brand-heritage) 24%, transparent);
     color: var(--foreground);
   }
   h1,

@@ -172,7 +172,7 @@ function MigrationContent({ data }: { data: MigrationData }) {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-muted-foreground border-b text-left text-xs tracking-wide uppercase">
+                <tr className="text-muted-foreground border-b text-left text-xs tracking-normal uppercase">
                   <th className="px-3 py-2 font-medium">Treatment</th>
                   <th className="px-3 py-2 text-right font-medium">Items</th>
                   <th className="px-3 py-2 text-right font-medium">Pages</th>
@@ -230,7 +230,7 @@ function MigrationContent({ data }: { data: MigrationData }) {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-muted-foreground border-b text-left text-xs tracking-wide uppercase">
+                <tr className="text-muted-foreground border-b text-left text-xs tracking-normal uppercase">
                   <th className="px-3 py-2 font-medium">Section</th>
                   <th className="px-3 py-2 font-medium">Treatment</th>
                   <th className="px-3 py-2 font-medium">Owner</th>

@@ -124,13 +124,13 @@ export default async function RaciPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b">
-                    <th className="bg-card sticky left-0 z-10 px-4 py-3 text-left text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                    <th className="bg-card sticky left-0 z-10 px-4 py-3 text-left text-xs font-medium tracking-normal text-muted-foreground uppercase">
                       Area
                     </th>
                     {RACI_COLUMNS.map((col) => (
                       <th
                         key={col.key}
-                        className="px-4 py-3 text-left text-xs font-medium tracking-wide text-muted-foreground uppercase whitespace-nowrap"
+                        className="px-4 py-3 text-left text-xs font-medium tracking-normal text-muted-foreground uppercase whitespace-nowrap"
                       >
                         {col.label}
                       </th>

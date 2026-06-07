@@ -126,18 +126,21 @@ function DashboardView({ data }: { data: DashboardData }) {
           value={<RagIndicator value={rag} />}
           icon={ShieldAlert}
           tone={rag === "RED" ? "danger" : rag === "AMBER" ? "warning" : "success"}
+          accent="heritage"
         />
         <MetricCard
           label="Active projects"
           value={m.activeProjects}
           icon={FolderKanban}
           tone="info"
+          accent="naartjie"
           href="/projects"
         />
         <MetricCard
           label="Workstreams"
           value={m.workstreams}
           icon={Network}
+          accent="naartjie"
           href="/workstreams"
         />
         <MetricCard
@@ -145,6 +148,7 @@ function DashboardView({ data }: { data: DashboardData }) {
           value={m.openRisks}
           icon={AlertTriangle}
           tone={m.openRisks > 0 ? "warning" : "success"}
+          accent="cerise"
           href="/risks"
         />
         <MetricCard
@@ -152,6 +156,7 @@ function DashboardView({ data }: { data: DashboardData }) {
           value={m.openIssues}
           icon={Bug}
           tone={m.openIssues > 0 ? "warning" : "success"}
+          accent="cerise"
           href="/issues"
         />
         <MetricCard
@@ -159,6 +164,7 @@ function DashboardView({ data }: { data: DashboardData }) {
           value={m.overdueActions}
           icon={ListChecks}
           tone={m.overdueActions > 0 ? "warning" : "default"}
+          accent="naartjie"
           hint="Status not done"
           href="/tasks"
         />
@@ -167,12 +173,14 @@ function DashboardView({ data }: { data: DashboardData }) {
           value={m.pendingApprovals}
           icon={CheckSquare}
           tone={m.pendingApprovals > 0 ? "warning" : "success"}
+          accent="cerise"
           href="/approvals"
         />
         <MetricCard
           label="Upcoming milestones"
           value={m.upcomingMilestones}
           icon={Flag}
+          accent="naartjie"
           href="/milestones"
         />
         <MetricCard
@@ -180,12 +188,14 @@ function DashboardView({ data }: { data: DashboardData }) {
           value={m.blockedDependencies}
           icon={GitBranch}
           tone={m.blockedDependencies > 0 ? "danger" : "success"}
+          accent="naartjie"
           href="/dependencies"
         />
         <MetricCard
           label="Deliverables"
           value={m.deliverables}
           icon={PackageCheck}
+          accent="naartjie"
           href="/deliverables"
         />
         <MetricCard
@@ -193,6 +203,7 @@ function DashboardView({ data }: { data: DashboardData }) {
           value={`${m.readinessScore}%`}
           icon={Gauge}
           tone={m.blockedReadinessGates > 0 ? "danger" : "warning"}
+          accent="naartjie"
           hint={`${m.blockedReadinessGates} blocked gate(s)`}
           href="/readiness"
         />
@@ -201,6 +212,7 @@ function DashboardView({ data }: { data: DashboardData }) {
           value={m.criticalPathTasks}
           icon={Route}
           tone="warning"
+          accent="naartjie"
           href="/wbs"
         />
         <MetricCard
@@ -208,6 +220,7 @@ function DashboardView({ data }: { data: DashboardData }) {
           value={m.evidenceFollowUps}
           icon={FileSearch}
           tone={m.evidenceFollowUps > 0 ? "warning" : "success"}
+          accent="sky"
           href="/evidence"
         />
       </section>
@@ -220,7 +233,7 @@ function DashboardView({ data }: { data: DashboardData }) {
         <ChartCard
           title="Project RAG distribution"
           description="Delivery confidence across active projects"
-          accent="sky"
+          accent="naartjie"
         >
           <RagBar data={data.ragDistribution} emptyMessage="No projects yet" />
         </ChartCard>
@@ -236,7 +249,7 @@ function DashboardView({ data }: { data: DashboardData }) {
         <ChartCard
           title="Issue ageing"
           description="Time since issues were raised"
-          accent="naartjie"
+          accent="cerise"
         >
           <IssueAgeing data={data.issueAgeing} />
         </ChartCard>
@@ -244,7 +257,7 @@ function DashboardView({ data }: { data: DashboardData }) {
         <ChartCard
           title="Milestone progress"
           description="Delivery against planned milestones"
-          accent="sun"
+          accent="naartjie"
         >
           <MilestoneProgress
             data={data.milestoneStatus}
@@ -279,13 +292,13 @@ function ControlStrip({
 }) {
   return (
     <div className="grid gap-3 md:grid-cols-5">
-      <div className="rounded-2xl border bg-card/80 p-4 shadow-sm md:col-span-1">
-        <p className="text-[11px] font-bold tracking-[0.16em] text-muted-foreground uppercase">
+      <div className="rounded-lg border bg-card p-4 shadow-sm md:col-span-1">
+        <p className="text-xs font-semibold tracking-normal text-muted-foreground uppercase">
           Current position
         </p>
         <div className="mt-2 flex items-center justify-between gap-3">
           <RagIndicator value={rag} />
-          <Badge variant="outline" className="border-primary/20 bg-primary/5 text-primary">
+          <Badge variant="outline" className="bg-muted text-muted-foreground">
             Live
           </Badge>
         </div>
@@ -298,13 +311,13 @@ function ControlStrip({
       >
         <div className="mt-3 h-2 overflow-hidden rounded-full bg-muted">
           <div
-            className="h-full rounded-full bg-gradient-om-heritage-fresh"
+            className="h-full rounded-full bg-brand-heritage"
             style={{ width: `${milestonePercentComplete}%` }}
           />
         </div>
       </SignalCard>
       <SignalCard
-        accent="sun"
+        accent="cerise"
         label="Approval focus"
         value={pendingApprovals}
         meta="items awaiting decision"
@@ -316,7 +329,7 @@ function ControlStrip({
         meta="blocked dependencies"
       />
       <SignalCard
-        accent="sky"
+        accent="naartjie"
         label="Launch readiness"
         value={`${readinessScore}%`}
         meta="go/no-go gate score"
@@ -348,13 +361,13 @@ function SignalCard({
   children?: React.ReactNode;
 }) {
   return (
-    <div className={`ci-accent-card ${ACCENT_CLASS[accent]} relative overflow-hidden rounded-2xl border p-4 shadow-sm`}>
+    <div className={`ci-accent-card ${ACCENT_CLASS[accent]} relative overflow-hidden rounded-lg border p-4 shadow-sm`}>
       <span className="ci-accent-marker absolute inset-y-4 left-0 w-1 rounded-r-full" aria-hidden />
-      <p className="pl-2 text-[11px] font-bold tracking-[0.16em] text-muted-foreground uppercase">
+      <p className="pl-2 text-xs font-semibold tracking-normal text-muted-foreground uppercase">
         {label}
       </p>
       <div className="mt-3 flex items-end gap-3 pl-2">
-        <span className="text-3xl font-black tabular-nums text-foreground">{value}</span>
+        <span className="text-3xl font-bold tabular-nums text-foreground">{value}</span>
         <span className="pb-1 text-xs font-medium text-muted-foreground">{meta}</span>
       </div>
       <div className="pl-2">{children}</div>
@@ -375,7 +388,7 @@ function ChartCard({
 }) {
   return (
     <Card className={`ci-accent-card ${ACCENT_CLASS[accent]} relative overflow-hidden`}>
-      <CardHeader className="border-b bg-primary/5">
+      <CardHeader className="border-b bg-muted/50">
         <div className="flex items-center gap-2">
           <span className="ci-accent-marker size-2.5 rounded-full" aria-hidden />
           <CardTitle className="text-base">{title}</CardTitle>
@@ -390,7 +403,7 @@ function ChartCard({
 function TopRisksCard({ risks }: { risks: DashboardData["topRisks"] }) {
   return (
     <Card className={`ci-accent-card ${ACCENT_CLASS.cerise} overflow-hidden`}>
-      <CardHeader className="border-b bg-primary/5">
+      <CardHeader className="border-b bg-muted/50">
         <SectionHeader
           title="Top open risks"
           description="Highest probability × impact"
@@ -446,7 +459,7 @@ function EscalationsCard({
 }) {
   return (
     <Card className={`ci-accent-card ${ACCENT_CLASS.cerise} overflow-hidden`}>
-      <CardHeader className="border-b bg-primary/5">
+      <CardHeader className="border-b bg-muted/50">
         <SectionHeader
           title="Recent escalations"
           description="Items raised to programme leadership"
@@ -495,8 +508,8 @@ function ApprovalsCard({
   approvals: DashboardData["pendingApprovalsList"];
 }) {
   return (
-    <Card className={`ci-accent-card ${ACCENT_CLASS.sun} overflow-hidden`}>
-      <CardHeader className="border-b bg-primary/5">
+    <Card className={`ci-accent-card ${ACCENT_CLASS.cerise} overflow-hidden`}>
+      <CardHeader className="border-b bg-muted/50">
         <SectionHeader
           title="Pending approvals"
           description="Awaiting a decision"
@@ -553,7 +566,7 @@ function ExecSummaryCard({
 }) {
   return (
     <Card className={`ci-accent-card ${ACCENT_CLASS.sky} overflow-hidden`}>
-      <CardHeader className="border-b bg-primary/5">
+      <CardHeader className="border-b bg-muted/50">
         <SectionHeader
           title="Executive summary"
           description={

@@ -449,7 +449,7 @@ export function StakeholderDirectoryClient({
             </DetailGrid>
             {selected.roleDescription && (
               <div className="space-y-1">
-                <p className="text-muted-foreground text-xs font-medium uppercase tracking-wide">
+                <p className="text-muted-foreground text-xs font-medium uppercase tracking-normal">
                   Role / title
                 </p>
                 <p className="text-sm">{stripMarkdown(selected.roleDescription)}</p>

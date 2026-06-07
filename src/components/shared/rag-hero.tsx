@@ -7,7 +7,7 @@ const TONE: Record<
   { wrap: string; dot: string; text: string; meta: string; panel: string; label: string }
 > = {
   RED: {
-    wrap: "border-rag-red/30 bg-gradient-to-br from-rag-red/10 via-card to-card",
+    wrap: "border-rag-red/30 bg-card",
     dot: "bg-rag-red",
     text: "text-rag-red",
     meta: "text-muted-foreground",
@@ -15,7 +15,7 @@ const TONE: Record<
     label: "Red / Off Track",
   },
   AMBER: {
-    wrap: "border-rag-amber/40 bg-gradient-to-br from-rag-amber/20 via-card to-card",
+    wrap: "border-rag-amber/40 bg-card",
     dot: "bg-rag-amber",
     text: "text-rag-amber",
     meta: "text-muted-foreground",
@@ -23,7 +23,7 @@ const TONE: Record<
     label: "Amber / At Risk",
   },
   GREEN: {
-    wrap: "bg-om-hero border-brand-fresh/40 text-primary-foreground shadow-2xl shadow-brand-heritage/20",
+    wrap: "bg-om-hero border-brand-fresh/40 text-primary-foreground shadow-lg",
     dot: "bg-brand-fresh",
     text: "text-white",
     meta: "text-white/76",
@@ -31,7 +31,7 @@ const TONE: Record<
     label: "Green / On Track",
   },
   NONE: {
-    wrap: "border-border bg-gradient-to-br from-muted to-card",
+    wrap: "border-border bg-card",
     dot: "bg-muted-foreground",
     text: "text-foreground",
     meta: "text-muted-foreground",
@@ -61,28 +61,20 @@ export function RagHero({
   return (
     <div
       className={cn(
-        "relative grid items-center gap-6 overflow-hidden rounded-3xl border p-6 md:grid-cols-[1fr_auto] md:p-8",
+        "relative grid items-center gap-6 overflow-hidden rounded-lg border p-5 md:grid-cols-[1fr_auto] md:p-7",
         tone.wrap,
         className,
       )}
     >
-      <div
-        className="pointer-events-none absolute -right-20 -top-24 size-72 rounded-full bg-brand-future/25 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent"
-        aria-hidden
-      />
       <div className="relative flex items-start gap-4">
-        <span className={cn("mt-1.5 flex size-5 shrink-0 rounded-full shadow-lg ring-8 ring-current/10", tone.dot)} aria-hidden />
+        <span className={cn("mt-1.5 flex size-4 shrink-0 rounded-full ring-4 ring-current/10", tone.dot)} aria-hidden />
         <div className="min-w-0">
           {eyebrow && (
-            <p className={cn("text-xs font-bold tracking-[0.18em] uppercase", tone.meta)}>
+            <p className={cn("text-xs font-semibold tracking-normal uppercase", tone.meta)}>
               {eyebrow}
             </p>
           )}
-          <h2 className={cn("mt-2 text-3xl font-extrabold tracking-tight md:text-5xl", tone.text)}>
+          <h2 className={cn("mt-2 text-3xl font-bold tracking-normal md:text-4xl", tone.text)}>
             {tone.label}
           </h2>
           <p className={cn("mt-3 max-w-4xl text-sm leading-relaxed md:text-base", tone.meta)}>
@@ -91,14 +83,14 @@ export function RagHero({
         </div>
       </div>
       {(positionValue || positionLabel) && (
-        <div className={cn("relative rounded-2xl border px-5 py-4 md:min-w-48 md:text-right", tone.panel)}>
+        <div className={cn("relative rounded-md border px-5 py-4 md:min-w-48 md:text-right", tone.panel)}>
           {positionValue && (
-            <p className={cn("text-4xl font-black tracking-tight md:text-5xl", tone.text)}>
+            <p className={cn("text-4xl font-bold tracking-normal md:text-5xl", tone.text)}>
               {positionValue}
             </p>
           )}
           {positionLabel && (
-            <p className={cn("mt-2 text-xs font-bold tracking-[0.16em] uppercase", tone.meta)}>
+            <p className={cn("mt-2 text-xs font-semibold tracking-normal uppercase", tone.meta)}>
               {positionLabel}
             </p>
           )}

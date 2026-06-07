@@ -142,7 +142,7 @@ export function ProjectDetailClient({
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-1">
           <div className="flex items-center gap-3">
-            <h1 className="text-2xl font-semibold tracking-tight">{project.name}</h1>
+            <h1 className="text-2xl font-semibold tracking-normal">{project.name}</h1>
             <RagIndicator value={project.rag as "RED" | "AMBER" | "GREEN" | null} />
           </div>
           <p className="text-muted-foreground text-sm">

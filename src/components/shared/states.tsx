@@ -26,9 +26,9 @@ export function EmptyState({
   className?: string;
 }) {
   return (
-    <Empty className={cn("surface-om-card border bg-card/80", className)}>
+    <Empty className={cn("surface-om-card border bg-card", className)}>
       <EmptyHeader>
-        <EmptyMedia variant="icon" className="bg-primary/10 text-primary ring-1 ring-primary/15">
+        <EmptyMedia variant="icon" className="bg-muted text-brand-heritage ring-1 ring-primary/15">
           <Icon />
         </EmptyMedia>
         <EmptyTitle>{title}</EmptyTitle>
@@ -84,13 +84,13 @@ export function ErrorState({
 
 export function TableSkeleton({ rows = 8, cols = 5 }: { rows?: number; cols?: number }) {
   return (
-    <div className="flex flex-col gap-3 rounded-2xl border bg-card/80 p-4 shadow-sm">
-      <Skeleton className="h-9 w-56 rounded-xl" />
+    <div className="flex flex-col gap-3 rounded-lg border bg-card p-4 shadow-sm">
+      <Skeleton className="h-9 w-56 rounded-md" />
       <div className="flex flex-col gap-2">
         {Array.from({ length: rows }).map((_, r) => (
           <div key={r} className="flex gap-3">
             {Array.from({ length: cols }).map((_, c) => (
-              <Skeleton key={c} className="h-10 flex-1 rounded-lg" />
+              <Skeleton key={c} className="h-10 flex-1 rounded-md" />
             ))}
           </div>
         ))}
@@ -103,7 +103,7 @@ export function CardGridSkeleton({ count = 4 }: { count?: number }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {Array.from({ length: count }).map((_, i) => (
-        <Skeleton key={i} className="h-32 rounded-2xl" />
+        <Skeleton key={i} className="h-32 rounded-lg" />
       ))}
     </div>
   );

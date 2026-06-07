@@ -22,7 +22,7 @@ export function AppHeader({ unreadCount = 0 }: { unreadCount?: number }) {
   const { collapsed, toggle } = useSidebar();
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center gap-3 border-b border-border/80 bg-background/88 px-4 shadow-sm shadow-brand-heritage/5 backdrop-blur-xl supports-[backdrop-filter]:bg-background/72 md:px-6 2xl:px-10">
+    <header className="sticky top-0 z-30 flex h-16 items-center gap-3 border-b border-border/80 bg-card/95 px-4 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-card/86 md:px-6 2xl:px-10">
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
         <SheetTrigger asChild>
           <Button variant="ghost" size="icon" className="-ml-1 lg:hidden" aria-label="Open menu">
@@ -54,7 +54,7 @@ export function AppHeader({ unreadCount = 0 }: { unreadCount?: number }) {
         <div className="min-w-0">
           <Breadcrumbs />
         </div>
-        <Badge variant="outline" className="hidden shrink-0 border-primary/25 bg-primary/5 text-primary xl:inline-flex">
+        <Badge variant="outline" className="ci-accent-badge ci-accent-sky hidden shrink-0 xl:inline-flex">
           <Sparkles className="size-3" />
           Executive command view
         </Badge>
@@ -63,7 +63,7 @@ export function AppHeader({ unreadCount = 0 }: { unreadCount?: number }) {
       <div className="flex flex-1 items-center justify-end gap-1.5 md:flex-none sm:gap-2">
         <CommandPalette />
         {canView("notification") && (
-          <Button variant="outline" size="icon" asChild aria-label="Notifications" className="relative bg-card/80">
+          <Button variant="outline" size="icon" asChild aria-label="Notifications" className="relative bg-card">
             <Link href="/notifications">
               <Bell className="size-4" />
               {unreadCount > 0 && (

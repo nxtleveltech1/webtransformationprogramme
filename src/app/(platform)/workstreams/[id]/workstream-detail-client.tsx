@@ -98,7 +98,7 @@ export function WorkstreamDetailClient({
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-1">
           <div className="flex items-center gap-3">
-            <h1 className="text-2xl font-semibold tracking-tight">
+            <h1 className="text-2xl font-semibold tracking-normal">
               <span className="text-muted-foreground mr-2 font-mono text-base">{workstream.code}</span>
               {workstream.name}
             </h1>

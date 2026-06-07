@@ -83,7 +83,7 @@ export function MigrationCompositionBar({
                 aria-hidden
               />
               <div className="min-w-0">
-                <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+                <p className="text-muted-foreground text-xs font-medium tracking-normal uppercase">
                   {seg.label}
                 </p>
                 <p className="text-foreground text-lg font-semibold tabular-nums">

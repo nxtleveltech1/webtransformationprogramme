@@ -49,7 +49,7 @@ export function DetailField({
 }) {
   return (
     <div className="space-y-1">
-      <dt className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+      <dt className="text-muted-foreground text-xs font-medium tracking-normal uppercase">
         {label}
       </dt>
       <dd className="text-sm">{children ?? "\u2014"}</dd>

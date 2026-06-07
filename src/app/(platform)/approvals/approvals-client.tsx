@@ -405,7 +405,7 @@ function ApprovalDrawer({
       )}
 
       <div className="space-y-2">
-        <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium tracking-wide uppercase">
+        <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium tracking-normal uppercase">
           <History className="size-3.5" />
           Approval history
         </div>

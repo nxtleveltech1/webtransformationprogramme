@@ -18,7 +18,7 @@ function PlatformShellInner({
     <div className="bg-om-mesh flex min-h-screen">
       <aside
         className={cn(
-          "sticky top-0 hidden h-svh max-h-svh shrink-0 flex-col overflow-hidden border-r border-sidebar-border/80 bg-sidebar shadow-2xl shadow-brand-heritage/20 transition-[width] duration-200 lg:flex",
+          "sticky top-0 hidden h-svh max-h-svh shrink-0 flex-col overflow-hidden border-r border-sidebar-border/80 bg-sidebar shadow-sm transition-[width] duration-200 lg:flex",
           collapsed ? "w-16" : "w-72",
         )}
       >
@@ -27,11 +27,7 @@ function PlatformShellInner({
       <div className="flex min-w-0 flex-1 flex-col">
         <AppHeader unreadCount={unreadCount} />
         <main className="relative flex-1 p-4 md:p-6 2xl:px-10 2xl:py-8">
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-brand-fresh/10 to-transparent"
-            aria-hidden
-          />
-          <div className="relative w-full">{children}</div>
+          <div className="w-full">{children}</div>
         </main>
       </div>
     </div>

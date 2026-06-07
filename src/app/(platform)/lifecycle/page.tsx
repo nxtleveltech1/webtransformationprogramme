@@ -143,7 +143,7 @@ export default async function LifecyclePage() {
                       <CardContent className="flex flex-col gap-4">
                         {currentSteps.length > 0 && (
                           <div className="space-y-1.5">
-                            <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+                            <p className="text-muted-foreground text-xs font-medium tracking-normal uppercase">
                               Current state
                             </p>
                             <div className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-xs">
@@ -161,7 +161,7 @@ export default async function LifecyclePage() {
 
                         {futureSteps.length > 0 && (
                           <div className="space-y-1.5">
-                            <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+                            <p className="text-muted-foreground text-xs font-medium tracking-normal uppercase">
                               Future state
                             </p>
                             <StepPipeline steps={futureSteps} />
