@@ -13,6 +13,7 @@ import {
   stakeholderArchiveSchema,
   stakeholderCreateSchema,
   stakeholderRoleAssignSchema,
+  stakeholderRoleRemoveSchema,
   stakeholderUpdateSchema,
   teamAssignSchema,
 } from "@/lib/validation/stakeholders";
@@ -163,6 +164,31 @@ export async function assignStakeholderRole(input: unknown) {
     });
     revalidateStakeholderViews();
     return ok({ id: assignment.id }, "Stakeholder role assigned.");
+  } catch (error) {
+    return permissionFail(error);
+  }
+}
+
+export async function removeStakeholderRole(input: unknown) {
+  try {
+    await requireEntityAction("people", "assign");
+    const parsed = parseInput(stakeholderRoleRemoveSchema, input);
+    if (!parsed.success) return parsed.result;
+
+    const existing = await prisma.stakeholderRole.findUnique({
+      where: { id: parsed.data.id },
+    });
+    if (!existing) return fail("Stakeholder role assignment not found.");
+
+    await prisma.stakeholderRole.delete({ where: { id: existing.id } });
+    await writeAudit({
+      entityType: "StakeholderRole",
+      entityId: existing.id,
+      action: "remove",
+      payload: { personId: existing.personId, roleType: existing.roleType },
+    });
+    revalidateStakeholderViews();
+    return ok(undefined, "Stakeholder role removed.");
   } catch (error) {
     return permissionFail(error);
   }

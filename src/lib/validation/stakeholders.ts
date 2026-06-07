@@ -64,6 +64,10 @@ export const stakeholderRoleAssignSchema = z.object({
   scope: optionalText,
 });
 
+export const stakeholderRoleRemoveSchema = z.object({
+  id: requiredText,
+});
+
 export const stakeholderUpdateSchema = stakeholderCreateSchema
   .partial()
   .extend({ id: requiredText });

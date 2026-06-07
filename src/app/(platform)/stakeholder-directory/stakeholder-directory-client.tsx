@@ -2,11 +2,20 @@
 
 import * as React from "react";
 import type { ColumnDef } from "@tanstack/react-table";
-import { BookUser, Contact, Filter, Shield, Users2 } from "lucide-react";
+import {
+  BookUser,
+  Contact,
+  Filter,
+  MoreHorizontal,
+  Pencil,
+  Plus,
+  Shield,
+  Trash2,
+  Users2,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-import { Can } from "@/components/shared/can";
 import { DataTable } from "@/components/shared/data-table";
 import { DetailDrawer, DetailField, DetailGrid } from "@/components/shared/detail-drawer";
 import { ExportButton } from "@/components/shared/export-button";
@@ -25,12 +34,39 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import type {
   StakeholderRecord,
   StakeholderDirectoryFilters,
 } from "@/lib/services/stakeholder-directory";
+import { useRole } from "@/lib/rbac/role-context";
 import { conciseRole, fullName, initials, stripMarkdown, titleCase } from "@/lib/utils";
-import { updateStakeholder } from "@/server/actions/stakeholders";
+import {
+  archiveStakeholder,
+  assignProgrammeRole,
+  assignStakeholderRole,
+  assignTeam,
+  createStakeholder,
+  removeProgrammeRole,
+  removeStakeholderRole,
+  removeTeam,
+  updateStakeholder,
+} from "@/server/actions/stakeholders";
 
 type DirectoryData = Awaited<
   ReturnType<typeof import("@/lib/services/stakeholder-directory").getStakeholderDirectory>
@@ -93,6 +129,31 @@ function formatStakeholderRole(role: {
   return parts.join(" ");
 }
 
+type DrawerMode = "view" | "edit" | "create";
+
+function readStakeholderForm(form: FormData) {
+  return {
+    displayName: String(form.get("displayName") ?? ""),
+    surname: String(form.get("surname") ?? ""),
+    nickname: String(form.get("nickname") ?? ""),
+    email: String(form.get("email") ?? ""),
+    phone: String(form.get("phone") ?? ""),
+    mobile: String(form.get("mobile") ?? ""),
+    primaryContact: String(form.get("primaryContact") ?? ""),
+    roleDescription: String(form.get("roleDescription") ?? ""),
+    department: String(form.get("department") ?? ""),
+    location: String(form.get("location") ?? ""),
+    areaId: String(form.get("areaId") ?? ""),
+    businessId: String(form.get("businessId") ?? ""),
+    clusterId: String(form.get("clusterId") ?? ""),
+    primaryWorkstreamId: String(form.get("primaryWorkstreamId") ?? ""),
+    dataOwnerPersonId: String(form.get("dataOwnerPersonId") ?? ""),
+    contactVisibility: String(form.get("contactVisibility") ?? "PUBLIC_INTERNAL"),
+    confidence: String(form.get("confidence") ?? "INFERRED"),
+    participantStatus: String(form.get("participantStatus") ?? "CONFIRMED"),
+  };
+}
+
 export function StakeholderDirectoryClient({
   data,
   formOptions,
@@ -101,12 +162,41 @@ export function StakeholderDirectoryClient({
   formOptions: FormOptions;
 }) {
   const router = useRouter();
+  const { can } = useRole();
+  const canCreate = can("create", "people");
+  const canEdit = can("edit", "people");
+  const canAssign = can("assign", "people");
+  const canArchive = can("archive", "people");
+
   const [selected, setSelected] = React.useState<StakeholderRecord | null>(null);
-  const [editing, setEditing] = React.useState(false);
+  const [drawerMode, setDrawerMode] = React.useState<DrawerMode | null>(null);
   const [saving, setSaving] = React.useState(false);
+  const [archiveTarget, setArchiveTarget] = React.useState<StakeholderRecord | null>(null);
   const [filters, setFilters] = React.useState<StakeholderDirectoryFilters>({
     activeOnly: true,
   });
+
+  const drawerOpen = drawerMode !== null;
+
+  function openView(person: StakeholderRecord) {
+    setSelected(person);
+    setDrawerMode("view");
+  }
+
+  function openCreate() {
+    setSelected(null);
+    setDrawerMode("create");
+  }
+
+  function openEdit(person?: StakeholderRecord) {
+    if (person) setSelected(person);
+    setDrawerMode("edit");
+  }
+
+  function closeDrawer() {
+    setDrawerMode(null);
+    setSelected(null);
+  }
 
   const filtered = React.useMemo(() => {
     return data.people.filter((p) => {
@@ -294,6 +384,41 @@ export function StakeholderDirectoryClient({
         );
       },
     },
+    {
+      id: "actions",
+      header: "",
+      cell: ({ row }) => (
+        <div className="flex justify-end" onClick={(e) => e.stopPropagation()}>
+          {(canEdit || canArchive) && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="size-8">
+                  <MoreHorizontal className="size-4" />
+                  <span className="sr-only">Actions</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {canEdit && (
+                  <DropdownMenuItem onClick={() => openEdit(row.original)}>
+                    <Pencil className="mr-2 size-4" />
+                    Edit
+                  </DropdownMenuItem>
+                )}
+                {canArchive && (
+                  <DropdownMenuItem
+                    className="text-destructive focus:text-destructive"
+                    onClick={() => setArchiveTarget(row.original)}
+                  >
+                    <Trash2 className="mr-2 size-4" />
+                    Remove
+                  </DropdownMenuItem>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
+        </div>
+      ),
+    },
   ];
 
   const exportRows = filtered.map((p) => ({
@@ -319,38 +444,45 @@ export function StakeholderDirectoryClient({
 
   async function handleSave(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!selected) return;
     setSaving(true);
     const form = new FormData(e.currentTarget);
-    const result = await updateStakeholder({
-      id: selected.id,
-      displayName: String(form.get("displayName") ?? ""),
-      surname: String(form.get("surname") ?? ""),
-      nickname: String(form.get("nickname") ?? ""),
-      email: String(form.get("email") ?? ""),
-      phone: String(form.get("phone") ?? ""),
-      mobile: String(form.get("mobile") ?? ""),
-      primaryContact: String(form.get("primaryContact") ?? ""),
-      roleDescription: String(form.get("roleDescription") ?? ""),
-      department: String(form.get("department") ?? ""),
-      location: String(form.get("location") ?? ""),
-      areaId: String(form.get("areaId") ?? ""),
-      businessId: String(form.get("businessId") ?? ""),
-      clusterId: String(form.get("clusterId") ?? ""),
-      primaryWorkstreamId: String(form.get("primaryWorkstreamId") ?? ""),
-      dataOwnerPersonId: String(form.get("dataOwnerPersonId") ?? ""),
-      contactVisibility: String(form.get("contactVisibility") ?? "PUBLIC_INTERNAL"),
-      confidence: String(form.get("confidence") ?? "INFERRED"),
-      participantStatus: String(form.get("participantStatus") ?? "CONFIRMED"),
-    });
+    const payload = readStakeholderForm(form);
+
+    const result =
+      drawerMode === "create"
+        ? await createStakeholder(payload)
+        : selected
+          ? await updateStakeholder({ id: selected.id, ...payload })
+          : { ok: false as const, error: "No stakeholder selected." };
+
     setSaving(false);
     if (result.ok) {
       toast.success(result.message ?? "Saved");
-      setEditing(false);
+      closeDrawer();
       router.refresh();
     } else {
       toast.error(result.error);
     }
+  }
+
+  async function handleArchive() {
+    if (!archiveTarget) return;
+    setSaving(true);
+    const result = await archiveStakeholder({ id: archiveTarget.id });
+    setSaving(false);
+    if (result.ok) {
+      toast.success(result.message ?? "Stakeholder removed");
+      if (selected?.id === archiveTarget.id) closeDrawer();
+      setArchiveTarget(null);
+      router.refresh();
+    } else {
+      toast.error(result.error);
+    }
+  }
+
+  async function refreshAfterRoleChange() {
+    router.refresh();
+    toast.success("Role updated");
   }
 
   return (
@@ -359,13 +491,29 @@ export function StakeholderDirectoryClient({
         title=""
         description=""
         actions={
-          <ExportButton
-            rows={exportRows}
-            filename="stakeholder-directory"
-            entity="people"
-          />
+          <div className="flex flex-wrap items-center gap-2">
+            {canCreate && (
+              <Button size="sm" onClick={openCreate}>
+                <Plus className="mr-1.5 size-4" />
+                Add stakeholder
+              </Button>
+            )}
+            <ExportButton
+              rows={exportRows}
+              filename="stakeholder-directory"
+              entity="people"
+            />
+          </div>
         }
       />
+
+      {!canCreate && !canEdit && !canArchive && (
+        <p className="text-muted-foreground rounded-lg border border-dashed px-4 py-3 text-sm">
+          Your current role is read-only for the stakeholder directory. Use the role
+          switcher in the header (e.g. Programme Director) to add, edit, or remove
+          stakeholders.
+        </p>
+      )}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard label="Stakeholders" value={filtered.length} icon={BookUser} />
@@ -466,39 +614,78 @@ export function StakeholderDirectoryClient({
         columns={columns}
         data={filtered}
         searchPlaceholder="Quick filter visible rows..."
-        onRowClick={(p) => {
-          setSelected(p);
-          setEditing(false);
-        }}
+        onRowClick={openView}
         emptyTitle="No stakeholders match"
         emptyDescription="Adjust filters or add stakeholders with appropriate permissions."
       />
 
       <DetailDrawer
-        open={!!selected}
+        open={drawerOpen}
         onOpenChange={(o) => {
-          if (!o) {
-            setSelected(null);
-            setEditing(false);
-          }
+          if (!o) closeDrawer();
         }}
-        title={selected ? fullName(selected) : "Stakeholder"}
-        description={selected ? conciseRole(selected.roleDescription) : undefined}
+        title={
+          drawerMode === "create"
+            ? "Add stakeholder"
+            : selected
+              ? fullName(selected)
+              : "Stakeholder"
+        }
+        description={
+          drawerMode === "create"
+            ? "Create a new programme stakeholder record."
+            : selected
+              ? conciseRole(selected.roleDescription)
+              : undefined
+        }
         footer={
-          selected ? (
-            <Can action="edit" entity="people">
+          drawerMode === "view" && selected ? (
+            <div className="flex flex-wrap gap-2">
+              {canEdit && (
+                <Button size="sm" onClick={() => openEdit()}>
+                  <Pencil className="mr-1.5 size-4" />
+                  Edit
+                </Button>
+              )}
+              {canArchive && (
+                <Button
+                  size="sm"
+                  variant="destructive"
+                  onClick={() => setArchiveTarget(selected)}
+                >
+                  <Trash2 className="mr-1.5 size-4" />
+                  Remove
+                </Button>
+              )}
+            </div>
+          ) : drawerMode === "edit" || drawerMode === "create" ? (
+            <div className="flex flex-wrap gap-2">
               <Button
-                variant="outline"
                 size="sm"
-                onClick={() => setEditing((v) => !v)}
+                variant="outline"
+                onClick={() =>
+                  drawerMode === "create" ? closeDrawer() : setDrawerMode("view")
+                }
               >
-                {editing ? "View" : "Edit"}
+                Cancel
               </Button>
-            </Can>
+              <Button
+                size="sm"
+                form="stakeholder-form"
+                type="submit"
+                disabled={saving}
+              >
+                {saving
+                  ? "Saving..."
+                  : drawerMode === "create"
+                    ? "Create stakeholder"
+                    : "Save changes"}
+              </Button>
+            </div>
           ) : undefined
         }
       >
-        {selected && !editing && (
+        {selected && drawerMode === "view" && (
           <div className="space-y-6">
             <DetailGrid>
               <DetailField label="First name">{selected.displayName}</DetailField>
@@ -554,15 +741,20 @@ export function StakeholderDirectoryClient({
           </div>
         )}
 
-        {selected && editing && (
-          <form className="space-y-4" onSubmit={handleSave}>
+        {(drawerMode === "edit" || drawerMode === "create") && (
+          <form
+            id="stakeholder-form"
+            className="space-y-4"
+            onSubmit={handleSave}
+            key={drawerMode === "create" ? "create" : selected?.id}
+          >
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="space-y-1">
                 <Label htmlFor="displayName">First name</Label>
                 <Input
                   id="displayName"
                   name="displayName"
-                  defaultValue={selected.displayName}
+                  defaultValue={selected?.displayName ?? ""}
                   required
                 />
               </div>
@@ -571,7 +763,7 @@ export function StakeholderDirectoryClient({
                 <Input
                   id="surname"
                   name="surname"
-                  defaultValue={selected.surname ?? ""}
+                  defaultValue={selected?.surname ?? ""}
                 />
               </div>
               <div className="space-y-1">
@@ -579,7 +771,7 @@ export function StakeholderDirectoryClient({
                 <Input
                   id="nickname"
                   name="nickname"
-                  defaultValue={selected.nickname ?? ""}
+                  defaultValue={selected?.nickname ?? ""}
                   placeholder="e.g. Lennie"
                 />
               </div>
@@ -588,7 +780,7 @@ export function StakeholderDirectoryClient({
                 <Input
                   id="primaryContact"
                   name="primaryContact"
-                  defaultValue={selected.primaryContact ?? ""}
+                  defaultValue={selected?.primaryContact ?? ""}
                 />
               </div>
             </div>
@@ -597,29 +789,29 @@ export function StakeholderDirectoryClient({
               <Textarea
                 id="roleDescription"
                 name="roleDescription"
-                defaultValue={selected.roleDescription ?? ""}
+                defaultValue={selected?.roleDescription ?? ""}
                 rows={2}
               />
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="space-y-1">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" defaultValue={selected.email ?? ""} />
+                <Input id="email" name="email" type="email" defaultValue={selected?.email ?? ""} />
               </div>
               <div className="space-y-1">
                 <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" name="phone" defaultValue={selected.phone ?? ""} />
+                <Input id="phone" name="phone" defaultValue={selected?.phone ?? ""} />
               </div>
               <div className="space-y-1">
                 <Label htmlFor="mobile">Mobile</Label>
-                <Input id="mobile" name="mobile" defaultValue={selected.mobile ?? ""} />
+                <Input id="mobile" name="mobile" defaultValue={selected?.mobile ?? ""} />
               </div>
               <div className="space-y-1">
                 <Label htmlFor="department">Department / group</Label>
                 <Input
                   id="department"
                   name="department"
-                  defaultValue={selected.department ?? ""}
+                  defaultValue={selected?.department ?? ""}
                 />
               </div>
               <div className="space-y-1">
@@ -627,7 +819,7 @@ export function StakeholderDirectoryClient({
                 <Input
                   id="location"
                   name="location"
-                  defaultValue={selected.location ?? ""}
+                  defaultValue={selected?.location ?? ""}
                 />
               </div>
             </div>
@@ -635,13 +827,13 @@ export function StakeholderDirectoryClient({
               <SelectField
                 name="areaId"
                 label="Area"
-                defaultValue={selected.areaId ?? ""}
+                defaultValue={selected?.areaId ?? ""}
                 options={formOptions.areas.map((a) => ({ value: a.id, label: a.name }))}
               />
               <SelectField
                 name="businessId"
                 label="Business"
-                defaultValue={selected.businessId ?? ""}
+                defaultValue={selected?.businessId ?? ""}
                 options={formOptions.businesses.map((b) => ({
                   value: b.id,
                   label: b.name,
@@ -650,7 +842,7 @@ export function StakeholderDirectoryClient({
               <SelectField
                 name="clusterId"
                 label="Cluster"
-                defaultValue={selected.clusterId ?? ""}
+                defaultValue={selected?.clusterId ?? ""}
                 options={formOptions.clusters.map((c) => ({
                   value: c.id,
                   label: c.name,
@@ -659,7 +851,7 @@ export function StakeholderDirectoryClient({
               <SelectField
                 name="primaryWorkstreamId"
                 label="Primary workstream"
-                defaultValue={selected.primaryWorkstreamId ?? ""}
+                defaultValue={selected?.primaryWorkstreamId ?? ""}
                 options={formOptions.workstreams.map((w) => ({
                   value: w.id,
                   label: w.name,
@@ -668,7 +860,7 @@ export function StakeholderDirectoryClient({
               <SelectField
                 name="contactVisibility"
                 label="Contact visibility"
-                defaultValue={selected.contactVisibility}
+                defaultValue={selected?.contactVisibility ?? "PUBLIC_INTERNAL"}
                 options={[
                   { value: "PUBLIC_INTERNAL", label: "Public (internal)" },
                   { value: "RESTRICTED", label: "Restricted" },
@@ -678,7 +870,7 @@ export function StakeholderDirectoryClient({
               <SelectField
                 name="confidence"
                 label="Data confidence"
-                defaultValue={selected.confidence}
+                defaultValue={selected?.confidence ?? "INFERRED"}
                 options={CONFIDENCE_LEVELS.map((c) => ({
                   value: c,
                   label: titleCase(c),
@@ -687,7 +879,7 @@ export function StakeholderDirectoryClient({
               <SelectField
                 name="participantStatus"
                 label="Participation status"
-                defaultValue={selected.participantStatus}
+                defaultValue={selected?.participantStatus ?? "CONFIRMED"}
                 options={PARTICIPANT_STATUSES.map((s) => ({
                   value: s,
                   label: titleCase(s),
@@ -696,19 +888,52 @@ export function StakeholderDirectoryClient({
               <SelectField
                 name="dataOwnerPersonId"
                 label="Data steward"
-                defaultValue={selected.dataOwnerPersonId ?? ""}
+                defaultValue={selected?.dataOwnerPersonId ?? ""}
                 options={formOptions.people.map((p) => ({
                   value: p.id,
                   label: fullName(p),
                 }))}
               />
             </div>
-            <Button type="submit" disabled={saving}>
-              {saving ? "Saving..." : "Save changes"}
-            </Button>
+
+            {drawerMode === "edit" && selected && canAssign && (
+              <RoleManagement
+                person={selected}
+                formOptions={formOptions}
+                onChanged={refreshAfterRoleChange}
+              />
+            )}
           </form>
         )}
       </DetailDrawer>
+
+      <AlertDialog
+        open={!!archiveTarget}
+        onOpenChange={(o) => {
+          if (!o) setArchiveTarget(null);
+        }}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Remove stakeholder?</AlertDialogTitle>
+            <AlertDialogDescription>
+              {archiveTarget
+                ? `${fullName(archiveTarget)} will be archived and hidden from the directory. Existing task and register owner links are preserved.`
+                : "This stakeholder will be archived."}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              onClick={handleArchive}
+              disabled={saving}
+            >
+              Remove
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
@@ -795,6 +1020,242 @@ function RoleSection({ title, items }: { title: string; items: string[] }) {
       ) : (
         <p className="text-muted-foreground text-sm">None recorded.</p>
       )}
+    </div>
+  );
+}
+
+function RoleManagement({
+  person,
+  formOptions,
+  onChanged,
+}: {
+  person: StakeholderRecord;
+  formOptions: FormOptions;
+  onChanged: () => void | Promise<void>;
+}) {
+  const [teamId, setTeamId] = React.useState("none");
+  const [programmeRole, setProgrammeRole] = React.useState<string>(PROGRAMME_ROLES[0]);
+  const [programmeScope, setProgrammeScope] = React.useState("");
+  const [stakeholderRole, setStakeholderRole] = React.useState<string>(STAKEHOLDER_ROLES[0]);
+  const [stakeholderLabel, setStakeholderLabel] = React.useState("");
+  const [stakeholderScope, setStakeholderScope] = React.useState("");
+  const [busy, setBusy] = React.useState(false);
+
+  async function run(action: () => Promise<{ ok: boolean; error?: string }>) {
+    setBusy(true);
+    const result = await action();
+    setBusy(false);
+    if (result.ok) {
+      await onChanged();
+    } else {
+      toast.error(result.error);
+    }
+  }
+
+  return (
+    <div className="space-y-4 border-t pt-4">
+      <h3 className="text-sm font-semibold">Roles & teams</h3>
+
+      <div className="space-y-2">
+        <p className="text-muted-foreground text-xs font-medium uppercase">Teams</p>
+        <div className="flex flex-wrap gap-1.5">
+          {person.teamAssignments.map((t) => (
+            <Badge key={t.id} variant="secondary" className="gap-1 pr-1">
+              {t.team.name}
+              <button
+                type="button"
+                className="hover:bg-muted rounded px-1"
+                disabled={busy}
+                onClick={() =>
+                  run(() => removeTeam({ personId: person.id, teamId: t.teamId }))
+                }
+              >
+                ×
+              </button>
+            </Badge>
+          ))}
+          {!person.teamAssignments.length && (
+            <span className="text-muted-foreground text-sm">None recorded.</span>
+          )}
+        </div>
+        <div className="flex gap-2">
+          <Select value={teamId} onValueChange={setTeamId}>
+            <SelectTrigger className="flex-1">
+              <SelectValue placeholder="Add team" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="none">Select team</SelectItem>
+              {formOptions.teams.map((t) => (
+                <SelectItem key={t.id} value={t.id}>
+                  {t.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Button
+            type="button"
+            size="sm"
+            variant="outline"
+            disabled={busy || teamId === "none"}
+            onClick={() =>
+              run(async () => {
+                const result = await assignTeam({ personId: person.id, teamId });
+                if (result.ok) setTeamId("none");
+                return result;
+              })
+            }
+          >
+            Add
+          </Button>
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <p className="text-muted-foreground text-xs font-medium uppercase">Programme roles</p>
+        <div className="flex flex-wrap gap-1.5">
+          {person.programmeRoles.map((r) => (
+            <Badge key={r.id} variant="secondary" className="gap-1 pr-1">
+              {titleCase(r.roleType)}
+              {r.scope ? ` (${r.scope})` : ""}
+              <button
+                type="button"
+                className="hover:bg-muted rounded px-1"
+                disabled={busy}
+                onClick={() =>
+                  run(() =>
+                    removeProgrammeRole({
+                      personId: person.id,
+                      roleType: r.roleType,
+                      scope: r.scope ?? "",
+                    }),
+                  )
+                }
+              >
+                ×
+              </button>
+            </Badge>
+          ))}
+          {!person.programmeRoles.length && (
+            <span className="text-muted-foreground text-sm">None recorded.</span>
+          )}
+        </div>
+        <div className="grid gap-2 sm:grid-cols-[1fr_1fr_auto]">
+          <Select
+            value={programmeRole}
+            onValueChange={setProgrammeRole}
+          >
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {PROGRAMME_ROLES.map((r) => (
+                <SelectItem key={r} value={r}>
+                  {titleCase(r)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Input
+            placeholder="Scope (optional)"
+            value={programmeScope}
+            onChange={(e) => setProgrammeScope(e.target.value)}
+          />
+          <Button
+            type="button"
+            size="sm"
+            variant="outline"
+            disabled={busy}
+            onClick={() =>
+              run(async () => {
+                const result = await assignProgrammeRole({
+                  personId: person.id,
+                  roleType: programmeRole as (typeof PROGRAMME_ROLES)[number],
+                  scope: programmeScope,
+                });
+                if (result.ok) setProgrammeScope("");
+                return result;
+              })
+            }
+          >
+            Add
+          </Button>
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <p className="text-muted-foreground text-xs font-medium uppercase">Stakeholder roles</p>
+        <div className="flex flex-wrap gap-1.5">
+          {person.stakeholderRoles.map((r) => (
+            <Badge key={r.id} variant="outline" className="gap-1 pr-1">
+              {formatStakeholderRole(r)}
+              <button
+                type="button"
+                className="hover:bg-muted rounded px-1"
+                disabled={busy}
+                onClick={() => run(() => removeStakeholderRole({ id: r.id }))}
+              >
+                ×
+              </button>
+            </Badge>
+          ))}
+          {!person.stakeholderRoles.length && (
+            <span className="text-muted-foreground text-sm">None recorded.</span>
+          )}
+        </div>
+        <div className="grid gap-2">
+          <Select
+            value={stakeholderRole}
+            onValueChange={setStakeholderRole}
+          >
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {STAKEHOLDER_ROLES.map((r) => (
+                <SelectItem key={r} value={r}>
+                  {titleCase(r)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Input
+            placeholder="Role label (e.g. External Steerco Member)"
+            value={stakeholderLabel}
+            onChange={(e) => setStakeholderLabel(e.target.value)}
+          />
+          <div className="flex gap-2">
+            <Input
+              className="flex-1"
+              placeholder="Scope (e.g. External Steerco)"
+              value={stakeholderScope}
+              onChange={(e) => setStakeholderScope(e.target.value)}
+            />
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              disabled={busy}
+              onClick={() =>
+                run(async () => {
+                  const result = await assignStakeholderRole({
+                    personId: person.id,
+                    roleType: stakeholderRole as (typeof STAKEHOLDER_ROLES)[number],
+                    roleLabel: stakeholderLabel,
+                    scope: stakeholderScope,
+                  });
+                  if (result.ok) {
+                    setStakeholderLabel("");
+                    setStakeholderScope("");
+                  }
+                  return result;
+                })
+              }
+            >
+              Add
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
