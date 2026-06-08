@@ -39,6 +39,8 @@ import {
 } from "@/components/shared/detail-drawer";
 import { ExportButton } from "@/components/shared/export-button";
 import { Can } from "@/components/shared/can";
+import { RelatedLinks } from "@/components/shared/related-links";
+import type { RelatedLink } from "@/lib/services/register-links";
 
 import { formatOwnerDisplay } from "@/lib/format-person";
 import { cn, formatDate, titleCase } from "@/lib/utils";
@@ -83,9 +85,11 @@ function ScoreBadge({ score }: { score: number }) {
 export function RisksClient({
   risks,
   people,
+  linksMap = {},
 }: {
   risks: RiskRow[];
   people: PersonOption[];
+  linksMap?: Record<string, RelatedLink[]>;
 }) {
   const [selected, setSelected] = React.useState<RiskRow | null>(null);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -338,6 +342,7 @@ export function RisksClient({
                 {formatDate(selected.createdAt)}
               </DetailField>
             </DetailGrid>
+            <RelatedLinks links={linksMap[selected.externalId] ?? []} />
           </div>
         )}
       </DetailDrawer>

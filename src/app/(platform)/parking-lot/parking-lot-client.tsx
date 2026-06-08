@@ -38,6 +38,8 @@ import {
 } from "@/components/shared/detail-drawer";
 import { ExportButton } from "@/components/shared/export-button";
 import { Can } from "@/components/shared/can";
+import { RelatedLinks } from "@/components/shared/related-links";
+import type { RelatedLink } from "@/lib/services/register-links";
 
 import { formatDate, titleCase } from "@/lib/utils";
 import { PRIORITY_OPTIONS } from "@/lib/enums";
@@ -51,7 +53,13 @@ import {
   updateParkingLotItem,
 } from "@/server/actions/parking-lot";
 
-export function ParkingLotClient({ items }: { items: ParkingLotRow[] }) {
+export function ParkingLotClient({
+  items,
+  linksMap = {},
+}: {
+  items: ParkingLotRow[];
+  linksMap?: Record<string, RelatedLink[]>;
+}) {
   const [selected, setSelected] = React.useState<ParkingLotRow | null>(null);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [dialogOpen, setDialogOpen] = React.useState(false);
@@ -218,6 +226,7 @@ export function ParkingLotClient({ items }: { items: ParkingLotRow[] }) {
             <DetailField label="Follow-up">
               {selected.followUp ?? "\u2014"}
             </DetailField>
+            <RelatedLinks links={linksMap[selected.externalId] ?? []} />
           </div>
         )}
       </DetailDrawer>

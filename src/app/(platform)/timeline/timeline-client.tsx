@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Flag, GitBranch, CalendarRange, AlertTriangle, X, List, GanttChartSquare, Workflow } from "lucide-react";
+import { Flag, GitBranch, CalendarRange, AlertTriangle, X, List, GanttChartSquare, Workflow, GitCompareArrows } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,6 +22,9 @@ export interface TimelineItem {
   owner: string | null;
   start: string | null;
   end: string | null;
+  /** Baseline plan dates, when a baseline exists (WBS tasks, milestones). */
+  baselineStart: string | null;
+  baselineEnd: string | null;
   status: string | null;
   dependency: string | null;
   varianceDays: number | null;
@@ -62,6 +65,18 @@ export function TimelineClient({ items }: { items: TimelineItem[] }) {
   );
   const [slipOnly, setSlipOnly] = React.useState(false);
   const [view, setView] = React.useState<"list" | "gantt">("list");
+  const [showBaseline, setShowBaseline] = React.useState(true);
+
+  const hasBaselineData = React.useMemo(
+    () =>
+      items.some(
+        (i) =>
+          (i.baselineEnd && i.baselineEnd !== i.end) ||
+          (i.baselineStart && i.baselineStart !== i.start) ||
+          (i.kind === "milestone" && i.varianceDays != null && i.varianceDays !== 0),
+      ),
+    [items],
+  );
 
   const fromTime = from ? Date.parse(from) : null;
   const toTime = to ? Date.parse(to) : null;
@@ -175,6 +190,19 @@ export function TimelineClient({ items }: { items: TimelineItem[] }) {
                 Gantt
               </Button>
             </div>
+            {view === "gantt" && hasBaselineData && (
+              <Button
+                type="button"
+                variant={showBaseline ? "default" : "outline"}
+                size="sm"
+                onClick={() => setShowBaseline((s) => !s)}
+                aria-pressed={showBaseline}
+                title="Overlay the original baseline plan behind the current forecast"
+              >
+                <GitCompareArrows className="size-4" />
+                Baseline overlay
+              </Button>
+            )}
             {hasFilters && (
               <Button
                 type="button"
@@ -217,7 +245,7 @@ export function TimelineClient({ items }: { items: TimelineItem[] }) {
             <CardTitle className="text-base">WBS Gantt — month grid</CardTitle>
           </CardHeader>
           <CardContent>
-            <RoadmapGantt items={filtered} />
+            <RoadmapGantt items={filtered} showBaseline={showBaseline} />
           </CardContent>
         </Card>
       ) : (
@@ -285,6 +313,11 @@ function TimelineRow({ item }: { item: TimelineItem }) {
             {dateRangeLabel(item)}
             {item.dependency ? ` · depends on ${item.dependency}` : ""}
           </p>
+          {baselineLabel(item) && (
+            <p className="text-muted-foreground/80 text-xs">
+              <span className="font-medium">Baseline:</span> {baselineLabel(item)}
+            </p>
+          )}
         </div>
         {item.status && (
           <div className="shrink-0">
@@ -302,6 +335,24 @@ function dateRangeLabel(item: TimelineItem): string {
   }
   const single = item.end ?? item.start;
   return single ? formatDate(single) : "Date TBC";
+}
+
+/**
+ * Baseline plan summary, shown only when it diverges from the current forecast
+ * (i.e. there is real slippage to surface).
+ */
+function baselineLabel(item: TimelineItem): string | null {
+  const baseStart = item.baselineStart;
+  const baseEnd = item.baselineEnd;
+  if (!baseStart && !baseEnd) return null;
+  const divergesEnd = baseEnd && baseEnd !== item.end;
+  const divergesStart = baseStart && baseStart !== item.start;
+  if (!divergesEnd && !divergesStart) return null;
+  if (baseStart && baseEnd && baseStart !== baseEnd) {
+    return `${formatDate(baseStart)} → ${formatDate(baseEnd)}`;
+  }
+  const single = baseEnd ?? baseStart;
+  return single ? formatDate(single) : null;
 }
 
 function groupByWorkstream(items: TimelineItem[]) {

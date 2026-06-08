@@ -17,6 +17,8 @@ import { ExportButton } from "@/components/shared/export-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getCriticalPath, isSlipping } from "@/lib/services/critical-path";
+import { getCpm } from "@/lib/services/cpm";
+import { CpmClient } from "./cpm-client";
 import { formatDate } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -31,6 +33,10 @@ export default async function CriticalPathPage() {
       <ErrorState description="The critical path could not be loaded. Please try again." />
     );
   }
+
+  // Computed CPM over the TaskDependency graph (forward/backward pass, float).
+  // Best-effort: if it fails, the stored critical-path sequence still renders.
+  const cpm = await getCpm().catch(() => null);
 
   const { steps, summary } = data;
 
@@ -179,6 +185,20 @@ export default async function CriticalPathPage() {
             </ol>
           </CardContent>
         </Card>
+
+        {cpm && cpm.tasks.length > 0 && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-base">
+                <GitBranch className="size-4" />
+                Computed critical path (CPM over task dependencies)
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CpmClient result={cpm} />
+            </CardContent>
+          </Card>
+        )}
       </div>
     </ViewGuard>
   );

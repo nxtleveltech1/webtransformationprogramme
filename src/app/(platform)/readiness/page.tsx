@@ -45,6 +45,26 @@ export default async function ReadinessPage() {
             searchPlaceholder="Search gates, blockers, owners..."
             emptyTitle="No readiness gates"
             emptyDescription="Seed readiness controls to populate the go/no-go dashboard."
+            quickFilters={[
+              {
+                key: "ready",
+                label: "Ready / approved",
+                predicate: (row) => {
+                  const s = String(row.status ?? "").toUpperCase();
+                  return s.includes("READY") || s.includes("APPROVED") || s.includes("GO");
+                },
+              },
+              {
+                key: "blocked",
+                label: "Blocked",
+                predicate: (row) => String(row.status ?? "").toUpperCase().includes("BLOCKED"),
+              },
+              {
+                key: "red",
+                label: "RAG red",
+                predicate: (row) => String(row.rag ?? "").toUpperCase() === "RED",
+              },
+            ]}
           />
         </div>
       )}

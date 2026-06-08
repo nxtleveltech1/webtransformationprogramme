@@ -31,6 +31,27 @@ async function main() {
     process.exit(1);
   }
 
+  // SECOND GUARD: never TRUNCATE the LIVE production database by accident.
+  // The live Neon branch host is recognised by its hostname; resetting it
+  // requires an explicit, separate opt-in so SEED_RESET alone cannot wipe prod.
+  const dbUrl = process.env.DATABASE_URL ?? "";
+  const isLiveHost = /ep-polished-voice-a21mukhc/.test(dbUrl);
+  const understandLive =
+    process.env.I_UNDERSTAND_LIVE === "1" || process.env.I_UNDERSTAND_LIVE === "true";
+  if (isLiveHost && !understandLive) {
+    console.error(
+      [
+        "Refusing to run: DATABASE_URL points at the LIVE production Neon database.",
+        "A destructive TRUNCATE here would destroy real programme data.",
+        "",
+        "Use a Neon BRANCH database for resets. If you genuinely intend to wipe",
+        "and re-seed the live database, re-run with BOTH flags set explicitly:",
+        "  SEED_RESET=1 I_UNDERSTAND_LIVE=1 npm run db:seed",
+      ].join("\n"),
+    );
+    process.exit(1);
+  }
+
   console.log("SEED_RESET enabled — clearing ALL existing data...");
   await prisma.$executeRawUnsafe(`
     DO $$ DECLARE r RECORD;

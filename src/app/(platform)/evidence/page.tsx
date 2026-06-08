@@ -45,6 +45,26 @@ export default async function EvidencePage() {
             searchPlaceholder="Search sources, trace refs, execution IDs..."
             emptyTitle="No evidence links"
             emptyDescription="Seed evidence links to populate workshop traceability."
+            quickFilters={[
+              {
+                key: "confirmed",
+                label: "Confirmed",
+                predicate: (row) => String(row.confidence ?? "").toUpperCase() === "CONFIRMED",
+              },
+              {
+                key: "inferred",
+                label: "Inferred",
+                predicate: (row) => String(row.confidence ?? "").toUpperCase() === "INFERRED",
+              },
+              {
+                key: "followUp",
+                label: "Follow-up required",
+                predicate: (row) => {
+                  const v = row.followUpRequired;
+                  return v === true || String(v ?? "").toLowerCase() === "yes" || String(v ?? "").toLowerCase() === "true";
+                },
+              },
+            ]}
           />
         </div>
       )}

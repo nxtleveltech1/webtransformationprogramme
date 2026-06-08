@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { Pencil } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -22,7 +22,9 @@ import { RagIndicator } from "@/components/shared/rag-indicator";
 import { MetricCard } from "@/components/shared/metric-card";
 import { EmptyState } from "@/components/shared/states";
 import { Can } from "@/components/shared/can";
+import { ConfirmDialog } from "@/components/shared/confirm-dialog";
 import { formatDate } from "@/lib/utils";
+import { deleteWorkstream } from "@/server/actions/workstreams";
 import {
   WorkstreamFormDialog,
   type Option,
@@ -90,8 +92,31 @@ export function WorkstreamDetailClient({
 }) {
   const router = useRouter();
   const [editOpen, setEditOpen] = React.useState(false);
+  const [confirmDelete, setConfirmDelete] = React.useState(false);
+  const [deleting, setDeleting] = React.useState(false);
 
   const openActions = workstream.actions.filter((a) => a.status !== "DONE");
+
+  const linkedCount =
+    workstream.projects.length +
+    workstream.actions.length +
+    workstream.risks.length +
+    workstream.dependencies.length +
+    workstream.milestones.length;
+
+  async function handleDelete() {
+    setDeleting(true);
+    const result = await deleteWorkstream({ id: workstream.id });
+    setDeleting(false);
+    setConfirmDelete(false);
+    if (result.ok) {
+      toast.success(result.message ?? "Workstream deleted");
+      router.push("/workstreams");
+      router.refresh();
+    } else {
+      toast.error(result.error);
+    }
+  }
 
   return (
     <div className="space-y-6">
@@ -109,12 +134,24 @@ export function WorkstreamDetailClient({
             {workstream.programmeName ? ` · ${workstream.programmeName}` : ""}
           </p>
         </div>
-        <Can action="edit" entity="workstream">
-          <Button onClick={() => setEditOpen(true)}>
-            <Pencil className="size-4" />
-            Edit workstream
-          </Button>
-        </Can>
+        <div className="flex items-center gap-2">
+          <Can action="edit" entity="workstream">
+            <Button onClick={() => setEditOpen(true)}>
+              <Pencil className="size-4" />
+              Edit workstream
+            </Button>
+          </Can>
+          <Can action="delete" entity="workstream">
+            <Button
+              variant="outline"
+              className="text-destructive hover:text-destructive"
+              onClick={() => setConfirmDelete(true)}
+            >
+              <Trash2 className="size-4" />
+              Delete
+            </Button>
+          </Can>
+        </div>
       </div>
 
       {workstream.oneLineStatus && (
@@ -224,6 +261,21 @@ export function WorkstreamDetailClient({
           toast.success(msg);
           router.refresh();
         }}
+      />
+
+      <ConfirmDialog
+        open={confirmDelete}
+        onOpenChange={setConfirmDelete}
+        title="Delete workstream?"
+        description={
+          linkedCount > 0
+            ? `${workstream.code} still has ${linkedCount} linked item(s) (projects, actions, risks, dependencies or milestones). Reassign or remove them first — the delete will be blocked otherwise.`
+            : `${workstream.code} — ${workstream.name} will be permanently removed.`
+        }
+        confirmLabel="Delete workstream"
+        destructive
+        loading={deleting}
+        onConfirm={handleDelete}
       />
     </div>
   );

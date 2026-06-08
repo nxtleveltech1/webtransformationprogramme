@@ -38,6 +38,8 @@ import {
 } from "@/components/shared/detail-drawer";
 import { ExportButton } from "@/components/shared/export-button";
 import { Can } from "@/components/shared/can";
+import { RelatedLinks } from "@/components/shared/related-links";
+import type { RelatedLink } from "@/lib/services/register-links";
 
 import { formatDate } from "@/lib/utils";
 import {
@@ -60,9 +62,11 @@ function validationState(a: AssumptionRow): boolean {
 export function AssumptionsClient({
   assumptions,
   people,
+  linksMap = {},
 }: {
   assumptions: AssumptionRow[];
   people: PersonOption[];
+  linksMap?: Record<string, RelatedLink[]>;
 }) {
   const [selected, setSelected] = React.useState<AssumptionRow | null>(null);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -256,6 +260,7 @@ export function AssumptionsClient({
                 {formatDate(selected.createdAt)}
               </DetailField>
             </DetailGrid>
+            <RelatedLinks links={linksMap[selected.externalId] ?? []} />
           </div>
         )}
       </DetailDrawer>

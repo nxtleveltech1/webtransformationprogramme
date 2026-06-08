@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { Can } from "@/components/shared/can";
+import { ConfirmDialog } from "@/components/shared/confirm-dialog";
 import { DataTable } from "@/components/shared/data-table";
 import { MetricCard } from "@/components/shared/metric-card";
 import { Badge } from "@/components/ui/badge";
@@ -30,7 +31,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import type { GlossaryData } from "@/lib/services/glossary";
 import { titleCase } from "@/lib/utils";
-import { upsertGlossaryTerm } from "@/server/actions/glossary";
+import { deleteGlossaryTerm, upsertGlossaryTerm } from "@/server/actions/glossary";
 
 type GlossaryRow = GlossaryData["glossary"][number];
 
@@ -40,6 +41,8 @@ export function GlossaryClient({ data }: { data: GlossaryData }) {
   const [glossaryQuery, setGlossaryQuery] = React.useState("");
   const [editingTerm, setEditingTerm] = React.useState<GlossaryRow | null>(null);
   const [saving, setSaving] = React.useState(false);
+  const [confirmDelete, setConfirmDelete] = React.useState(false);
+  const [deleting, setDeleting] = React.useState(false);
 
   const filteredGlossary = React.useMemo(() => {
     return data.glossary.filter((g) => {
@@ -97,6 +100,21 @@ export function GlossaryClient({ data }: { data: GlossaryData }) {
     setSaving(false);
     if (result.ok) {
       toast.success(result.message ?? "Saved");
+      setEditingTerm(null);
+      router.refresh();
+    } else {
+      toast.error(result.error);
+    }
+  }
+
+  async function handleDeleteTerm() {
+    if (!editingTerm?.id) return;
+    setDeleting(true);
+    const result = await deleteGlossaryTerm({ id: editingTerm.id });
+    setDeleting(false);
+    setConfirmDelete(false);
+    if (result.ok) {
+      toast.success(result.message ?? "Deleted");
       setEditingTerm(null);
       router.refresh();
     } else {
@@ -239,7 +257,7 @@ export function GlossaryClient({ data }: { data: GlossaryData }) {
                     </select>
                   </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <Button type="submit" disabled={saving}>
                     {saving ? "Saving..." : "Save term"}
                   </Button>
@@ -250,12 +268,39 @@ export function GlossaryClient({ data }: { data: GlossaryData }) {
                   >
                     Cancel
                   </Button>
+                  {editingTerm.id && (
+                    <Can action="delete" entity="glossary">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        className="text-destructive hover:text-destructive ml-auto"
+                        onClick={() => setConfirmDelete(true)}
+                      >
+                        Delete term
+                      </Button>
+                    </Can>
+                  )}
                 </div>
               </form>
             </Can>
           </CardContent>
         </Card>
       )}
+
+      <ConfirmDialog
+        open={confirmDelete}
+        onOpenChange={setConfirmDelete}
+        title="Delete glossary term?"
+        description={
+          editingTerm?.term
+            ? `"${editingTerm.term}" will be permanently removed from the glossary.`
+            : "This term will be permanently removed."
+        }
+        confirmLabel="Delete term"
+        destructive
+        loading={deleting}
+        onConfirm={handleDeleteTerm}
+      />
     </div>
   );
 }

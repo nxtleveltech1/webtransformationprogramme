@@ -149,17 +149,112 @@ export async function getStakeholderDirectory(
   };
 }
 
+export interface PersonWorkItem {
+  id: string;
+  ref: string;
+  label: string;
+  status: string;
+  href: string;
+}
+
+export interface PersonOwnedWork {
+  actions: PersonWorkItem[];
+  risks: PersonWorkItem[];
+  issues: PersonWorkItem[];
+  decisions: PersonWorkItem[];
+  projects: PersonWorkItem[];
+  total: number;
+}
+
+function emptyOwnedWork(): PersonOwnedWork {
+  return { actions: [], risks: [], issues: [], decisions: [], projects: [], total: 0 };
+}
+
 export async function getStakeholderDirectorySummary() {
   const data = await getStakeholderDirectory({ activeOnly: true });
-  const memberships = await prisma.personTeam.findMany({
-    where: { person: { kind: "PERSON" } },
-    include: {
-      person: {
-        select: { id: true, displayName: true, roleDescription: true, active: true },
+  const personIds = data.people.map((p) => p.id);
+
+  const [memberships, actions, risks, issues, decisions, projects] = await Promise.all([
+    prisma.personTeam.findMany({
+      where: { person: { kind: "PERSON" } },
+      include: {
+        person: {
+          select: { id: true, displayName: true, roleDescription: true, active: true },
+        },
+        team: { select: { id: true, name: true, functionDescription: true } },
       },
-      team: { select: { id: true, name: true, functionDescription: true } },
-    },
-  });
+    }),
+    prisma.action.findMany({
+      where: { ownerPersonId: { in: personIds } },
+      select: { id: true, externalId: true, description: true, status: true, ownerPersonId: true },
+      orderBy: { externalId: "asc" },
+    }),
+    prisma.risk.findMany({
+      where: { ownerPersonId: { in: personIds } },
+      select: { id: true, externalId: true, description: true, status: true, ownerPersonId: true },
+      orderBy: { externalId: "asc" },
+    }),
+    prisma.issue.findMany({
+      where: { ownerPersonId: { in: personIds } },
+      select: { id: true, externalId: true, description: true, status: true, ownerPersonId: true },
+      orderBy: { externalId: "asc" },
+    }),
+    prisma.decision.findMany({
+      where: { ownerPersonId: { in: personIds } },
+      select: { id: true, externalId: true, title: true, description: true, status: true, ownerPersonId: true },
+      orderBy: { externalId: "asc" },
+    }),
+    prisma.project.findMany({
+      where: { ownerPersonId: { in: personIds } },
+      select: { id: true, code: true, name: true, status: true, ownerPersonId: true },
+      orderBy: { name: "asc" },
+    }),
+  ]);
+
+  const ownedWork = new Map<string, PersonOwnedWork>();
+  const ensure = (personId: string | null): PersonOwnedWork | null => {
+    if (!personId) return null;
+    let entry = ownedWork.get(personId);
+    if (!entry) {
+      entry = emptyOwnedWork();
+      ownedWork.set(personId, entry);
+    }
+    return entry;
+  };
+
+  for (const a of actions) {
+    const e = ensure(a.ownerPersonId);
+    if (e) e.actions.push({ id: a.id, ref: a.externalId, label: a.description, status: a.status, href: "/tasks" });
+  }
+  for (const r of risks) {
+    const e = ensure(r.ownerPersonId);
+    if (e) e.risks.push({ id: r.id, ref: r.externalId, label: r.description, status: r.status, href: "/risks" });
+  }
+  for (const i of issues) {
+    const e = ensure(i.ownerPersonId);
+    if (e) e.issues.push({ id: i.id, ref: i.externalId, label: i.description, status: i.status, href: "/issues" });
+  }
+  for (const d of decisions) {
+    const e = ensure(d.ownerPersonId);
+    if (e) e.decisions.push({ id: d.id, ref: d.externalId, label: d.title ?? d.description, status: d.status, href: "/decisions" });
+  }
+  for (const p of projects) {
+    const e = ensure(p.ownerPersonId);
+    if (e) e.projects.push({ id: p.id, ref: p.code ?? "—", label: p.name, status: p.status, href: `/projects/${p.id}` });
+  }
+  for (const entry of ownedWork.values()) {
+    entry.total =
+      entry.actions.length +
+      entry.risks.length +
+      entry.issues.length +
+      entry.decisions.length +
+      entry.projects.length;
+  }
+
+  const people = data.people.map((p) => ({
+    ...p,
+    ownedWork: ownedWork.get(p.id) ?? emptyOwnedWork(),
+  }));
 
   const teams = data.teams.map((team) => ({
     ...team,
@@ -172,7 +267,7 @@ export async function getStakeholderDirectorySummary() {
       })),
   }));
 
-  return { people: data.people, teams };
+  return { people, teams };
 }
 
 export async function getStakeholderFormOptions() {

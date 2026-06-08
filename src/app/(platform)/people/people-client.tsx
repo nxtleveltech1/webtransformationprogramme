@@ -3,6 +3,7 @@
 import * as React from "react";
 import type { ColumnDef } from "@tanstack/react-table";
 import { Contact, Users2, Star } from "lucide-react";
+import Link from "next/link";
 
 import { PageHeader, SectionHeader } from "@/components/shared/page-header";
 import { MetricCard } from "@/components/shared/metric-card";
@@ -15,6 +16,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fullName, initials, titleCase } from "@/lib/utils";
 import type { PersonWithRelations, TeamWithMembers } from "@/lib/services/people";
+import type {
+  PersonOwnedWork,
+  PersonWorkItem,
+} from "@/lib/services/stakeholder-directory";
 
 export function PeopleClient({
   people,
@@ -225,6 +230,7 @@ export function PeopleClient({
                 <p className="text-muted-foreground text-sm">No stakeholder roles.</p>
               )}
             </div>
+            <OwnedWorkSection ownedWork={selectedPerson.ownedWork} />
           </div>
         )}
       </DetailDrawer>
@@ -271,6 +277,68 @@ export function PeopleClient({
           </div>
         )}
       </DetailDrawer>
+    </div>
+  );
+}
+
+const WORK_GROUPS: { key: keyof Omit<PersonOwnedWork, "total">; label: string }[] = [
+  { key: "actions", label: "Actions" },
+  { key: "risks", label: "Risks" },
+  { key: "issues", label: "Issues" },
+  { key: "decisions", label: "Decisions" },
+  { key: "projects", label: "Projects" },
+];
+
+function OwnedWorkSection({ ownedWork }: { ownedWork: PersonOwnedWork }) {
+  return (
+    <div className="space-y-3">
+      <h3 className="text-sm font-semibold">
+        Owned work{ownedWork.total > 0 ? ` (${ownedWork.total})` : ""}
+      </h3>
+      {ownedWork.total === 0 ? (
+        <p className="text-muted-foreground text-sm">
+          No actions, risks, issues, decisions or projects are owned by this person.
+        </p>
+      ) : (
+        <div className="space-y-4">
+          {WORK_GROUPS.map(({ key, label }) => {
+            const items = ownedWork[key];
+            if (!items.length) return null;
+            return <WorkGroup key={key} label={label} items={items} />;
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function WorkGroup({ label, items }: { label: string; items: PersonWorkItem[] }) {
+  const shown = items.slice(0, 6);
+  const remaining = items.length - shown.length;
+  return (
+    <div className="space-y-1.5">
+      <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+        {label} ({items.length})
+      </p>
+      <ul className="space-y-1">
+        {shown.map((item) => (
+          <li key={item.id}>
+            <Link
+              href={item.href}
+              className="hover:border-primary/40 hover:bg-muted/40 flex items-center gap-2 rounded-md border px-2.5 py-1.5 text-sm transition-colors"
+            >
+              <span className="text-muted-foreground font-mono text-xs">{item.ref}</span>
+              <span className="line-clamp-1 flex-1">{item.label}</span>
+              <Badge variant="outline" className="text-xs">
+                {titleCase(item.status)}
+              </Badge>
+            </Link>
+          </li>
+        ))}
+      </ul>
+      {remaining > 0 && (
+        <p className="text-muted-foreground text-xs">+{remaining} more</p>
+      )}
     </div>
   );
 }

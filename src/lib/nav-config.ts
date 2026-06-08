@@ -20,6 +20,7 @@ import {
   CheckSquare,
   Users2,
   BarChart3,
+  FileSpreadsheet,
   FileText,
   Bell,
   Contact,
@@ -32,6 +33,7 @@ import {
   Table2,
   Workflow,
   Replace,
+  GitCompareArrows,
   type LucideIcon,
 } from "lucide-react";
 
@@ -69,6 +71,7 @@ export const NAV_GROUPS: NavGroup[] = [
       { label: "Gantt / Roadmap", href: "/timeline", icon: CalendarRange, entity: "milestone" },
       { label: "Milestones", href: "/milestones", icon: Flag, entity: "milestone" },
       { label: "Critical Path", href: "/critical-path", icon: Route, entity: "milestone" },
+      { label: "Scenario / What-if", href: "/scenarios", icon: GitCompareArrows, entity: "scenario" },
       { label: "Dependencies", href: "/dependencies", icon: GitBranch, entity: "dependency" },
       { label: "Readiness / Go-No-Go", href: "/readiness", icon: ShieldAlert, entity: "readinessGate" },
     ],
@@ -97,6 +100,7 @@ export const NAV_GROUPS: NavGroup[] = [
     accent: "sky",
     items: [
       { label: "Reports / Analytics", href: "/reports", icon: BarChart3, entity: "report" },
+      { label: "Steering Pack", href: "/steering-pack", icon: FileSpreadsheet, entity: "report" },
       { label: "Migration Tracker", href: "/migration", icon: Replace, entity: "report" },
       { label: "Resources", href: "/resources", icon: Users2, entity: "resource" },
       { label: "Documents", href: "/documents", icon: FileText, entity: "document" },

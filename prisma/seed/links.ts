@@ -100,6 +100,10 @@ export async function seedLinksAndTraces(prisma: PrismaClient) {
   const linkKeys = new Set<string>();
 
   for (const entity of entities) {
+    // Critical-path steps are pseudo-entities (CP-N) that are NOT a RegisterType.
+    // Storing links as ACTION:CP-N produces dangling endpoints, so skip them
+    // here; critical-path ↔ RAID linkage is modelled separately.
+    if (entity.externalId?.startsWith("CP-")) continue;
     const texts = [entity.traceRef, entity.relatedRefs].filter(Boolean) as string[];
     for (const text of texts) {
       const targets = extractIds(text).filter((t) => !(t.type === entity.type && t.id === entity.externalId));

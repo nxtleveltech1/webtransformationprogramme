@@ -39,6 +39,8 @@ import {
 } from "@/components/shared/detail-drawer";
 import { ExportButton } from "@/components/shared/export-button";
 import { Can } from "@/components/shared/can";
+import { RelatedLinks } from "@/components/shared/related-links";
+import type { RelatedLink } from "@/lib/services/register-links";
 
 import { formatDate, titleCase } from "@/lib/utils";
 import { DECISION_STATUS_OPTIONS } from "@/lib/enums";
@@ -53,9 +55,11 @@ import { createDecision, updateDecision } from "@/server/actions/decisions";
 export function DecisionsClient({
   decisions,
   people,
+  linksMap = {},
 }: {
   decisions: DecisionRow[];
   people: PersonOption[];
+  linksMap?: Record<string, RelatedLink[]>;
 }) {
   const [selected, setSelected] = React.useState<DecisionRow | null>(null);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -242,6 +246,7 @@ export function DecisionsClient({
                 {formatDate(selected.createdAt)}
               </DetailField>
             </DetailGrid>
+            <RelatedLinks links={linksMap[selected.externalId] ?? []} />
           </div>
         )}
       </DetailDrawer>

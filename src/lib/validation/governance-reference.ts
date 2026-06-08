@@ -14,6 +14,14 @@ export const glossaryTermSchema = z.object({
   confidence: z.enum(CONFIDENCE).optional(),
 });
 
+export const glossaryTermDeleteSchema = z.object({
+  id: requiredText,
+});
+
+export const referenceMappingDeleteSchema = z.object({
+  id: requiredText,
+});
+
 export const publishGovernanceDocSchema = z.object({
   id: requiredText,
   status: z.enum(DOC_STATUS),

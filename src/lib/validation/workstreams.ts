@@ -19,5 +19,9 @@ export const updateWorkstreamSchema = z.object({
   ...workstreamFields,
 });
 
+export const deleteWorkstreamSchema = z.object({
+  id: requiredText,
+});
+
 export type CreateWorkstreamInput = z.infer<typeof createWorkstreamSchema>;
 export type UpdateWorkstreamInput = z.infer<typeof updateWorkstreamSchema>;

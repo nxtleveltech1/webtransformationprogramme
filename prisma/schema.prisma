@@ -293,6 +293,7 @@ model Programme {
   governanceMeetings    GovernanceMeeting[]
   statusUpdates         StatusUpdate[]
   governanceReferenceDocs GovernanceReferenceDoc[]
+  scenarios             Scenario[]
 }
 
 model WorkshopEvent {
@@ -809,6 +810,53 @@ model ScopeOption {
   status      String?
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
+}
+
+/// Saved what-if schedule scenario. Models date shifts against the live
+/// baseline so leadership can compare the impact on the programme end date and
+/// critical path without mutating real task/milestone data.
+model Scenario {
+  id          String           @id @default(cuid())
+  name        String
+  description String?          @db.Text
+  status      ScenarioStatus   @default(DRAFT)
+  programmeId String?
+  programme   Programme?       @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  changes     ScenarioChange[]
+
+  @@index([programmeId])
+  @@index([status])
+}
+
+/// A single what-if adjustment within a scenario: shift a task or milestone by
+/// a number of days relative to its current schedule.
+model ScenarioChange {
+  id          String             @id @default(cuid())
+  scenarioId  String
+  scenario    Scenario           @relation(fields: [scenarioId], references: [id], onDelete: Cascade)
+  targetType  ScenarioTargetType
+  targetId    String
+  targetLabel String?
+  deltaDays   Int                @default(0)
+  note        String?            @db.Text
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  @@index([scenarioId])
+  @@index([targetType, targetId])
+}
+
+enum ScenarioStatus {
+  DRAFT
+  ACTIVE
+  ARCHIVED
+}
+
+enum ScenarioTargetType {
+  TASK
+  MILESTONE
 }
 
 model PageMigrationItem {

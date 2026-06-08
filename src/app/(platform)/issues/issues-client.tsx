@@ -38,6 +38,8 @@ import {
   DetailField,
   DetailGrid,
 } from "@/components/shared/detail-drawer";
+import { RelatedLinks } from "@/components/shared/related-links";
+import type { RelatedLink } from "@/lib/services/register-links";
 import { ExportButton } from "@/components/shared/export-button";
 import { ConfirmDialog } from "@/components/shared/confirm-dialog";
 import { Can } from "@/components/shared/can";
@@ -67,9 +69,11 @@ function AgeBadge({ createdAt }: { createdAt: Date | string }) {
 export function IssuesClient({
   issues,
   people,
+  linksMap = {},
 }: {
   issues: IssueRow[];
   people: PersonOption[];
+  linksMap?: Record<string, RelatedLink[]>;
 }) {
   const [selected, setSelected] = React.useState<IssueRow | null>(null);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -285,6 +289,7 @@ export function IssuesClient({
                 {formatDate(selected.createdAt)}
               </DetailField>
             </DetailGrid>
+            <RelatedLinks links={linksMap[selected.externalId] ?? []} />
           </div>
         )}
       </DetailDrawer>

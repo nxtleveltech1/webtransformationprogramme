@@ -17,11 +17,13 @@
     "db:seed:programme": "tsx prisma/seed-programme.ts",
     "db:verify": "tsx prisma/verify-counts.ts",
     "db:audit": "tsx prisma/audit-data-parity.ts",
+    "db:audit:full": "tsx prisma/audit-full.ts",
     "db:audit:fabrication": "tsx prisma/audit-fabrication.ts",
     "db:validate:extraction": "tsx prisma/validate-extraction.ts",
     "db:sync-seed": "python WorkshopPack/scripts/sync_seed_from_workshop_data.py",
     "db:reset": "prisma migrate reset --force --skip-seed && tsx prisma/seed.ts --reset && tsx prisma/seed-pm.ts",
     "db:studio": "prisma studio",
+    "export:ridc": "tsx prisma/export-ridc.ts",
     "postinstall": "prisma generate"
   },
   "prisma": {

@@ -47,6 +47,7 @@ export type EntityKey =
   | "document"
   | "notification"
   | "report"
+  | "scenario"
   | "governance"
   | "glossary"
   | "people"

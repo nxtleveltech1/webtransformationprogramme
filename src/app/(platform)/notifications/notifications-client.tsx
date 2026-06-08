@@ -12,6 +12,7 @@ import {
   Clock,
   Check,
   Undo2,
+  RadioTower,
   type LucideIcon,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -30,6 +31,7 @@ import {
   setNotificationRead,
   markAllNotificationsRead,
 } from "@/server/actions/notifications";
+import { runAlertEngine } from "@/server/actions/alerts";
 
 const TYPE_META: Record<string, { icon: LucideIcon; className: string }> = {
   INFO: { icon: Info, className: "text-chart-3 bg-chart-3/10" },
@@ -65,6 +67,7 @@ export function NotificationsClient({
   const [filter, setFilter] = React.useState<"ALL" | "UNREAD">("ALL");
   const [pendingId, setPendingId] = React.useState<string | null>(null);
   const [bulkPending, setBulkPending] = React.useState(false);
+  const [alertPending, setAlertPending] = React.useState(false);
 
   const visible = React.useMemo(
     () => (filter === "UNREAD" ? notifications.filter((n) => !n.read) : notifications),
@@ -76,6 +79,14 @@ export function NotificationsClient({
     const result = await setNotificationRead({ id: n.id, read: !n.read });
     setPendingId(null);
     if (result.ok) toast.success(result.message ?? "Updated");
+    else toast.error(result.error);
+  }
+
+  async function runAlerts() {
+    setAlertPending(true);
+    const result = await runAlertEngine();
+    setAlertPending(false);
+    if (result.ok) toast.success(result.message ?? "Alert check complete");
     else toast.error(result.error);
   }
 
@@ -93,17 +104,30 @@ export function NotificationsClient({
         title="Notifications"
         description="Programme alerts, approvals, mentions and reminders."
         actions={
-          <Can action="edit" entity="notification">
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={markAll}
-              disabled={bulkPending || summary.unread === 0}
-            >
-              <Check className="size-4" />
-              Mark all read
-            </Button>
-          </Can>
+          <div className="flex items-center gap-2">
+            <Can action="escalate" entity="notification">
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={runAlerts}
+                disabled={alertPending}
+              >
+                <RadioTower className="size-4" />
+                Run alert check
+              </Button>
+            </Can>
+            <Can action="edit" entity="notification">
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={markAll}
+                disabled={bulkPending || summary.unread === 0}
+              >
+                <Check className="size-4" />
+                Mark all read
+              </Button>
+            </Can>
+          </div>
         }
       />
 

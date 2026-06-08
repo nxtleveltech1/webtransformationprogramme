@@ -10,6 +10,7 @@ import {
 } from "@/lib/rbac/server-guard";
 import {
   publishGovernanceDocSchema,
+  referenceMappingDeleteSchema,
   referenceMappingSchema,
 } from "@/lib/validation/governance-reference";
 import { fail, ok, parseInput } from "@/server/actions/helpers";
@@ -94,6 +95,32 @@ export async function upsertReferenceMapping(input: unknown) {
     });
     revalidateGovernanceReference();
     return ok({ id: mapping.id }, "Reference mapping saved.");
+  } catch (error) {
+    return permissionFail(error);
+  }
+}
+
+export async function deleteReferenceMapping(input: unknown) {
+  try {
+    await requireEntityAction("governance", "configure");
+    const parsed = parseInput(referenceMappingDeleteSchema, input);
+    if (!parsed.success) return parsed.result;
+
+    const existing = await prisma.referenceMapping.findUnique({
+      where: { id: parsed.data.id },
+      select: { id: true, conceptKey: true },
+    });
+    if (!existing) return fail("Reference mapping not found.");
+
+    await prisma.referenceMapping.delete({ where: { id: existing.id } });
+    await writeAudit({
+      entityType: "ReferenceMapping",
+      entityId: existing.id,
+      action: "delete",
+      payload: { conceptKey: existing.conceptKey },
+    });
+    revalidateGovernanceReference();
+    return ok({ id: existing.id }, "Reference mapping deleted.");
   } catch (error) {
     return permissionFail(error);
   }

@@ -2,6 +2,7 @@ import { ViewGuard } from "@/components/shared/can";
 import { ErrorState } from "@/components/shared/states";
 import { getDecisions } from "@/lib/services/decisions";
 import { getPeopleOptions } from "@/lib/services/registers";
+import { getRelatedLinksMap } from "@/lib/services/register-links";
 import { DecisionsClient } from "./decisions-client";
 
 export const dynamic = "force-dynamic";
@@ -12,9 +13,13 @@ export default async function DecisionsPage() {
       getDecisions(),
       getPeopleOptions(),
     ]);
+    const linksMap = await getRelatedLinksMap(
+      "DECISION",
+      decisions.map((d) => d.externalId),
+    );
     return (
       <ViewGuard entity="decision" entityLabel="the decision log">
-        <DecisionsClient decisions={decisions} people={people} />
+        <DecisionsClient decisions={decisions} people={people} linksMap={linksMap} />
       </ViewGuard>
     );
   } catch {

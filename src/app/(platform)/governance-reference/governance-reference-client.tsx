@@ -2,9 +2,13 @@
 
 import * as React from "react";
 import type { ColumnDef } from "@tanstack/react-table";
-import { BookOpen, FileText, Link2, Search } from "lucide-react";
+import { BookOpen, FileText, Link2, Pencil, Plus, Search, Trash2 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
+import { Can } from "@/components/shared/can";
+import { ConfirmDialog } from "@/components/shared/confirm-dialog";
 import { DataTable } from "@/components/shared/data-table";
 import { MetricCard } from "@/components/shared/metric-card";
 import { Button } from "@/components/ui/button";
@@ -18,12 +22,56 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { GovernanceReferenceData } from "@/lib/services/governance-reference";
 import { titleCase } from "@/lib/utils";
+import { deleteReferenceMapping } from "@/server/actions/governance-reference";
+import { MappingFormDialog, type MappingFormValues } from "./mapping-form";
 
 type MappingRow = GovernanceReferenceData["mappings"][number];
 
+function toFormValues(m: MappingRow): MappingFormValues {
+  return {
+    id: m.id,
+    conceptKey: m.conceptKey,
+    label: m.label,
+    description: m.description,
+    glossaryTermId: m.glossaryTerm?.id ?? null,
+    entityType: m.entityType ?? null,
+    fieldPath: m.fieldPath ?? null,
+    processName: m.processName ?? null,
+  };
+}
+
 export function GovernanceReferenceClient({ data }: { data: GovernanceReferenceData }) {
+  const router = useRouter();
   const [torQuery, setTorQuery] = React.useState("");
   const [mappingQuery, setMappingQuery] = React.useState("");
+  const [mappingDialogOpen, setMappingDialogOpen] = React.useState(false);
+  const [editingMapping, setEditingMapping] = React.useState<MappingFormValues | null>(null);
+  const [deleteTarget, setDeleteTarget] = React.useState<MappingRow | null>(null);
+  const [deleting, setDeleting] = React.useState(false);
+
+  function openCreate() {
+    setEditingMapping(null);
+    setMappingDialogOpen(true);
+  }
+
+  function openEdit(m: MappingRow) {
+    setEditingMapping(toFormValues(m));
+    setMappingDialogOpen(true);
+  }
+
+  async function handleDeleteMapping() {
+    if (!deleteTarget) return;
+    setDeleting(true);
+    const result = await deleteReferenceMapping({ id: deleteTarget.id });
+    setDeleting(false);
+    setDeleteTarget(null);
+    if (result.ok) {
+      toast.success(result.message ?? "Mapping deleted");
+      router.refresh();
+    } else {
+      toast.error(result.error);
+    }
+  }
 
   const torSections = React.useMemo(() => {
     const sections = data.torDoc?.sections ?? [];
@@ -87,6 +135,39 @@ export function GovernanceReferenceClient({ data }: { data: GovernanceReferenceD
         ) : (
           "\u2014"
         ),
+    },
+    {
+      id: "actions",
+      header: "",
+      cell: ({ row }) => (
+        <Can action="configure" entity="governance">
+          <div className="flex justify-end gap-1">
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="Edit mapping"
+              onClick={(e) => {
+                e.stopPropagation();
+                openEdit(row.original);
+              }}
+            >
+              <Pencil className="size-4" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="Delete mapping"
+              className="text-destructive hover:text-destructive"
+              onClick={(e) => {
+                e.stopPropagation();
+                setDeleteTarget(row.original);
+              }}
+            >
+              <Trash2 className="size-4" />
+            </Button>
+          </div>
+        </Can>
+      ),
     },
   ];
 
@@ -184,9 +265,17 @@ export function GovernanceReferenceClient({ data }: { data: GovernanceReferenceD
                 onChange={(e) => setMappingQuery(e.target.value)}
               />
             </div>
-            <Button asChild variant="outline" size="sm">
-              <Link href="/glossary">Open Glossary &amp; Definitions</Link>
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button asChild variant="outline" size="sm">
+                <Link href="/glossary">Open Glossary &amp; Definitions</Link>
+              </Button>
+              <Can action="configure" entity="governance">
+                <Button size="sm" onClick={openCreate}>
+                  <Plus className="size-4" />
+                  Add mapping
+                </Button>
+              </Can>
+            </div>
           </div>
           <DataTable
             columns={mappingColumns}
@@ -201,6 +290,32 @@ export function GovernanceReferenceClient({ data }: { data: GovernanceReferenceD
           </p>
         </TabsContent>
       </Tabs>
+
+      <MappingFormDialog
+        open={mappingDialogOpen}
+        onOpenChange={setMappingDialogOpen}
+        initial={editingMapping}
+        glossaryTerms={data.glossaryTerms}
+        onSuccess={(msg) => {
+          toast.success(msg);
+          router.refresh();
+        }}
+      />
+
+      <ConfirmDialog
+        open={Boolean(deleteTarget)}
+        onOpenChange={(open) => !open && setDeleteTarget(null)}
+        title="Delete reference mapping?"
+        description={
+          deleteTarget
+            ? `"${deleteTarget.conceptKey}" will be permanently removed from the reference map.`
+            : undefined
+        }
+        confirmLabel="Delete mapping"
+        destructive
+        loading={deleting}
+        onConfirm={handleDeleteMapping}
+      />
     </div>
   );
 }

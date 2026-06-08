@@ -38,6 +38,8 @@ import {
 } from "@/components/shared/detail-drawer";
 import { ExportButton } from "@/components/shared/export-button";
 import { Can } from "@/components/shared/can";
+import { RelatedLinks } from "@/components/shared/related-links";
+import type { RelatedLink } from "@/lib/services/register-links";
 
 import { formatDate, titleCase } from "@/lib/utils";
 import { QUESTION_STATUS_OPTIONS } from "@/lib/enums";
@@ -54,8 +56,10 @@ import {
 
 export function OpenQuestionsClient({
   questions,
+  linksMap = {},
 }: {
   questions: OpenQuestionRow[];
+  linksMap?: Record<string, RelatedLink[]>;
 }) {
   const [selected, setSelected] = React.useState<OpenQuestionRow | null>(null);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -251,6 +255,7 @@ export function OpenQuestionsClient({
                 {formatDate(selected.createdAt)}
               </DetailField>
             </DetailGrid>
+            <RelatedLinks links={linksMap[selected.externalId] ?? []} />
           </div>
         )}
       </DetailDrawer>

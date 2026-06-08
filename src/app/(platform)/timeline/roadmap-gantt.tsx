@@ -10,6 +10,8 @@ const LABEL_W = 240; // px
 const MIN_MONTH_W = 72; // px
 const MIN_MONTHS = 4; // keep the grid wide enough to read even for clustered data
 
+const DAY_MS = 1000 * 60 * 60 * 24;
+
 function parseDate(value: string | null): number | null {
   return parseDateMs(value);
 }
@@ -23,6 +25,21 @@ function isSlipping(item: TimelineItem): boolean {
 /** A timeline item with at least one resolvable date. */
 function itemTimes(item: TimelineItem): { start: number | null; end: number | null } {
   return { start: parseDate(item.start), end: parseDate(item.end) };
+}
+
+/** Baseline plan times (where a baseline exists). */
+function baselineTimes(item: TimelineItem): { start: number | null; end: number | null } {
+  return { start: parseDate(item.baselineStart), end: parseDate(item.baselineEnd) };
+}
+
+/**
+ * Forecast position for a milestone: the agreed baseline (targetDate) shifted by
+ * the recorded variance in days. Returns null when the baseline is unparseable.
+ */
+function milestoneForecastMs(item: TimelineItem): number | null {
+  const base = parseDate(item.baselineEnd ?? item.end);
+  if (base === null) return null;
+  return base + (item.varianceDays ?? 0) * DAY_MS;
 }
 
 function hasDate(item: TimelineItem): boolean {
@@ -75,7 +92,13 @@ function groupByWorkstream(items: TimelineItem[]) {
   return groups;
 }
 
-export function RoadmapGantt({ items }: { items: TimelineItem[] }) {
+export function RoadmapGantt({
+  items,
+  showBaseline = false,
+}: {
+  items: TimelineItem[];
+  showBaseline?: boolean;
+}) {
   const dated = React.useMemo(() => items.filter(hasDate), [items]);
   const undatedCount = items.length - dated.length;
 
@@ -85,6 +108,13 @@ export function RoadmapGantt({ items }: { items: TimelineItem[] }) {
       const { start, end } = itemTimes(it);
       if (start !== null) times.push(start);
       if (end !== null) times.push(end);
+      const { start: bs, end: be } = baselineTimes(it);
+      if (bs !== null) times.push(bs);
+      if (be !== null) times.push(be);
+      if (it.kind === "milestone") {
+        const f = milestoneForecastMs(it);
+        if (f !== null) times.push(f);
+      }
     }
     if (times.length === 0) return null;
     const sorted = [...times].sort((a, b) => a - b);
@@ -173,6 +203,32 @@ export function RoadmapGantt({ items }: { items: TimelineItem[] }) {
                 const left = pct(s ?? e!);
                 const right = pct(e ?? s!);
                 const widthPct = Math.max(right - left, 0);
+
+                // Baseline overlay geometry (bars). Only drawn when a baseline
+                // exists and diverges from the current forecast.
+                const { start: bs, end: be } = baselineTimes(item);
+                const baseLeft = bs !== null || be !== null ? pct((bs ?? be)!) : null;
+                const baseRight = bs !== null || be !== null ? pct((be ?? bs)!) : null;
+                const baseWidthPct =
+                  baseLeft !== null && baseRight !== null ? Math.max(baseRight - baseLeft, 0) : 0;
+                const baselineBarDiverges =
+                  showBaseline &&
+                  item.kind !== "milestone" &&
+                  baseLeft !== null &&
+                  (Math.abs(baseLeft - left) > 0.1 || Math.abs(baseWidthPct - widthPct) > 0.1);
+
+                // Milestone baseline-vs-forecast geometry.
+                const msBaselineMs = parseDate(item.baselineEnd ?? item.end);
+                const msForecastMs = milestoneForecastMs(item);
+                const msBaselinePct = msBaselineMs !== null ? pct(msBaselineMs) : null;
+                const msForecastPct = msForecastMs !== null ? pct(msForecastMs) : null;
+                const milestoneSlips =
+                  showBaseline &&
+                  item.kind === "milestone" &&
+                  msBaselinePct !== null &&
+                  msForecastPct !== null &&
+                  Math.abs(msForecastPct - msBaselinePct) > 0.1;
+
                 return (
                   <div
                     key={`${item.kind}-${item.id}`}
@@ -197,34 +253,75 @@ export function RoadmapGantt({ items }: { items: TimelineItem[] }) {
                         ))}
                       </div>
                       {item.kind === "milestone" ? (
-                        <span
-                          className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2"
-                          style={{ left: `${pct(e ?? s!)}%` }}
-                          title={`${item.title} — milestone`}
-                        >
-                          <Flag
-                            className={cn("size-4", slipping ? "text-rag-red" : "text-chart-3")}
-                          />
-                        </span>
+                        <>
+                          {/* slip connector between baseline and forecast */}
+                          {milestoneSlips && (
+                            <span
+                              className="bg-rag-red/40 absolute top-1/2 h-0.5 -translate-y-1/2"
+                              style={{
+                                left: `${Math.min(msBaselinePct!, msForecastPct!)}%`,
+                                width: `${Math.abs(msForecastPct! - msBaselinePct!)}%`,
+                              }}
+                              aria-hidden
+                            />
+                          )}
+                          {/* baseline (planned) flag — hollow */}
+                          {milestoneSlips && (
+                            <span
+                              className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2"
+                              style={{ left: `${msBaselinePct}%` }}
+                              title={`${item.title} — baseline (planned)`}
+                            >
+                              <Flag className="text-muted-foreground/60 size-4" strokeWidth={1.5} />
+                            </span>
+                          )}
+                          {/* forecast (current) flag */}
+                          <span
+                            className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2"
+                            style={{ left: `${(msForecastPct ?? pct(e ?? s!))}%` }}
+                            title={`${item.title} — ${milestoneSlips ? "forecast" : "milestone"}`}
+                          >
+                            <Flag
+                              className={cn(
+                                "size-4 fill-current",
+                                slipping ? "text-rag-red" : "text-chart-3",
+                              )}
+                            />
+                          </span>
+                        </>
                       ) : (
-                        <div
-                          className={cn(
-                            "absolute top-1/2 flex h-4 -translate-y-1/2 items-center gap-1 rounded-sm px-1",
-                            item.kind === "wbs"
-                              ? "bg-primary/80"
-                              : item.kind === "critical"
-                              ? "bg-rag-amber/80"
-                              : slipping
-                                ? "bg-rag-red/80"
-                                : "bg-secondary/80",
+                        <>
+                          {/* baseline plan bar — drawn behind when it diverges */}
+                          {baselineBarDiverges && (
+                            <div
+                              className="border-muted-foreground/50 absolute top-1/2 h-4 -translate-y-1/2 rounded-sm border border-dashed"
+                              style={{
+                                left: `${baseLeft}%`,
+                                width: `max(${baseWidthPct}%, 12px)`,
+                              }}
+                              title={`${item.title} — baseline plan`}
+                              aria-hidden
+                            />
                           )}
-                          style={{ left: `${left}%`, width: `max(${widthPct}%, 12px)` }}
-                          title={`${item.title}${slipping ? " — slipping" : ""}`}
-                        >
-                          {slipping && (
-                            <AlertTriangle className="size-3 shrink-0 text-white" />
-                          )}
-                        </div>
+                          <div
+                            className={cn(
+                              "absolute top-1/2 flex h-4 -translate-y-1/2 items-center gap-1 rounded-sm px-1",
+                              item.kind === "wbs"
+                                ? "bg-primary/80"
+                                : item.kind === "critical"
+                                ? "bg-rag-amber/80"
+                                : slipping
+                                  ? "bg-rag-red/80"
+                                  : "bg-secondary/80",
+                            )}
+                            style={{ left: `${left}%`, width: `max(${widthPct}%, 12px)` }}
+                            title={`${item.title}${slipping ? " — slipping" : ""}`}
+                          >
+                            {slipping && (
+                              <AlertTriangle className="size-3 shrink-0 text-white" />
+                            )}
+                          </div>
+                        </>
                       )}
                     </div>
                   </div>
@@ -247,11 +344,23 @@ export function RoadmapGantt({ items }: { items: TimelineItem[] }) {
           <span className="bg-rag-amber/80 h-2.5 w-5 rounded-sm" /> Critical path
         </span>
         <span className="flex items-center gap-1.5">
-          <Flag className="text-chart-3 size-3.5" /> Milestone
+          <Flag className="text-chart-3 size-3.5 fill-current" /> Milestone
         </span>
         <span className="flex items-center gap-1.5">
           <AlertTriangle className="text-rag-red size-3.5" /> Slipping
         </span>
+        {showBaseline && (
+          <>
+            <span className="flex items-center gap-1.5">
+              <span className="border-muted-foreground/50 h-2.5 w-5 rounded-sm border border-dashed" />{" "}
+              Baseline plan
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Flag className="text-muted-foreground/60 size-3.5" strokeWidth={1.5} /> Baseline
+              milestone
+            </span>
+          </>
+        )}
         {undatedCount > 0 && (
           <span className="ml-auto">
             {undatedCount} undated item{undatedCount === 1 ? "" : "s"} hidden — see the list view.

@@ -5,6 +5,10 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db";
 import { revalidateWorkstreamViews } from "@/lib/revalidate-paths";
 import { writeAudit } from "@/lib/audit";
+import {
+  PermissionDeniedError,
+  requireEntityAction,
+} from "@/lib/rbac/server-guard";
 import { ok, fail, parseInput } from "@/server/actions/helpers";
 import { decisionSchema } from "@/lib/validation/decisions";
 import { blankToNull, computeNextExternalId } from "@/lib/services/registers";
@@ -68,4 +72,34 @@ export async function updateDecision(input: unknown) {
   });
   revalidate(decision.workstreamId);
   return ok(decision, `Decision ${decision.externalId} updated`);
+}
+
+export async function deleteDecision(input: unknown) {
+  try {
+    await requireEntityAction("decision", "delete");
+    const id =
+      typeof input === "object" && input !== null && "id" in input
+        ? String((input as { id: unknown }).id)
+        : "";
+    if (!id) return fail("Missing decision id");
+
+    const existing = await prisma.decision.findUnique({
+      where: { id },
+      select: { id: true, externalId: true, workstreamId: true },
+    });
+    if (!existing) return fail("Decision not found");
+
+    await prisma.decision.delete({ where: { id: existing.id } });
+    await writeAudit({
+      entityType: "Decision",
+      entityId: existing.id,
+      action: "delete",
+      payload: { externalId: existing.externalId },
+    });
+    revalidate(existing.workstreamId);
+    return ok({ id: existing.id }, `Decision ${existing.externalId} deleted`);
+  } catch (error) {
+    if (error instanceof PermissionDeniedError) return fail(error.message);
+    throw error;
+  }
 }

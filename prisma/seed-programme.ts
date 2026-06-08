@@ -1,9 +1,10 @@
 /**
  * Programme data seed (DEV / DEMO ONLY).
  *
- * Idempotent: wipes and recreates only the four programme-context tables that
- * surface migration, capacity and lifecycle signals. It never touches the core
- * registers (risks, actions, decisions, ...) or the enterprise PM models.
+ * LIVE-SAFE & idempotent: upserts (find-or-update by natural key) the four
+ * programme-context tables that surface migration, capacity and lifecycle
+ * signals. It never deletes rows and never touches the core registers (risks,
+ * actions, decisions, ...) or the enterprise PM models.
  *
  * Figures are programme-framed approximations of the migration baseline
  * (~1,530 page OMAR inventory, ~60 migrated to date, ~1,000 in-scope trajectory).
@@ -229,18 +230,30 @@ const COMPONENT_TEMPLATES: {
   },
 ];
 
+// LIVE-SAFE: find-or-update by natural key instead of destructive deleteMany.
+// These reference catalogues have no DB-level unique constraint to upsert
+// against, so re-running never deletes rows; stale rows are left untouched.
 async function main() {
-  await prisma.$transaction([
-    prisma.pageMigrationItem.deleteMany(),
-    prisma.resourceConstraint.deleteMany(),
-    prisma.processWorkflow.deleteMany(),
-    prisma.componentTemplate.deleteMany(),
-  ]);
-
-  await prisma.pageMigrationItem.createMany({ data: PAGE_MIGRATION_ITEMS });
-  await prisma.resourceConstraint.createMany({ data: RESOURCE_CONSTRAINTS });
-  await prisma.processWorkflow.createMany({ data: PROCESS_WORKFLOWS });
-  await prisma.componentTemplate.createMany({ data: COMPONENT_TEMPLATES });
+  for (const item of PAGE_MIGRATION_ITEMS) {
+    const existing = await prisma.pageMigrationItem.findFirst({ where: { url: item.url } });
+    if (existing) await prisma.pageMigrationItem.update({ where: { id: existing.id }, data: item });
+    else await prisma.pageMigrationItem.create({ data: item });
+  }
+  for (const item of RESOURCE_CONSTRAINTS) {
+    const existing = await prisma.resourceConstraint.findFirst({ where: { role: item.role } });
+    if (existing) await prisma.resourceConstraint.update({ where: { id: existing.id }, data: item });
+    else await prisma.resourceConstraint.create({ data: item });
+  }
+  for (const item of PROCESS_WORKFLOWS) {
+    const existing = await prisma.processWorkflow.findFirst({ where: { name: item.name } });
+    if (existing) await prisma.processWorkflow.update({ where: { id: existing.id }, data: item });
+    else await prisma.processWorkflow.create({ data: item });
+  }
+  for (const item of COMPONENT_TEMPLATES) {
+    const existing = await prisma.componentTemplate.findFirst({ where: { name: item.name } });
+    if (existing) await prisma.componentTemplate.update({ where: { id: existing.id }, data: item });
+    else await prisma.componentTemplate.create({ data: item });
+  }
 
   const totalPages = PAGE_MIGRATION_ITEMS.reduce(
     (sum, i) => sum + (parseInt(i.effortEstimate, 10) || 0),

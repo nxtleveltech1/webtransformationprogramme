@@ -1,9 +1,12 @@
 /**
  * Programme delivery layer seed (REAL DATA ONLY).
  *
- * Idempotent: wipes and recreates only the extension tables added by the
- * `add_enterprise_pm_models` migration. It never truncates the workshop
- * registers (decisions, actions, risks, ...).
+ * LIVE-SAFE & idempotent: additive only. Upsert-keyed for Phase/Project/
+ * Deliverable/Task/ReadinessGate/GovernanceMeeting/Resource; scope-cleans only
+ * the seed-owned Milestone and EvidenceLink rows it recreates. It NEVER deletes
+ * the workshop registers nor app-authored data (ChangeRequest, Approval,
+ * Document, Notification, User, ResourceAllocation, Comment, Attachment,
+ * StatusUpdate) — so it is safe to run repeatedly against the live database.
  *
  * Principle: every row created here is either real workshop/programme data or a
  * faithful derivation of it. No fabricated/placeholder data is generated.
@@ -163,33 +166,44 @@ function mapEvidenceKind(value: string): EvidenceLinkKind {
   return enumValue(EvidenceLinkKind, value, EvidenceLinkKind.SUPPORTS);
 }
 
-async function wipeExtensionTables() {
-  // Order respects FK dependencies (children first). Milestones are included so
-  // the derived set is fully rebuilt on every run.
-  await prisma.evidenceLink.deleteMany();
-  await prisma.attachment.deleteMany();
-  await prisma.comment.deleteMany();
-  await prisma.statusUpdate.deleteMany();
-  await prisma.readinessCriterion.deleteMany();
-  await prisma.readinessGate.deleteMany();
-  await prisma.governanceMeeting.deleteMany();
-  await prisma.taskDependency.deleteMany();
-  await prisma.task.deleteMany();
-  await prisma.userRole.deleteMany();
-  await prisma.rolePermission.deleteMany();
-  await prisma.permission.deleteMany();
-  await prisma.role.deleteMany();
-  await prisma.user.deleteMany();
-  await prisma.resourceAllocation.deleteMany();
-  await prisma.resource.deleteMany();
-  await prisma.notification.deleteMany();
-  await prisma.document.deleteMany();
-  await prisma.approval.deleteMany();
-  await prisma.changeRequest.deleteMany();
-  await prisma.deliverable.deleteMany();
-  await prisma.milestone.deleteMany();
-  await prisma.project.deleteMany();
-  await prisma.phase.deleteMany();
+/**
+ * Marker prefix for seed-derived milestones (the critical-path PI gates). Used
+ * to scope-clean ONLY the milestones this seed owns, so user-created milestones
+ * are never deleted.
+ */
+const SEED_MILESTONE_NOTE_PREFIX = "Critical-path PI gate (step";
+
+/**
+ * LIVE-SAFE idempotency cleanup.
+ *
+ * This seed is additive: every table it creates is either upsert-keyed (Phase,
+ * Project, Deliverable, Task, ReadinessGate, GovernanceMeeting, Resource) or
+ * managed by createMany/skipDuplicates (RBAC catalogue, TaskDependency — both
+ * with unique constraints). The only two tables seeded via raw create() are
+ * Milestone and EvidenceLink, so we scope-clean ONLY the rows this seed owns
+ * (by deterministic marker) before recreating them.
+ *
+ * It NEVER touches app-authored tables (ChangeRequest, Approval, Document,
+ * Notification, User/UserRole, ResourceAllocation, Comment, Attachment,
+ * StatusUpdate) — those were previously wiped here but never recreated, which
+ * was destroying live data on every run.
+ */
+async function cleanSeedOwnedRows() {
+  // Seed-owned milestones only (identified by their generated notes marker).
+  await prisma.milestone.deleteMany({
+    where: { notes: { startsWith: SEED_MILESTONE_NOTE_PREFIX } },
+  });
+  // Seed-owned evidence links only (identified by their generated traceRefs).
+  const seedTraceRefs = Array.from(
+    new Set((EVIDENCE_LINKS as unknown[][]).map((row) => row[5] as string).filter(Boolean)),
+  );
+  if (seedTraceRefs.length > 0) {
+    await prisma.evidenceLink.deleteMany({ where: { traceRef: { in: seedTraceRefs } } });
+  }
+  // Self-heal: Resources are 1:1 derivations of Person. Person merges/deletions
+  // can leave orphaned resources (personId null); remove them so the resource
+  // set stays exactly one-per-person after the upsert loop below.
+  await prisma.resource.deleteMany({ where: { personId: null } });
 }
 
 /** RBAC role + permission catalogue. App infrastructure, not programme data. */
@@ -245,7 +259,9 @@ async function seedRbacCatalogue() {
 
 async function main() {
   console.log("\n=== Programme delivery layer seed (real-data derivations only) ===\n");
-  await wipeExtensionTables();
+  // LIVE-SAFE: additive/idempotent. Only scope-cleans seed-owned Milestone and
+  // EvidenceLink rows; never deletes app-authored data.
+  await cleanSeedOwnedRows();
 
   const programme = await prisma.programme.findFirst();
   if (!programme) {

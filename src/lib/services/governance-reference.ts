@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/db";
 
 export async function getGovernanceReferenceData() {
-  const [docs, mappings] = await Promise.all([
+  const [docs, mappings, glossaryTerms] = await Promise.all([
     prisma.governanceReferenceDoc.findMany({
       orderBy: { updatedAt: "desc" },
       include: {
@@ -18,6 +18,10 @@ export async function getGovernanceReferenceData() {
         },
       },
     }),
+    prisma.glossaryTerm.findMany({
+      orderBy: { term: "asc" },
+      select: { id: true, term: true },
+    }),
   ]);
 
   const torDoc =
@@ -27,6 +31,7 @@ export async function getGovernanceReferenceData() {
     docs,
     torDoc,
     mappings,
+    glossaryTerms,
     summary: {
       mappingCount: mappings.length,
       publishedDocs: docs.filter((d) => d.status === "PUBLISHED").length,

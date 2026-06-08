@@ -41,6 +41,8 @@ import type {
   WorkloadFlag,
 } from "@/lib/services/resources";
 import { upsertResource } from "@/server/actions/resources";
+import type { CapacityAllocationInput } from "@/lib/services/capacity";
+import { CapacityPanel } from "./capacity-panel";
 
 const FLAG_META: Record<WorkloadFlag, { label: string; className: string; bar: string }> = {
   OVERLOADED: {
@@ -98,6 +100,26 @@ export function ResourcesClient({
     () =>
       resources.flatMap((r) =>
         r.allocations.map((a) => ({ ...a, resourceName: r.displayName })),
+      ),
+    [resources],
+  );
+
+  const capacityAllocations: CapacityAllocationInput[] = React.useMemo(
+    () =>
+      resources.flatMap((r) =>
+        r.allocations.map((a) => ({
+          id: a.id,
+          resourceId: r.id,
+          resourceName: r.displayName,
+          personId: a.personId,
+          projectId: a.projectId,
+          projectName: a.projectName,
+          workstreamCode: a.workstreamCode,
+          roleOnWork: a.roleOnWork,
+          allocationPct: a.allocationPct ?? 0,
+          startDate: a.startDate,
+          endDate: a.endDate,
+        })),
       ),
     [resources],
   );
@@ -324,6 +346,7 @@ export function ResourcesClient({
         <TabsList>
           <TabsTrigger value="resources">Resources</TabsTrigger>
           <TabsTrigger value="allocations">Allocations</TabsTrigger>
+          <TabsTrigger value="capacity">Capacity &amp; leveling</TabsTrigger>
         </TabsList>
         <TabsContent value="resources" className="pt-4">
           <DataTable
@@ -343,6 +366,9 @@ export function ResourcesClient({
             emptyTitle="No allocations"
             emptyDescription="No resource allocations recorded yet."
           />
+        </TabsContent>
+        <TabsContent value="capacity" className="pt-4">
+          <CapacityPanel allocations={capacityAllocations} />
         </TabsContent>
       </Tabs>
 
