@@ -5,6 +5,14 @@
 export const PRIORITY_OPTIONS = ["CRITICAL", "HIGH", "MEDIUM", "LOW"] as const;
 export const RAG_OPTIONS = ["RED", "AMBER", "GREEN"] as const;
 
+export const TASK_STATUS_OPTIONS = [
+  "NOT_STARTED",
+  "IN_PROGRESS",
+  "BLOCKED",
+  "COMPLETE",
+  "DEFERRED",
+] as const;
+
 export const ACTION_STATUS_OPTIONS = [
   "NEW",
   "IN_PROGRESS",

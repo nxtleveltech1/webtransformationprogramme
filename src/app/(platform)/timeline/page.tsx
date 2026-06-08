@@ -2,7 +2,10 @@ import { PageHeader } from "@/components/shared/page-header";
 import { ViewGuard } from "@/components/shared/can";
 import { ErrorState } from "@/components/shared/states";
 import { getTimelineData } from "@/lib/services/timeline";
+import { getPeopleOptions } from "@/lib/services/tasks";
+import { getMilestoneFormOptions } from "@/lib/services/milestones";
 import { TimelineClient, type TimelineItem } from "./timeline-client";
+import type { ScheduleEditData, ScheduleEditOptions } from "./types";
 
 export const dynamic = "force-dynamic";
 
@@ -40,11 +43,100 @@ export default async function TimelinePage() {
     tasks: [],
   };
 
+  let options: ScheduleEditOptions = { people: [], workstreams: [], projects: [] };
+
   try {
-    data = await getTimelineData();
+    const [timeline, people, formOptions] = await Promise.all([
+      getTimelineData(),
+      getPeopleOptions(),
+      getMilestoneFormOptions(),
+    ]);
+    data = timeline;
+    options = {
+      people,
+      workstreams: formOptions.workstreams,
+      projects: formOptions.projects,
+    };
   } catch {
     return <ErrorState description="The roadmap could not be loaded. Please try again." />;
   }
+
+  // Full editable records keyed by id, used by the on-Gantt edit drawers.
+  const editData: ScheduleEditData = {
+    wbs: Object.fromEntries(
+      data.tasks.map((t) => [
+        t.id,
+        {
+          id: t.id,
+          externalId: t.externalId,
+          title: t.title,
+          description: t.description,
+          status: t.status,
+          priority: t.priority,
+          rag: t.rag,
+          percentComplete: t.percentComplete,
+          baselineStartDate: t.baselineStartDate,
+          baselineEndDate: t.baselineEndDate,
+          forecastStartDate: t.forecastStartDate,
+          forecastEndDate: t.forecastEndDate,
+          durationDays: t.durationDays,
+          ownerPersonId: t.ownerPersonId,
+          ownerText: t.ownerText,
+          workstreamId: t.workstreamId,
+          blockers: t.blockers,
+          acceptanceCriteria: t.acceptanceCriteria,
+          criticalPath: t.criticalPath,
+        },
+      ]),
+    ),
+    milestone: Object.fromEntries(
+      data.milestones.map((m) => [
+        m.id,
+        {
+          id: m.id,
+          title: m.title,
+          targetDate: m.targetDate,
+          piGate: m.piGate,
+          status: m.status,
+          varianceDays: m.varianceDays,
+          notes: m.notes,
+          workstreamId: m.workstreamId,
+          projectId: m.projectId,
+        },
+      ]),
+    ),
+    critical: Object.fromEntries(
+      data.criticalPath.map((c) => [
+        c.id,
+        {
+          id: c.id,
+          stepNumber: c.stepNumber,
+          activity: c.activity,
+          ownerText: c.ownerText,
+          predecessor: c.predecessor,
+          dueDate: c.dueDate,
+          status: c.status,
+          isCritical: c.isCritical,
+        },
+      ]),
+    ),
+    activity: Object.fromEntries(
+      data.activities.map((a) => [
+        a.id,
+        {
+          id: a.id,
+          workstream: a.workstream,
+          activity: a.activity,
+          ownerText: a.ownerText,
+          startDate: a.startDate,
+          endDate: a.endDate,
+          dependency: a.dependency,
+          status: a.status,
+          notes: a.notes,
+        },
+      ]),
+    ),
+  };
 
   // WBS tasks are the authoritative Gantt feed. Roadmap and critical-path rows
   // remain visible as supporting programme views.
@@ -52,7 +144,8 @@ export default async function TimelinePage() {
     ...data.tasks.map((task) => ({
       id: task.id,
       kind: "wbs" as const,
-      title: `${task.externalId ?? "WBS"} ${task.title}`,
+      code: task.externalId ?? null,
+      title: task.title,
       workstream: task.workstream?.name ?? null,
       owner:
         [task.ownerPerson?.displayName, task.ownerPerson?.surname].filter(Boolean).join(" ").trim() ||
@@ -71,6 +164,7 @@ export default async function TimelinePage() {
     ...data.milestones.map((m) => ({
       id: m.id,
       kind: "milestone" as const,
+      code: null,
       title: m.piGate ? `${m.title} (${m.piGate})` : m.title,
       workstream: m.workstream?.name ?? m.project?.name ?? null,
       owner: null,
@@ -88,6 +182,7 @@ export default async function TimelinePage() {
     ...data.activities.map((a) => ({
       id: a.id,
       kind: "activity" as const,
+      code: null,
       title: a.activity,
       workstream: a.workstream
         ? (ROADMAP_WORKSTREAM[a.workstream] ?? a.workstream)
@@ -105,6 +200,7 @@ export default async function TimelinePage() {
     ...data.criticalPath.map((c) => ({
       id: c.id,
       kind: "critical" as const,
+      code: null,
       title: `${c.stepNumber}. ${c.activity}`,
       workstream: "Critical path",
       owner: c.ownerText,
@@ -126,7 +222,7 @@ export default async function TimelinePage() {
           title="Gantt & Roadmap"
           description="Seeded WBS tasks plotted as the programme Gantt, with roadmap and critical-path views retained for context."
         />
-        <TimelineClient items={items} />
+        <TimelineClient items={items} editData={editData} editOptions={options} />
       </div>
     </ViewGuard>
   );

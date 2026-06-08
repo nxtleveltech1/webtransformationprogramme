@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import { Flag, GitBranch, CalendarRange, AlertTriangle, X, List, GanttChartSquare, Workflow, GitCompareArrows } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -13,10 +14,14 @@ import { EmptyState } from "@/components/shared/states";
 import { ExportButton } from "@/components/shared/export-button";
 import { formatDate, parseDateMs } from "@/lib/utils";
 import { RoadmapGantt } from "./roadmap-gantt";
+import { ItemEditDialog } from "./edit-dialogs";
+import type { ScheduleEditData, ScheduleEditOptions } from "./types";
 
 export interface TimelineItem {
   id: string;
   kind: "wbs" | "activity" | "critical" | "milestone";
+  /** Short reference shown in its own column (e.g. WBS-014); null for items without one. */
+  code: string | null;
   title: string;
   workstream: string | null;
   owner: string | null;
@@ -53,7 +58,20 @@ function isSlipping(item: TimelineItem): boolean {
   return /(slip|delay|late|at[\s-]?risk|behind|blocked|red|overdue)/.test(s);
 }
 
-export function TimelineClient({ items }: { items: TimelineItem[] }) {
+export function TimelineClient({
+  items,
+  editData,
+  editOptions,
+}: {
+  items: TimelineItem[];
+  editData: ScheduleEditData;
+  editOptions: ScheduleEditOptions;
+}) {
+  const router = useRouter();
+  const [selected, setSelected] = React.useState<{
+    id: string;
+    kind: TimelineItem["kind"];
+  } | null>(null);
   const availableKinds = React.useMemo(
     () => KIND_ORDER.filter((k) => items.some((i) => i.kind === k)),
     [items],
@@ -245,7 +263,11 @@ export function TimelineClient({ items }: { items: TimelineItem[] }) {
             <CardTitle className="text-base">WBS Gantt — month grid</CardTitle>
           </CardHeader>
           <CardContent>
-            <RoadmapGantt items={filtered} showBaseline={showBaseline} />
+            <RoadmapGantt
+              items={filtered}
+              showBaseline={showBaseline}
+              onSelectItem={(it) => setSelected({ id: it.id, kind: it.kind })}
+            />
           </CardContent>
         </Card>
       ) : (
@@ -261,7 +283,11 @@ export function TimelineClient({ items }: { items: TimelineItem[] }) {
               <CardContent>
                 <ol className="border-border/60 relative space-y-4 border-l pl-6">
                   {group.items.map((item) => (
-                    <TimelineRow key={`${item.kind}-${item.id}`} item={item} />
+                    <TimelineRow
+                      key={`${item.kind}-${item.id}`}
+                      item={item}
+                      onSelect={() => setSelected({ id: item.id, kind: item.kind })}
+                    />
                   ))}
                 </ol>
               </CardContent>
@@ -269,11 +295,22 @@ export function TimelineClient({ items }: { items: TimelineItem[] }) {
           ))}
         </div>
       )}
+
+      <ItemEditDialog
+        selected={selected}
+        data={editData}
+        options={editOptions}
+        onOpenChange={(open) => !open && setSelected(null)}
+        onSaved={() => {
+          setSelected(null);
+          router.refresh();
+        }}
+      />
     </div>
   );
 }
 
-function TimelineRow({ item }: { item: TimelineItem }) {
+function TimelineRow({ item, onSelect }: { item: TimelineItem; onSelect: () => void }) {
   const meta = KIND_META[item.kind];
   const Icon = meta.icon;
   const slipping = isSlipping(item);
@@ -289,13 +326,30 @@ function TimelineRow({ item }: { item: TimelineItem }) {
       >
         <span className={"size-1.5 rounded-full " + (slipping ? "bg-rag-red" : "bg-muted-foreground/50")} />
       </span>
-      <div className="flex flex-col gap-1.5 sm:flex-row sm:items-start sm:justify-between">
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={onSelect}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onSelect();
+          }
+        }}
+        title="Click to edit"
+        className="hover:bg-accent/40 -mx-2 flex cursor-pointer flex-col gap-1.5 rounded-md px-2 py-1 transition-colors sm:flex-row sm:items-start sm:justify-between"
+      >
         <div className="min-w-0 space-y-1">
           <div className="flex flex-wrap items-center gap-2">
             <span className={"inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-xs font-medium " + meta.className}>
               <Icon className="size-3" />
               {meta.label}
             </span>
+            {item.code && (
+              <Badge variant="outline" className="font-mono text-xs">
+                {item.code}
+              </Badge>
+            )}
             {item.isCritical && (
               <Badge className="bg-rag-red/10 text-rag-red border-rag-red/30">Critical</Badge>
             )}

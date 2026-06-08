@@ -1,13 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { Flag, AlertTriangle } from "lucide-react";
+import { Flag, AlertTriangle, ChevronDown, ChevronRight } from "lucide-react";
 
 import { cn, parseDateMs } from "@/lib/utils";
 import type { TimelineItem } from "./timeline-client";
 
-const LABEL_W = 240; // px
-const MIN_MONTH_W = 72; // px
+const LABEL_W = 300; // px — activity description column
+const CODE_W = 92; // px — WBS # column (sits after the description)
+const MIN_MONTH_W = 64; // px
 const MIN_MONTHS = 4; // keep the grid wide enough to read even for clustered data
 
 const DAY_MS = 1000 * 60 * 60 * 24;
@@ -95,12 +96,22 @@ function groupByWorkstream(items: TimelineItem[]) {
 export function RoadmapGantt({
   items,
   showBaseline = false,
+  onSelectItem,
 }: {
   items: TimelineItem[];
   showBaseline?: boolean;
+  onSelectItem?: (item: TimelineItem) => void;
 }) {
   const dated = React.useMemo(() => items.filter(hasDate), [items]);
   const undatedCount = items.length - dated.length;
+  const [collapsed, setCollapsed] = React.useState<Set<string>>(() => new Set());
+  const toggleGroup = (name: string) =>
+    setCollapsed((prev) => {
+      const next = new Set(prev);
+      if (next.has(name)) next.delete(name);
+      else next.add(name);
+      return next;
+    });
 
   const range = React.useMemo(() => {
     const times: number[] = [];
@@ -165,14 +176,20 @@ export function RoadmapGantt({
   return (
     <div className="space-y-4">
       <div className="overflow-x-auto">
-        <div style={{ minWidth: LABEL_W + trackMinWidth }}>
+        <div style={{ minWidth: LABEL_W + CODE_W + trackMinWidth }}>
           {/* Header */}
           <div className="border-border flex items-stretch border-b">
             <div
-              className="text-muted-foreground shrink-0 px-2 py-2 text-xs font-medium"
+              className="bg-card text-muted-foreground sticky left-0 z-20 shrink-0 px-2 py-2 text-xs font-medium"
               style={{ width: LABEL_W }}
             >
               Activity
+            </div>
+            <div
+              className="bg-card border-border/40 text-muted-foreground sticky z-20 shrink-0 border-l px-2 py-2 text-xs font-medium"
+              style={{ left: LABEL_W, width: CODE_W }}
+            >
+              WBS #
             </div>
             <div className="relative flex flex-1">
               {months.map((m) => (
@@ -192,12 +209,27 @@ export function RoadmapGantt({
           </div>
 
           {/* Rows */}
-          {groups.map((group) => (
+          {groups.map((group) => {
+            const isCollapsed = collapsed.has(group.name);
+            return (
             <div key={group.name}>
-              <div className="bg-muted/40 text-foreground border-border/60 border-b px-2 py-1.5 text-xs font-semibold">
-                {group.name}
-              </div>
-              {group.items.map((item) => {
+              <button
+                type="button"
+                onClick={() => toggleGroup(group.name)}
+                aria-expanded={!isCollapsed}
+                className="bg-muted/40 hover:bg-muted/70 text-foreground border-border/60 flex w-full items-center border-b py-1.5 text-left text-xs font-semibold transition-colors"
+              >
+                <span className="bg-muted/40 sticky left-0 flex items-center gap-1.5 px-2">
+                  {isCollapsed ? (
+                    <ChevronRight className="size-3.5 shrink-0" />
+                  ) : (
+                    <ChevronDown className="size-3.5 shrink-0" />
+                  )}
+                  {group.name}
+                  <span className="text-muted-foreground font-normal">({group.items.length})</span>
+                </span>
+              </button>
+              {!isCollapsed && group.items.map((item) => {
                 const { start: s, end: e } = itemTimes(item);
                 const slipping = isSlipping(item);
                 const left = pct(s ?? e!);
@@ -232,20 +264,43 @@ export function RoadmapGantt({
                 return (
                   <div
                     key={`${item.kind}-${item.id}`}
-                    className="border-border/40 hover:bg-accent/30 flex items-center border-b transition-colors"
+                    role={onSelectItem ? "button" : undefined}
+                    tabIndex={onSelectItem ? 0 : undefined}
+                    onClick={onSelectItem ? () => onSelectItem(item) : undefined}
+                    onKeyDown={
+                      onSelectItem
+                        ? (ev) => {
+                            if (ev.key === "Enter" || ev.key === " ") {
+                              ev.preventDefault();
+                              onSelectItem(item);
+                            }
+                          }
+                        : undefined
+                    }
+                    title={onSelectItem ? "Click to edit" : undefined}
+                    className={cn(
+                      "border-border/40 hover:bg-accent/30 flex items-stretch border-b transition-colors",
+                      onSelectItem && "cursor-pointer",
+                    )}
                   >
                     <div
-                      className="flex shrink-0 items-center gap-1.5 px-2 py-2"
+                      className="bg-card sticky left-0 z-10 flex shrink-0 items-center gap-1.5 px-2 py-2"
                       style={{ width: LABEL_W }}
                     >
                       {item.isCritical && (
                         <span className="bg-rag-red size-1.5 shrink-0 rounded-full" aria-hidden />
                       )}
-                      <span className="truncate text-xs" title={item.title}>
+                      <span className="line-clamp-2 text-xs leading-snug" title={item.title}>
                         {item.title}
                       </span>
                     </div>
-                    <div className="relative h-9 flex-1">
+                    <div
+                      className="bg-card border-border/40 text-muted-foreground sticky z-10 flex shrink-0 items-center border-l px-2 py-2 font-mono text-[11px]"
+                      style={{ left: LABEL_W, width: CODE_W }}
+                    >
+                      <span className="truncate">{item.code ?? ""}</span>
+                    </div>
+                    <div className="relative min-h-9 flex-1">
                       {/* gridlines */}
                       <div className="absolute inset-0 flex" aria-hidden>
                         {months.map((m) => (
@@ -328,7 +383,8 @@ export function RoadmapGantt({
                 );
               })}
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
