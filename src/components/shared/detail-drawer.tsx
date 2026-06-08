@@ -14,6 +14,7 @@ export function DetailDrawer({
   onOpenChange,
   title,
   description,
+  headerActions,
   footer,
   children,
 }: {
@@ -21,20 +22,35 @@ export function DetailDrawer({
   onOpenChange: (open: boolean) => void;
   title: string;
   description?: string;
+  headerActions?: React.ReactNode;
   footer?: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="w-full gap-0 sm:max-w-xl">
-        <SheetHeader className="border-b">
-          <SheetTitle>{title}</SheetTitle>
-          {description && <SheetDescription>{description}</SheetDescription>}
+      <SheetContent
+        side="right"
+        className="flex h-full w-full flex-col gap-0 overflow-hidden p-0 sm:max-w-xl"
+      >
+        <SheetHeader className="shrink-0 space-y-3 border-b px-4 py-4 pr-12">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0 space-y-1">
+              <SheetTitle className="truncate">{title}</SheetTitle>
+              {description && (
+                <SheetDescription className="line-clamp-2">{description}</SheetDescription>
+              )}
+            </div>
+            {headerActions ? (
+              <div className="flex shrink-0 flex-wrap items-center gap-2">{headerActions}</div>
+            ) : null}
+          </div>
         </SheetHeader>
-        <ScrollArea className="flex-1">
+        <ScrollArea className="min-h-0 flex-1">
           <div className="space-y-6 p-4">{children}</div>
         </ScrollArea>
-        {footer && <div className="border-t p-4">{footer}</div>}
+        {footer ? (
+          <div className="bg-background shrink-0 border-t p-4">{footer}</div>
+        ) : null}
       </SheetContent>
     </Sheet>
   );

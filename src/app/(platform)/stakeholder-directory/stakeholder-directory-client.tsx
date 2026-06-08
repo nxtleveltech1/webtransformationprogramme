@@ -54,7 +54,8 @@ import type {
   StakeholderRecord,
   StakeholderDirectoryFilters,
 } from "@/lib/services/stakeholder-directory";
-import { useRole } from "@/lib/rbac/role-context";
+import type { Role } from "@/lib/rbac/roles";
+import { ROLE_DEFINITIONS } from "@/lib/rbac/roles";
 import { conciseRole, fullName, initials, stripMarkdown, titleCase } from "@/lib/utils";
 import {
   archiveStakeholder,
@@ -75,6 +76,14 @@ type DirectoryData = Awaited<
 type FormOptions = Awaited<
   ReturnType<typeof import("@/lib/services/stakeholder-directory").getStakeholderFormOptions>
 >;
+
+type StakeholderPermissions = {
+  role: Role;
+  canCreate: boolean;
+  canEdit: boolean;
+  canAssign: boolean;
+  canArchive: boolean;
+};
 
 const PROGRAMME_ROLES = [
   "STREAM_LEAD",
@@ -157,16 +166,14 @@ function readStakeholderForm(form: FormData) {
 export function StakeholderDirectoryClient({
   data,
   formOptions,
+  permissions,
 }: {
   data: DirectoryData;
   formOptions: FormOptions;
+  permissions: StakeholderPermissions;
 }) {
   const router = useRouter();
-  const { can } = useRole();
-  const canCreate = can("create", "people");
-  const canEdit = can("edit", "people");
-  const canAssign = can("assign", "people");
-  const canArchive = can("archive", "people");
+  const { canCreate, canEdit, canAssign, canArchive, role } = permissions;
 
   const [selected, setSelected] = React.useState<StakeholderRecord | null>(null);
   const [drawerMode, setDrawerMode] = React.useState<DrawerMode | null>(null);
@@ -389,33 +396,31 @@ export function StakeholderDirectoryClient({
       header: "",
       cell: ({ row }) => (
         <div className="flex justify-end" onClick={(e) => e.stopPropagation()}>
-          {(canEdit || canArchive) && (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="size-8">
-                  <MoreHorizontal className="size-4" />
-                  <span className="sr-only">Actions</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {canEdit && (
-                  <DropdownMenuItem onClick={() => openEdit(row.original)}>
-                    <Pencil className="mr-2 size-4" />
-                    Edit
-                  </DropdownMenuItem>
-                )}
-                {canArchive && (
-                  <DropdownMenuItem
-                    className="text-destructive focus:text-destructive"
-                    onClick={() => setArchiveTarget(row.original)}
-                  >
-                    <Trash2 className="mr-2 size-4" />
-                    Remove
-                  </DropdownMenuItem>
-                )}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="size-8">
+                <MoreHorizontal className="size-4" />
+                <span className="sr-only">Actions</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem
+                disabled={!canEdit}
+                onClick={() => canEdit && openEdit(row.original)}
+              >
+                <Pencil className="mr-2 size-4" />
+                Edit
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                disabled={!canArchive}
+                className="text-destructive focus:text-destructive"
+                onClick={() => canArchive && setArchiveTarget(row.original)}
+              >
+                <Trash2 className="mr-2 size-4" />
+                Remove
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       ),
     },
@@ -509,9 +514,10 @@ export function StakeholderDirectoryClient({
 
       {!canCreate && !canEdit && !canArchive && (
         <p className="text-muted-foreground rounded-lg border border-dashed px-4 py-3 text-sm">
-          Your current role is read-only for the stakeholder directory. Use the role
-          switcher in the header (e.g. Programme Director) to add, edit, or remove
-          stakeholders.
+          Your signed-in account role ({ROLE_DEFINITIONS[role].label}) is read-only for
+          the stakeholder directory. Ask an administrator to set your Clerk{" "}
+          <code className="text-xs">platformRole</code> to Programme Director or Project
+          Manager if you need to manage stakeholders.
         </p>
       )}
 
@@ -615,6 +621,14 @@ export function StakeholderDirectoryClient({
         data={filtered}
         searchPlaceholder="Quick filter visible rows..."
         onRowClick={openView}
+        toolbar={
+          canCreate ? (
+            <Button size="sm" onClick={openCreate}>
+              <Plus className="mr-1.5 size-4" />
+              Add stakeholder
+            </Button>
+          ) : undefined
+        }
         emptyTitle="No stakeholders match"
         emptyDescription="Adjust filters or add stakeholders with appropriate permissions."
       />
@@ -638,27 +652,34 @@ export function StakeholderDirectoryClient({
               ? conciseRole(selected.roleDescription)
               : undefined
         }
-        footer={
+        headerActions={
           drawerMode === "view" && selected ? (
-            <div className="flex flex-wrap gap-2">
-              {canEdit && (
-                <Button size="sm" onClick={() => openEdit()}>
-                  <Pencil className="mr-1.5 size-4" />
-                  Edit
-                </Button>
-              )}
-              {canArchive && (
-                <Button
-                  size="sm"
-                  variant="destructive"
-                  onClick={() => setArchiveTarget(selected)}
-                >
-                  <Trash2 className="mr-1.5 size-4" />
-                  Remove
-                </Button>
-              )}
-            </div>
-          ) : drawerMode === "edit" || drawerMode === "create" ? (
+            <>
+              <Button
+                size="sm"
+                variant="outline"
+                disabled={!canEdit}
+                title={canEdit ? "Edit stakeholder" : "Your role cannot edit stakeholders"}
+                onClick={() => canEdit && openEdit()}
+              >
+                <Pencil className="mr-1.5 size-4" />
+                Edit
+              </Button>
+              <Button
+                size="sm"
+                variant="destructive"
+                disabled={!canArchive}
+                title={canArchive ? "Remove stakeholder" : "Your role cannot remove stakeholders"}
+                onClick={() => canArchive && setArchiveTarget(selected)}
+              >
+                <Trash2 className="mr-1.5 size-4" />
+                Remove
+              </Button>
+            </>
+          ) : undefined
+        }
+        footer={
+          drawerMode === "edit" || drawerMode === "create" ? (
             <div className="flex flex-wrap gap-2">
               <Button
                 size="sm"
