@@ -1,0 +1,11 @@
+﻿workstream,rag_status,total_activities,blocked_items,blocked_item_examples,overdue_actions,overdue_action_examples,undated_or_tbc_actions,critical_dependencies,decisions_required,high_priority_risks,deliverables_needing_signoff,immediate_attention_required,senior_management_comment
+Content Readiness,Amber,4,0,,0,,0,4,0,0,4,critical dependencies,Requires programme sequencing validation.
+Design Delivery,Red,119,0,,0,,0,34,34,3,119,"high-priority risks, missing owner/accountability, critical dependencies, decisions required",Requires governance attention before implementation/baseline.
+Design Standards,Amber,20,0,,0,,0,20,10,0,20,"critical dependencies, decisions required",Requires programme sequencing validation.
+Design Systems,Red,20,1,ACT-166 Design and Develop CI Updates onto OMDSv2,0,,20,20,0,2,7,"blocked items, high-priority risks, undated actions, critical dependencies",Requires governance attention before implementation/baseline.
+Execution,Red,25,0,,0,,8,11,1,0,20,"missing owner/accountability, undated actions, critical dependencies, decisions required",Requires governance attention before implementation/baseline.
+Feature Delivery,Red,22,3,ACT-146 Content Updates; ACT-147 Journeys Optimization; ACT-156 Easy Plus Sales Jorurney on Public Web,0,,5,7,4,11,22,"blocked items, high-priority risks, undated actions, critical dependencies, decisions required",Requires governance attention before implementation/baseline.
+Go-Live Readiness,Red,8,0,,0,,0,5,5,0,6,"missing owner/accountability, critical dependencies, decisions required",Requires governance attention before implementation/baseline.
+OMAR,Red,24,0,,0,,19,23,8,17,23,"high-priority risks, missing owner/accountability, undated actions, critical dependencies, decisions required",Requires governance attention before implementation/baseline.
+Publishing,Amber,27,0,,0,,9,20,3,0,27,"undated actions, critical dependencies, decisions required",Requires programme sequencing validation.
+SEO / Analytics,Red,2,0,,0,,0,0,1,0,2,"missing owner/accountability, decisions required",Requires governance attention before implementation/baseline.

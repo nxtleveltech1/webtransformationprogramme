@@ -209,6 +209,8 @@ export function AssumptionsClient({
       <DataTable
         columns={columns}
         data={assumptions}
+        mappingColumns
+        tableKey="assumptions"
         searchPlaceholder="Search assumptions..."
         onRowClick={openDetail}
         emptyTitle="No assumptions recorded"

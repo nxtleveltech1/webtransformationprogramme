@@ -39,6 +39,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { EmptyState } from "@/components/shared/states";
 import { titleCase } from "@/lib/utils";
+import { getTablePreference, saveTablePreference } from "@/server/actions/table-preferences";
+import { mappingColumnDefs, MAPPING_DEFAULT_HIDDEN } from "@/components/shared/mapping-columns";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -50,6 +52,14 @@ interface DataTableProps<TData, TValue> {
   emptyTitle?: string;
   emptyDescription?: string;
   pageSize?: number;
+  /** Stable per-screen key. When set, the user's column visibility is loaded
+   *  from and persisted to the server (per Clerk user). */
+  tableKey?: string;
+  /** Initial column visibility applied when the user has no saved preference. */
+  defaultColumnVisibility?: VisibilityState;
+  /** Append the shared cross-platform mapping columns (Channel/Domain/Area/
+   *  Cluster/Market), hidden by default. */
+  mappingColumns?: boolean;
 }
 
 export function DataTable<TData, TValue>({
@@ -61,20 +71,87 @@ export function DataTable<TData, TValue>({
   emptyTitle = "No records found",
   emptyDescription = "There are no items to display yet.",
   pageSize = 12,
+  tableKey,
+  defaultColumnVisibility,
+  mappingColumns = false,
 }: DataTableProps<TData, TValue>) {
+  const allColumns = React.useMemo<ColumnDef<TData, TValue>[]>(
+    () =>
+      mappingColumns
+        ? [...columns, ...(mappingColumnDefs<TData>() as ColumnDef<TData, TValue>[])]
+        : columns,
+    [columns, mappingColumns],
+  );
+  const effectiveDefault = React.useMemo<VisibilityState>(
+    () => ({ ...(mappingColumns ? MAPPING_DEFAULT_HIDDEN : {}), ...(defaultColumnVisibility ?? {}) }),
+    [mappingColumns, defaultColumnVisibility],
+  );
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = React.useState("");
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>(effectiveDefault);
+  // Whether we've loaded the saved preference yet — gates persistence so the
+  // initial load doesn't immediately write back the default.
+  const loadedRef = React.useRef(false);
+  const saveTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Load saved preference once per tableKey.
+  React.useEffect(() => {
+    if (!tableKey) {
+      loadedRef.current = true;
+      return;
+    }
+    let cancelled = false;
+    loadedRef.current = false;
+    getTablePreference(tableKey)
+      .then((saved) => {
+        if (cancelled) return;
+        if (saved && Object.keys(saved).length > 0) setColumnVisibility(saved);
+        else setColumnVisibility(effectiveDefault);
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (!cancelled) loadedRef.current = true;
+      });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tableKey]);
+
+  // Debounced persistence on change.
+  const persist = React.useCallback(
+    (next: VisibilityState) => {
+      if (!tableKey || !loadedRef.current) return;
+      if (saveTimer.current) clearTimeout(saveTimer.current);
+      saveTimer.current = setTimeout(() => {
+        void saveTablePreference({ tableKey, columnVisibility: next });
+      }, 500);
+    },
+    [tableKey],
+  );
+
+  const handleVisibilityChange: React.Dispatch<React.SetStateAction<VisibilityState>> =
+    React.useCallback(
+      (updater) => {
+        setColumnVisibility((prev) => {
+          const next = typeof updater === "function" ? updater(prev) : updater;
+          persist(next);
+          return next;
+        });
+      },
+      [persist],
+    );
 
   const table = useReactTable({
     data,
-    columns,
+    columns: allColumns,
     state: { sorting, columnFilters, globalFilter, columnVisibility },
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     onGlobalFilterChange: setGlobalFilter,
-    onColumnVisibilityChange: setColumnVisibility,
+    onColumnVisibilityChange: handleVisibilityChange,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -166,7 +243,7 @@ export function DataTable<TData, TValue>({
               ))
             ) : (
               <TableRow className="hover:bg-transparent">
-                <TableCell colSpan={columns.length} className="p-0">
+                <TableCell colSpan={allColumns.length} className="p-0">
                   <EmptyState title={emptyTitle} description={emptyDescription} className="border-0" />
                 </TableCell>
               </TableRow>

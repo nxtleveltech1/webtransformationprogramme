@@ -191,6 +191,8 @@ export function OpenQuestionsClient({
       <DataTable
         columns={columns}
         data={questions}
+        mappingColumns
+        tableKey="open-questions"
         searchPlaceholder="Search questions..."
         onRowClick={openDetail}
         emptyTitle="No open questions"

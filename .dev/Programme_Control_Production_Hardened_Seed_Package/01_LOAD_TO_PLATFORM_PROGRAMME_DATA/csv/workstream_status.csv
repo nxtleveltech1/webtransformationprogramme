@@ -1,0 +1,11 @@
+﻿workstream,activity_count,deliverable_count,action_count,risk_count,dependency_count,blocked_activity_count,missing_owner_count,missing_or_tbc_date_count,high_confidence_platform_matches,possible_platform_matches,review_or_add_candidates,immediate_attention_required,workstream_summary
+Content Readiness,4,4,4,0,4,0,0,0,0,4,0,No,"Content Readiness contains 4 activities, 4 deliverables, 4 actions, 0 risks, and 4 dependencies. Immediate attention required: No."
+Design Delivery,119,119,119,72,67,0,119,0,4,109,6,Yes,"Design Delivery contains 119 activities, 119 deliverables, 119 actions, 72 risks, and 67 dependencies. Immediate attention required: Yes."
+Design Standards,20,20,20,22,73,0,0,0,16,4,0,Yes,"Design Standards contains 20 activities, 20 deliverables, 20 actions, 22 risks, and 73 dependencies. Immediate attention required: Yes."
+Design Systems,20,17,20,35,50,1,0,20,19,1,0,Yes,"Design Systems contains 20 activities, 17 deliverables, 20 actions, 35 risks, and 50 dependencies. Immediate attention required: Yes."
+Execution,25,20,25,58,57,0,25,8,7,13,5,Yes,"Execution contains 25 activities, 20 deliverables, 25 actions, 58 risks, and 57 dependencies. Immediate attention required: Yes."
+Feature Delivery,22,22,22,26,22,3,0,5,0,1,21,Yes,"Feature Delivery contains 22 activities, 22 deliverables, 22 actions, 26 risks, and 22 dependencies. Immediate attention required: Yes."
+Go-Live Readiness,8,8,8,4,5,0,8,0,8,0,0,Yes,"Go-Live Readiness contains 8 activities, 8 deliverables, 8 actions, 4 risks, and 5 dependencies. Immediate attention required: Yes."
+OMAR,24,23,24,87,27,0,24,19,2,22,0,Yes,"OMAR contains 24 activities, 23 deliverables, 24 actions, 87 risks, and 27 dependencies. Immediate attention required: Yes."
+Publishing,27,27,27,33,28,0,0,9,5,22,0,Yes,"Publishing contains 27 activities, 27 deliverables, 27 actions, 33 risks, and 28 dependencies. Immediate attention required: Yes."
+SEO / Analytics,2,2,2,3,0,0,2,0,1,1,0,Yes,"SEO / Analytics contains 2 activities, 2 deliverables, 2 actions, 3 risks, and 0 dependencies. Immediate attention required: Yes."

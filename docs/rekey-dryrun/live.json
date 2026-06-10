@@ -1,0 +1,1334 @@
+{
+  "tasks": [
+    {
+      "externalId": "WBS-001",
+      "title": "Build extraction-to-execution matrix",
+      "description": null,
+      "workstreamId": "cmq0idvh90011j1rssn4blbsk"
+    },
+    {
+      "externalId": "WBS-002",
+      "title": "Create WBS and Gantt baseline",
+      "description": null,
+      "workstreamId": "cmq0idvh90011j1rssn4blbsk"
+    },
+    {
+      "externalId": "WBS-099",
+      "title": "Review and resolve blocking issues",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-004",
+      "title": "Complete URL audit and redirect mapping",
+      "description": null,
+      "workstreamId": "cmq0idwmw001aj1rs0zmq08a3"
+    },
+    {
+      "externalId": "WBS-005",
+      "title": "Complete Figma and DS component audit",
+      "description": null,
+      "workstreamId": "cmq0idwaf0017j1rsm2o16050"
+    },
+    {
+      "externalId": "WBS-007",
+      "title": "Define publishing gatekeeper workflow",
+      "description": null,
+      "workstreamId": "cmq0idwzb001dj1rsni3qxzon"
+    },
+    {
+      "externalId": "WBS-008",
+      "title": "Implement Playwright, linting and quality gate reports",
+      "description": null,
+      "workstreamId": "cmq0idvxy0014j1rsuw34k15o"
+    },
+    {
+      "externalId": "WBS-011",
+      "title": "Define country and secure-web rollout options",
+      "description": null,
+      "workstreamId": "cmq0idvxy0014j1rsuw34k15o"
+    },
+    {
+      "externalId": "WBS-014",
+      "title": "Prepare contact-centre scripts and support feedback loop",
+      "description": null,
+      "workstreamId": "cmq0idxbt001jj1rsrgszwa4x"
+    },
+    {
+      "externalId": "WBS-015",
+      "title": "Prepare and track CMS/contact-centre/SME training",
+      "description": null,
+      "workstreamId": "cmq0idxfz001lj1rs26hkzy9k"
+    },
+    {
+      "externalId": "WBS-017",
+      "title": "Approve customer and partner communications",
+      "description": null,
+      "workstreamId": "cmq0idx7n001hj1rs906z132h"
+    },
+    {
+      "externalId": "WBS-020",
+      "title": "Operate hypercare daily triage and support queue",
+      "description": null,
+      "workstreamId": "cmq0idxwl001qj1rsxk6j8qwz"
+    },
+    {
+      "externalId": "WBS-021",
+      "title": "Complete stabilisation exit report and lessons learned",
+      "description": null,
+      "workstreamId": "cmq0idxwl001qj1rsxk6j8qwz"
+    },
+    {
+      "externalId": "WBS-022",
+      "title": "Catalogue all workshop source documents",
+      "description": null,
+      "workstreamId": "cmq0idvh90011j1rssn4blbsk"
+    },
+    {
+      "externalId": "WBS-023",
+      "title": "Validate register ID allocation and parity",
+      "description": null,
+      "workstreamId": "cmq0idvh90011j1rssn4blbsk"
+    },
+    {
+      "externalId": "WBS-024",
+      "title": "Log board photograph evidence gap",
+      "description": null,
+      "workstreamId": "cmq0idvh90011j1rssn4blbsk"
+    },
+    {
+      "externalId": "WBS-025",
+      "title": "Map phases to workstreams and owners",
+      "description": null,
+      "workstreamId": "cmq0idvh90011j1rssn4blbsk"
+    },
+    {
+      "externalId": "WBS-026",
+      "title": "Overlay milestones on WBS baseline",
+      "description": null,
+      "workstreamId": "cmq0idvh90011j1rssn4blbsk"
+    },
+    {
+      "externalId": "WBS-027",
+      "title": "Seed dependency graph from workshop deps",
+      "description": null,
+      "workstreamId": "cmq0idvh90011j1rssn4blbsk"
+    },
+    {
+      "externalId": "WBS-028",
+      "title": "Establish twice-weekly leadership cadence",
+      "description": null,
+      "workstreamId": "cmq0idvh90011j1rssn4blbsk"
+    },
+    {
+      "externalId": "WBS-029",
+      "title": "Export current URL inventory",
+      "description": null,
+      "workstreamId": "cmq0idwmw001aj1rs0zmq08a3"
+    },
+    {
+      "externalId": "WBS-030",
+      "title": "Map URLs to target IA structure",
+      "description": null,
+      "workstreamId": "cmq0idwmw001aj1rs0zmq08a3"
+    },
+    {
+      "externalId": "WBS-031",
+      "title": "Define redirect rules and switch-off plan",
+      "description": null,
+      "workstreamId": "cmq0idwmw001aj1rs0zmq08a3"
+    },
+    {
+      "externalId": "WBS-034",
+      "title": "Audit Figma components against DS",
+      "description": null,
+      "workstreamId": "cmq0idwaf0017j1rsm2o16050"
+    },
+    {
+      "externalId": "WBS-035",
+      "title": "Map DS component names to Contentstack",
+      "description": null,
+      "workstreamId": "cmq0idwaf0017j1rsm2o16050"
+    },
+    {
+      "externalId": "WBS-037",
+      "title": "Environment strategy audit",
+      "description": null,
+      "workstreamId": "cmq0idvxy0014j1rsuw34k15o"
+    },
+    {
+      "externalId": "WBS-039",
+      "title": "Stakeholder ownership map",
+      "description": null,
+      "workstreamId": "cmq0idvh90011j1rssn4blbsk"
+    },
+    {
+      "externalId": "WBS-038",
+      "title": "Integration readiness assessment",
+      "description": null,
+      "workstreamId": "cmq0idvxy0014j1rsuw34k15o"
+    },
+    {
+      "externalId": "WBS-040",
+      "title": "As-is process map per workstream",
+      "description": null,
+      "workstreamId": "cmq0idvh90011j1rssn4blbsk"
+    },
+    {
+      "externalId": "WBS-041",
+      "title": "Personal IA validation workshop",
+      "description": null,
+      "workstreamId": "cmq0idwaf0017j1rsm2o16050"
+    },
+    {
+      "externalId": "WBS-042",
+      "title": "Core template playback and sign-off",
+      "description": null,
+      "workstreamId": "cmq0idwaf0017j1rsm2o16050"
+    },
+    {
+      "externalId": "WBS-043",
+      "title": "Red/green zone rules documentation",
+      "description": null,
+      "workstreamId": "cmq0idwaf0017j1rsm2o16050"
+    },
+    {
+      "externalId": "WBS-044",
+      "title": "Generic content guidelines approval",
+      "description": null,
+      "workstreamId": "cmq0idwaf0017j1rsm2o16050"
+    },
+    {
+      "externalId": "WBS-045",
+      "title": "Accessibility and brand alignment review",
+      "description": null,
+      "workstreamId": "cmq0idwaf0017j1rsm2o16050"
+    },
+    {
+      "externalId": "WBS-047",
+      "title": "Establish trained-builder roster",
+      "description": null,
+      "workstreamId": "cmq0idwzb001dj1rsni3qxzon"
+    },
+    {
+      "externalId": "WBS-048",
+      "title": "Tenant onboarding standards pack",
+      "description": null,
+      "workstreamId": "cmq0idwzb001dj1rsni3qxzon"
+    },
+    {
+      "externalId": "WBS-049",
+      "title": "Publishing approval workflow configuration",
+      "description": null,
+      "workstreamId": "cmq0idwzb001dj1rsni3qxzon"
+    },
+    {
+      "externalId": "WBS-050",
+      "title": "Implement Playwright automated test suite",
+      "description": null,
+      "workstreamId": "cmq0idvxy0014j1rsuw34k15o"
+    },
+    {
+      "externalId": "WBS-051",
+      "title": "Configure linting and code quality gates",
+      "description": null,
+      "workstreamId": "cmq0idvxy0014j1rsuw34k15o"
+    },
+    {
+      "externalId": "WBS-052",
+      "title": "Quality gate reporting dashboard",
+      "description": null,
+      "workstreamId": "cmq0idvxy0014j1rsuw34k15o"
+    },
+    {
+      "externalId": "WBS-053",
+      "title": "Environment readiness checklist",
+      "description": null,
+      "workstreamId": "cmq0idvxy0014j1rsuw34k15o"
+    },
+    {
+      "externalId": "WBS-108",
+      "title": "Contact centre feedback log",
+      "description": null,
+      "workstreamId": "cmq0idxwl001qj1rsxk6j8qwz"
+    },
+    {
+      "externalId": "WBS-062",
+      "title": "Build enhanced DS components",
+      "description": null,
+      "workstreamId": "cmq0idwaf0017j1rsm2o16050"
+    },
+    {
+      "externalId": "WBS-067",
+      "title": "Functional testing execution",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-058",
+      "title": "Content migration QA sign-off",
+      "description": null,
+      "workstreamId": "cmq0idwmw001aj1rs0zmq08a3"
+    },
+    {
+      "externalId": "WBS-059",
+      "title": "SA-first country sequencing plan",
+      "description": null,
+      "workstreamId": "cmq0idvxy0014j1rsuw34k15o"
+    },
+    {
+      "externalId": "WBS-060",
+      "title": "Secure web dependency assessment",
+      "description": null,
+      "workstreamId": "cmq0idvxy0014j1rsuw34k15o"
+    },
+    {
+      "externalId": "WBS-061",
+      "title": "South Sudan decommission-only path",
+      "description": null,
+      "workstreamId": "cmq0idvxy0014j1rsuw34k15o"
+    },
+    {
+      "externalId": "WBS-063",
+      "title": "Template skinning and theme decisions",
+      "description": null,
+      "workstreamId": "cmq0idwaf0017j1rsm2o16050"
+    },
+    {
+      "externalId": "WBS-064",
+      "title": "PGW readiness criteria definition",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-065",
+      "title": "QAG validation checklist",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-066",
+      "title": "ServiceNow release gate integration",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-068",
+      "title": "Regression testing execution",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-069",
+      "title": "Redirect and URL testing",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-070",
+      "title": "Accessibility testing",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-073",
+      "title": "Contact centre briefing session",
+      "description": null,
+      "workstreamId": "cmq0idxbt001jj1rsrgszwa4x"
+    },
+    {
+      "externalId": "WBS-074",
+      "title": "Agent scripting for public web changes",
+      "description": null,
+      "workstreamId": "cmq0idxbt001jj1rsrgszwa4x"
+    },
+    {
+      "externalId": "WBS-075",
+      "title": "Secure portal change awareness training",
+      "description": null,
+      "workstreamId": "cmq0idxbt001jj1rsrgszwa4x"
+    },
+    {
+      "externalId": "WBS-076",
+      "title": "Surge support planning",
+      "description": null,
+      "workstreamId": "cmq0idxbt001jj1rsrgszwa4x"
+    },
+    {
+      "externalId": "WBS-077",
+      "title": "Support queue setup and routing",
+      "description": null,
+      "workstreamId": "cmq0idxbt001jj1rsrgszwa4x"
+    },
+    {
+      "externalId": "WBS-078",
+      "title": "Escalation rules and known-issues process",
+      "description": null,
+      "workstreamId": "cmq0idxbt001jj1rsrgszwa4x"
+    },
+    {
+      "externalId": "WBS-079",
+      "title": "Feedback loop to web team",
+      "description": null,
+      "workstreamId": "cmq0idxbt001jj1rsrgszwa4x"
+    },
+    {
+      "externalId": "WBS-080",
+      "title": "CMS editor training programme",
+      "description": null,
+      "workstreamId": "cmq0idxfz001lj1rs26hkzy9k"
+    },
+    {
+      "externalId": "WBS-081",
+      "title": "SME training sessions",
+      "description": null,
+      "workstreamId": "cmq0idxfz001lj1rs26hkzy9k"
+    },
+    {
+      "externalId": "WBS-082",
+      "title": "Contact centre training delivery",
+      "description": null,
+      "workstreamId": "cmq0idxfz001lj1rs26hkzy9k"
+    },
+    {
+      "externalId": "WBS-084",
+      "title": "Attendance and completion tracking",
+      "description": null,
+      "workstreamId": "cmq0idxfz001lj1rs26hkzy9k"
+    },
+    {
+      "externalId": "WBS-085",
+      "title": "General staff awareness sessions",
+      "description": null,
+      "workstreamId": "cmq0idxfz001lj1rs26hkzy9k"
+    },
+    {
+      "externalId": "WBS-086",
+      "title": "Executive briefing plan",
+      "description": null,
+      "workstreamId": "cmq0idx3h001fj1rskkoc4980"
+    },
+    {
+      "externalId": "WBS-087",
+      "title": "Staff communication pack",
+      "description": null,
+      "workstreamId": "cmq0idx3h001fj1rskkoc4980"
+    },
+    {
+      "externalId": "WBS-088",
+      "title": "Content owner notifications",
+      "description": null,
+      "workstreamId": "cmq0idx3h001fj1rskkoc4980"
+    },
+    {
+      "externalId": "WBS-089",
+      "title": "Change champion network activation",
+      "description": null,
+      "workstreamId": "cmq0idx3h001fj1rskkoc4980"
+    },
+    {
+      "externalId": "WBS-092",
+      "title": "Customer-facing launch messaging",
+      "description": null,
+      "workstreamId": "cmq0idx7n001hj1rs906z132h"
+    },
+    {
+      "externalId": "WBS-093",
+      "title": "Partner notification plan",
+      "description": null,
+      "workstreamId": "cmq0idx7n001hj1rs906z132h"
+    },
+    {
+      "externalId": "WBS-103",
+      "title": "Production deployment and smoke testing",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-091",
+      "title": "Launch awareness schedule",
+      "description": null,
+      "workstreamId": "cmq0idx3h001fj1rskkoc4980"
+    },
+    {
+      "externalId": "WBS-094",
+      "title": "External URL change communication",
+      "description": null,
+      "workstreamId": "cmq0idx7n001hj1rs906z132h"
+    },
+    {
+      "externalId": "WBS-095",
+      "title": "Marketing and PR coordination",
+      "description": null,
+      "workstreamId": "cmq0idx7n001hj1rs906z132h"
+    },
+    {
+      "externalId": "WBS-096",
+      "title": "Customer education and support messaging",
+      "description": null,
+      "workstreamId": "cmq0idx7n001hj1rs906z132h"
+    },
+    {
+      "externalId": "WBS-098",
+      "title": "Compile go/no-go readiness evidence pack",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-100",
+      "title": "Capture steering go/no-go decision",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-101",
+      "title": "Execute publishing freeze",
+      "description": null,
+      "workstreamId": "cmq0idwzb001dj1rsni3qxzon"
+    },
+    {
+      "externalId": "WBS-102",
+      "title": "Release window and rollback test",
+      "description": null,
+      "workstreamId": "cmq0idwzb001dj1rsni3qxzon"
+    },
+    {
+      "externalId": "WBS-104",
+      "title": "Redirect activation and validation",
+      "description": null,
+      "workstreamId": "cmq0idwmw001aj1rs0zmq08a3"
+    },
+    {
+      "externalId": "WBS-105",
+      "title": "Hypercare daily stand-up cadence",
+      "description": null,
+      "workstreamId": "cmq0idxwl001qj1rsxk6j8qwz"
+    },
+    {
+      "externalId": "WBS-106",
+      "title": "Issue triage and priority fix backlog",
+      "description": null,
+      "workstreamId": "cmq0idxwl001qj1rsxk6j8qwz"
+    },
+    {
+      "externalId": "WBS-107",
+      "title": "Usage monitoring and defect resolution",
+      "description": null,
+      "workstreamId": "cmq0idxwl001qj1rsxk6j8qwz"
+    },
+    {
+      "externalId": "WBS-097",
+      "title": "SEO impact briefing for external audiences",
+      "description": null,
+      "workstreamId": "cmq0idx7n001hj1rs906z132h"
+    },
+    {
+      "externalId": "WBS-003",
+      "title": "Resolve scope and resource-vs-year-end escalation",
+      "description": null,
+      "workstreamId": "cmq0idvh90011j1rssn4blbsk"
+    },
+    {
+      "externalId": "WBS-016",
+      "title": "Approve internal launch communications",
+      "description": null,
+      "workstreamId": "cmq0idx3h001fj1rskkoc4980"
+    },
+    {
+      "externalId": "WBS-018",
+      "title": "Run go/no-go meeting and capture decision",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-019",
+      "title": "Execute publishing freeze, release window and rollback control",
+      "description": null,
+      "workstreamId": "cmq0idwzb001dj1rsni3qxzon"
+    },
+    {
+      "externalId": "WBS-036",
+      "title": "Identify components to build or retire",
+      "description": null,
+      "workstreamId": "cmq0idwaf0017j1rsm2o16050"
+    },
+    {
+      "externalId": "WBS-046",
+      "title": "Document gatekeeper approval criteria",
+      "description": null,
+      "workstreamId": "cmq0idwzb001dj1rsni3qxzon"
+    },
+    {
+      "externalId": "WBS-054",
+      "title": "Define content standards and asset repository",
+      "description": null,
+      "workstreamId": "cmq0idwmw001aj1rs0zmq08a3"
+    },
+    {
+      "externalId": "WBS-055",
+      "title": "Personal content package QA",
+      "description": null,
+      "workstreamId": "cmq0idwmw001aj1rs0zmq08a3"
+    },
+    {
+      "externalId": "WBS-072",
+      "title": "Security validation evidence pack",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-083",
+      "title": "Training materials and knowledge base updates",
+      "description": null,
+      "workstreamId": "cmq0idxfz001lj1rs26hkzy9k"
+    },
+    {
+      "externalId": "WBS-090",
+      "title": "Internal FAQ and operational readiness messaging",
+      "description": null,
+      "workstreamId": "cmq0idx3h001fj1rskkoc4980"
+    },
+    {
+      "externalId": "WBS-109",
+      "title": "Content correction process",
+      "description": null,
+      "workstreamId": "cmq0idxwl001qj1rsxk6j8qwz"
+    },
+    {
+      "externalId": "WBS-110",
+      "title": "Business impact reporting",
+      "description": null,
+      "workstreamId": "cmq0idxwl001qj1rsxk6j8qwz"
+    },
+    {
+      "externalId": "WBS-111",
+      "title": "Stabilisation exit criteria review",
+      "description": null,
+      "workstreamId": "cmq0idxwl001qj1rsxk6j8qwz"
+    },
+    {
+      "externalId": "WBS-112",
+      "title": "Lessons learned workshop",
+      "description": null,
+      "workstreamId": "cmq0idxwl001qj1rsxk6j8qwz"
+    },
+    {
+      "externalId": "WBS-013",
+      "title": "Confirm security pen-test and ServiceNow release evidence",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-071",
+      "title": "Confirm pen-test scope",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-009",
+      "title": "Prepare Personal content package and QA evidence",
+      "description": null,
+      "workstreamId": "cmq0idwmw001aj1rs0zmq08a3"
+    },
+    {
+      "externalId": "WBS-010",
+      "title": "Migrate Personal article/news structure",
+      "description": null,
+      "workstreamId": "cmq0idwmw001aj1rs0zmq08a3"
+    },
+    {
+      "externalId": "WBS-032",
+      "title": "SEO impact assessment for URL changes",
+      "description": null,
+      "workstreamId": "cmq0idwmw001aj1rs0zmq08a3"
+    },
+    {
+      "externalId": "WBS-033",
+      "title": "Content audit per section",
+      "description": null,
+      "workstreamId": "cmq0idwmw001aj1rs0zmq08a3"
+    },
+    {
+      "externalId": "WBS-056",
+      "title": "Article template migration",
+      "description": null,
+      "workstreamId": "cmq0idwmw001aj1rs0zmq08a3"
+    },
+    {
+      "externalId": "WBS-057",
+      "title": "News structure migration",
+      "description": null,
+      "workstreamId": "cmq0idwmw001aj1rs0zmq08a3"
+    },
+    {
+      "externalId": "WBS-012",
+      "title": "Create readiness gates and go/no-go checklist",
+      "description": null,
+      "workstreamId": "cmq0idxsf001oj1rso5akm7kg"
+    },
+    {
+      "externalId": "WBS-006",
+      "title": "Sign off Personal IA and core templates",
+      "description": null,
+      "workstreamId": "cmq0idwaf0017j1rsm2o16050"
+    }
+  ],
+  "deliverables": [
+    {
+      "externalId": "DEL-034",
+      "name": "Input gaps register",
+      "description": "Explicit log of missing board images, owners, dates and approvals"
+    },
+    {
+      "externalId": "DEL-022",
+      "name": "Cutover and smoke test record",
+      "description": "Production deployment, redirect activation and smoke test evidence"
+    },
+    {
+      "externalId": "DEL-023",
+      "name": "Executive and staff comms pack",
+      "description": "Approved executive briefings, staff messages and FAQ"
+    },
+    {
+      "externalId": "DEL-024",
+      "name": "Customer and partner comms pack",
+      "description": "Approved external messaging for launch and URL changes"
+    },
+    {
+      "externalId": "DEL-025",
+      "name": "Agent scripts and escalation pack",
+      "description": "Contact centre scripts, queue setup and escalation rules"
+    },
+    {
+      "externalId": "DEL-026",
+      "name": "Training completion register",
+      "description": "Attendance and completion evidence for all training streams"
+    },
+    {
+      "externalId": "DEL-027",
+      "name": "Go-live decision record",
+      "description": "Formal steering decision with blockers and evidence log"
+    },
+    {
+      "externalId": "DEL-028",
+      "name": "Hypercare daily issue log",
+      "description": "Daily triage log, defects and priority fixes during hypercare"
+    },
+    {
+      "externalId": "DEL-029",
+      "name": "Stabilisation exit report",
+      "description": "Exit criteria assessment, residual risks and lessons learned"
+    },
+    {
+      "externalId": "DEL-030",
+      "name": "Template inventory audit",
+      "description": "Current template catalogue with reuse/migrate/retire decisions"
+    },
+    {
+      "externalId": "DEL-031",
+      "name": "CMS publishing workflow configuration",
+      "description": "Configured approval, staging and release controls in CMS"
+    },
+    {
+      "externalId": "DEL-032",
+      "name": "Secure web and SSO configuration",
+      "description": "Secure portal paths, SSO and integration configuration"
+    },
+    {
+      "externalId": "DEL-033",
+      "name": "Steering committee status pack",
+      "description": "Consolidated RAID, readiness, WBS and decision pack for steering"
+    },
+    {
+      "externalId": "DEL-008",
+      "name": "Personal content package and article migration",
+      "description": "Content, QA and article/news migration package for Personal section"
+    },
+    {
+      "externalId": "DEL-017",
+      "name": "Content audit register",
+      "description": "Per-section migrate/consolidate/delete decisions with owners"
+    },
+    {
+      "externalId": "DEL-010",
+      "name": "Go-live readiness checklist",
+      "description": "PGW, QAG, ServiceNow, security, comms and decommission readiness checklist"
+    },
+    {
+      "externalId": "DEL-021",
+      "name": "Test execution results pack",
+      "description": "Functional, regression, redirect, accessibility and performance test results"
+    },
+    {
+      "externalId": "DEL-005",
+      "name": "Personal design foundations package",
+      "description": "Personal IA, core templates and generic content guidelines signed off"
+    },
+    {
+      "externalId": "DEL-001",
+      "name": "Consolidated workshop output register",
+      "description": "Curated register set covering decisions, actions, RAID, dependencies, questions and parking-lot items"
+    },
+    {
+      "externalId": "DEL-002",
+      "name": "Programme WBS and Gantt baseline",
+      "description": "Hierarchical phase/workstream/deliverable/task baseline with owners, dependencies and confidence"
+    },
+    {
+      "externalId": "DEL-003",
+      "name": "URL audit and redirect map",
+      "description": "Current URL inventory mapped to target IA with redirects and switch-off decisions"
+    },
+    {
+      "externalId": "DEL-004",
+      "name": "Component and template audit",
+      "description": "Figma/design-system/component inventory with reusable, to-build and retired component calls"
+    },
+    {
+      "externalId": "DEL-006",
+      "name": "Publishing governance and trained-builder gate",
+      "description": "Gatekeeper model for design/publishing approval, tenant standards and trained builders"
+    },
+    {
+      "externalId": "DEL-007",
+      "name": "DevOps quality gate implementation",
+      "description": "Playwright, linting and CI/CD reporting before production release"
+    },
+    {
+      "externalId": "DEL-009",
+      "name": "Country and secure-web migration plan",
+      "description": "Country/site rollout options including secure-web dependencies and South Sudan decommission-only path"
+    },
+    {
+      "externalId": "DEL-011",
+      "name": "Contact centre and support readiness pack",
+      "description": "Agent briefing, scripts, surge support, support queue and feedback process"
+    },
+    {
+      "externalId": "DEL-012",
+      "name": "Training and adoption pack",
+      "description": "CMS editor, SME and contact-centre training materials, attendance and completion evidence"
+    },
+    {
+      "externalId": "DEL-013",
+      "name": "Internal communications plan",
+      "description": "Executive, staff, owner and team-level launch communications and FAQ plan"
+    },
+    {
+      "externalId": "DEL-014",
+      "name": "External communications plan",
+      "description": "Customer, partner, marketing, PR and URL-change support communications"
+    },
+    {
+      "externalId": "DEL-015",
+      "name": "Go-live decision and cutover pack",
+      "description": "Cutover checklist, go-live command centre, smoke testing, redirect activation and decision record"
+    },
+    {
+      "externalId": "DEL-016",
+      "name": "Hypercare operating model and exit report",
+      "description": "Daily stand-ups, triage, support queue, monitoring, fixes, exit criteria and lessons learned"
+    },
+    {
+      "externalId": "DEL-018",
+      "name": "Environment and integration audit",
+      "description": "Beta/staging/prod strategy and integration readiness assessment"
+    },
+    {
+      "externalId": "DEL-019",
+      "name": "Stakeholder ownership map",
+      "description": "Owners and SMEs mapped per workstream and deliverable"
+    },
+    {
+      "externalId": "DEL-020",
+      "name": "Enhanced components and templates",
+      "description": "Built/enhanced DS components and audience templates"
+    }
+  ],
+  "risks": [
+    {
+      "externalId": "RSK-003",
+      "description": "'As-is' definition unclear",
+      "mitigationRequired": "Define as-is (ACT-004)"
+    },
+    {
+      "externalId": "RSK-004",
+      "description": "URL audit/redirect handling incomplete",
+      "mitigationRequired": "URL audit (ACT-017)"
+    },
+    {
+      "externalId": "RSK-005",
+      "description": "Regional resources cut",
+      "mitigationRequired": "Resource review (ACT-014)"
+    },
+    {
+      "externalId": "RSK-006",
+      "description": "Daniel limited capacity for automation/testing",
+      "mitigationRequired": "Automation plan (ACT-010)"
+    },
+    {
+      "externalId": "RSK-007",
+      "description": "OMDS treated as UI library not governance",
+      "mitigationRequired": "Operating model (ACT-006)"
+    },
+    {
+      "externalId": "RSK-008",
+      "description": "Most components don't exist in Contentstack",
+      "mitigationRequired": "Component audit (ACT-008)"
+    },
+    {
+      "externalId": "RSK-009",
+      "description": "SEO & analytics ownership not finalised",
+      "mitigationRequired": "SEO workshop (ACT-012)"
+    },
+    {
+      "externalId": "RSK-010",
+      "description": "Environment sequencing not defined",
+      "mitigationRequired": "Environment strategy (ACT-009)"
+    },
+    {
+      "externalId": "RSK-011",
+      "description": "Observability/analytics tagging added too late",
+      "mitigationRequired": "Embed in delivery (ACT-011)"
+    },
+    {
+      "externalId": "RSK-012",
+      "description": "Component sprawl / design debt",
+      "mitigationRequired": "Lifecycle register (ACT-007)"
+    },
+    {
+      "externalId": "RSK-013",
+      "description": "Go-live readiness activities open",
+      "mitigationRequired": "Readiness checklist (ACT-013)"
+    },
+    {
+      "externalId": "RSK-014",
+      "description": "Secure web migration at risk",
+      "mitigationRequired": "Mitigation plan (ACT-015)"
+    },
+    {
+      "externalId": "RSK-015",
+      "description": "Servicing transactions at risk (BW 1/9)",
+      "mitigationRequired": "Botswana recovery (ACT-016)"
+    },
+    {
+      "externalId": "RSK-016",
+      "description": "Unstandardised images/assets",
+      "mitigationRequired": "Asset standards (ACT-019)"
+    },
+    {
+      "externalId": "RSK-017",
+      "description": "Front-end resource exit after PI2",
+      "mitigationRequired": "Transition plan (ACT-021)"
+    },
+    {
+      "externalId": "RSK-018",
+      "description": "BA capacity constrained",
+      "mitigationRequired": "Interim BA (ACT-022)"
+    },
+    {
+      "externalId": "RSK-019",
+      "description": "Full scope ~2027 vs end-Nov window",
+      "mitigationRequired": "Scope options (ACT-028)"
+    },
+    {
+      "externalId": "RSK-020",
+      "description": "No centralised knowledge system",
+      "mitigationRequired": "Documentation system (ACT-054)"
+    },
+    {
+      "externalId": "RSK-021",
+      "description": "~95% URLs changing impacts e-commerce/GA",
+      "mitigationRequired": "URL audit + notify Nthabi (ACT-046)"
+    },
+    {
+      "externalId": "RSK-022",
+      "description": "Security pen-test + ServiceNow not confirmed",
+      "mitigationRequired": "Confirm testing (ACT-013)"
+    },
+    {
+      "externalId": "RSK-023",
+      "description": "Key-resource roll-offs — migration/feature team ~Sept 10; most knowledgeable QE August",
+      "mitigationRequired": "Accelerate delivery; knowledge transfer; backfill (ACT-064)"
+    },
+    {
+      "externalId": "RSK-024",
+      "description": "Linear (current-capacity) delivery will not meet year-end; full scope extends well beyond",
+      "mitigationRequired": "Four-squad parallel model + resource decision (DEC-016, ACT-064)"
+    },
+    {
+      "externalId": "RSK-025",
+      "description": "Post-sign-off red-zone template changes cascade across content + code on all affected pages",
+      "mitigationRequired": "Red/green zones + change control (DEC-017/018)"
+    },
+    {
+      "externalId": "RSK-026",
+      "description": "Single points of failure — only Gareth & Natalie build templates; Bernice overloaded",
+      "mitigationRequired": "Additional capacity + training + onboarding (ACT-064/067)"
+    },
+    {
+      "externalId": "RSK-027",
+      "description": "Governance/template drift without controls (Contentstack ↔ Figma; new tenants)",
+      "mitigationRequired": "Gatekeeper gate + Figma source-of-truth + onboarding (DEC-019, ACT-075)"
+    },
+    {
+      "externalId": "RSK-028",
+      "description": "Stakeholder sign-off delays extend template sign-off (esp. sequential Personal outreach)",
+      "mitigationRequired": "Structured engagement; group sign-off by page type (ACT-065, QST-025)"
+    },
+    {
+      "externalId": "RSK-030",
+      "description": "Secure-web portfolio-view requirements unclear before Sept roll-off → planning blocked",
+      "mitigationRequired": "Clarify portfolio-view scope (QST-024, DEP-020)"
+    },
+    {
+      "externalId": "RSK-031",
+      "description": "Not all year-end goals will be delivered → sponsor expectation-management required",
+      "mitigationRequired": "Evidence-based scope communication; phased value (DEC-015)"
+    },
+    {
+      "externalId": "RSK-032",
+      "description": "Country teams without dedicated content/design resources (OMAR) cannot self-migrate",
+      "mitigationRequired": "SA-first rollout + central support + squad extension (DEC-025)"
+    },
+    {
+      "externalId": "RSK-001",
+      "description": "Migration vs transformation scope ambiguity",
+      "mitigationRequired": "Formal scope decision (ACT-001)"
+    },
+    {
+      "externalId": "RSK-002",
+      "description": "Publishing capacity insufficient (~1,530 pages, 2 publishers)",
+      "mitigationRequired": "Dedicated OMAR capacity (ACT-003)"
+    },
+    {
+      "externalId": "RSK-029",
+      "description": "EasiPlus & dependent journeys blocked until Funeral/product pages complete",
+      "mitigationRequired": "Sequence product pages; escalate (DEP-018, ACT-074)"
+    }
+  ],
+  "dependencies": [
+    {
+      "externalId": "DEP-001",
+      "description": "Contentstack dev + content/assets/URLs signed off before publishing"
+    },
+    {
+      "externalId": "DEP-002",
+      "description": "Testing cannot begin until all pages built in Beta"
+    },
+    {
+      "externalId": "DEP-003",
+      "description": "DS V2 deployed to Beta (Find an Advisor + templates)"
+    },
+    {
+      "externalId": "DEP-004",
+      "description": "Figma/DS component audit before template scaling"
+    },
+    {
+      "externalId": "DEP-005",
+      "description": "URL audit before switch-off/redirect decisions"
+    },
+    {
+      "externalId": "DEP-006",
+      "description": "Content packs + cluster/SME content before sign-off"
+    },
+    {
+      "externalId": "DEP-007",
+      "description": "Cross Channels depends on Web Platform for FE from PI2"
+    },
+    {
+      "externalId": "DEP-008",
+      "description": "EasiPlus depends on Funeral template + MFC sign-off"
+    },
+    {
+      "externalId": "DEP-009",
+      "description": "SEO ≥2 months lead before QA"
+    },
+    {
+      "externalId": "DEP-010",
+      "description": "Tax-free & flexi-invest pages link to migrated V2 journeys"
+    },
+    {
+      "externalId": "DEP-011",
+      "description": "Service tree/dashboard solution for secure web"
+    },
+    {
+      "externalId": "DEP-012",
+      "description": "Paid Ads URL requirements from Group Marketing"
+    },
+    {
+      "externalId": "DEP-013",
+      "description": "Notify Nthabi of URL changes for GA tracking"
+    },
+    {
+      "externalId": "DEP-014",
+      "description": "Final advisor flow into beta (Luvuyo)"
+    },
+    {
+      "externalId": "DEP-015",
+      "description": "Security pen-test/crowdsource before go-live"
+    },
+    {
+      "externalId": "DEP-016",
+      "description": "ServiceNow API updates + approvals before prod"
+    },
+    {
+      "externalId": "DEP-017",
+      "description": "Personal IA + core templates + content guidelines complete before dev/build"
+    },
+    {
+      "externalId": "DEP-018",
+      "description": "Product pages complete before EasiPlus & dependent sales journeys deploy"
+    },
+    {
+      "externalId": "DEP-019",
+      "description": "IA sign-off per audience before each downstream stream proceeds (sequential)"
+    },
+    {
+      "externalId": "DEP-020",
+      "description": "Secure-web portfolio-view technical requirements before Sept roll-off"
+    },
+    {
+      "externalId": "DEP-021",
+      "description": "Template handover cadence (~every 2 weeks) feeds content creation & parallel builds"
+    },
+    {
+      "externalId": "DEP-022",
+      "description": "Desktop Figma output (source of truth) for automation & Contentstack mapping"
+    }
+  ],
+  "decisions": [
+    {
+      "externalId": "DEC-001",
+      "title": "Migration vs transformation",
+      "description": "Define & bound programme scope: migration, transformation, or hybrid"
+    },
+    {
+      "externalId": "DEC-002",
+      "title": "Success metrics",
+      "description": "Platform + customer success metrics (analytics, DS, <3s, NPS, traffic, etc.)"
+    },
+    {
+      "externalId": "DEC-003",
+      "title": "MVP",
+      "description": "MVP = new navigation (4 audiences) + secure web IA"
+    },
+    {
+      "externalId": "DEC-004",
+      "title": "Migration dependencies",
+      "description": "Identify & communicate dependencies + tasks per business area"
+    },
+    {
+      "externalId": "DEC-005",
+      "title": "Whiteboard -> plan",
+      "description": "Per-workstream whiteboard → programme plan + RAID"
+    },
+    {
+      "externalId": "DEC-006",
+      "title": "Design foundations",
+      "description": "IA, navigation, templates, content/SEO/brand standards"
+    },
+    {
+      "externalId": "DEC-007",
+      "title": "Handover governance",
+      "description": "Approval routing & entry/exit gates between teams"
+    },
+    {
+      "externalId": "DEC-008",
+      "title": "Page treatment",
+      "description": "Product pages → new templates; others as-is/restyled"
+    },
+    {
+      "externalId": "DEC-009",
+      "title": "Automated testing",
+      "description": "Automated testing + DevOps pipeline enforcement"
+    },
+    {
+      "externalId": "DEC-010",
+      "title": "Dedicated publisher",
+      "description": "Ring-fence dedicated migration publisher from BAU"
+    },
+    {
+      "externalId": "DEC-011",
+      "title": "SEO lead time",
+      "description": "SEO team ≥2 months before QA for tagging & validation"
+    },
+    {
+      "externalId": "DEC-012",
+      "title": "Phased decommissioning",
+      "description": "Turn off legacy components progressively as migrated"
+    },
+    {
+      "externalId": "DEC-013",
+      "title": "Faoli Bank separate brand",
+      "description": "Bank as separate entity with own IA & governance"
+    },
+    {
+      "externalId": "DEC-015",
+      "title": "Phased audience-based delivery",
+      "description": "Personal first (foundations end-June, section ~end-July), then Corporate → Business → Wealth (+Secure)"
+    },
+    {
+      "externalId": "DEC-016",
+      "title": "Four-squad parallel model",
+      "description": "Four concurrent squads (one per audience): lead designer + designer + content + tech support"
+    },
+    {
+      "externalId": "DEC-018",
+      "title": "Template change-control",
+      "description": "Post-sign-off red-zone changes trigger change management across content + code on all affected pages"
+    },
+    {
+      "externalId": "DEC-021",
+      "title": "DevOps quality gates + Playwright",
+      "description": "DevOps quality gates + automated testing (Playwright) + linting before production; rollout end-June with reporting"
+    },
+    {
+      "externalId": "DEC-024",
+      "title": "Defer article/news URL structure",
+      "description": "Defer article/news URL structure pending IA (target end-June); content audit + URL mapping per section as discovery deliverable"
+    },
+    {
+      "externalId": "DEC-028",
+      "title": "Bank owns its pages",
+      "description": "Bank builds its own web pages; team involved only on bank-initiated redesign; confirm if OM finance pages move to bank"
+    },
+    {
+      "externalId": "DEC-022",
+      "title": "Personal foundations end-June",
+      "description": "Sign off Personal IA + core templates + generic content guidelines by end-June"
+    },
+    {
+      "externalId": "DEC-020",
+      "title": "Content + analytics co-location",
+      "description": "Co-locate content + analytics tagging in Contentstack to enable automation & SEO"
+    },
+    {
+      "externalId": "DEC-014",
+      "title": "Design-phase skip",
+      "description": "Allow some teams to skip design phase (dependency-based)"
+    },
+    {
+      "externalId": "DEC-019",
+      "title": "Publishing gatekeeper gate",
+      "description": "Design & publishing teams gatekeep; every page signed off before go-live; only trained builders publish; tenants onboarded to standards"
+    },
+    {
+      "externalId": "DEC-023",
+      "title": "Article & news handling",
+      "description": "Single consolidated article page; interim background-colour variant; news distinct (~1-yr retention, stays in footer)"
+    },
+    {
+      "externalId": "DEC-025",
+      "title": "Country/site delivery model",
+      "description": "Country teams own migration, depend on central for design/IA/nav/content; South Sudan = decommission-only; SA-first then roll out; small sites quick nav+footer retrofit"
+    },
+    {
+      "externalId": "DEC-026",
+      "title": "Tenant operating model",
+      "description": "Post-migration tenants fund & manage own sites under formal partnership agreements"
+    },
+    {
+      "externalId": "DEC-027",
+      "title": "Unified Jira + cadence",
+      "description": "Single Jira construct; leads enter milestones/priorities/deps/confidence; twice-weekly 30-min leadership check-ins + weekly playback"
+    },
+    {
+      "externalId": "DEC-017",
+      "title": "Red/green-zone templates",
+      "description": "Modular templates: red zones (fixed/governed) + green zones (variable); 2-3 standardised product templates"
+    }
+  ],
+  "issues": [
+    {
+      "externalId": "ISS-001",
+      "description": "Full Brand/CI not approved (interim only)"
+    },
+    {
+      "externalId": "ISS-002",
+      "description": "No reliable total page count; manual sheet tracking"
+    },
+    {
+      "externalId": "ISS-003",
+      "description": "Secure web incomplete; no service-tree solution"
+    },
+    {
+      "externalId": "ISS-004",
+      "description": "Botswana servicing: 1 of 9 complete"
+    },
+    {
+      "externalId": "ISS-005",
+      "description": "Go-live readiness activities open"
+    },
+    {
+      "externalId": "ISS-006",
+      "description": "BA on medical leave; recruitment ongoing"
+    },
+    {
+      "externalId": "ISS-007",
+      "description": "Single person covers all publishing"
+    },
+    {
+      "externalId": "ISS-008",
+      "description": "No centralised knowledge system today"
+    },
+    {
+      "externalId": "ISS-009",
+      "description": "Current under-resourcing across all workstreams; teams beyond capacity"
+    },
+    {
+      "externalId": "ISS-011",
+      "description": "Portfolio-view dependencies/requirements unclear for Secure Web; aggravated by Sept roll-off"
+    },
+    {
+      "externalId": "ISS-010",
+      "description": "Unclear business ownership for several journeys (compliments, complaints, unclaimed benefits, IR, corporate unclaimed benefits)"
+    }
+  ],
+  "workstreams": [
+    {
+      "code": "internal_comms",
+      "name": "Internal Communications"
+    },
+    {
+      "code": "external_comms",
+      "name": "External Communications"
+    },
+    {
+      "code": "contact_support",
+      "name": "Contact Centre and Support Readiness"
+    },
+    {
+      "code": "training_adoption",
+      "name": "Training and Adoption"
+    },
+    {
+      "code": "hypercare",
+      "name": "Hypercare and Stabilisation"
+    },
+    {
+      "code": "governance_pmo",
+      "name": "Governance and PMO"
+    },
+    {
+      "code": "technical_migration",
+      "name": "Technical Migration"
+    },
+    {
+      "code": "design_systems",
+      "name": "Design and Design Systems"
+    },
+    {
+      "code": "content_ia",
+      "name": "Content and IA"
+    },
+    {
+      "code": "publishing",
+      "name": "Publishing"
+    },
+    {
+      "code": "testing_go_live",
+      "name": "Testing, Readiness and Go-Live"
+    }
+  ]
+}

@@ -42,6 +42,7 @@ export default async function GovernanceCalendarPage() {
             columns={GOVERNANCE_CALENDAR_COLUMNS}
             filename="governance-calendar"
             entity="governanceMeeting"
+            tableKey="governance-calendar"
             searchPlaceholder="Search governance forums, cadence, owners..."
             emptyTitle="No governance events"
             emptyDescription="Seed governance meetings to populate the calendar."

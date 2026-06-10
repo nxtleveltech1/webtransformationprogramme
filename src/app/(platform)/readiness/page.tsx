@@ -42,6 +42,7 @@ export default async function ReadinessPage() {
             columns={READINESS_COLUMNS}
             filename="readiness-go-no-go"
             entity="readinessGate"
+            tableKey="readiness"
             searchPlaceholder="Search gates, blockers, owners..."
             emptyTitle="No readiness gates"
             emptyDescription="Seed readiness controls to populate the go/no-go dashboard."

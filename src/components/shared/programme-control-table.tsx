@@ -52,6 +52,7 @@ export function ProgrammeControlTable({
   emptyTitle,
   emptyDescription,
   quickFilters,
+  tableKey,
 }: {
   rows: ControlRow[];
   columns: ControlColumn[];
@@ -61,6 +62,8 @@ export function ProgrammeControlTable({
   emptyTitle: string;
   emptyDescription: string;
   quickFilters?: ControlQuickFilter[];
+  /** Stable per-screen key enabling per-user persistence of column visibility. */
+  tableKey?: string;
 }) {
   const [activeFilter, setActiveFilter] = React.useState<string | null>(null);
 
@@ -129,6 +132,8 @@ export function ProgrammeControlTable({
         searchPlaceholder={searchPlaceholder}
         emptyTitle={emptyTitle}
         emptyDescription={emptyDescription}
+        tableKey={tableKey}
+        mappingColumns
         toolbar={<ExportButton rows={exportRows} filename={filename} entity={entity} />}
       />
     </div>

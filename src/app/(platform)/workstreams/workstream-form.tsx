@@ -41,6 +41,7 @@ export interface WorkstreamFormValues {
   oneLineStatus: string | null;
   rag: string | null;
   leadPersonId: string | null;
+  leadText: string | null;
   programmeId: string | null;
 }
 
@@ -82,6 +83,7 @@ export function WorkstreamFormDialog({
       oneLineStatus: get("oneLineStatus"),
       rag: get("rag"),
       leadPersonId: get("leadPersonId"),
+      leadText: get("leadText"),
       programmeId: get("programmeId"),
     };
     if (mode === "edit" && initial?.id) payload.id = initial.id;
@@ -170,6 +172,16 @@ export function WorkstreamFormDialog({
               </Select>
             </Field>
           </div>
+
+          <Field>
+            <FieldLabel htmlFor="ws-lead-text">Lead (free text)</FieldLabel>
+            <Input
+              id="ws-lead-text"
+              name="leadText"
+              defaultValue={initial?.leadText ?? ""}
+              placeholder="If lead not in people list, or multiple leads"
+            />
+          </Field>
 
           <input type="hidden" name="programmeId" value={defaultProgramme} />
 

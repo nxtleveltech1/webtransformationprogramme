@@ -205,6 +205,8 @@ export function DependenciesClient({
       <DataTable
         columns={columns}
         data={dependencies}
+        mappingColumns
+        tableKey="dependencies"
         searchPlaceholder="Search dependencies..."
         onRowClick={openDetail}
         emptyTitle="No dependencies recorded"

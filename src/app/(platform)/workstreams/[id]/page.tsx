@@ -42,6 +42,7 @@ export default async function WorkstreamDetailPage({
     oneLineStatus: workstream.oneLineStatus,
     rag: workstream.rag,
     leadPersonId: workstream.leadPersonId,
+    leadText: workstream.leadText,
     leadName: formatWorkstreamLead(workstream.leadText, workstream.leadPerson),
     programmeId: workstream.programmeId,
     programmeName: workstream.programme?.name ?? null,

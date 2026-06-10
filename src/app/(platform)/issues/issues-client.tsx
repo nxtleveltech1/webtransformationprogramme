@@ -216,6 +216,8 @@ export function IssuesClient({
       <DataTable
         columns={columns}
         data={issues}
+        mappingColumns
+        tableKey="issues"
         searchPlaceholder="Search issues..."
         onRowClick={openDetail}
         emptyTitle="No issues recorded"

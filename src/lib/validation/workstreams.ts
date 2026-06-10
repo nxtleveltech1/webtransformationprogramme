@@ -9,6 +9,7 @@ const workstreamFields = {
   oneLineStatus: optionalText,
   rag: optionalEnum(RAG_OPTIONS),
   leadPersonId: optionalText,
+  leadText: optionalText,
   programmeId: optionalText,
 };
 

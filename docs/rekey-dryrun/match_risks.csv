@@ -1,0 +1,344 @@
+dataset_id,dataset_text,verdict,live_externalId,live_label,score
+RSK-0001,"Design navigation structure based on the IA is at risk due to paused, ",NEW,,,0.065
+RSK-0002,Design Landing Page Template has approval-gate risk The source data sh,NEW,,,0.071
+RSK-0003,Design Section Page Template has approval-gate risk The source data sh,NEW,,,0.071
+RSK-0004,Design Utility Template: All Calculators has low-confidence delivery c,NEW,,,0.069
+RSK-0005,Design Utility Template: Calculators Page has low-confidence delivery ,NEW,,,0.069
+RSK-0006,Design navigation structure based on the IA has low-confidence deliver,NEW,,,0.111
+RSK-0007,Design navigation solution to allow access to other secure sites has a,NEW,,,0.107
+RSK-0008,Design iWyze Tenant Product Page Template may not start or complete on,NEW,,,0.062
+RSK-0009,Design iWyze Tenant Product Page Template has low-confidence delivery ,NEW,,,0.069
+RSK-0010,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.071
+RSK-0011,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.068
+RSK-0012,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.071
+RSK-0013,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.075
+RSK-0014,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.069
+RSK-0015,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.065
+RSK-0016,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.095
+RSK-0017,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.138
+RSK-0018,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.07
+RSK-0019,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.1
+RSK-0020,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.07
+RSK-0021,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.1
+RSK-0022,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.07
+RSK-0023,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.1
+RSK-0024,Kick-of recruitment process for additional capacity; Vendor briefing; ,NEW,,,0.062
+RSK-0025,Kick-of recruitment process for additional capacity; Vendor briefing; ,NEW,,,0.075
+RSK-0026,Kick-of recruitment process for additional capacity; Vendor briefing; ,NEW,,,0.077
+RSK-0027,Audience landing with enhanced copy has approval-gate risk The source ,NEW,,,0.098
+RSK-0028,Audience landing with enhanced copy has accountability risk Audience l,NEW,,,0.095
+RSK-0029,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.07
+RSK-0030,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0031,L3+ IA finalisation; Section landing with enhanced copy; Product landi,NEW,,,0.089
+RSK-0032,L3+ IA finalisation; Section landing with enhanced copy; Product landi,NEW,,,0.08
+RSK-0033,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.07
+RSK-0034,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0035,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.07
+RSK-0036,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0037,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.07
+RSK-0038,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0039,Mapping of new IA and Footer to sxisting site structure has approval-g,NEW,,,0.068
+RSK-0040,Mapping of new IA and Footer to sxisting site structure has accountabi,NEW,,,0.087
+RSK-0041,Mapping of new IA and Footer to sxisting site structure has approval-g,NEW,,,0.067
+RSK-0042,Mapping of new IA and Footer to sxisting site structure has accountabi,NEW,,,0.083
+RSK-0043,Mapping of new IA and Footer to sxisting site structure has approval-g,NEW,,,0.065
+RSK-0044,Mapping of new IA and Footer to sxisting site structure has accountabi,NEW,,,0.08
+RSK-0045,Audience landing with enhanced copy has approval-gate risk The source ,NEW,,,0.071
+RSK-0046,Audience landing with enhanced copy has accountability risk Audience l,NEW,,,0.095
+RSK-0047,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.052
+RSK-0048,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0049,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.052
+RSK-0050,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0051,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.052
+RSK-0052,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0053,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.052
+RSK-0054,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0055,Audience landing with enhanced copy has approval-gate risk The source ,NEW,,,0.071
+RSK-0056,Audience landing with enhanced copy has accountability risk Audience l,NEW,,,0.095
+RSK-0057,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.052
+RSK-0058,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0059,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.052
+RSK-0060,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0061,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.052
+RSK-0062,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0063,Audience landing with enhanced copy has approval-gate risk The source ,NEW,,,0.071
+RSK-0064,Audience landing with enhanced copy has accountability risk Audience l,NEW,,,0.095
+RSK-0065,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.052
+RSK-0066,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0067,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.052
+RSK-0068,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0069,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.052
+RSK-0070,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0071,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.052
+RSK-0072,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0073,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.052
+RSK-0074,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.067
+RSK-0075,Public > Secure | Secure > Public Transition.; Access to other secure ,NEW,,,0.061
+RSK-0076,Public > Secure | Secure > Public Transition.; Access to other secure ,NEW,,,0.083
+RSK-0077,Public > Secure | Secure > Public Transition.; Access to other secure ,NEW,,,0.075
+RSK-0078,Socilaisation of defined IA and Page templates for handover. has appro,NEW,,,0.068
+RSK-0079,Socilaisation of defined IA and Page templates for handover. has accou,NEW,,,0.083
+RSK-0080,Socilaisation of defined IA and Page templates for handover. has appro,NEW,,,0.068
+RSK-0081,Socilaisation of defined IA and Page templates for handover. has accou,NEW,,,0.083
+RSK-0082,Portfolio View has roadmap uncertainty due to TBC schedule or effort P,NEW,,,0.098
+RSK-0083,Portfolio View has low-confidence delivery commitment Portfolio View i,NEW,,,0.114
+RSK-0084,Standards on how to creates views on dashboard may not start or comple,NEW,,,0.036
+RSK-0085,Standards on how to creates views on dashboard has roadmap uncertainty,NEW,,,0.05
+RSK-0086,Standards on how to creates views on dashboard has low-confidence deli,NEW,,,0.038
+RSK-0087,Content Updates may not start or complete on plan Content Updates is a,NEW,,,0.097
+RSK-0088,Content Updates has roadmap uncertainty due to TBC schedule or effort ,NEW,,,0.088
+RSK-0089,Content Updates has low-confidence delivery commitment Content Updates,NEW,,,0.107
+RSK-0090,"Content Updates is at risk due to paused, blocked, or awaiting state T",NEW,,,0.115
+RSK-0091,Journeys Optimization may not start or complete on plan Journeys Optim,NEW,,,0.097
+RSK-0092,Journeys Optimization has roadmap uncertainty due to TBC schedule or e,NEW,,,0.088
+RSK-0093,Journeys Optimization has low-confidence delivery commitment Journeys ,NEW,,,0.107
+RSK-0094,"Journeys Optimization is at risk due to paused, blocked, or awaiting s",NEW,,,0.115
+RSK-0095,Withdrawals/Disinvestments has low-confidence delivery commitment With,NEW,,,0.107
+RSK-0096,Easy Plus Sales Jorurney on Public Web may not start or complete on pl,NEW,,,0.067
+RSK-0097,Easy Plus Sales Jorurney on Public Web has roadmap uncertainty due to ,NEW,,,0.061
+RSK-0098,Easy Plus Sales Jorurney on Public Web has low-confidence delivery com,NEW,,,0.074
+RSK-0099,"Easy Plus Sales Jorurney on Public Web is at risk due to paused, block",NEW,,,0.08
+RSK-0100,Debt Calculator is at risk from resource capacity constraints The sour,NEW,,,0.088
+RSK-0101,Personal Calculator may not start or complete on plan Personal Calcula,NEW,,,0.074
+RSK-0102,Budget Calculator may not start or complete on plan Budget Calculator ,NEW,,,0.071
+RSK-0103,Income Tax Calculator may not start or complete on plan Income Tax Cal,NEW,,,0.069
+RSK-0104,Retirement Calculator may not start or complete on plan Retirement Cal,NEW,,,0.071
+RSK-0105,2 Pot Calculator may not start or complete on plan 2 Pot Calculator is,NEW,,,0.071
+RSK-0106,Contact Us may not start or complete on plan Contact Us is a High prio,NEW,,,0.074
+RSK-0107,Contact Us has low-confidence delivery commitment Contact Us is priori,NEW,,,0.083
+RSK-0108,Design and Develop CI Updates onto OMDSv2 may not start or complete on,NEW,,,0.067
+RSK-0109,Design and Develop CI Updates onto OMDSv2 has low-confidence delivery ,NEW,,,0.074
+RSK-0110,"Design and Develop CI Updates onto OMDSv2 is at risk due to paused, bl",NEW,,,0.074
+RSK-0111,Design and Develop Top Navigation Component Updates has low-confidence,NEW,,,0.071
+RSK-0112,Design and Develop Top Navigation Component Updates may not start or c,NEW,,,0.1
+RSK-0113,Design and Develop Top Navigation Component Updates has low-confidence,NEW,,,0.111
+RSK-0114,Design and Develop Footer Component Updates may not start or complete ,NEW,,,0.067
+RSK-0115,Design and Develop Footer Component Updates has low-confidence deliver,NEW,,,0.074
+RSK-0116,Design and Develop Category Page Template may not start or complete on,NEW,,,0.067
+RSK-0117,Design and Develop Category Page Template has low-confidence delivery ,NEW,,,0.074
+RSK-0118,Design and Develop Product Detail Page Template may not start or compl,NEW,,,0.065
+RSK-0119,Design and Develop Product Detail Page Template has low-confidence del,NEW,,,0.071
+RSK-0120,Design and Develop Article Page Template may not start or complete on ,NEW,,,0.067
+RSK-0121,Design and Develop Article Page Template has low-confidence delivery c,NEW,,,0.074
+RSK-0122,Design and Develop Landing page template has source data calculation r,NEW,,,0.067
+RSK-0123,Design and Develop Section page template has source data calculation r,NEW,,,0.067
+RSK-0124,Design and Develop Utility Template: Contact Us has source data calcul,NEW,,,0.067
+RSK-0125,Design and Develop Utility Template: All Calculators has source data c,NEW,,,0.067
+RSK-0126,Design and Develop Utility Template: Calculators Page has source data ,NEW,,,0.065
+RSK-0127,Design and Develop Utility Templates: About Us has source data calcula,NEW,,,0.067
+RSK-0128,Design and Develop Utility Template: Careers has source data calculati,NEW,,,0.067
+RSK-0129,Add copy standards to OMDS has source data calculation risk The source,NEW,,,0.067
+RSK-0130,Add copy standards to OMDS has source data calculation risk The source,NEW,,,0.103
+RSK-0131,Design and Develop tenant template has source data calculation risk Th,NEW,,,0.069
+RSK-0132,Design and Develop tenant template has source data calculation risk Th,NEW,,,0.107
+RSK-0133,"Implement OMCOM into production is at risk due to paused, blocked, or ",NEW,,,0.08
+RSK-0134,Implement OMCOM into production has approval-gate risk The source data,NEW,,,0.097
+RSK-0135,Implement OMCOM into production has accountability risk Implement OMCO,NEW,,,0.111
+RSK-0136,Dev: Co-locating Content & Analytics Tagging may not start or complete,NEW,,,0.053
+RSK-0137,Dev: Co-locating Content & Analytics Tagging has accountability risk D,NEW,,,0.071
+RSK-0138,Dev: Applying Analytics Tracking to V2 Components may not start or com,NEW,,,0.053
+RSK-0139,Dev: Applying Analytics Tracking to V2 Components has accountability r,NEW,,,0.071
+RSK-0140,Dev: DevOps Quality Gate Pipeline may not start or complete on plan De,NEW,,,0.061
+RSK-0141,Dev: DevOps Quality Gate Pipeline has accountability risk Dev: DevOps ,NEW,,,0.087
+RSK-0142,Dev: DevOps Quality Gate Pipeline may not start or complete on plan De,NEW,,,0.094
+RSK-0143,Dev: DevOps Quality Gate Pipeline has accountability risk Dev: DevOps ,NEW,,,0.136
+RSK-0144,QE: Automated Testing Framework may not start or complete on plan QE: ,NEW,,,0.065
+RSK-0145,QE: Automated Testing Framework has accountability risk QE: Automated ,NEW,,,0.095
+RSK-0146,Dev/QE: DevOps - Integrate Automated Testing may not start or complete,NEW,,,0.061
+RSK-0147,Dev/QE: DevOps - Integrate Automated Testing has accountability risk D,NEW,,,0.087
+RSK-0148,QE: Automated Testing Framework may not start or complete on plan QE: ,NEW,,,0.1
+RSK-0149,QE: Automated Testing Framework has accountability risk QE: Automated ,NEW,,,0.15
+RSK-0150,Dev/QE: DevOps - Integrate Automated Testing may not start or complete,NEW,,,0.094
+RSK-0151,Dev/QE: DevOps - Integrate Automated Testing has accountability risk D,NEW,,,0.136
+RSK-0152,Dev: Observability Dashboard Templates for Sites may not start or comp,NEW,,,0.061
+RSK-0153,Dev: Observability Dashboard Templates for Sites has accountability ri,NEW,,,0.087
+RSK-0154,Dev: Observability Dashboard Templates for Sites may not start or comp,NEW,,,0.094
+RSK-0155,Dev: Observability Dashboard Templates for Sites is at risk due to pau,NEW,,,0.088
+RSK-0156,Dev: Observability Dashboard Templates for Sites has accountability ri,NEW,,,0.136
+RSK-0157,Dev: Styling Backwards Compatibility - V2 ModularPage may not start or,NEW,,,0.062
+RSK-0158,Dev: Styling Backwards Compatibility - V2 ModularPage has accountabili,NEW,,,0.091
+RSK-0159,Dev: Styling Backwards Compatibility - V2 ArticleModularPage may not s,NEW,,,0.062
+RSK-0160,Dev: Styling Backwards Compatibility - V2 ArticleModularPage has accou,NEW,,,0.091
+RSK-0161,Dev: Export Analytics Data into Tableau may not start or complete on p,NEW,,,0.062
+RSK-0162,Dev: Export Analytics Data into Tableau has low-confidence delivery co,NEW,,,0.069
+RSK-0163,Dev: Export Analytics Data into Tableau has accountability risk Dev: E,NEW,,,0.091
+RSK-0164,Dev: Export Analytics Data into Tableau may not start or complete on p,NEW,,,0.094
+RSK-0165,Dev: Export Analytics Data into Tableau has low-confidence delivery co,NEW,,,0.103
+RSK-0166,Dev: Export Analytics Data into Tableau has accountability risk Dev: E,NEW,,,0.136
+RSK-0167,Dev: Configuring Web Transformation Page Template in ContentStack may ,NEW,,,0.057
+RSK-0168,Dev: Configuring Web Transformation Page Template in ContentStack has ,NEW,,,0.08
+RSK-0169,Dev: Update Page Rendering Pipeline to support WT pages may not start ,NEW,,,0.056
+RSK-0170,Dev: Update Page Rendering Pipeline to support WT pages has accountabi,NEW,,,0.077
+RSK-0171,Dev: Navigation components updates public Web may not start or complet,NEW,,,0.062
+RSK-0172,Dev: Navigation components updates public Web has roadmap uncertainty ,NEW,,,0.061
+RSK-0173,Dev: Navigation components updates public Web has low-confidence deliv,NEW,,,0.069
+RSK-0174,Dev: Navigation components updates public Web is at risk due to paused,NEW,,,0.057
+RSK-0175,Dev: Navigation components updates public Web has accountability risk ,NEW,,,0.091
+RSK-0176,QE : Automated Testing Framework (LS) may not start or complete on pla,NEW,,,0.065
+RSK-0177,QE : Automated Testing Framework (LS) has roadmap uncertainty due to T,NEW,,,0.062
+RSK-0178,QE : Automated Testing Framework (LS) has accountability risk QE : Aut,NEW,,,0.095
+RSK-0179,Dev :Observability Dashboards for various sites (LS) may not start or ,NEW,,,0.061
+RSK-0180,Dev :Observability Dashboards for various sites (LS) has low-confidenc,NEW,,,0.067
+RSK-0181,Dev :Observability Dashboards for various sites (LS) has accountabilit,NEW,,,0.087
+RSK-0182,Dev : Modular Template (LS) may not start or complete on plan Dev : Mo,NEW,,,0.065
+RSK-0183,Dev : Modular Template (LS) has roadmap uncertainty due to TBC schedul,NEW,,,0.062
+RSK-0184,Dev : Modular Template (LS) has low-confidence delivery commitment Dev,NEW,,,0.071
+RSK-0185,"Dev : Modular Template (LS) is at risk due to paused, blocked, or awai",NEW,,,0.071
+RSK-0186,Dev : Modular Template (LS) has accountability risk Dev : Modular Temp,NEW,,,0.095
+RSK-0187,Dev : Modular Page Components (LS) may not start or complete on plan D,NEW,,,0.062
+RSK-0188,Dev : Modular Page Components (LS) has roadmap uncertainty due to TBC ,NEW,,,0.061
+RSK-0189,Dev : Modular Page Components (LS) has low-confidence delivery commitm,NEW,,,0.069
+RSK-0190,"Dev : Modular Page Components (LS) is at risk due to paused, blocked, ",NEW,,,0.056
+RSK-0191,Dev : Modular Page Components (LS) has accountability risk Dev : Modul,NEW,,,0.091
+RSK-0192,Dev Applying analytics tracking to CMS (LS) may not start or complete ,NEW,,,0.061
+RSK-0193,Dev Applying analytics tracking to CMS (LS) has roadmap uncertainty du,NEW,,,0.059
+RSK-0194,Dev Applying analytics tracking to CMS (LS) has low-confidence deliver,NEW,,,0.067
+RSK-0195,"Dev Applying analytics tracking to CMS (LS) is at risk due to paused, ",NEW,,,0.053
+RSK-0196,Dev Applying analytics tracking to CMS (LS) has accountability risk De,NEW,,,0.087
+RSK-0197,Dev: OMCOZA -Licence cutover may not start or complete on plan Dev: OM,NEW,,,0.065
+RSK-0198,Dev: OMCOZA -Licence cutover has roadmap uncertainty due to TBC schedu,NEW,,,0.062
+RSK-0199,Dev: OMCOZA -Licence cutover has accountability risk Dev: OMCOZA -Lice,NEW,,,0.095
+RSK-0200,Dev : Tableau Analytics may not start or complete on plan Dev : Tablea,NEW,,,0.065
+RSK-0201,Dev : Tableau Analytics has roadmap uncertainty due to TBC schedule or,NEW,,,0.062
+RSK-0202,Dev : Tableau Analytics has low-confidence delivery commitment Dev : T,NEW,,,0.071
+RSK-0203,Dev : Tableau Analytics has accountability risk Dev : Tableau Analytic,NEW,,,0.095
+RSK-0204,Testing in V2 new platform and log bugs may not start or complete on p,NEW,,,0.057
+RSK-0205,Testing in V2 new platform and log bugs has testing or defect-resoluti,NEW,,,0.059
+RSK-0206,Take live in V2 new platform has roadmap uncertainty due to TBC schedu,NEW,,,0.057
+RSK-0207,Take live in V2 new platform has source data calculation risk The sour,NEW,,,0.059
+RSK-0208,Record Funeral URL structure based on proposed sunset/consolidated pag,NEW,,,0.077
+RSK-0209,Record Retirement URL structure based on consolidated pages as per new,NEW,,,0.057
+RSK-0210,Record Flexi Save URL structure based on consolidated pages as per new,NEW,,,0.056
+RSK-0211,Record URL structure based on all as-is pages (keep/remove/consolidate,NEW,,,0.057
+RSK-0212,Record URL structure for all remaining Personal pages (keep/remove/con,NEW,,,0.056
+RSK-0213,Start building new template pages may not start or complete on plan St,NEW,,,0.073
+RSK-0214,Record URL structure for all remaining Corporate pages (keep/remove/co,NEW,,,0.056
+RSK-0215,Start building new template pages may not start or complete on plan St,NEW,,,0.073
+RSK-0216,Start building new template pages has low-confidence delivery commitme,NEW,,,0.077
+RSK-0217,Start building new template pages may not start or complete on plan St,NEW,,,0.073
+RSK-0218,Start building new template pages has low-confidence delivery commitme,NEW,,,0.077
+RSK-0219,Record URL structure for all remaining Utility pages (keep/remove/cons,NEW,,,0.056
+RSK-0220,Start building new template pages may not start or complete on plan St,NEW,,,0.073
+RSK-0221,Start building new template pages has low-confidence delivery commitme,NEW,,,0.077
+RSK-0222,Record URL structure for all remaining About us pages (keep/remove/con,NEW,,,0.056
+RSK-0223,Start building new template pages may not start or complete on plan St,NEW,,,0.073
+RSK-0224,Start building new template pages has low-confidence delivery commitme,NEW,,,0.077
+RSK-0225,Record URL structure for all remaining Careers pages (keep/remove/cons,NEW,,,0.056
+RSK-0226,Start building new template pages may not start or complete on plan St,NEW,,,0.073
+RSK-0227,Start building new template pages has low-confidence delivery commitme,NEW,,,0.077
+RSK-0228,Record URL structure for all remaining Business pages (keep/remove/con,NEW,,,0.056
+RSK-0229,Start building new template pages may not start or complete on plan St,NEW,,,0.073
+RSK-0230,Start building new template pages has low-confidence delivery commitme,NEW,,,0.077
+RSK-0231,Penetration Testing Discussion and confirmation has accountability ris,NEW,,,0.1
+RSK-0232,Quality Assurance Approval has approval-gate risk The source data show,NEW,,,0.088
+RSK-0233,Security Approvals has approval-gate risk The source data shows that S,NEW,,,0.081
+RSK-0234,Executive Approval has approval-gate risk The source data shows that E,NEW,,,0.083
+RSK-0235,Change Management Go Ahead has approval-gate risk The source data show,NEW,,,0.077
+RSK-0236,Confirm Engagement Cycle with SEO Team has approval-gate risk The sour,NEW,,,0.075
+RSK-0237,Confirm Engagement Cycle with SEO Team has accountability risk Confirm,NEW,,,0.1
+RSK-0238,SEO Requirements to Dev Team may not start or complete on plan SEO Req,NEW,,,0.069
+RSK-0239,SEO Requirements to Dev Team has accountability risk SEO Requirements ,NEW,,,0.105
+RSK-0240,Engagement required to communicate recalibration of project to various,NEW,,,0.095
+RSK-0241,Publishing of all pages in V2 New platform may not start or complete o,NEW,,,0.067
+RSK-0242,Publishing of all pages in V2 New platform has roadmap uncertainty due,NEW,,,0.091
+RSK-0243,Publishing of all pages in V2 New platform has low-confidence delivery,NEW,,,0.074
+RSK-0244,Publishing of all pages in V2 New platform has accountability risk Pub,NEW,,,0.1
+RSK-0245,Publishing of all pages in V2 New platform may not start or complete o,NEW,,,0.067
+RSK-0246,Publishing of all pages in V2 New platform has roadmap uncertainty due,NEW,,,0.091
+RSK-0247,Publishing of all pages in V2 New platform has low-confidence delivery,NEW,,,0.074
+RSK-0248,Publishing of all pages in V2 New platform has accountability risk Pub,NEW,,,0.1
+RSK-0249,Publishing of all pages in V2 New platform may not start or complete o,NEW,,,0.067
+RSK-0250,Publishing of all pages in V2 New platform has roadmap uncertainty due,NEW,,,0.091
+RSK-0251,Publishing of all pages in V2 New platform has low-confidence delivery,NEW,,,0.074
+RSK-0252,Publishing of all pages in V2 New platform has accountability risk Pub,NEW,,,0.1
+RSK-0253,Publishing of all pages in V2 New platform may not start or complete o,NEW,,,0.067
+RSK-0254,Publishing of all pages in V2 New platform has roadmap uncertainty due,NEW,,,0.091
+RSK-0255,Publishing of all pages in V2 New platform has low-confidence delivery,NEW,,,0.074
+RSK-0256,Publishing of all pages in V2 New platform has accountability risk Pub,NEW,,,0.1
+RSK-0257,Publishing of all pages in V2 New platform may not start or complete o,NEW,,,0.067
+RSK-0258,Publishing of all pages in V2 New platform has roadmap uncertainty due,NEW,,,0.091
+RSK-0259,Publishing of all pages in V2 New platform has low-confidence delivery,NEW,,,0.074
+RSK-0260,Publishing of all pages in V2 New platform has accountability risk Pub,NEW,,,0.1
+RSK-0261,Publishing of all pages in V2 New platform may not start or complete o,NEW,,,0.067
+RSK-0262,Publishing of all pages in V2 New platform has roadmap uncertainty due,NEW,,,0.091
+RSK-0263,Publishing of all pages in V2 New platform has low-confidence delivery,NEW,,,0.074
+RSK-0264,Publishing of all pages in V2 New platform has accountability risk Pub,NEW,,,0.1
+RSK-0265,Publishing of all pages in V2 New platform may not start or complete o,NEW,,,0.067
+RSK-0266,Publishing of all pages in V2 New platform has roadmap uncertainty due,NEW,,,0.091
+RSK-0267,Publishing of all pages in V2 New platform has low-confidence delivery,NEW,,,0.074
+RSK-0268,Publishing of all pages in V2 New platform has accountability risk Pub,NEW,,,0.1
+RSK-0269,Publishing of all pages in V2 New platform may not start or complete o,NEW,,,0.067
+RSK-0270,Publishing of all pages in V2 New platform has roadmap uncertainty due,NEW,,,0.091
+RSK-0271,Publishing of all pages in V2 New platform has low-confidence delivery,NEW,,,0.074
+RSK-0272,Publishing of all pages in V2 New platform has accountability risk Pub,NEW,,,0.1
+RSK-0273,Travel Insurance Sales Migration has low-confidence delivery commitmen,NEW,,,0.12
+RSK-0274,Travel Insurance Sales Migration has an untracked dependency risk The ,NEW,,,0.13
+RSK-0275,Travel Insurance Sales Migration has accountability risk Travel Insura,NEW,,,0.167
+RSK-0276,Mvest has low-confidence delivery commitment Mvest is priority High wi,NEW,,,0.087
+RSK-0277,Mvest has an untracked dependency risk The worksheet marks Mvest as de,NEW,,,0.095
+RSK-0278,Mvest has accountability risk Mvest is priority High but has no named ,NEW,,,0.125
+RSK-0279,Personal Loan Application has low-confidence delivery commitment Perso,NEW,,,0.08
+RSK-0280,Personal Loan Application has an untracked dependency risk The workshe,NEW,,,0.087
+RSK-0281,Personal Loan Application has accountability risk Personal Loan Applic,NEW,,,0.111
+RSK-0282,Personal Loan Repayment Calculator has low-confidence delivery commitm,NEW,,,0.077
+RSK-0283,Personal Loan Repayment Calculator has an untracked dependency risk Th,NEW,,,0.083
+RSK-0284,Personal Loan Repayment Calculator has accountability risk Personal Lo,NEW,,,0.105
+RSK-0285,Migration of Secure Web may not start or complete on plan Migration of,NEW,,,0.167
+RSK-0286,Migration of Secure Web has roadmap uncertainty due to TBC schedule or,NEW,,,0.154
+RSK-0287,Migration of Secure Web has low-confidence delivery commitment Migrati,NEW,,,0.19
+RSK-0288,Migration of Secure Web is at risk from resource capacity constraints ,NEW,,,0.19
+RSK-0289,Migration of Secure Web has accountability risk Migration of Secure We,NEW,,,0.286
+RSK-0290,Service Transactions may not start or complete on plan Service Transac,NEW,,,0.115
+RSK-0291,Service Transactions has roadmap uncertainty due to TBC schedule or ef,NEW,,,0.107
+RSK-0292,Service Transactions has an untracked dependency risk The worksheet ma,NEW,,,0.143
+RSK-0293,Service Transactions has accountability risk Service Transactions is p,NEW,,,0.188
+RSK-0294,Eswatini Funeral has roadmap uncertainty due to TBC schedule or effort,NEW,,,0.071
+RSK-0295,Eswatini Funeral has an untracked dependency risk The worksheet marks ,NEW,,,0.095
+RSK-0296,Eswatini Funeral has testing or defect-resolution risk The source note,NEW,,,0.087
+RSK-0297,Eswatini Funeral has accountability risk Eswatini Funeral is priority ,NEW,,,0.125
+RSK-0298,Funeral Claims - Servicing Journey has roadmap uncertainty due to TBC ,NEW,,,0.067
+RSK-0299,Funeral Claims - Servicing Journey has low-confidence delivery commitm,NEW,,,0.08
+RSK-0300,Funeral Claims - Servicing Journey has an untracked dependency risk Th,NEW,,,0.087
+RSK-0301,Funeral Claims - Servicing Journey is at risk from resource capacity c,NEW,,,0.091
+RSK-0302,Funeral Claims - Servicing Journey has accountability risk Funeral Cla,NEW,,,0.111
+RSK-0303,Motor claims - Service Journey has roadmap uncertainty due to TBC sche,NEW,,,0.065
+RSK-0304,Motor claims - Service Journey has low-confidence delivery commitment ,NEW,,,0.077
+RSK-0305,Motor claims - Service Journey has an untracked dependency risk The wo,NEW,,,0.083
+RSK-0306,Motor claims - Service Journey is at risk from resource capacity const,NEW,,,0.091
+RSK-0307,Motor claims - Service Journey has accountability risk Motor claims - ,NEW,,,0.105
+RSK-0308,Home owners claims- Service Journey may not start or complete on plan ,NEW,,,0.067
+RSK-0309,Home owners claims- Service Journey has roadmap uncertainty due to TBC,NEW,,,0.062
+RSK-0310,Home owners claims- Service Journey has low-confidence delivery commit,NEW,,,0.074
+RSK-0311,Home owners claims- Service Journey has an untracked dependency risk T,NEW,,,0.08
+RSK-0312,Home owners claims- Service Journey is at risk from resource capacity ,NEW,,,0.087
+RSK-0313,Home owners claims- Service Journey has accountability risk Home owner,NEW,,,0.1
+RSK-0314,Home content claims Service Journey may not start or complete on plan ,NEW,,,0.067
+RSK-0315,Home content claims Service Journey has roadmap uncertainty due to TBC,NEW,,,0.079
+RSK-0316,Home content claims Service Journey has low-confidence delivery commit,NEW,,,0.074
+RSK-0317,Home content claims Service Journey has an untracked dependency risk T,NEW,,,0.08
+RSK-0318,Home content claims Service Journey is at risk from resource capacity ,NEW,,,0.097
+RSK-0319,Home content claims Service Journey has accountability risk Home conte,NEW,,,0.1
+RSK-0320,Credit Life may not start or complete on plan Credit Life is a High pr,NEW,,,0.074
+RSK-0321,Credit Life has roadmap uncertainty due to TBC schedule or effort Cred,NEW,,,0.069
+RSK-0322,Credit Life has low-confidence delivery commitment Credit Life is prio,NEW,,,0.083
+RSK-0323,Credit Life has an untracked dependency risk The worksheet marks Credi,NEW,,,0.091
+RSK-0324,Credit Life is at risk from resource capacity constraints The source n,NEW,,,0.1
+RSK-0325,Credit Life has accountability risk Credit Life is priority High but h,NEW,,,0.118
+RSK-0326,Funeral Claims - Sales Journey may not start or complete on plan Funer,NEW,,,0.069
+RSK-0327,Funeral Claims - Sales Journey has roadmap uncertainty due to TBC sche,NEW,,,0.065
+RSK-0328,Funeral Claims - Sales Journey has low-confidence delivery commitment ,NEW,,,0.077
+RSK-0329,Funeral Claims - Sales Journey has an untracked dependency risk The wo,NEW,,,0.083
+RSK-0330,Funeral Claims - Sales Journey is at risk from resource capacity const,NEW,,,0.091
+RSK-0331,Funeral Claims - Sales Journey has accountability risk Funeral Claims ,NEW,,,0.105
+RSK-0332,Motor claims - Sales Journey may not start or complete on plan Motor c,NEW,,,0.069
+RSK-0333,Motor claims - Sales Journey has roadmap uncertainty due to TBC schedu,NEW,,,0.065
+RSK-0334,Motor claims - Sales Journey has low-confidence delivery commitment Mo,NEW,,,0.077
+RSK-0335,Motor claims - Sales Journey has an untracked dependency risk The work,NEW,,,0.083
+RSK-0336,Motor claims - Sales Journey is at risk from resource capacity constra,NEW,,,0.091
+RSK-0337,Motor claims - Sales Journey has accountability risk Motor claims - Sa,NEW,,,0.105
+RSK-0338,Home owners claims- Sales Journey may not start or complete on plan Ho,NEW,,,0.067
+RSK-0339,Home owners claims- Sales Journey has roadmap uncertainty due to TBC s,NEW,,,0.062
+RSK-0340,Home owners claims- Sales Journey has low-confidence delivery commitme,NEW,,,0.074
+RSK-0341,Home owners claims- Sales Journey has an untracked dependency risk The,NEW,,,0.08
+RSK-0342,Home owners claims- Sales Journey is at risk from resource capacity co,NEW,,,0.087
+RSK-0343,Home owners claims- Sales Journey has accountability risk Home owners ,NEW,,,0.1

@@ -1,0 +1,40 @@
+{
+  "hard_rule": "Only files under 01_LOAD_TO_PLATFORM_PROGRAMME_DATA are programme payload files. Files under folders 02, 03, and 04 are control/reference/instruction material and must not be uploaded as programme records.",
+  "importable_folder": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA",
+  "non_importable_folders": [
+    "02_CONTROL_FOR_AGENT_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+    "03_INSTRUCTIONS_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+    "04_REFERENCE_DO_NOT_UPLOAD_AS_PROGRAMME_DATA"
+  ],
+  "importable_entities": {
+    "programme_activities": 271,
+    "deliverables": 262,
+    "actions": 271,
+    "risks": 340,
+    "issues": 12,
+    "dependencies": 144,
+    "constraints": 158,
+    "decisions": 66,
+    "milestones": 79,
+    "timeline": 271,
+    "governance_summary": 10,
+    "workstream_status": 10
+  },
+  "control_files": {
+    "platform_update_map_CONTROL_ONLY.csv": "Use only for matching each programme row to existing platform records.",
+    "merge_review_CONTROL_ONLY.csv": "Use only for human-review routing and conflict checks.",
+    "platform_baseline_reference_DO_NOT_UPLOAD.csv": "Existing platform export used as a reference only."
+  },
+  "forbidden_as_programme_records": [
+    "README files",
+    "manifest files",
+    "instructions",
+    "prompts",
+    "control maps",
+    "merge review files",
+    "platform baseline reference",
+    "data quality exception reference",
+    "source spreadsheets",
+    "source prompts"
+  ]
+}

@@ -122,6 +122,8 @@ export function ProjectsClient({
       <DataTable
         columns={columns}
         data={projects}
+        mappingColumns
+        tableKey="projects"
         searchPlaceholder="Search projects..."
         onRowClick={(row) => router.push(`/projects/${row.id}`)}
         emptyTitle="No projects"

@@ -39,6 +39,7 @@ export default async function WbsPage() {
             columns={WBS_COLUMNS}
             filename="wbs-gantt-baseline"
             entity="wbs"
+            tableKey="wbs"
             searchPlaceholder="Search WBS tasks, owners, phases..."
             emptyTitle="No WBS tasks"
             emptyDescription="Seed the programme controls to populate the WBS baseline."

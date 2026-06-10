@@ -1,0 +1,1564 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Programme Control Production Seed Data",
+  "description": "Schemas for importable programme registers only. Files outside 01_LOAD_TO_PLATFORM_PROGRAMME_DATA are not programme payloads.",
+  "type": "object",
+  "properties": {
+    "programme_activities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "activity_id": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "workstream": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "sub_workstream": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "programme_area": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "channel": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "domain": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "activity_name": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "activity_description": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "activity_type": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "parent_activity": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_deliverable_id": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_deliverable": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "owner": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "accountable_lead": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "supporting_teams": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "priority": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "priority_score": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "status": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "start_date": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "due_date": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "target_completion_date": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "current_progress": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "effort_estimate": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "complexity": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "business_criticality": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "delivery_phase": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "dependencies": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "constraints": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "risks": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "issues": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "decisions_required": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "governance_forum": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "activity_id",
+          "workstream",
+          "sub_workstream",
+          "programme_area",
+          "channel",
+          "domain",
+          "activity_name",
+          "activity_description",
+          "activity_type",
+          "parent_activity",
+          "related_deliverable_id",
+          "related_deliverable",
+          "owner",
+          "accountable_lead",
+          "supporting_teams",
+          "priority",
+          "priority_score",
+          "status",
+          "start_date",
+          "due_date",
+          "target_completion_date",
+          "current_progress",
+          "effort_estimate",
+          "complexity",
+          "business_criticality",
+          "delivery_phase",
+          "dependencies",
+          "constraints",
+          "risks",
+          "issues",
+          "decisions_required",
+          "governance_forum"
+        ]
+      }
+    },
+    "deliverables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "deliverable_id": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "deliverable_name": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "deliverable_description": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "workstream": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "deliverable_owner": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "accountable_lead": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "acceptance_criteria": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "evidence_required": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_activities": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_milestones": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "due_date": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "status": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "dependencies": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "risks": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "quality_requirements": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "signoff_requirement": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "signoff_forum": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "completion_definition": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "deliverable_id",
+          "deliverable_name",
+          "deliverable_description",
+          "workstream",
+          "deliverable_owner",
+          "accountable_lead",
+          "acceptance_criteria",
+          "evidence_required",
+          "related_activities",
+          "related_milestones",
+          "due_date",
+          "status",
+          "dependencies",
+          "risks",
+          "quality_requirements",
+          "signoff_requirement",
+          "signoff_forum",
+          "completion_definition"
+        ]
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "action_id": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_activity_id": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "action_description": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "workstream": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "owner": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "supporting_owner": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "due_date": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "priority": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "status": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_deliverable_id": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_deliverable_name": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_risk_or_issue": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "dependency": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "decision_required": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "next_step": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "closure_criteria": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "action_id",
+          "related_activity_id",
+          "action_description",
+          "workstream",
+          "owner",
+          "supporting_owner",
+          "due_date",
+          "priority",
+          "status",
+          "related_deliverable_id",
+          "related_deliverable_name",
+          "related_risk_or_issue",
+          "dependency",
+          "decision_required",
+          "next_step",
+          "closure_criteria"
+        ]
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "risk_id": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "risk_title": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "risk_description": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "cause": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "impact": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "likelihood": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "severity": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "risk_rating": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "workstream": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "risk_owner": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "mitigation_action": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "contingency": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "trigger": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_dependency": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_deliverable": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_activities": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "status": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "risk_id",
+          "risk_title",
+          "risk_description",
+          "cause",
+          "impact",
+          "likelihood",
+          "severity",
+          "risk_rating",
+          "workstream",
+          "risk_owner",
+          "mitigation_action",
+          "contingency",
+          "trigger",
+          "related_dependency",
+          "related_deliverable",
+          "related_activities",
+          "status"
+        ]
+      }
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "issue_id": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "issue_title": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "issue_description": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "impact": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "urgency": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "owner": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "required_action": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "escalation_requirement": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_workstream": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_deliverable": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_activities": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "status": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "issue_id",
+          "issue_title",
+          "issue_description",
+          "impact",
+          "urgency",
+          "owner",
+          "required_action",
+          "escalation_requirement",
+          "related_workstream",
+          "related_deliverable",
+          "related_activities",
+          "status"
+        ]
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "dependency_id": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "dependency_description": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "dependency_type": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "upstream_owner": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "downstream_owner": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "dependent_activity": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "blocking_item": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "required_date": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "impact_if_late": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "status": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "escalation_path": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_risk": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "dependency_id",
+          "dependency_description",
+          "dependency_type",
+          "upstream_owner",
+          "downstream_owner",
+          "dependent_activity",
+          "blocking_item",
+          "required_date",
+          "impact_if_late",
+          "status",
+          "escalation_path",
+          "related_risk"
+        ]
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "constraint_id": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "constraint_description": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "constraint_type": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "impact": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "workstream_affected": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "owner": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "mitigation": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "constraint_id",
+          "constraint_description",
+          "constraint_type",
+          "impact",
+          "workstream_affected",
+          "owner",
+          "mitigation"
+        ]
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "decision_id": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "decision_required": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "decision_description": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "context": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "options_if_evident": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "recommended_decision": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "decision_owner": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "required_by_date": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "governance_forum": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "impact_if_not_made": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_activity_or_deliverable": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "decision_id",
+          "decision_required",
+          "decision_description",
+          "context",
+          "options_if_evident",
+          "recommended_decision",
+          "decision_owner",
+          "required_by_date",
+          "governance_forum",
+          "impact_if_not_made",
+          "related_activity_or_deliverable"
+        ]
+      }
+    },
+    "milestones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "milestone_id": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "milestone_name": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "milestone_description": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "workstream": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "target_date": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_deliverables": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "related_activities": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "entry_criteria": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "exit_criteria": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "dependencies": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "risks": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "status": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "milestone_id",
+          "milestone_name",
+          "milestone_description",
+          "workstream",
+          "target_date",
+          "related_deliverables",
+          "related_activities",
+          "entry_criteria",
+          "exit_criteria",
+          "dependencies",
+          "risks",
+          "status"
+        ]
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "activity_id": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "activity": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "parent_activity": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "workstream": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "start_date": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "end_date_due_date": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "duration_days": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "dependencies": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "milestone_link": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "owner": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "status": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "priority": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "critical_path_indicator": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "activity_id",
+          "activity",
+          "parent_activity",
+          "workstream",
+          "start_date",
+          "end_date_due_date",
+          "duration_days",
+          "dependencies",
+          "milestone_link",
+          "owner",
+          "status",
+          "priority",
+          "critical_path_indicator"
+        ]
+      }
+    },
+    "governance_summary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "workstream": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "rag_status": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "total_activities": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "blocked_items": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "blocked_item_examples": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "overdue_actions": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "overdue_action_examples": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "undated_or_tbc_actions": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "critical_dependencies": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "decisions_required": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "high_priority_risks": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "deliverables_needing_signoff": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "immediate_attention_required": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "senior_management_comment": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "workstream",
+          "rag_status",
+          "total_activities",
+          "blocked_items",
+          "blocked_item_examples",
+          "overdue_actions",
+          "overdue_action_examples",
+          "undated_or_tbc_actions",
+          "critical_dependencies",
+          "decisions_required",
+          "high_priority_risks",
+          "deliverables_needing_signoff",
+          "immediate_attention_required",
+          "senior_management_comment"
+        ]
+      }
+    },
+    "workstream_status": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "workstream": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "activity_count": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "deliverable_count": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "action_count": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "risk_count": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "dependency_count": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "blocked_activity_count": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "missing_owner_count": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "missing_or_tbc_date_count": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "high_confidence_platform_matches": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "possible_platform_matches": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "review_or_add_candidates": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "immediate_attention_required": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "workstream_summary": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "workstream",
+          "activity_count",
+          "deliverable_count",
+          "action_count",
+          "risk_count",
+          "dependency_count",
+          "blocked_activity_count",
+          "missing_owner_count",
+          "missing_or_tbc_date_count",
+          "high_confidence_platform_matches",
+          "possible_platform_matches",
+          "review_or_add_candidates",
+          "immediate_attention_required",
+          "workstream_summary"
+        ]
+      }
+    }
+  }
+}

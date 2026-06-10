@@ -1,0 +1,74 @@
+[
+  {
+    "sequence": 1,
+    "entity": "programme_activities",
+    "file": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/programme_activities.csv",
+    "required": true
+  },
+  {
+    "sequence": 2,
+    "entity": "deliverables",
+    "file": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/deliverables.csv",
+    "required": true
+  },
+  {
+    "sequence": 3,
+    "entity": "milestones",
+    "file": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/milestones.csv",
+    "required": true
+  },
+  {
+    "sequence": 4,
+    "entity": "actions",
+    "file": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/actions.csv",
+    "required": true
+  },
+  {
+    "sequence": 5,
+    "entity": "dependencies",
+    "file": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/dependencies.csv",
+    "required": true
+  },
+  {
+    "sequence": 6,
+    "entity": "risks",
+    "file": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/risks.csv",
+    "required": true
+  },
+  {
+    "sequence": 7,
+    "entity": "issues",
+    "file": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/issues.csv",
+    "required": true
+  },
+  {
+    "sequence": 8,
+    "entity": "constraints",
+    "file": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/constraints.csv",
+    "required": true
+  },
+  {
+    "sequence": 9,
+    "entity": "decisions",
+    "file": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/decisions.csv",
+    "required": true
+  },
+  {
+    "sequence": 10,
+    "entity": "timeline",
+    "file": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/timeline.csv",
+    "required": false
+  },
+  {
+    "sequence": 11,
+    "entity": "governance_summary",
+    "file": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/governance_summary.csv",
+    "required": false
+  },
+  {
+    "sequence": 12,
+    "entity": "workstream_status",
+    "file": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/workstream_status.csv",
+    "required": false
+  }
+]

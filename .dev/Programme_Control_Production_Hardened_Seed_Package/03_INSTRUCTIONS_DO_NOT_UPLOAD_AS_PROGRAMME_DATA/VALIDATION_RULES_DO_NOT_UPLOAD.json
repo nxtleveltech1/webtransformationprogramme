@@ -1,0 +1,34 @@
+{
+  "rules": [
+    {
+      "id": "VAL-001",
+      "rule": "Only files under 01_LOAD_TO_PLATFORM_PROGRAMME_DATA may be used as programme payloads.",
+      "severity": "critical"
+    },
+    {
+      "id": "VAL-002",
+      "rule": "Files under DO_NOT_UPLOAD_AS_PROGRAMME_DATA folders must never be created as programme records.",
+      "severity": "critical"
+    },
+    {
+      "id": "VAL-003",
+      "rule": "Each payload row must have its register ID populated.",
+      "severity": "high"
+    },
+    {
+      "id": "VAL-004",
+      "rule": "Do not overwrite protected existing platform fields without approval: owner, status, start_date, end_date, slipping_indicator.",
+      "severity": "high"
+    },
+    {
+      "id": "VAL-005",
+      "rule": "Rows marked REVIEW_UPDATE_CANDIDATE or REVIEW_REQUIRED in the control map require review before update.",
+      "severity": "high"
+    },
+    {
+      "id": "VAL-006",
+      "rule": "Programme descriptions must remain programme data only and must not include prompt, runbook, instruction, or control-map text.",
+      "severity": "critical"
+    }
+  ]
+}

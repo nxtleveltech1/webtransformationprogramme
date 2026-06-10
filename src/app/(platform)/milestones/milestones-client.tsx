@@ -140,6 +140,8 @@ export function MilestonesClient({
       <DataTable
         columns={columns}
         data={milestones}
+        mappingColumns
+        tableKey="milestones"
         searchPlaceholder="Search milestones..."
         onRowClick={(row) => setViewing(row)}
         emptyTitle="No milestones"

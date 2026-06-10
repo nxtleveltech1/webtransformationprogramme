@@ -346,6 +346,8 @@ export function RaidClient({ data }: { data: RaidData }) {
           <DataTable
             columns={riskColumns}
             data={filteredRisks}
+            mappingColumns
+            tableKey="raid-risks"
             searchPlaceholder="Search risks..."
             onRowClick={() => router.push("/risks")}
             emptyTitle="No risks"
@@ -365,6 +367,8 @@ export function RaidClient({ data }: { data: RaidData }) {
           <DataTable
             columns={assumptionColumns}
             data={assumptions}
+            mappingColumns
+            tableKey="raid-assumptions"
             searchPlaceholder="Search assumptions..."
             onRowClick={() => router.push("/assumptions")}
             emptyTitle="No assumptions"
@@ -389,6 +393,8 @@ export function RaidClient({ data }: { data: RaidData }) {
           <DataTable
             columns={issueColumns}
             data={filteredIssues}
+            mappingColumns
+            tableKey="raid-issues"
             searchPlaceholder="Search issues..."
             onRowClick={() => router.push("/issues")}
             emptyTitle="No issues"
@@ -413,6 +419,8 @@ export function RaidClient({ data }: { data: RaidData }) {
           <DataTable
             columns={depColumns}
             data={filteredDeps}
+            mappingColumns
+            tableKey="raid-dependencies"
             searchPlaceholder="Search dependencies..."
             onRowClick={() => router.push("/dependencies")}
             emptyTitle="No dependencies"

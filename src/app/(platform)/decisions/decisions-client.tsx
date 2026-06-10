@@ -179,6 +179,8 @@ export function DecisionsClient({
       <DataTable
         columns={columns}
         data={decisions}
+        mappingColumns
+        tableKey="decisions"
         searchPlaceholder="Search decisions..."
         onRowClick={openDetail}
         emptyTitle="No decisions recorded"

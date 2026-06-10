@@ -42,6 +42,7 @@ export default async function DeliverablesPage() {
             columns={DELIVERABLE_COLUMNS}
             filename="deliverables-register"
             entity="deliverable"
+            tableKey="deliverables"
             searchPlaceholder="Search deliverables, owners, workstreams..."
             emptyTitle="No deliverables"
             emptyDescription="Seed the delivery baseline to populate deliverables."

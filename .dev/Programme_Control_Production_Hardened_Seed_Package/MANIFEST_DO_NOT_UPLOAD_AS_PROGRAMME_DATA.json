@@ -1,0 +1,374 @@
+{
+  "package_name": "Programme_Control_Production_Hardened_Seed_Package",
+  "created_at_utc": "2026-06-08T20:57:43+00:00",
+  "purpose": "Production-ready programme-control seed/update package with strict separation between payload data and non-payload instructions/control/reference files.",
+  "hard_rule": "Only files marked may_seed_as_programme_data=true may be seeded. All other files are not programme records.",
+  "payload_folder": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA",
+  "non_payload_folders": [
+    "02_CONTROL_FOR_AGENT_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+    "03_INSTRUCTIONS_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+    "04_REFERENCE_DO_NOT_UPLOAD_AS_PROGRAMME_DATA"
+  ],
+  "payload_counts": {
+    "programme_activities": 271,
+    "deliverables": 262,
+    "actions": 271,
+    "risks": 340,
+    "issues": 12,
+    "dependencies": 144,
+    "constraints": 158,
+    "decisions": 66,
+    "milestones": 79,
+    "timeline": 271,
+    "governance_summary": 10,
+    "workstream_status": 10
+  },
+  "payload_cleanliness_scan": {
+    "passed": true,
+    "terms_checked": [
+      "LLM",
+      "ChatGPT",
+      "assistant",
+      "agent",
+      "prompt",
+      "instruction",
+      "runbook",
+      "source row",
+      "source evidence",
+      "source note",
+      "source text",
+      "source reference",
+      "transformation basis",
+      "description enhancement",
+      "confidence score",
+      "original ",
+      "upload",
+      "import",
+      "ingestion",
+      "notes to self",
+      "sidenote",
+      "side note",
+      "cleanup",
+      "clean-up"
+    ],
+    "hits": 0,
+    "report_file": "02_CONTROL_FOR_AGENT_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/payload_cleanliness_scan_CONTROL_ONLY.json"
+  },
+  "files": [
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/Programme_Control_Production_Seed_Data_ONLY.xlsx",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 240865,
+      "sha256": "0b609a021a8cb9a882abbcae47139274cd141854e65f09a03edda9f936facea1"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/actions.csv",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 296446,
+      "sha256": "37516e79d5ecab6e59af02ebeff9a8b220ba3037d72df94f599ffbe829cc6bc3"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/constraints.csv",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 123181,
+      "sha256": "ba0dd49e7905d03a142de1bb37cfe2f7a6bab9488f16291a532091f1c332db96"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/decisions.csv",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 82212,
+      "sha256": "994bbe0a35953328afd095c721ae61b090420363d2a26a0bfccc278fa5ac1869"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/deliverables.csv",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 375725,
+      "sha256": "75fd0dab8d32b7d34b5789c62f4f9d21860cbc59e9e17b9541d3c80f74f679c0"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/dependencies.csv",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 111110,
+      "sha256": "89e8b32daf4e193fb66380bb06f528f3ac383b3f7dc782883895bf7801dc14e2"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/governance_summary.csv",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 2128,
+      "sha256": "f7de044f0ea571ac96e67e7593788f1917b49d5e3027ecca9a653cce2f101b5c"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/issues.csv",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 7942,
+      "sha256": "ae7ebbb621b1971ee65ee94a1c47857e758bb50c474c3395b96ebb1c500fa52d"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/milestones.csv",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 75414,
+      "sha256": "ad0ad69cf685857c7871f3c87ee12393b16765cbd47cbfa6d07fb2c0c13bde3a"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/programme_activities.csv",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 346000,
+      "sha256": "31af56bb54fcaffcefe7891651a962bff3791876ccd2f59037e4c23a678ab074"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/risks.csv",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 757673,
+      "sha256": "c39b675911cdc231ab9fd187539e6bf5241300cc5bf06c747e34af3d13326905"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/timeline.csv",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 97409,
+      "sha256": "9db1c866a36b1f0bf81664f48a192464045f5fedf0a704a9d5f3d7e49a806b08"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/csv/workstream_status.csv",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 2094,
+      "sha256": "653b3b045947798d9bb72f83f53819f5d4008c105a33f313b5380ced549509eb"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/json/programme_control_seed_dataset.json",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 3122301,
+      "sha256": "3974895a57d0a5c3e7acc3aad606d587c4f36cca898a371c15fe73953d061c55"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/jsonl/actions.jsonl",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 384812,
+      "sha256": "4e75db54a18242d1fd754fdf53a5e8d4206e3ff6e8b172b021fc0b209cc8f5de"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/jsonl/constraints.jsonl",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 144094,
+      "sha256": "7af95619bff6313e20b2db2971b2f0230c679b401a9d78267195de96762d51f4"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/jsonl/decisions.jsonl",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 99187,
+      "sha256": "d2db6561ad594be00daa6c41996f1405a6b2441df5213d1104f9a01dba412837"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/jsonl/deliverables.jsonl",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 478719,
+      "sha256": "ffc8a3b6b32e15dce6d2c429f73c88ea1a45cab3783db48ec8626d215507b33d"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/jsonl/dependencies.jsonl",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 147049,
+      "sha256": "40e1f81e4962c9aacc52ca39474c6d815a1fcb6d20636048385e650adfd06f75"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/jsonl/governance_summary.jsonl",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 5493,
+      "sha256": "4d607fae92c18124641e5aac4adce854fd5ec5d8129a87b8b5b039d489858feb"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/jsonl/issues.jsonl",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 10606,
+      "sha256": "2ec5271cc5af3ddf2a5a6fa42939f547f3b39c62ccb412a2f68778061c3c01d8"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/jsonl/milestones.jsonl",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 94174,
+      "sha256": "84992313d444aa7cb390be67b736b71c36eb0fd6597c8d3c5159d3aa20a335b2"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/jsonl/programme_activities.jsonl",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 517302,
+      "sha256": "bf7a4cd8216fb49429c82e9ee906b12d4593cd3e00f5cea88ecea1b84d6518ce"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/jsonl/risks.jsonl",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 859447,
+      "sha256": "a3bb777afd80d128f6ae354398aff7885f09c30cd260efcb3192a670637556e3"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/jsonl/timeline.jsonl",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 163065,
+      "sha256": "34f9e7b9c80124c4fd081d96d3ccc3d3141995256e88df0808690fdd36855861"
+    },
+    {
+      "path": "01_LOAD_TO_PLATFORM_PROGRAMME_DATA/jsonl/workstream_status.jsonl",
+      "role": "PROGRAMME_DATA_PAYLOAD",
+      "may_seed_as_programme_data": true,
+      "size_bytes": 5484,
+      "sha256": "c4ce3614e94e699bf69906f25505970753adec77f1b72969484dbc916876dde7"
+    },
+    {
+      "path": "02_CONTROL_FOR_AGENT_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/PAYLOAD_CLEANLINESS_SCAN_CONTROL_ONLY.md",
+      "role": "CONTROL_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 435,
+      "sha256": "dc11ffedc6c5c6fb0c91559ee7bc6396f5267e599fd608102822d48fb747ceef"
+    },
+    {
+      "path": "02_CONTROL_FOR_AGENT_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/data_file_contract_CONTROL_ONLY.json",
+      "role": "CONTROL_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 1439,
+      "sha256": "078aff705723d6d8ad27dd38ef509cf6d8d6b50387e3bc6caa3fc81de9e644b0"
+    },
+    {
+      "path": "02_CONTROL_FOR_AGENT_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/merge_review_CONTROL_ONLY.csv",
+      "role": "CONTROL_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 530904,
+      "sha256": "9d37da2c7d7b5f298d828089bd75b8b520efc5feed571211a40c85666d027af2"
+    },
+    {
+      "path": "02_CONTROL_FOR_AGENT_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/merge_review_CONTROL_ONLY.jsonl",
+      "role": "CONTROL_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 965214,
+      "sha256": "5943f4c778f661c5ac748a1d4466c27ffd9718bf49aebf89baf6e05ec6e06a9e"
+    },
+    {
+      "path": "02_CONTROL_FOR_AGENT_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/payload_cleanliness_scan_CONTROL_ONLY.json",
+      "role": "CONTROL_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 2364,
+      "sha256": "5292597181d19be5723347feb103e7248d23c6d8f0ecf255f71e2b2ae660727e"
+    },
+    {
+      "path": "02_CONTROL_FOR_AGENT_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/platform_baseline_reference_DO_NOT_UPLOAD.csv",
+      "role": "CONTROL_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 32549,
+      "sha256": "53d69849a3a136d8f672ee457efe8c309771056fbe98113b60c24ade633b1597"
+    },
+    {
+      "path": "02_CONTROL_FOR_AGENT_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/platform_baseline_reference_DO_NOT_UPLOAD.jsonl",
+      "role": "CONTROL_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 60203,
+      "sha256": "249b36ef8083fb460d46690c079f50bda6eecb340e45ef0190e3aa7fab6b3af5"
+    },
+    {
+      "path": "02_CONTROL_FOR_AGENT_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/platform_update_map_CONTROL_ONLY.csv",
+      "role": "CONTROL_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 933839,
+      "sha256": "737cf3947df95517419254129fb84a11d0195919def99c986ba512f9e783a0d1"
+    },
+    {
+      "path": "02_CONTROL_FOR_AGENT_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/platform_update_map_CONTROL_ONLY.jsonl",
+      "role": "CONTROL_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 1680757,
+      "sha256": "e45f175b67f05a9dfa5c681e5184f21ca1256405573c289d638d59d7660ca561"
+    },
+    {
+      "path": "02_CONTROL_FOR_AGENT_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/programme_control_seed_data_SCHEMA_CONTROL_ONLY.json",
+      "role": "CONTROL_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 34205,
+      "sha256": "af35090ae53bf436578741774150e5553799ecb61c06a2e89b39a57a98dbc516"
+    },
+    {
+      "path": "02_CONTROL_FOR_AGENT_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/upload_order_CONTROL_ONLY.json",
+      "role": "CONTROL_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 1790,
+      "sha256": "a1881ce1e412350852262d379e1a3325e56246d29bfeffc07d4575eaa7566ce2"
+    },
+    {
+      "path": "03_INSTRUCTIONS_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/FULL_AGENT_UPLOAD_PROMPT_DO_NOT_UPLOAD.md",
+      "role": "INSTRUCTION_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 2679,
+      "sha256": "b784fa9e7c0e98cd261dd45369f2816424d2aecce02e1d64a57b68eca5fc4445"
+    },
+    {
+      "path": "03_INSTRUCTIONS_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/README_UPLOAD_INSTRUCTIONS_DO_NOT_UPLOAD.md",
+      "role": "INSTRUCTION_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 2358,
+      "sha256": "a029ffe94b5dc22c7271a87096ff326d98cac06e6085430cb6d1bce519c39a2e"
+    },
+    {
+      "path": "03_INSTRUCTIONS_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/VALIDATION_RULES_DO_NOT_UPLOAD.json",
+      "role": "INSTRUCTION_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 1094,
+      "sha256": "70131df8d6a0d3b10635e70e14215c06115c12ea3184c741c0421d199beb9ffc"
+    },
+    {
+      "path": "04_REFERENCE_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/data_quality_exceptions_REFERENCE_ONLY.csv",
+      "role": "REFERENCE_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 307792,
+      "sha256": "46d3b4c43633a56ab39eff12fda67b3f66feeecf05668e024fdc8642b82dc767"
+    },
+    {
+      "path": "04_REFERENCE_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/source_files/Workstream_Owner_Roadmap_InputSheet.xlsx",
+      "role": "REFERENCE_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 149902,
+      "sha256": "31f50362a4e168a87c271b8fb829b182ff80d67eb3717ae1c910f8713e1b3a4c"
+    },
+    {
+      "path": "04_REFERENCE_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/source_files/original_attached_prompt_REFERENCE_ONLY.txt",
+      "role": "REFERENCE_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 14049,
+      "sha256": "a0e98286836c27b2edb43d54c556246b24cf5d5a9519a8dd08085a5fdcfa3761"
+    },
+    {
+      "path": "04_REFERENCE_DO_NOT_UPLOAD_AS_PROGRAMME_DATA/source_files/timeline.xls",
+      "role": "REFERENCE_ONLY_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 70300,
+      "sha256": "3ada1f204906da0bcbd8bba1b0a9f56ce84a21ed02aa53d2c4f7c324ba59d12f"
+    },
+    {
+      "path": "README_FIRST_DO_NOT_UPLOAD_AS_PROGRAMME_DATA.md",
+      "role": "MANIFEST_OR_README_DO_NOT_UPLOAD_AS_PROGRAMME_DATA",
+      "may_seed_as_programme_data": false,
+      "size_bytes": 2136,
+      "sha256": "90da1eaf5ae1126f7e4bd9cc143d30d955cc9b82ebe91a87bd12dd413586efd6"
+    }
+  ]
+}

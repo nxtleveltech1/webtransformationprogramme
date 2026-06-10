@@ -451,6 +451,8 @@ export function TasksClient({
           <DataTable
             columns={columns}
             data={filtered}
+            mappingColumns
+            tableKey="tasks"
             searchPlaceholder="Search actions..."
             onRowClick={openDetail}
             emptyTitle="No actions match these filters"

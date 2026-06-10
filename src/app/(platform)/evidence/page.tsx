@@ -42,6 +42,7 @@ export default async function EvidencePage() {
             columns={EVIDENCE_COLUMNS}
             filename="workshop-evidence-library"
             entity="evidence"
+            tableKey="evidence"
             searchPlaceholder="Search sources, trace refs, execution IDs..."
             emptyTitle="No evidence links"
             emptyDescription="Seed evidence links to populate workshop traceability."

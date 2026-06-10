@@ -260,6 +260,8 @@ export function RisksClient({
       <DataTable
         columns={columns}
         data={risks}
+        mappingColumns
+        tableKey="risks"
         searchPlaceholder="Search risks..."
         onRowClick={openDetail}
         emptyTitle="No risks recorded"

@@ -269,31 +269,32 @@ enum StakeholderRoleType {
 // ─── Programme & workshop ────────────────────────────────────────────────────
 
 model Programme {
-  id                 String              @id @default(cuid())
-  name               String
-  purpose            String?             @db.Text
-  scopeTension       String?             @db.Text
-  hardDeadline       String?
-  pageBaseline       Int?
-  mvpSummary         String?             @db.Text
-  rag                Rag?
-  status             ProgrammeStatus     @default(ACTIVE)
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
-  workshops          WorkshopEvent[]
-  workstreams        Workstream[]
-  sites              Site[]
-  metrics            SuccessMetric[]
-  scopeOptions       ScopeOption[]
-  projects           Project[]
-  phases             Phase[]
-  tasks              Task[]
-  deliverables       Deliverable[]
-  readinessGates     ReadinessGate[]
-  governanceMeetings    GovernanceMeeting[]
-  statusUpdates         StatusUpdate[]
+  id                      String                   @id @default(cuid())
+  name                    String
+  purpose                 String?                  @db.Text
+  scopeTension            String?                  @db.Text
+  hardDeadline            String?
+  pageBaseline            Int?
+  mvpSummary              String?                  @db.Text
+  rag                     Rag?
+  status                  ProgrammeStatus          @default(ACTIVE)
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @updatedAt
+  workshops               WorkshopEvent[]
+  workstreams             Workstream[]
+  sites                   Site[]
+  metrics                 SuccessMetric[]
+  scopeOptions            ScopeOption[]
+  projects                Project[]
+  phases                  Phase[]
+  tasks                   Task[]
+  deliverables            Deliverable[]
+  readinessGates          ReadinessGate[]
+  governanceMeetings      GovernanceMeeting[]
+  statusUpdates           StatusUpdate[]
   governanceReferenceDocs GovernanceReferenceDoc[]
-  scenarios             Scenario[]
+  scenarios               Scenario[]
+  programmeConstraints    ProgrammeConstraint[]
 }
 
 model WorkshopEvent {
@@ -504,57 +505,58 @@ model DirectoryCluster {
 }
 
 model Person {
-  id                      String                    @id @default(cuid())
-  displayName             String
-  surname                 String?
-  nickname                String?
-  email                   String?
-  phone                   String?
-  mobile                  String?
-  primaryContact          String?
-  roleDescription         String?                   @db.Text
-  department              String?
-  location                String?
-  participantStatus       ParticipantStatus         @default(CONFIRMED)
-  kind                    PersonKind                @default(PERSON)
-  confidence              Confidence                @default(INFERRED)
-  active                  Boolean                   @default(true)
-  contactVisibility       ContactVisibility         @default(PUBLIC_INTERNAL)
-  areaId                  String?
-  area                    DirectoryArea?            @relation("PersonArea", fields: [areaId], references: [id], onDelete: SetNull)
-  businessId              String?
-  business                DirectoryBusiness?        @relation("PersonBusiness", fields: [businessId], references: [id], onDelete: SetNull)
-  clusterId               String?
-  cluster                 DirectoryCluster?         @relation("PersonCluster", fields: [clusterId], references: [id], onDelete: SetNull)
-  primaryWorkstreamId     String?
-  primaryWorkstream       Workstream?               @relation("PersonPrimaryWorkstream", fields: [primaryWorkstreamId], references: [id], onDelete: SetNull)
-  dataOwnerPersonId       String?
-  dataOwner               Person?                   @relation("PersonDataOwner", fields: [dataOwnerPersonId], references: [id], onDelete: SetNull)
-  dataStewards            Person[]                  @relation("PersonDataOwner")
-  createdAt               DateTime                  @default(now())
-  updatedAt               DateTime                  @updatedAt
-  teamAssignments         PersonTeam[]
-  stakeholderRoles        StakeholderRole[]
-  programmeRoles          ProgrammeRoleAssignment[]
-  ledWorkstreams          Workstream[]              @relation("WorkstreamLead")
-  ownedDecisions          Decision[]                @relation("DecisionOwner")
-  ownedActions            Action[]                  @relation("ActionOwner")
-  ownedRisks              Risk[]                    @relation("RiskOwner")
-  ownedIssues             Issue[]                   @relation("IssueOwner")
-  validatedAssumptions    Assumption[]              @relation("AssumptionValidator")
-  ownedProjects           Project[]                 @relation("ProjectOwner")
-  ownedDeliverables       Deliverable[]             @relation("DeliverableOwner")
-  ownedTasks              Task[]                    @relation("TaskOwner")
-  ownedReadinessGates     ReadinessGate[]           @relation("ReadinessGateOwner")
-  ownedGovernanceMeetings GovernanceMeeting[]       @relation("GovernanceMeetingOwner")
-  approvals               Approval[]                @relation("ApprovalApprover")
-  changeApprovals         ChangeRequest[]           @relation("ChangeApprover")
-  allocations             ResourceAllocation[]
-  notifications           Notification[]            @relation("NotificationRecipient")
-  ownedDocuments          Document[]                @relation("DocumentOwner")
-  ownedGovernanceDocs     GovernanceReferenceDoc[]  @relation("GovernanceDocOwner")
-  userAccount             User?
-  resource                Resource?
+  id                        String                    @id @default(cuid())
+  displayName               String
+  surname                   String?
+  nickname                  String?
+  email                     String?
+  phone                     String?
+  mobile                    String?
+  primaryContact            String?
+  roleDescription           String?                   @db.Text
+  department                String?
+  location                  String?
+  participantStatus         ParticipantStatus         @default(CONFIRMED)
+  kind                      PersonKind                @default(PERSON)
+  confidence                Confidence                @default(INFERRED)
+  active                    Boolean                   @default(true)
+  contactVisibility         ContactVisibility         @default(PUBLIC_INTERNAL)
+  areaId                    String?
+  area                      DirectoryArea?            @relation("PersonArea", fields: [areaId], references: [id], onDelete: SetNull)
+  businessId                String?
+  business                  DirectoryBusiness?        @relation("PersonBusiness", fields: [businessId], references: [id], onDelete: SetNull)
+  clusterId                 String?
+  cluster                   DirectoryCluster?         @relation("PersonCluster", fields: [clusterId], references: [id], onDelete: SetNull)
+  primaryWorkstreamId       String?
+  primaryWorkstream         Workstream?               @relation("PersonPrimaryWorkstream", fields: [primaryWorkstreamId], references: [id], onDelete: SetNull)
+  dataOwnerPersonId         String?
+  dataOwner                 Person?                   @relation("PersonDataOwner", fields: [dataOwnerPersonId], references: [id], onDelete: SetNull)
+  dataStewards              Person[]                  @relation("PersonDataOwner")
+  createdAt                 DateTime                  @default(now())
+  updatedAt                 DateTime                  @updatedAt
+  teamAssignments           PersonTeam[]
+  stakeholderRoles          StakeholderRole[]
+  programmeRoles            ProgrammeRoleAssignment[]
+  ledWorkstreams            Workstream[]              @relation("WorkstreamLead")
+  ownedDecisions            Decision[]                @relation("DecisionOwner")
+  ownedActions              Action[]                  @relation("ActionOwner")
+  ownedRisks                Risk[]                    @relation("RiskOwner")
+  ownedIssues               Issue[]                   @relation("IssueOwner")
+  validatedAssumptions      Assumption[]              @relation("AssumptionValidator")
+  ownedProjects             Project[]                 @relation("ProjectOwner")
+  ownedDeliverables         Deliverable[]             @relation("DeliverableOwner")
+  ownedTasks                Task[]                    @relation("TaskOwner")
+  ownedReadinessGates       ReadinessGate[]           @relation("ReadinessGateOwner")
+  ownedGovernanceMeetings   GovernanceMeeting[]       @relation("GovernanceMeetingOwner")
+  approvals                 Approval[]                @relation("ApprovalApprover")
+  changeApprovals           ChangeRequest[]           @relation("ChangeApprover")
+  allocations               ResourceAllocation[]
+  notifications             Notification[]            @relation("NotificationRecipient")
+  ownedDocuments            Document[]                @relation("DocumentOwner")
+  ownedGovernanceDocs       GovernanceReferenceDoc[]  @relation("GovernanceDocOwner")
+  ownedProgrammeConstraints ProgrammeConstraint[]     @relation("ProgrammeConstraintOwner")
+  userAccount               User?
+  resource                  Resource?
 
   @@unique([displayName, surname])
   @@index([displayName])
@@ -606,33 +608,34 @@ model PersonTeam {
 }
 
 model Workstream {
-  id                 String              @id @default(cuid())
-  programmeId        String?
-  programme          Programme?          @relation(fields: [programmeId], references: [id], onDelete: SetNull)
-  code               String              @unique
-  name               String
-  leadPersonId       String?
-  leadPerson         Person?             @relation("WorkstreamLead", fields: [leadPersonId], references: [id], onDelete: SetNull)
-  leadText           String?
-  oneLineStatus      String?             @db.Text
-  rag                Rag?
-  sortOrder          Int                 @default(0)
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
-  decisions          Decision[]
-  actions            Action[]
-  risks              Risk[]
-  dependencies       Dependency[]
-  projects           Project[]
-  milestones         Milestone[]
-  tasks              Task[]
-  deliverables       Deliverable[]
-  readinessGates     ReadinessGate[]
-  governanceMeetings GovernanceMeeting[]
-  statusUpdates      StatusUpdate[]
-  evidenceLinks      EvidenceLink[]
-  primaryForPeople   Person[]                @relation("PersonPrimaryWorkstream")
-  programmeRoles     ProgrammeRoleAssignment[] @relation("ProgrammeRoleWorkstream")
+  id                   String                    @id @default(cuid())
+  programmeId          String?
+  programme            Programme?                @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  code                 String                    @unique
+  name                 String
+  leadPersonId         String?
+  leadPerson           Person?                   @relation("WorkstreamLead", fields: [leadPersonId], references: [id], onDelete: SetNull)
+  leadText             String?
+  oneLineStatus        String?                   @db.Text
+  rag                  Rag?
+  sortOrder            Int                       @default(0)
+  createdAt            DateTime                  @default(now())
+  updatedAt            DateTime                  @updatedAt
+  decisions            Decision[]
+  actions              Action[]
+  risks                Risk[]
+  dependencies         Dependency[]
+  projects             Project[]
+  milestones           Milestone[]
+  tasks                Task[]
+  deliverables         Deliverable[]
+  readinessGates       ReadinessGate[]
+  governanceMeetings   GovernanceMeeting[]
+  statusUpdates        StatusUpdate[]
+  evidenceLinks        EvidenceLink[]
+  primaryForPeople     Person[]                  @relation("PersonPrimaryWorkstream")
+  programmeRoles       ProgrammeRoleAssignment[] @relation("ProgrammeRoleWorkstream")
+  programmeConstraints ProgrammeConstraint[]
 
   @@index([programmeId])
 }
@@ -680,33 +683,33 @@ model CustomerJourney {
 }
 
 model GlossaryTerm {
-  id         String           @id @default(cuid())
+  id         String             @id @default(cuid())
   term       String
-  meaning    String           @db.Text
-  category   GlossaryCategory @default(TERM)
-  confidence Confidence       @default(INFERRED)
-  createdAt  DateTime         @default(now())
-  updatedAt  DateTime         @updatedAt
+  meaning    String             @db.Text
+  category   GlossaryCategory   @default(TERM)
+  confidence Confidence         @default(INFERRED)
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
   mappings   ReferenceMapping[]
 
   @@unique([term])
 }
 
 model GovernanceReferenceDoc {
-  id            String                      @id @default(cuid())
-  type          GovernanceDocType           @default(TERMS_OF_REFERENCE)
+  id            String                       @id @default(cuid())
+  type          GovernanceDocType            @default(TERMS_OF_REFERENCE)
   title         String
-  slug          String                      @unique
-  version       String                      @default("1.0")
-  status        GovernanceDocStatus         @default(DRAFT)
-  summary       String?                     @db.Text
+  slug          String                       @unique
+  version       String                       @default("1.0")
+  status        GovernanceDocStatus          @default(DRAFT)
+  summary       String?                      @db.Text
   programmeId   String?
-  programme     Programme?                  @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  programme     Programme?                   @relation(fields: [programmeId], references: [id], onDelete: SetNull)
   ownerPersonId String?
-  ownerPerson   Person?                     @relation("GovernanceDocOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
+  ownerPerson   Person?                      @relation("GovernanceDocOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
   publishedAt   DateTime?
-  createdAt     DateTime                    @default(now())
-  updatedAt     DateTime                    @updatedAt
+  createdAt     DateTime                     @default(now())
+  updatedAt     DateTime                     @updatedAt
   sections      GovernanceReferenceSection[]
 
   @@index([type])
@@ -714,18 +717,18 @@ model GovernanceReferenceDoc {
 }
 
 model GovernanceReferenceSection {
-  id               String                      @id @default(cuid())
-  docId            String
-  doc              GovernanceReferenceDoc      @relation(fields: [docId], references: [id], onDelete: Cascade)
-  heading          String
-  body             String                      @db.Text
-  sortOrder        Int                         @default(0)
-  parentSectionId  String?
-  parentSection    GovernanceReferenceSection? @relation("SectionHierarchy", fields: [parentSectionId], references: [id], onDelete: SetNull)
-  childSections    GovernanceReferenceSection[] @relation("SectionHierarchy")
-  createdAt        DateTime                    @default(now())
-  updatedAt        DateTime                    @updatedAt
-  referenceMaps    ReferenceMapping[]
+  id              String                       @id @default(cuid())
+  docId           String
+  doc             GovernanceReferenceDoc       @relation(fields: [docId], references: [id], onDelete: Cascade)
+  heading         String
+  body            String                       @db.Text
+  sortOrder       Int                          @default(0)
+  parentSectionId String?
+  parentSection   GovernanceReferenceSection?  @relation("SectionHierarchy", fields: [parentSectionId], references: [id], onDelete: SetNull)
+  childSections   GovernanceReferenceSection[] @relation("SectionHierarchy")
+  createdAt       DateTime                     @default(now())
+  updatedAt       DateTime                     @updatedAt
+  referenceMaps   ReferenceMapping[]
 
   @@index([docId])
   @@index([parentSectionId])
@@ -978,6 +981,11 @@ model Risk {
   ownerPersonId       String?
   ownerPerson         Person?         @relation("RiskOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
   ownerText           String?
+  channel             String?
+  domain              String?
+  areaJourney         String?
+  cluster             String?
+  market              String?
   mitigationDiscussed String?         @db.Text
   mitigationRequired  String?         @db.Text
   escalationRequired  String?
@@ -1069,6 +1077,11 @@ model Dependency {
   escalation          String?
   status              DependencyStatus @default(OPEN)
   ownerText           String?
+  channel             String?
+  domain              String?
+  areaJourney         String?
+  cluster             String?
+  market              String?
   workshopDay         Int?
   sessionRef          String?
   traceRef            String?
@@ -1265,6 +1278,45 @@ model ResourceConstraint {
   updatedAt            DateTime @updatedAt
 }
 
+/// Programme-level delivery constraints ingested from the workstream roadmap
+/// dataset (CON-xxxx). Distinct from {@link ResourceConstraint} (capacity notes):
+/// these are typed, owned, task-linked constraints that gate delivery.
+model ProgrammeConstraint {
+  id                 String      @id @default(cuid())
+  externalId         String      @unique
+  title              String
+  description        String?     @db.Text
+  constraintType     String?
+  severity           String?
+  status             String      @default("Not Started")
+  priority           Priority    @default(MEDIUM)
+  requiredAction     String?     @db.Text
+  relatedDeliverable String?
+  ownerText          String?
+  channel            String?
+  domain             String?
+  areaJourney        String?
+  cluster            String?
+  market             String?
+  ownerPersonId      String?
+  ownerPerson        Person?     @relation("ProgrammeConstraintOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
+  programmeId        String?
+  programme          Programme?  @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  workstreamId       String?
+  workstream         Workstream? @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
+  taskId             String?
+  task               Task?       @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  sourceEvidence     String?     @db.Text
+  traceRef           String?
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+
+  @@index([constraintType])
+  @@index([status])
+  @@index([workstreamId])
+  @@index([taskId])
+}
+
 // ─── Executive & meta ────────────────────────────────────────────────────────
 
 model ExecutiveSummary {
@@ -1358,6 +1410,21 @@ model AuditEvent {
   createdAt  DateTime @default(now())
 
   @@index([entityType, entityId])
+}
+
+/// Per-user, per-table UI preference (currently column visibility) for the
+/// shared DataTable. Keyed by Clerk userId + a stable tableKey so a user's
+/// chosen columns follow them across sessions/devices.
+model TablePreference {
+  id               String   @id @default(cuid())
+  userId           String
+  tableKey         String
+  columnVisibility Json
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([userId, tableKey])
+  @@index([userId])
 }
 
 // ─── Enterprise PM extension ─────────────────────────────────────────────────
@@ -1487,60 +1554,66 @@ model Phase {
 }
 
 model Task {
-  id                 String           @id @default(cuid())
-  externalId         String           @unique
-  programmeId        String?
-  programme          Programme?       @relation(fields: [programmeId], references: [id], onDelete: SetNull)
-  phaseId            String?
-  phase              Phase?           @relation(fields: [phaseId], references: [id], onDelete: SetNull)
-  workstreamId       String?
-  workstream         Workstream?      @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
-  projectId          String?
-  project            Project?         @relation(fields: [projectId], references: [id], onDelete: SetNull)
-  deliverableId      String?
-  deliverable        Deliverable?     @relation(fields: [deliverableId], references: [id], onDelete: SetNull)
-  milestoneId        String?
-  milestone          Milestone?       @relation(fields: [milestoneId], references: [id], onDelete: SetNull)
-  parentTaskId       String?
-  parentTask         Task?            @relation("TaskHierarchy", fields: [parentTaskId], references: [id], onDelete: SetNull)
-  childTasks         Task[]           @relation("TaskHierarchy")
-  title              String
-  description        String?          @db.Text
-  status             TaskStatus       @default(NOT_STARTED)
-  priority           Priority         @default(MEDIUM)
-  rag                Rag?
-  percentComplete    Int              @default(0)
-  baselineStartDate  String?
-  baselineEndDate    String?
-  forecastStartDate  String?
-  forecastEndDate    String?
-  durationDays       Int?
-  ownerPersonId      String?
-  ownerPerson        Person?          @relation("TaskOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
-  ownerText          String?
-  supportingSmes     String?          @db.Text
-  blockers           String?          @db.Text
-  acceptanceCriteria String?          @db.Text
-  completionEvidence String?          @db.Text
-  assumptions        String?          @db.Text
-  confidence         Confidence       @default(INFERRED)
-  criticalPath       Boolean          @default(false)
-  sourceDocumentId   String?
-  sourceDocument     SourceDocument?  @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
-  traceRef           String?
-  sortOrder          Int              @default(0)
-  createdAt          DateTime         @default(now())
-  updatedAt          DateTime         @updatedAt
-  predecessorLinks   TaskDependency[] @relation("TaskDependencyPredecessor")
-  successorLinks     TaskDependency[] @relation("TaskDependencySuccessor")
-  actions            Action[]
-  risks              Risk[]
-  issues             Issue[]
-  decisions          Decision[]
-  dependencies       Dependency[]
-  readinessGates     ReadinessGate[]
-  statusUpdates      StatusUpdate[]
-  evidenceLinks      EvidenceLink[]
+  id                   String                @id @default(cuid())
+  externalId           String                @unique
+  programmeId          String?
+  programme            Programme?            @relation(fields: [programmeId], references: [id], onDelete: SetNull)
+  phaseId              String?
+  phase                Phase?                @relation(fields: [phaseId], references: [id], onDelete: SetNull)
+  workstreamId         String?
+  workstream           Workstream?           @relation(fields: [workstreamId], references: [id], onDelete: SetNull)
+  projectId            String?
+  project              Project?              @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  deliverableId        String?
+  deliverable          Deliverable?          @relation(fields: [deliverableId], references: [id], onDelete: SetNull)
+  milestoneId          String?
+  milestone            Milestone?            @relation(fields: [milestoneId], references: [id], onDelete: SetNull)
+  parentTaskId         String?
+  parentTask           Task?                 @relation("TaskHierarchy", fields: [parentTaskId], references: [id], onDelete: SetNull)
+  childTasks           Task[]                @relation("TaskHierarchy")
+  title                String
+  description          String?               @db.Text
+  status               TaskStatus            @default(NOT_STARTED)
+  priority             Priority              @default(MEDIUM)
+  rag                  Rag?
+  percentComplete      Int                   @default(0)
+  baselineStartDate    String?
+  baselineEndDate      String?
+  forecastStartDate    String?
+  forecastEndDate      String?
+  durationDays         Int?
+  ownerPersonId        String?
+  ownerPerson          Person?               @relation("TaskOwner", fields: [ownerPersonId], references: [id], onDelete: SetNull)
+  ownerText            String?
+  channel              String?
+  domain               String?
+  areaJourney          String?
+  cluster              String?
+  market               String?
+  supportingSmes       String?               @db.Text
+  blockers             String?               @db.Text
+  acceptanceCriteria   String?               @db.Text
+  completionEvidence   String?               @db.Text
+  assumptions          String?               @db.Text
+  confidence           Confidence            @default(INFERRED)
+  criticalPath         Boolean               @default(false)
+  sourceDocumentId     String?
+  sourceDocument       SourceDocument?       @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  traceRef             String?
+  sortOrder            Int                   @default(0)
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  predecessorLinks     TaskDependency[]      @relation("TaskDependencyPredecessor")
+  successorLinks       TaskDependency[]      @relation("TaskDependencySuccessor")
+  actions              Action[]
+  risks                Risk[]
+  issues               Issue[]
+  decisions            Decision[]
+  dependencies         Dependency[]
+  readinessGates       ReadinessGate[]
+  statusUpdates        StatusUpdate[]
+  evidenceLinks        EvidenceLink[]
+  programmeConstraints ProgrammeConstraint[]
 
   @@index([programmeId])
   @@index([phaseId])

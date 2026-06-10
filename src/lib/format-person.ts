@@ -16,17 +16,17 @@ export function formatOwnerDisplay(
   ownerText: string | null | undefined,
   person: PersonNameFields | null | undefined
 ): string {
-  const text = ownerText?.trim();
-  if (text && (text.includes("/") || text.includes(",") || text.includes(";"))) return text;
-  if (text && !person) return text;
-  return formatPersonName(person, text);
+  // A structured Person is the source of truth — prefer it over any denormalised
+  // free-text copy, which can go stale when the owner is reassigned. Free-text is
+  // only used (e.g. for multi-owner teams) when no Person is assigned.
+  if (person) return formatPersonName(person, ownerText);
+  return ownerText?.trim() || "Unassigned";
 }
 
 export function formatWorkstreamLead(
   leadText: string | null | undefined,
   person: PersonNameFields | null | undefined
 ): string {
-  const text = leadText?.trim();
-  if (text) return text;
-  return formatPersonName(person, null);
+  if (person) return formatPersonName(person, leadText);
+  return leadText?.trim() || "Unassigned";
 }

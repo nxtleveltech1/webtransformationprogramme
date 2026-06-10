@@ -101,6 +101,11 @@ export async function getWbsControlData() {
     criticalPath: task.criticalPath ? "Yes" : "No",
     confidence: task.confidence,
     evidenceLinks: task._count.evidenceLinks,
+    channel: task.channel,
+    domain: task.domain,
+    areaJourney: task.areaJourney,
+    cluster: task.cluster,
+    market: task.market,
     }));
 
     return {

@@ -179,6 +179,8 @@ export function ParkingLotClient({
       <DataTable
         columns={columns}
         data={items}
+        mappingColumns
+        tableKey="parking-lot"
         searchPlaceholder="Search parking lot..."
         onRowClick={openDetail}
         emptyTitle="Parking lot is empty"

@@ -1,0 +1,11 @@
+{
+  "at": "2026-06-09T06:38:02.702Z",
+  "counts": {
+    "tasks": 112,
+    "risks": 32,
+    "dependencies": 22,
+    "programmeConstraints": 0,
+    "workstreams": 11,
+    "people": 70
+  }
+}

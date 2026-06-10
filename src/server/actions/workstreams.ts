@@ -34,6 +34,7 @@ function buildData(
     oneLineStatus: data.oneLineStatus ?? null,
     rag: data.rag ?? null,
     leadPersonId: data.leadPersonId ?? null,
+    leadText: data.leadText ?? null,
     programmeId: data.programmeId ?? null,
   };
 }

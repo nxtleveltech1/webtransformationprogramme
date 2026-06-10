@@ -1,0 +1,200 @@
+dataset_id,dataset_text,verdict,live_externalId,live_label,score
+DEP-0001,Design navigation structure based on the IA depends on upstream delive,NEW,,,0.057
+DEP-0002,Complete footer navigation structure based on the IA depends on upstre,NEW,,,0.049
+DEP-0003,Design Landing Page Template depends on upstream delivery Design Landi,NEW,,,0.062
+DEP-0004,Design Landing Page Template requires external input or approval The s,NEW,,,0.057
+DEP-0005,Design Section Page Template depends on upstream delivery Design Secti,NEW,,,0.062
+DEP-0006,Design Section Page Template requires external input or approval The s,NEW,,,0.057
+DEP-0007,Finalise Category Page Template depends on upstream delivery Finalise ,NEW,,,0.086
+DEP-0008,Finalise Product Page Template depends on upstream delivery Finalise P,NEW,,,0.079
+DEP-0009,Design Utility Template: All Calculators depends on upstream delivery ,NEW,,,0.062
+DEP-0010,Design Utility Template: All Calculators requires external input or ap,NEW,,,0.077
+DEP-0011,Design Utility Template: Calculators Page depends on upstream delivery,NEW,,,0.056
+DEP-0012,Design Utility Template: Calculators Page requires external input or a,NEW,,,0.07
+DEP-0013,Design Tenant Template depends on upstream delivery Design Tenant Temp,NEW,,,0.061
+DEP-0014,Design Tenant Template requires external input or approval The source ,NEW,,,0.054
+DEP-0015,Design Utility Template: Careers depends on upstream delivery Design U,NEW,,,0.061
+DEP-0016,Design Utility Template: Careers requires external input or approval T,NEW,,,0.075
+DEP-0017,Design navigation structure based on the IA depends on upstream delive,NEW,,,0.057
+DEP-0018,Design navigation structure based on the IA requires external input or,NEW,,,0.071
+DEP-0019,Design navigation solution to allow access to other secure sites has a,NEW,,,0.094
+DEP-0020,Finalise generic copy standards depends on upstream delivery Finalise ,NEW,,,0.083
+DEP-0021,Finalise SEO + AIEO standards depends on upstream delivery Finalise SE,NEW,,,0.077
+DEP-0022,Align DS to iterim Brand CI depends on upstream delivery Align DS to i,NEW,,,0.08
+DEP-0023,Design OM Bank Tenant site (structure) depends on upstream delivery De,NEW,,,0.077
+DEP-0024,Design Rewards Tenant Site depends on upstream delivery Design Rewards,NEW,,,0.067
+DEP-0025,Design iWyze Tenant Product Page Template depends on upstream delivery,NEW,,,0.071
+DEP-0026,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.061
+DEP-0027,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.055
+DEP-0028,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.083
+DEP-0029,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.055
+DEP-0030,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.059
+DEP-0031,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.053
+DEP-0032,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.086
+DEP-0033,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.073
+DEP-0034,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.086
+DEP-0035,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.073
+DEP-0036,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.086
+DEP-0037,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.073
+DEP-0038,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.086
+DEP-0039,Information Architecture Stakeholder Socialisation & Sign Off (L1 - L3,NEW,,,0.073
+DEP-0040,Audience landing with enhanced copy depends on upstream delivery Audie,NEW,,,0.088
+DEP-0041,Audience landing with enhanced copy requires external input or approva,NEW,,,0.095
+DEP-0042,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0043,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0044,L3+ IA finalisation; Section landing with enhanced copy; Product landi,NEW,,,0.079
+DEP-0045,L3+ IA finalisation; Section landing with enhanced copy; Product landi,NEW,,,0.068
+DEP-0046,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0047,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0048,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0049,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0050,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0051,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0052,Mapping of new IA and Footer to sxisting site structure depends on ups,NEW,,,0.083
+DEP-0053,Mapping of new IA and Footer to sxisting site structure requires exter,NEW,,,0.071
+DEP-0054,Mapping of new IA and Footer to sxisting site structure depends on ups,NEW,,,0.081
+DEP-0055,Mapping of new IA and Footer to sxisting site structure requires exter,NEW,,,0.07
+DEP-0056,Mapping of new IA and Footer to sxisting site structure depends on ups,NEW,,,0.079
+DEP-0057,Mapping of new IA and Footer to sxisting site structure requires exter,NEW,,,0.068
+DEP-0058,Audience landing with enhanced copy depends on upstream delivery Audie,NEW,,,0.088
+DEP-0059,Audience landing with enhanced copy requires external input or approva,NEW,,,0.095
+DEP-0060,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0061,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0062,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0063,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0064,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0065,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0066,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0067,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0068,Audience landing with enhanced copy depends on upstream delivery Audie,NEW,,,0.088
+DEP-0069,Audience landing with enhanced copy requires external input or approva,NEW,,,0.095
+DEP-0070,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0071,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0072,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0073,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0074,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0075,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0076,Audience landing with enhanced copy depends on upstream delivery Audie,NEW,,,0.088
+DEP-0077,Audience landing with enhanced copy requires external input or approva,NEW,,,0.095
+DEP-0078,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0079,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0080,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0081,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0082,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0083,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0084,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0085,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0086,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.06
+DEP-0087,L3+ IA finalisation; URL mapping (Current vs. New URL mapping (Current,NEW,,,0.054
+DEP-0088,Public > Secure | Secure > Public Transition.; Access to other secure ,NEW,,,0.098
+DEP-0089,Public > Secure | Secure > Public Transition.; Access to other secure ,NEW,,,0.089
+DEP-0090,Socilaisation of defined IA and Page templates for handover. depends o,NEW,,,0.083
+DEP-0091,Socilaisation of defined IA and Page templates for handover. requires ,NEW,,,0.071
+DEP-0092,Socilaisation of defined IA and Page templates for handover. depends o,NEW,,,0.083
+DEP-0093,Socilaisation of defined IA and Page templates for handover. requires ,NEW,,,0.071
+DEP-0094,Copy enhancement + link mapping dependent on design activities depends,NEW,,,0.077
+DEP-0095,Copy enhancement + link mapping dependent on design activities depends,NEW,,,0.077
+DEP-0096,Copy enhancement + link mapping dependent on design activities depends,NEW,,,0.103
+DEP-0097,Copy enhancement + link mapping dependent on design activities depends,NEW,,,0.074
+DEP-0098,Portfolio View depends on upstream delivery Portfolio View is dependen,NEW,,,0.114
+DEP-0099,Content Updates depends on upstream delivery Content Updates is depend,NEW,,,0.125
+DEP-0100,Journeys Optimization depends on upstream delivery Journeys Optimizati,NEW,,,0.115
+DEP-0101,Easy Plus Sales Jorurney on Public Web depends on upstream delivery Ea,NEW,,,0.129
+DEP-0102,Find Advisor depends on upstream delivery Find Advisor is dependent on,NEW,,,0.13
+DEP-0103,Design and Develop CI Updates onto OMDSv2 depends on upstream delivery,NEW,,,0.083
+DEP-0104,Design and Develop Top Navigation Component Updates depends on upstrea,NEW,,,0.08
+DEP-0105,Design and Develop Top Navigation Component Updates depends on upstrea,NEW,,,0.08
+DEP-0106,Design and Develop Footer Component Updates depends on upstream delive,NEW,,,0.083
+DEP-0107,Design and Develop Card Component Updates depends on upstream delivery,NEW,,,0.083
+DEP-0108,Design and Develop Category Page Template depends on upstream delivery,NEW,,,0.083
+DEP-0109,Design and Develop Product Detail Page Template depends on upstream de,NEW,,,0.08
+DEP-0110,Design and Develop Article Page Template depends on upstream delivery ,NEW,,,0.083
+DEP-0111,Design and Develop Hero Banner Component Updates depends on upstream d,NEW,,,0.08
+DEP-0112,Design and Develop Landing page template depends on upstream delivery ,NEW,,,0.083
+DEP-0113,Design and Develop Section page template depends on upstream delivery ,NEW,,,0.083
+DEP-0114,Design and Develop Utility Template: Contact Us depends on upstream de,NEW,,,0.083
+DEP-0115,Design and Develop Utility Template: All Calculators depends on upstre,NEW,,,0.083
+DEP-0116,Design and Develop Utility Template: Calculators Page depends on upstr,NEW,,,0.08
+DEP-0117,Design and Develop Utility Templates: About Us depends on upstream del,NEW,,,0.083
+DEP-0118,Design and Develop Utility Template: Careers depends on upstream deliv,NEW,,,0.083
+DEP-0119,Add copy standards to OMDS depends on upstream delivery Add copy stand,NEW,,,0.083
+DEP-0120,Add copy standards to OMDS depends on upstream delivery Add copy stand,NEW,,,0.083
+DEP-0121,Design and Develop tenant template depends on upstream delivery Design,NEW,,,0.087
+DEP-0122,Design and Develop tenant template depends on upstream delivery Design,NEW,,,0.087
+DEP-0123,Implement OMCOM into production depends on upstream delivery Implement,NEW,,,0.13
+DEP-0124,Implement OMCOM into production requires external input or approval Th,NEW,,,0.107
+DEP-0125,Dev: Observability Dashboard Templates for Sites depends on upstream d,NEW,,,0.115
+DEP-0126,Dev: Observability Dashboard Templates for Sites requires external inp,NEW,,,0.097
+DEP-0127,Dev: Styling Backwards Compatibility - V2 ModularPage depends on upstr,NEW,,,0.074
+DEP-0128,Dev: Styling Backwards Compatibility - V2 ArticleModularPage depends o,NEW,,,0.074
+DEP-0129,Dev: Export Analytics Data into Tableau requires external input or app,NEW,,,0.053
+DEP-0130,Dev: Export Analytics Data into Tableau requires external input or app,NEW,,,0.077
+DEP-0131,Dev: Configuring Web Transformation Page Template in ContentStack depe,NEW,,,0.074
+DEP-0132,Dev: Configuring Web Transformation Page Template in ContentStack requ,NEW,,,0.088
+DEP-0133,Dev: Update Page Rendering Pipeline to support WT pages depends on ups,NEW,,,0.067
+DEP-0134,Dev: Update Page Rendering Pipeline to support WT pages requires exter,NEW,,,0.057
+DEP-0135,Dev: Navigation components updates public Web depends on upstream deli,NEW,,,0.065
+DEP-0136,Dev: Navigation components updates public Web requires external input ,NEW,,,0.056
+DEP-0137,Dev : Modular Template (LS) depends on upstream delivery Dev : Modular,NEW,,,0.097
+DEP-0138,Dev : Modular Template (LS) requires external input or approval The so,NEW,,,0.083
+DEP-0139,Dev : Modular Page Components (LS) depends on upstream delivery Dev : ,NEW,,,0.074
+DEP-0140,Dev : Modular Page Components (LS) requires external input or approval,NEW,,,0.088
+DEP-0141,Dev Applying analytics tracking to CMS (LS) depends on upstream delive,NEW,,,0.069
+DEP-0142,Dev Applying analytics tracking to CMS (LS) requires external input or,NEW,,,0.083
+DEP-0143,Dev: OMCOZA -Licence cutover depends on upstream delivery Dev: OMCOZA ,NEW,,,0.08
+DEP-0144,Testing in V2 new platform and log bugs requires external input or app,NEW,,,0.054
+DEP-0145,Record Funeral URL structure based on proposed sunset/consolidated pag,NEW,,,0.079
+DEP-0146,Record Retirement URL structure based on consolidated pages as per new,NEW,,,0.079
+DEP-0147,Record Flexi Save URL structure based on consolidated pages as per new,NEW,,,0.077
+DEP-0148,Record URL structure based on all as-is pages (keep/remove/consolidate,NEW,,,0.069
+DEP-0149,Start moving as-is pages over to Beta depends on upstream delivery Sta,NEW,,,0.115
+DEP-0150,Record URL structure for all remaining Personal pages (keep/remove/con,NEW,,,0.067
+DEP-0151,Start building new template pages depends on upstream delivery Start b,NEW,,,0.071
+DEP-0152,Record URL structure for all remaining Corporate pages (keep/remove/co,NEW,,,0.067
+DEP-0153,Start building new template pages depends on upstream delivery Start b,NEW,,,0.071
+DEP-0154,Start building new template pages depends on upstream delivery Start b,NEW,,,0.071
+DEP-0155,Record URL structure for all remaining Utility pages (keep/remove/cons,NEW,,,0.067
+DEP-0156,Start building new template pages depends on upstream delivery Start b,NEW,,,0.071
+DEP-0157,Record URL structure for all remaining About us pages (keep/remove/con,NEW,,,0.067
+DEP-0158,Start building new template pages depends on upstream delivery Start b,NEW,,,0.071
+DEP-0159,Record URL structure for all remaining Careers pages (keep/remove/cons,NEW,,,0.067
+DEP-0160,Start building new template pages depends on upstream delivery Start b,NEW,,,0.071
+DEP-0161,Record URL structure for all remaining Business pages (keep/remove/con,NEW,,,0.067
+DEP-0162,Start building new template pages depends on upstream delivery Start b,NEW,,,0.071
+DEP-0163,"Add new Nav, Footer and update IA depends on upstream delivery Add new",NEW,,,0.074
+DEP-0164,"Add new Nav, Footer and update IA depends on upstream delivery Add new",NEW,,,0.071
+DEP-0165,"Add new Nav, Footer and update IA depends on upstream delivery Add new",NEW,,,0.071
+DEP-0166,"Add new Nav, Footer and update IA depends on upstream delivery Add new",NEW,,,0.074
+DEP-0167,"Publishing requirements for OMAR, logged on OMAR tab depends on upstre",NEW,,,0.08
+DEP-0168,Quality Assurance Approval requires external input or approval The sou,NEW,,,0.08
+DEP-0169,Security Approvals depends on upstream delivery Security Approvals is ,NEW,,,0.087
+DEP-0170,Security Approvals requires external input or approval The source note,NEW,,,0.111
+DEP-0171,Internal Communication ( Call Centre) - Marketing Team Driven depends ,NEW,,,0.065
+DEP-0172,Executive Approval depends on upstream delivery Executive Approval is ,NEW,,,0.087
+DEP-0173,Executive Approval requires external input or approval The source note,NEW,,,0.074
+DEP-0174,Change Management Go Ahead depends on upstream delivery Change Managem,NEW,,,0.08
+DEP-0175,Customer Experience Tool depends on upstream delivery Customer Experie,NEW,,,0.091
+DEP-0176,Confirm Engagement Cycle with SEO Team requires external input or appr,NEW,,,0.069
+DEP-0177,Publishing of all pages in V2 New platform depends on upstream deliver,NEW,,,0.125
+DEP-0178,Publishing of all pages in V2 New platform depends on upstream deliver,NEW,,,0.125
+DEP-0179,Publishing of all pages in V2 New platform depends on upstream deliver,NEW,,,0.125
+DEP-0180,Publishing of all pages in V2 New platform depends on upstream deliver,NEW,,,0.125
+DEP-0181,Publishing of all pages in V2 New platform depends on upstream deliver,NEW,,,0.125
+DEP-0182,Publishing of all pages in V2 New platform depends on upstream deliver,NEW,,,0.125
+DEP-0183,Publishing of all pages in V2 New platform depends on upstream deliver,NEW,,,0.125
+DEP-0184,Publishing of all pages in V2 New platform depends on upstream deliver,NEW,,,0.125
+DEP-0185,Travel Insurance Sales Migration has an unnamed upstream dependency Tr,NEW,,,0.065
+DEP-0186,Mvest has an unnamed upstream dependency Mvest is marked as dependent ,NEW,,,0.04
+DEP-0187,Personal Loan Application has an unnamed upstream dependency Personal ,NEW,,,0.037
+DEP-0188,Personal Loan Repayment Calculator has an unnamed upstream dependency ,NEW,,,0.036
+DEP-0189,Migration of Secure Web depends on upstream delivery Migration of Secu,NEW,,,0.1
+DEP-0190,Service Transactions has an unnamed upstream dependency Service Transa,NEW,,,0.12
+DEP-0191,Eswatini Funeral has an unnamed upstream dependency Eswatini Funeral i,NEW,,,0.04
+DEP-0192,Funeral Claims - Servicing Journey has an unnamed upstream dependency ,NEW,,,0.036
+DEP-0193,Motor claims - Service Journey has an unnamed upstream dependency Moto,NEW,,,0.071
+DEP-0194,Home owners claims- Service Journey has an unnamed upstream dependency,NEW,,,0.069
+DEP-0195,Home content claims Service Journey has an unnamed upstream dependency,NEW,,,0.069
+DEP-0196,Credit Life has an unnamed upstream dependency Credit Life is marked a,NEW,,,0.038
+DEP-0197,Funeral Claims - Sales Journey has an unnamed upstream dependency Fune,NEW,,,0.065
+DEP-0198,Motor claims - Sales Journey has an unnamed upstream dependency Motor ,NEW,,,0.065
+DEP-0199,Home owners claims- Sales Journey has an unnamed upstream dependency H,NEW,,,0.062
